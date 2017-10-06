@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FundRaiserDBModelStoreContainer" CdmEntityContainer="FundRaiserDBContext">
+    <EntitySetMapping Name="Administrations">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.Administration">
+        <MappingFragment StoreEntitySet="Administrations">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankInformations">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.BankInformation">
+        <MappingFragment StoreEntitySet="BankInformations">
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonationOnPosts">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.DonationOnPost">
+        <MappingFragment StoreEntitySet="DonationOnPosts">
+          <ScalarProperty Name="DonationId" ColumnName="DonationId" />
+          <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+          <ScalarProperty Name="DonationAmount" ColumnName="DonationAmount" />
+          <ScalarProperty Name="TransectionId" ColumnName="TransectionId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="UserInformationId" ColumnName="UserInformationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundRequestPosts">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.FundRequestPost">
+        <MappingFragment StoreEntitySet="FundRequestPosts">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+          <ScalarProperty Name="PostDetails" ColumnName="PostDetails" />
+          <ScalarProperty Name="RequiredAmount" ColumnName="RequiredAmount" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CollectedAmount" ColumnName="CollectedAmount" />
+          <ScalarProperty Name="RemainingAmount" ColumnName="RemainingAmount" />
+          <ScalarProperty Name="PostImage" ColumnName="PostImage" />
+          <ScalarProperty Name="PostStatus" ColumnName="PostStatus" />
+          <ScalarProperty Name="UserInformationId" ColumnName="UserInformationId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="RefundId" ColumnName="RefundId" />
+          <ScalarProperty Name="ClickCounter" ColumnName="ClickCounter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundWithdraws">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.FundWithdraw">
+        <MappingFragment StoreEntitySet="FundWithdraws">
+          <ScalarProperty Name="WithdrawId" ColumnName="WithdrawId" />
+          <ScalarProperty Name="WithdrawAmount" ColumnName="WithdrawAmount" />
+          <ScalarProperty Name="WithdrawDate" ColumnName="WithdrawDate" />
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OnlineTransections">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.OnlineTransection">
+        <MappingFragment StoreEntitySet="OnlineTransections">
+          <ScalarProperty Name="TransectionId" ColumnName="TransectionId" />
+          <ScalarProperty Name="GetwayId" ColumnName="GetwayId" />
+          <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+          <ScalarProperty Name="DonationId" ColumnName="DonationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostingCategories">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.PostingCategory">
+        <MappingFragment StoreEntitySet="PostingCategories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostProofs">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.PostProof">
+        <MappingFragment StoreEntitySet="PostProofs">
+          <ScalarProperty Name="ProofId" ColumnName="ProofId" />
+          <ScalarProperty Name="PictureForProof" ColumnName="PictureForProof" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefundingInformations">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.RefundingInformation">
+        <MappingFragment StoreEntitySet="RefundingInformations">
+          <ScalarProperty Name="RefundId" ColumnName="RefundId" />
+          <ScalarProperty Name="RefundAmount" ColumnName="RefundAmount" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="RefundCharge" ColumnName="RefundCharge" />
+          <ScalarProperty Name="SystemContactNo" ColumnName="SystemContactNo" />
+          <ScalarProperty Name="SystemAddress" ColumnName="SystemAddress" />
+          <ScalarProperty Name="TotalIncome" ColumnName="TotalIncome" />
+          <ScalarProperty Name="SystemBankAccount" ColumnName="SystemBankAccount" />
+          <ScalarProperty Name="CollectedAmount" ColumnName="CollectedAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransectionMethodNames">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.TransectionMethodName">
+        <MappingFragment StoreEntitySet="TransectionMethodNames">
+          <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserBankAccounts">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.UserBankAccount">
+        <MappingFragment StoreEntitySet="UserBankAccounts">
+          <ScalarProperty Name="UserBankAccountId" ColumnName="UserBankAccountId" />
+          <ScalarProperty Name="UserAccountNo" ColumnName="UserAccountNo" />
+          <ScalarProperty Name="UserInformationId" ColumnName="UserInformationId" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserComments">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.UserComment">
+        <MappingFragment StoreEntitySet="UserComments">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="UserInformationId" ColumnName="UserInformationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInformations">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.UserInformation">
+        <MappingFragment StoreEntitySet="UserInformations">
+          <ScalarProperty Name="UserInformationId" ColumnName="UserInformationId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+          <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="FundRaiserDBModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AutoGeneratedLink" ColumnName="AutoGeneratedLink" />
+          <ScalarProperty Name="UserCreationDate" ColumnName="UserCreationDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

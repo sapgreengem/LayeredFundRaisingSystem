@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+}
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>MEMBERS ONLY</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="username">EMAIL</label>
+                            <input type="text" class="form-control" name="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">PASSWORD</label>
+                            <input type="password" class="form-control" name="password" />
+                        </div>
+                        <span class="text-danger">@ViewBag.ErrorMessage1</span>
+                        <span class="text-danger">@ViewBag.ErrorMessage</span>
+                        <a href="#">Forgot Password?</a>                        
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+                    </div>
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/UserRegistration">Not registered yet</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/Login/AdminLogin">Login as admin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Proof";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Proof</h2>
+
+@foreach (var item in ViewBag.Proofs)
+{
+    <img src="~/PostProofImages/@item.PictureForProof" height="200" width="200"/>
+}
+
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

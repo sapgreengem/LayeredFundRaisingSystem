@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "AdminLogin";
+    Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+}
+
+<h2>AdminLogin</h2>
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>ADMINS ONLY</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="username">EMAIL</label>
+                            <input type="text" class="form-control" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">PASSWORD</label>
+                            <input type="password" class="form-control" name="password" />
+                        </div>
+                        <a href="#">Forgot Password?</a>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Login</button>
+                    </div>
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/Login">Login As User</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

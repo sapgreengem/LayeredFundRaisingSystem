@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FundRaiserDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrations">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Role" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BankInformations">
+    <Key>
+      <PropertyRef Name="BankId" />
+    </Key>
+    <Property Name="BankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar(max)" />
+    <Property Name="BranchName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DonationOnPosts">
+    <Key>
+      <PropertyRef Name="DonationId" />
+    </Key>
+    <Property Name="DonationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DonationDate" Type="datetime" Nullable="false" />
+    <Property Name="DonationAmount" Type="float" Nullable="false" />
+    <Property Name="TransectionId" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="UserInformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FundRequestPosts">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostDetails" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RequiredAmount" Type="float" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="CollectedAmount" Type="float" Nullable="false" />
+    <Property Name="RemainingAmount" Type="float" Nullable="false" />
+    <Property Name="PostImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostStatus" Type="nvarchar(max)" />
+    <Property Name="UserInformationId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="RefundId" Type="int" />
+    <Property Name="ClickCounter" Type="int" />
+  </EntityType>
+  <EntityType Name="FundWithdraws">
+    <Key>
+      <PropertyRef Name="WithdrawId" />
+    </Key>
+    <Property Name="WithdrawId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WithdrawAmount" Type="float" Nullable="false" />
+    <Property Name="WithdrawDate" Type="datetime" Nullable="false" />
+    <Property Name="RequestStatus" Type="nvarchar(max)" />
+    <Property Name="AdminId" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OnlineTransections">
+    <Key>
+      <PropertyRef Name="TransectionId" />
+    </Key>
+    <Property Name="TransectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GetwayId" Type="nvarchar(max)" />
+    <Property Name="MethodId" Type="int" Nullable="false" />
+    <Property Name="DonationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostingCategories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PostProofs">
+    <Key>
+      <PropertyRef Name="ProofId" />
+    </Key>
+    <Property Name="ProofId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureForProof" Type="nvarchar(max)" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefundingInformations">
+    <Key>
+      <PropertyRef Name="RefundId" />
+    </Key>
+    <Property Name="RefundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefundAmount" Type="float" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="AdminId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="SettingId" />
+    </Key>
+    <Property Name="SettingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceCharge" Type="float" Nullable="false" />
+    <Property Name="RefundCharge" Type="float" Nullable="false" />
+    <Property Name="SystemContactNo" Type="nvarchar(max)" />
+    <Property Name="SystemAddress" Type="nvarchar(max)" />
+    <Property Name="TotalIncome" Type="float" Nullable="false" />
+    <Property Name="SystemBankAccount" Type="nvarchar(max)" />
+    <Property Name="CollectedAmount" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransectionMethodNames">
+    <Key>
+      <PropertyRef Name="MethodId" />
+    </Key>
+    <Property Name="MethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MethodName" Type="nvarchar(max)" />
+    <Property Name="BankName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserBankAccounts">
+    <Key>
+      <PropertyRef Name="UserBankAccountId" />
+    </Key>
+    <Property Name="UserBankAccountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserAccountNo" Type="nvarchar(max)" />
+    <Property Name="UserInformationId" Type="int" Nullable="false" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserComments">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="UserInformationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInformations">
+    <Key>
+      <PropertyRef Name="UserInformationId" />
+    </Key>
+    <Property Name="UserInformationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="PresentAddress" Type="nvarchar(max)" />
+    <Property Name="PermanentAddress" Type="nvarchar(max)" />
+    <Property Name="ContactNo" Type="nvarchar(max)" />
+    <Property Name="NationalId" Type="nvarchar(max)" />
+    <Property Name="Country" Type="nvarchar(max)" />
+    <Property Name="ProfilePicture" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="AutoGeneratedLink" Type="nvarchar(max)" />
+    <Property Name="UserCreationDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="FundRaiserDBModelStoreContainer">
+    <EntitySet Name="Administrations" EntityType="Self.Administrations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankInformations" EntityType="Self.BankInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonationOnPosts" EntityType="Self.DonationOnPosts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FundRequestPosts" EntityType="Self.FundRequestPosts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FundWithdraws" EntityType="Self.FundWithdraws" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OnlineTransections" EntityType="Self.OnlineTransections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostingCategories" EntityType="Self.PostingCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostProofs" EntityType="Self.PostProofs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefundingInformations" EntityType="Self.RefundingInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransectionMethodNames" EntityType="Self.TransectionMethodNames" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserBankAccounts" EntityType="Self.UserBankAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserComments" EntityType="Self.UserComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInformations" EntityType="Self.UserInformations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,30 @@
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll.config
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.xml
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.csprojResolveAssemblyReference.cache
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll.config
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.pdb
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.xml
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.xml
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.csprojResolveAssemblyReference.cache
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll.config
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\FundRaiserSystemEntity.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.xml
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\bin\Debug\EntityFramework.SqlServer.xml
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.csprojResolveAssemblyReference.cache
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.pdb

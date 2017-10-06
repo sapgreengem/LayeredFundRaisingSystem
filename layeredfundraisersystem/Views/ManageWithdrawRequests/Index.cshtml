@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <span class="text-danger">@ViewBag.ErrorMessage</span>
+            <br />
+            <table class="table table-bordered">
+                <tr>
+                    <th>Requester Name</th>
+                    <th>Post Title</th>
+                    <th>Remaining Amount</th>
+                    <th>Requested Amount</th>
+                    <th>Request Date</th>
+                    <th>Request Staatus</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var item in ViewBag.WithdrawRequests)
+                {
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.PostTitle</td>
+                        <td>@item.RemainingAmount</td>
+                        <td>@item.WithdrawAmount</td>
+                        <td>@item.WithdrawDate</td>
+                        <td>@item.RequestStatus</td>
+                        <td>
+                            <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary">Transfer</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

@@ -1,0 +1,51 @@
+﻿@model FundRaiserSystemEntity.Administration
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <table class="table">
+                <tr>
+                    <td>First Name</td>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>@Model.Role</td>
+                </tr>
+            </table>
+            <a href="#">Edit</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}
+
+@section username{
+    @ViewBag.LoginName
+}

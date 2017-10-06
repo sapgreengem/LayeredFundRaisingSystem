@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Donation</strong></div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <label for="method">Choose paymetnt method</label>
+                            <br />
+                            @foreach (var item in ViewBag.TransectionMethodName)
+                            {
+                                <input type="radio" name="method" value="@item.MethodId"/> @item.MethodName
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Ammount">Enter Ammount</label>
+                            <input type="number" class="form-control" name="Ammount" step=".01"/>
+                        </div>
+                        <h4 class="text-danger">@ViewBag.ErrorMessage</h4>
+                        <h4 class="text-danger">@ViewBag.ErrorMessage1</h4>
+                        <h4 class="text-danger">@ViewBag.ErrorMessage2</h4>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-shopping-cart"></i> Proceed To Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section username{
+    @ViewBag.LoginName
+}

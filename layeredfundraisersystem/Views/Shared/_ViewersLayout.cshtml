@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@RenderSection("title", false)</title>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    @RenderSection("scripts", false)
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+    <style type="text/css">
+        ul li {
+            font-size: large;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @*<a href="/Home"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home"><i class="glyphicon glyphicon-home"></i> Fund Raising System</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/Home">Home</a></li>
+                <li><a href="/AddFundRequest">Start Campain</a></li>
+                <li><a href="/ViewAllPosts">Donate Now</a></li>
+                <li><a href="#">Categories</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/UserRegistration"><i class="glyphicon glyphicon-file"></i> Register</a></li>
+                <li><a href="/Login"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+    <nav class="copyright" style="background-color: #e3f2fd;">
+        <div class="container">
+            <div class="col-md-12">
+                <br />
+                <h5 class="pull-left">© 2016 - All Rights with Webenlance</h5>
+                <br />
+                <br />
+                <ul class="bottom_ul">
+                    <li><a href="#">webenlance.com</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Faq's</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Site Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+</body>
+</html>

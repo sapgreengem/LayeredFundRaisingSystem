@@ -1,0 +1,23 @@
+﻿@*@model IEnumerable<FundRaiserSystemEntity.FundRequestPost>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Reports</h1>
+<div>
+    <ul>
+        <li><a href="/AdminHome/TopDonor">Top Donor</a></li>
+        <li><a href="/AdminHome/TopDonatedPosts">Top Donated Posts</a></li>
+        <li><a href="#/AdminHome/CollectedAmmountOfMonth">Collected AmmountOf Month</a></li>
+        <li><a href="/AdminHome/MostViewedPosts">Most Viewed Posts</a></li>
+    </ul>
+</div>
+
+@section pendingPost{
+    @ViewBag.Posts
+    }
+
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

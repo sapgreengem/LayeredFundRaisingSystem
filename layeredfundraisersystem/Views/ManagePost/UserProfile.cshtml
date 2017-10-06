@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UserProfile</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 col-md-offset-2">
+            <h2>Profile Picture</h2>
+            <img src="~/ProfilePictures/@ViewBag.ProfilePic" height="150" width="120" />
+            <table>
+                @foreach (var item in ViewBag.LoginData)
+                {
+                    <tr>
+                        <td><h4>Email</h4></td>
+                        <td><h5>@item.Email</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Account Created</h4></td>
+                        <td><h5>@item.UserCreationDate</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Status</h4></td>
+                        <td><h5>@item.Status</h5></td>
+                    </tr>
+                }
+                @foreach (var item in ViewBag.UserInfo)
+                {
+                    <tr>
+                        <td><h4>First Name</h4></td>
+                        <td><h5>@item.FirstName</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Last Name</h4></td>
+                        <td><h5>@item.LastName</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Present Address</h4></td>
+                        <td><h5>@item.PresentAddress</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Permanent Address</h4></td>
+                        <td><h5>@item.PermanentAddress</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Contact No</h4></td>
+                        <td><h5>@item.ContactNo</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>National Id</h4></td>
+                        <td><h5>@item.NationalId</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Country</h4></td>
+                        <td><h5>@item.Country</h5></td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <br />
+            <table class="table">
+                <tr>
+                    <th><h4>Bank Name</h4></th>
+                    <th><h4>UserAccountNo</h4></th>
+                </tr>
+                @foreach (var item in ViewBag.UserBankAccountDetails)
+                {
+
+                    <tr>
+                        <td><h5>@item.BankName @item.BranchName Branch</h5></td>
+                        <td><h5>@item.UserAccountNo</h5></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

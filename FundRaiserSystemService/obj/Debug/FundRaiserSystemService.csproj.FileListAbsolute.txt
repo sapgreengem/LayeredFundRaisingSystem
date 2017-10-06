@@ -1,0 +1,33 @@
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.pdb
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.xml
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
+C:\Users\GEM\documents\visual studio 2015\Projects\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.pdb
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.pdb
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.pdb
+E:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.xml
+E:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
+E:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
+E:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.pdb
+H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.xml
+H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
+H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
+H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb

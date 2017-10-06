@@ -1,0 +1,48 @@
+﻿@model FundRaiserSystemEntity.Administration
+    @{
+        ViewBag.Title = "Edit";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+    <h2>Edit</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>@ViewBag.ErrorMessage</h1>
+            <form method="post">
+                <table class="table">
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" name="FirstName" value="@Model.FirstName" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text" name="LastName" value="@Model.LastName" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td><input type="email" name="Email" value="@Model.Email" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="text" name="Address" value="@Model.Address" /></td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-save"></i>Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    @section pendingPost{
+        @ViewBag.Posts
+    }
+
+    @section pendingWithdraw{
+        @ViewBag.Withdraws
+    }
+
+    @section username{
+        @ViewBag.LoginName
+    }

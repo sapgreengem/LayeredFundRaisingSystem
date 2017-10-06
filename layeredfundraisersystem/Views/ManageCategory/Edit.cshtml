@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>Edit Category</strong></div>
+                <div class="panel-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="CategoryName">Category Name</label>
+                            <input type="hidden" name="id" value="@Model.CategoryId" />
+                            <input type="text" class="form-control" name="CategoryName"  value="@Model.CategoryName" />
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div>
+    <form method="post">
+        Category Name:<input type="text" name="CategoryName" value="@Model.CategoryName" /><br />
+        <input type="hidden" name="id" value="@Model.CategoryId" />
+        <input type="submit" value="Edit" class="btn btn-default" />
+    </form>
+</div>*@
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

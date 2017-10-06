@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 col-md-offset-2">
+            <form method="post">
+                <table class="table">
+                    @foreach (var item in ViewBag.UserInfo)
+                    {
+                        <tr>
+                            <td>First Name</td>
+                            <td><input type="text" name="firstName" value="@item.FirstName" /></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" name="lastName" value="@item.LastName" /></td>
+                        </tr>
+                        <tr>
+                            <td>Present Address</td>
+                            <td><input type="text" name="presentAddress" value="@item.PresentAddress" /></td>
+                        </tr>
+                        <tr>
+                            <td>Permanent Address</td>
+                            <td><input type="text" name="permanentAddress" value="@item.PermanentAddress" /></td>
+                        </tr>
+                        <tr>
+                            <td>Contact No</td>
+                            <td><input type="text" name="contactNo" value="@item.ContactNo" /></td>
+                        </tr>
+                        <tr>
+                            <td>National ID</td>
+                            <td><input type="text" name="nationalID" value="@item.NationalId" /></td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td><input type="text" name="country" value="@item.Country" /></td>
+                        </tr>
+                    }
+
+                    </table>
+                    <table class="table">
+                    @foreach (var item in ViewBag.EditBankDetails)
+                    {
+                        <tr>
+                            <td>User Account No</td>
+                            <td><input type="text" name="userAccountNo" value="@item.UserAccountNo" /></td>
+                        </tr>
+                        <tr>
+                            <td>Select Bank</td>
+                            <td>
+                                <select name="BankList">
+                                    <option value="@item.BankId">@item.BankName @item.BranchName Branch</option>
+                                    @foreach (var item1 in ViewBag.BankList)
+                                    {
+                                        <option value="@item1.BankId">@item1.BankName @item1.BranchName Branch</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <h3 class="text-danger">@ViewBag.ErrorMessage</h3>
+                <button class="btn btn-primary pull-right" type="submit"><i class="glyphicon glyphicon-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+    </div>
+
+@section username{
+    @ViewBag.LoginName
+}

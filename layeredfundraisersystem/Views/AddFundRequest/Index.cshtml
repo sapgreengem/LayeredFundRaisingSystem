@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<h2>@ViewBag.PostConfirmation</h2>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8 col-md-offset-2">
+            <div class="panel panel-body">
+                <h4>FundRequestPost</h4>
+                <br />
+                @using (Html.BeginForm("Index", "AddFundRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <table class="table">
+                        <tr>
+                            <td>Post Title</td>
+                            <td>
+                                <input type="text" name="PostTitle" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Post Details</td>
+                            <td>
+                                <input type="text" name="PostDetails" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Required Amount</td>
+                            <td>
+                                <input type="text" name="RequiredAmount" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Expected duration(in days)</td>
+                            <td>
+                                <input type="text" name="EndDateInDays" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Posting Category</td>
+                            <td>
+                                <select name="Category">
+                                    <option value="0">Select One</option>
+
+                                    @foreach (var ListItem in ViewBag.Categories)
+                                    {
+                                        <option value="@ListItem.Value">@ListItem.Text</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Post Image</td>
+                            <td>
+                                <input type="file" name="file" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Proof For the Post</td>
+                            <td>
+                                <input type="file" name="proof" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section username{
+    @ViewBag.LoginName
+}

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "TopDonor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Top Donor</h2>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-8">
+            <table class="table-bordered pull-left">
+                <tr>
+                    <th>User Name</th>
+                </tr>
+                @foreach (var item in ViewBag.TopDonarList)
+                {
+                    <tr>
+                        <td>@item.FirstName @item.LastName</td>
+                    </tr>
+
+                }
+            </table>
+            <table class="table-bordered" style="float:left">
+                <tr>
+                    <th>Donatated Amount</th>
+                </tr>
+                @foreach (var item in ViewBag.Sum)
+                {
+                    <tr>
+                        <td>@item.ToString()/=</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+    <div class="row">
+        <div class="col col-md-6 col-md-offset-6">
+            <table>
+                @foreach (var item in ViewBag.Sum)
+                {
+                    <tr>
+                        <td>@item.ToString()</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+@section pendingPost{
+    @ViewBag.Posts
+}
+@section pendingWithdraw{
+    @ViewBag.Withdraws
+}

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "MyWithdraws";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Withdraw Requests</h2>
+
+<h2>@ViewBag.ErrorMessage</h2>
+
+    @if (ViewBag.ErrorMessage == null)
+    {
+        <div class="container">
+            <div class="row">
+                <div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Post Id</th>
+                            <th>Requested Amount</th>
+                            <th>Requested Date</th>
+                            <th>Request Status</th>
+                        </tr>
+                        @foreach (var item in ViewBag.AllRequests)
+                        {
+                            <tr>
+                                <th>@item.PostId</th>
+                                <th>@item.WithdrawAmount/=</th>
+                                <th>@item.WithdrawDate</th>
+                                <th>@item.RequestStatus</th>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+
+
+@section username{
+    @ViewBag.LoginName
+}
