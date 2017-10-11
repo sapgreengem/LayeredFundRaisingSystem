@@ -178,6 +178,7 @@
     <Compile Include="Models\JoinDonationOnPost_UserInfo_FundRequest_Transection.cs" />
     <Compile Include="Models\JoinFundUithdraws_FundRequestPost_UserInfo.cs" />
     <Compile Include="Models\JoinUserLogin_UserInfo.cs" />
+    <Compile Include="Models\LoadAllCategory.cs" />
     <Compile Include="Models\ShowUserName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
