@@ -27,3 +27,12 @@ H:\layeredFundRaiserSystem\FundRaiserSystemData\bin\Debug\EntityFramework.SqlSer
 H:\layeredFundRaiserSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
 H:\layeredFundRaiserSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
 H:\layeredFundRaiserSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\EntityFramework.xml
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb

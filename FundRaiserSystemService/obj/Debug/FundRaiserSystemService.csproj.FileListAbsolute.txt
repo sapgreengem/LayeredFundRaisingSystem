@@ -31,3 +31,14 @@ H:\layeredFundRaiserSystem\FundRaiserSystemService\bin\Debug\EntityFramework.xml
 H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
 H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
 H:\layeredFundRaiserSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\EntityFramework.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\EntityFramework.xml
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb
