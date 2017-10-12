@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
+using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
@@ -20,6 +21,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             ViewBag.BankList = service.GetAll();
             return View();
         }
@@ -41,6 +46,10 @@ namespace layeredFundRaiserSystem.Controllers
                 CountPendings count = new CountPendings();
                 ViewBag.Posts = count.CountPendingPost();
                 ViewBag.Withdraws = count.CountPendingWithdraws();
+
+                ShowUserName name = new ShowUserName();
+                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
                 BankInformation info = service.Get(id);
                 return View(info);
             }

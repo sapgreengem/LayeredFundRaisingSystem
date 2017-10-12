@@ -24,6 +24,10 @@ namespace layeredFundRaiserSystem.Controllers
                 CountPendings count = new CountPendings();
                 ViewBag.Posts = count.CountPendingPost();
                 ViewBag.Withdraws = count.CountPendingWithdraws();
+
+                ShowUserName name = new ShowUserName();
+                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
                 ViewBag.ErrorMessage = "No Request Available";
             }
             else
@@ -32,6 +36,10 @@ namespace layeredFundRaiserSystem.Controllers
                 CountPendings count = new CountPendings();
                 ViewBag.Posts = count.CountPendingPost();
                 ViewBag.Withdraws = count.CountPendingWithdraws();
+
+                ShowUserName name = new ShowUserName();
+                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
                 return View();
             }
             return View();
@@ -65,6 +73,9 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
 
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             return View();
         }
 
@@ -88,6 +99,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             return View();
         }
 

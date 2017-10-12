@@ -19,6 +19,9 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
             return View();
         }
         [HttpGet]
@@ -27,6 +30,9 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
 
             IDonationOnPostService donationService = ServiceFactory.GetDonationOnPostService();
             IUserInformationService infoService = ServiceFactory.GetUserInformationService();
@@ -48,6 +54,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             ViewBag.TopDonatedPosts = this.LoadPosts().OrderByDescending(a => a.CollectedAmount);
             return View();
         }
@@ -56,6 +66,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             return View();
         }
         public ActionResult MostViewedPosts()
@@ -63,6 +77,9 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
 
             ViewBag.MostViewedPosts = this.LoadPosts().OrderByDescending(a => a.ClickCounter);
 
