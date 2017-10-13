@@ -229,6 +229,7 @@
     <Content Include="Views\AdminReports\Index.cshtml" />
     <Content Include="Views\AdminProfile\Index.cshtml" />
     <Content Include="Views\AdminProfile\Edit.cshtml" />
+    <Content Include="Views\AdminProfile\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

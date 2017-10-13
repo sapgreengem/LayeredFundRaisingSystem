@@ -77,5 +77,60 @@ namespace layeredFundRaiserSystem.Controllers
                 return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
             }
         }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            CountPendings count = new CountPendings();
+            ViewBag.Posts = count.CountPendingPost();
+            ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
+            IAdministrationService adminService = ServiceFactory.GetAdministrationService();
+            
+            return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(FormCollection collection)
+        {
+            IAdministrationService adminService = ServiceFactory.GetAdministrationService();
+            Administration admin = adminService.Get(Convert.ToInt32(Session["AdminLogin"]));
+            if (!String.IsNullOrWhiteSpace(collection["CurrentPassword"].ToString()) && !String.IsNullOrWhiteSpace(collection["NewPassword"].ToString()) && !String.IsNullOrWhiteSpace(collection["confirmPassword"].ToString()))
+            {
+                if (admin.Password == collection["CurrentPassword"].ToString())
+                {
+                    if (collection["NewPassword"].ToString() == collection["confirmPassword"].ToString())
+                    {
+                        admin.Password = collection["confirmPassword"].ToString();
+                        adminService.Update(admin);
+                        return Redirect("/Logout");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "New Password and Confirm Password do not match";
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Current Password is not correct";
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Please Fill Data";
+            }
+
+            CountPendings count = new CountPendings();
+            ViewBag.Posts = count.CountPendingPost();
+            ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
+            return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
+        }
     }
 }
