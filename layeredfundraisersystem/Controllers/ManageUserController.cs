@@ -42,6 +42,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             return View(allInfo);
         }
 

@@ -21,6 +21,10 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             return View(service.GetAll());
         }
 
@@ -30,6 +34,9 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
 
             PostingCategory category = new PostingCategory();
             category.CategoryName = form["CategoryName"].ToString();
@@ -45,6 +52,9 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
 
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+
             PostingCategory category = service.Get(id);
             return View(category);
         }
@@ -54,6 +64,9 @@ namespace layeredFundRaiserSystem.Controllers
             CountPendings count = new CountPendings();
             ViewBag.Posts = count.CountPendingPost();
             ViewBag.Withdraws = count.CountPendingWithdraws();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
 
             PostingCategory category = service.Get(Convert.ToInt32(form["id"]));
             category.CategoryName = form["CategoryName"].ToString();
