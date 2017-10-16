@@ -17,6 +17,24 @@
         @ViewBag.LoginName
     }
 }
+@section styles{
+    <style type="text/css">
+    .im-overlay {
+            position: absolute;
+            top: 80%;
+            bottom: 5%;
+            left: 20%;
+            right: 20%;
+            text-align: center;
+        }
+
+        .image-width{
+        width:100%;
+
+        }
+    </style>
+    
+}
 
 
 <div class="container">
@@ -65,6 +83,12 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+</div>
+
+<div class="im-overlay">
+    <a href="~/AddFundRequest" class="btn btn-lg btn-success">Start Campain</a>
+    <a href="~/ViewAllPosts" class="btn btn-lg btn-success">Donate Now</a>
+    
 </div>
 
 <!-- CONTENT WRAPPER START -->

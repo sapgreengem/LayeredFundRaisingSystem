@@ -25,139 +25,160 @@
     </tr>
 </table>
 
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Running Posts</a></li>
+    <li><a data-toggle="tab" href="#menu1">Completed Posts</a></li>
+    <li><a data-toggle="tab" href="#menu2">Expired Posts</a></li>
 
-<div class="container">
-    <div class="row">
-        <div class="panel panel-info">
-            <div class="panel-heading"><strong>Running Posts</strong></div>
-            <div class="table tab-pane">
-                <table class="table table-bordered" style="text-align: center;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Remaining Days</th>
-                        <th>Target Amount</th>
-                        <th>Earned Amount</th>
-                        <th>Collection Completed</th>
-                        <th>Available For Withdraw</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    @foreach (var item in ViewBag.MyRunningPosts)
-                    {
-                        <tr>
-                            <td>
-                                <a class="post" href="/PostDetailsView/Index/@item.PostId">
-                                    @item.PostTitle
-                                    <br />
-                                    <img src="~/PostImages/@item.PostImage" height="50" width="100" />
-                                </a>
-                            </td>
-                            <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
-                            <td>@item.RequiredAmount/=</td>
-                            <td>@item.CollectedAmount/=</td>
-                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                            <td>@item.RemainingAmount/=</td>
-                            <td>@item.PostStatus</td>
+</ul>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Running Posts</strong></div>
+                    <div class="table tab-pane">
+                        <table class="table table-bordered" style="text-align: center;">
+                            <tr>
+                                <th>Title</th>
+                                <th>Remaining Days</th>
+                                <th>Target Amount</th>
+                                <th>Earned Amount</th>
+                                <th>Collection Completed</th>
+                                <th>Available For Withdraw</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            @foreach (var item in ViewBag.MyRunningPosts)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="post" href="/PostDetailsView/Index/@item.PostId">
+                                            @item.PostTitle
+                                            <br />
+                                            <img src="~/PostImages/@item.PostImage" height="50" width="100" />
+                                        </a>
+                                    </td>
+                                    <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
+                                    <td>@item.RequiredAmount/=</td>
+                                    <td>@item.CollectedAmount/=</td>
+                                    <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                    <td>@item.RemainingAmount/=</td>
+                                    <td>@item.PostStatus</td>
 
-                            <td>
-                                <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
-                            </td>
-                        </tr>
-                    }
-                </table>
+                                    <td>
+                                        <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="panel panel-info">
-            <div class="panel-heading"><strong>Completed Posts</strong></div>
-            <div class="table tab-pane">
-                <table class="table table-bordered" style="text-align: center;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Remaining Days</th>
-                        <th>Target Amount</th>
-                        <th>Earned Amount</th>
-                        <th>Collection Completed</th>
-                        <th>Available For Withdraw</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    @foreach (var item in ViewBag.MyCompletedPosts)
-                    {
-                        <tr>
-                            <td>
-                                <a class="post" href="/PostDetailsView/Index/@item.PostId">
-                                    @item.PostTitle
-                                    <br />
-                                    <img src="~/PostImages/@item.PostImage" height="50" width="100" />
-                                </a>
-                            </td>
-                            <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
-                            <td>@item.RequiredAmount/=</td>
-                            <td>@item.CollectedAmount/=</td>
-                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                            <td>@item.RemainingAmount/=</td>
-                            <td>@item.PostStatus</td>
-                            <td>
-                                <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
-                            </td>
-                        </tr>
-                    }
-                </table>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Completed Posts</strong></div>
+                    <div class="table tab-pane">
+                        <table class="table table-bordered" style="text-align: center;">
+                            <tr>
+                                <th>Title</th>
+                                <th>Remaining Days</th>
+                                <th>Target Amount</th>
+                                <th>Earned Amount</th>
+                                <th>Collection Completed</th>
+                                <th>Available For Withdraw</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            @foreach (var item in ViewBag.MyCompletedPosts)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="post" href="/PostDetailsView/Index/@item.PostId">
+                                            @item.PostTitle
+                                            <br />
+                                            <img src="~/PostImages/@item.PostImage" height="50" width="100" />
+                                        </a>
+                                    </td>
+                                    <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
+                                    <td>@item.RequiredAmount/=</td>
+                                    <td>@item.CollectedAmount/=</td>
+                                    <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                    <td>@item.RemainingAmount/=</td>
+                                    <td>@item.PostStatus</td>
+                                    <td>
+                                        <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="panel panel-info">
-            <div class="panel-heading"><strong>Expired Posts</strong></div>
-            <div class="table tab-pane">
-                <table class="table table-bordered" style="text-align: center;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Campain End Date</th>
-                        <th>Target Amount</th>
-                        <th>Earned Amount</th>
-                        <th>Collection Completed</th>
-                        <th>Available For Withdraw</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    @foreach (var item in ViewBag.MyExpiredPosts)
-                    {
-                        <tr>
-                            <td>
-                                <a class="post" href="/PostDetailsView/Index/@item.PostId">
-                                    @item.PostTitle
-                                    <br />
-                                    <img src="~/PostImages/@item.PostImage" height="50" width="100" />
-                                </a>
-                            </td>
-                            <td>@item.EndDate.ToShortDateString()</td>
-                            <td>@item.RequiredAmount/=</td>
-                            <td>@item.CollectedAmount/=</td>
-                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                            <td>@item.RemainingAmount/=</td>
-                            <td>@item.PostStatus</td>
-                            <td>
-                                <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Collect Fund</a>
-                                
-                                <a class="btn btn-default" href="#/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Extend Time</a>
+    <div id="menu2" class="tab-pane fade">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Expired Posts</strong></div>
+                    <div class="table tab-pane">
+                        <table class="table table-bordered" style="text-align: center;">
+                            <tr>
+                                <th>Title</th>
+                                <th>Campain End Date</th>
+                                <th>Target Amount</th>
+                                <th>Earned Amount</th>
+                                <th>Collection Completed</th>
+                                <th>Available For Withdraw</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            @foreach (var item in ViewBag.MyExpiredPosts)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="post" href="/PostDetailsView/Index/@item.PostId">
+                                            @item.PostTitle
+                                            <br />
+                                            <img src="~/PostImages/@item.PostImage" height="50" width="100" />
+                                        </a>
+                                    </td>
+                                    <td>@item.EndDate.ToShortDateString()</td>
+                                    <td>@item.RequiredAmount/=</td>
+                                    <td>@item.CollectedAmount/=</td>
+                                    <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                    <td>@item.RemainingAmount/=</td>
+                                    <td>@item.PostStatus</td>
+                                    <td>
+                                        <a class="btn btn-default" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Collect Fund</a>
 
-                            </td>
-                        </tr>
-                    }
-                </table>
+                                        <a class="btn btn-default" href="#/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Extend Time</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+
 </div>
+
+
 
 
 @section username{

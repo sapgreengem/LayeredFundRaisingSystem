@@ -4,64 +4,81 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-info">
-                <div class="panel-heading"><strong>Add Category</strong></div>
-                <div class="panel-body">
-                    <form method="post">
-                        <div class="form-group">
-                            <label for="CategoryName">Category Name</label>
-                            <input type="text" class="form-control" name="CategoryName" />
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">List of Category</a></li>
+    <li><a data-toggle="tab" href="#menu1">Add Category</a></li>
+
+</ul>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><strong>List of Category</strong></div>
+                        <div class="panel-body" style="text-align:center">
+                            <table class="table table-border">
+                                <tr>
+                                    <th>Category Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.CategoryName</td>
+                                        <td>
+                                            <a href="/ManageCategory/Edit/@item.CategoryId" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
+                                            <a href="/ManageCategory/Delete/@item.CategoryId" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-info">
-                <div class="panel-heading"><strong>List of Category</strong></div>
-                <div class="panel-body" style="text-align:center">
-                    <table class="table table-border">
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.CategoryName</td>
-                                <td>
-                                    <a href="/ManageCategory/Edit/@item.CategoryId" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
-                                    <a href="/ManageCategory/Delete/@item.CategoryId" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </table>
+        
+    </div>
+
+    <div id="menu1" class="tab-pane fade">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><strong>Add Category</strong></div>
+                        <div class="panel-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label for="CategoryName">Category Name</label>
+                                    <input type="text" class="form-control" name="CategoryName" />
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div>
+    </div>
+
+</div>
     
-</div>
 
-@section pendingPost{
-    @ViewBag.Posts
-}
-@section pendingWithdraw{
-    @ViewBag.Withdraws
-}
-@section username{
-    @ViewBag.adminName
-}
+
+
+        <div>
+
+        </div>
+
+        @section pendingPost{
+            @ViewBag.Posts
+        }
+        @section pendingWithdraw{
+            @ViewBag.Withdraws
+        }
+        @section username{
+            @ViewBag.adminName
+        }
