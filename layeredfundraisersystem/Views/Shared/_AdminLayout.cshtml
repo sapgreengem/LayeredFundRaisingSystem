@@ -29,11 +29,22 @@
                 <li class="active"><a href="/AdminHome">Home</a></li>
                 <li><a href="/ManagePost">Approve Post&nbsp;&nbsp;<span class="badge">@RenderSection("pendingPost", false)</span></a></li>
                 <li><a href="/ManageWithdrawRequests">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@RenderSection("pendingWithdraw", false)</span></a></li>
-                <li><a href="/ManageCategory">Category Management</a></li>
-                <li><a href="/ManageUser">User Management</a></li>
-                <li><a href="/ManageBankInformation">Bank Information Management</a></li>
+                @*<li><a href="/ManageCategory">Category Management</a></li>
+                    <li><a href="/ManageUser">User Management</a></li>
+                    <li><a href="/ManageBankInformation">Bank Information Management</a></li>*@
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/ManageCategory">Category</a></li>
+                        <li><a href="/ManageUser">User Management</a></li>
+                        <li><a href="/ManageBankInformation">Bank Information</a></li>
+                    </ul>
+                </li>
                 <li><a href="/AdminReports">Reports</a></li>
+
             </ul>
+
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
