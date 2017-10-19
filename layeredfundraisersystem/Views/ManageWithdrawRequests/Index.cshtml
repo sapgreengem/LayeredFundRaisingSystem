@@ -18,7 +18,7 @@
                     <th>Remaining Amount</th>
                     <th>Requested Amount</th>
                     <th>Request Date</th>
-                    <th>Request Staatus</th>
+                    <th>Request Status</th>
                     <th>Action</th>
                 </tr>
                 @foreach (var item in ViewBag.WithdrawRequests)
@@ -26,8 +26,8 @@
                     <tr>
                         <td>@item.FirstName</td>
                         <td>@item.PostTitle</td>
-                        <td>@item.RemainingAmount</td>
-                        <td>@item.WithdrawAmount</td>
+                        <td>@item.RemainingAmount/=</td>
+                        <td>@item.WithdrawAmount/=</td>
                         <td>@item.WithdrawDate</td>
                         <td>@item.RequestStatus</td>
                         <td>
