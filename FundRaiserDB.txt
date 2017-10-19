@@ -1,0 +1,536 @@
+USE [FundRaiserDB]
+GO
+/****** Object:  Table [dbo].[Administrations]    Script Date: 10/19/2017 1:40:40 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Administrations](
+	[AdminId] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [nvarchar](max) NULL,
+	[Password] [nvarchar](max) NULL,
+	[FirstName] [nvarchar](max) NULL,
+	[LastName] [nvarchar](max) NULL,
+	[Address] [nvarchar](max) NULL,
+	[Role] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.Administrations] PRIMARY KEY CLUSTERED 
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BankInformations]    Script Date: 10/19/2017 1:40:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BankInformations](
+	[BankId] [int] IDENTITY(1,1) NOT NULL,
+	[BankName] [nvarchar](max) NULL,
+	[BranchName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.BankInformations] PRIMARY KEY CLUSTERED 
+(
+	[BankId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DonationOnPosts]    Script Date: 10/19/2017 1:40:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DonationOnPosts](
+	[DonationId] [int] IDENTITY(1,1) NOT NULL,
+	[DonationDate] [datetime] NOT NULL,
+	[DonationAmount] [float] NOT NULL,
+	[TransectionId] [int] NOT NULL,
+	[PostId] [int] NOT NULL,
+	[UserInformationId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.DonationOnPosts] PRIMARY KEY CLUSTERED 
+(
+	[DonationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FundRequestPosts]    Script Date: 10/19/2017 1:40:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FundRequestPosts](
+	[PostId] [int] IDENTITY(1,1) NOT NULL,
+	[PostTitle] [nvarchar](max) NOT NULL,
+	[PostDetails] [nvarchar](max) NOT NULL,
+	[RequiredAmount] [float] NOT NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NOT NULL,
+	[CollectedAmount] [float] NOT NULL,
+	[RemainingAmount] [float] NOT NULL,
+	[PostImage] [nvarchar](max) NOT NULL,
+	[PostStatus] [nvarchar](max) NULL,
+	[UserInformationId] [int] NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[RefundId] [int] NULL,
+	[ClickCounter] [int] NULL,
+ CONSTRAINT [PK_dbo.FundRequestPosts] PRIMARY KEY CLUSTERED 
+(
+	[PostId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FundWithdraws]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FundWithdraws](
+	[WithdrawId] [int] IDENTITY(1,1) NOT NULL,
+	[WithdrawAmount] [float] NOT NULL,
+	[WithdrawDate] [datetime] NOT NULL,
+	[RequestStatus] [nvarchar](max) NULL,
+	[UserInformationId] [int] NOT NULL,
+	[PostId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.FundWithdraws] PRIMARY KEY CLUSTERED 
+(
+	[WithdrawId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OnlineTransections]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OnlineTransections](
+	[TransectionId] [int] IDENTITY(1,1) NOT NULL,
+	[GetwayId] [nvarchar](max) NULL,
+	[MethodId] [int] NOT NULL,
+	[DonationId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.OnlineTransections] PRIMARY KEY CLUSTERED 
+(
+	[TransectionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PostingCategories]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PostingCategories](
+	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+	[CategoryName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.PostingCategories] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PostProofs]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PostProofs](
+	[ProofId] [int] IDENTITY(1,1) NOT NULL,
+	[PictureForProof] [nvarchar](max) NULL,
+	[PostId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.PostProofs] PRIMARY KEY CLUSTERED 
+(
+	[ProofId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RefundingInformations]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RefundingInformations](
+	[RefundId] [int] IDENTITY(1,1) NOT NULL,
+	[RefundAmount] [float] NOT NULL,
+	[PostId] [int] NOT NULL,
+	[AdminId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.RefundingInformations] PRIMARY KEY CLUSTERED 
+(
+	[RefundId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Settings]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Settings](
+	[SettingId] [int] IDENTITY(1,1) NOT NULL,
+	[ServiceCharge] [float] NOT NULL,
+	[RefundCharge] [float] NOT NULL,
+	[SystemContactNo] [nvarchar](max) NULL,
+	[SystemAddress] [nvarchar](max) NULL,
+	[TotalIncome] [float] NOT NULL,
+	[SystemBankAccount] [nvarchar](max) NULL,
+	[CollectedAmount] [float] NOT NULL,
+ CONSTRAINT [PK_dbo.Settings] PRIMARY KEY CLUSTERED 
+(
+	[SettingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TransectionMethodNames]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TransectionMethodNames](
+	[MethodId] [int] IDENTITY(1,1) NOT NULL,
+	[MethodName] [nvarchar](max) NULL,
+	[BankName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_TransectionMethodNames] PRIMARY KEY CLUSTERED 
+(
+	[MethodId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserBankAccounts]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserBankAccounts](
+	[UserBankAccountId] [int] IDENTITY(1,1) NOT NULL,
+	[UserAccountNo] [nvarchar](max) NULL,
+	[UserInformationId] [int] NOT NULL,
+	[BankId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.UserBankAccounts] PRIMARY KEY CLUSTERED 
+(
+	[UserBankAccountId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserComments]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserComments](
+	[CommentId] [int] IDENTITY(1,1) NOT NULL,
+	[Comment] [nvarchar](max) NULL,
+	[PostId] [int] NOT NULL,
+	[UserInformationId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.UserComments] PRIMARY KEY CLUSTERED 
+(
+	[CommentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserInformations]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserInformations](
+	[UserInformationId] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](max) NULL,
+	[LastName] [nvarchar](max) NULL,
+	[PresentAddress] [nvarchar](max) NULL,
+	[PermanentAddress] [nvarchar](max) NULL,
+	[ContactNo] [nvarchar](max) NULL,
+	[NationalId] [nvarchar](max) NULL,
+	[Country] [nvarchar](max) NULL,
+	[ProfilePicture] [nvarchar](max) NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.UserInformations] PRIMARY KEY CLUSTERED 
+(
+	[UserInformationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserLogins]    Script Date: 10/19/2017 1:40:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserLogins](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [nvarchar](max) NULL,
+	[Password] [nvarchar](max) NULL,
+	[AutoGeneratedLink] [nvarchar](max) NULL,
+	[UserCreationDate] [datetime] NOT NULL,
+	[Status] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.UserLogins] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Administrations] ON 
+GO
+INSERT [dbo].[Administrations] ([AdminId], [Email], [Password], [FirstName], [LastName], [Address], [Role]) VALUES (1, N'admin@admin.com', N'admin', N'Pushpak', N'Pramanik', N'Tibbet', N'Super Admin')
+GO
+SET IDENTITY_INSERT [dbo].[Administrations] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BankInformations] ON 
+GO
+INSERT [dbo].[BankInformations] ([BankId], [BankName], [BranchName]) VALUES (1, N'Sonali Bank', N'Banani')
+GO
+INSERT [dbo].[BankInformations] ([BankId], [BankName], [BranchName]) VALUES (2, N'Dutch Bangla Bank LTD', N'Banani')
+GO
+INSERT [dbo].[BankInformations] ([BankId], [BankName], [BranchName]) VALUES (3, N'Brac Bank', N'Mahakhali')
+GO
+SET IDENTITY_INSERT [dbo].[BankInformations] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DonationOnPosts] ON 
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (1, CAST(N'2017-09-17T03:14:50.370' AS DateTime), 20000, 1, 4, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (2, CAST(N'2017-09-17T03:15:14.650' AS DateTime), 10000, 2, 1, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (3, CAST(N'2017-09-17T03:15:33.157' AS DateTime), 125645, 3, 2, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (4, CAST(N'2017-09-17T03:15:51.650' AS DateTime), 25000, 4, 3, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (5, CAST(N'2017-09-17T03:16:06.933' AS DateTime), 11111, 5, 4, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (6, CAST(N'2017-09-17T03:16:28.477' AS DateTime), 256897, 6, 5, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (7, CAST(N'2017-09-17T03:16:44.780' AS DateTime), 25000, 7, 6, 5)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (8, CAST(N'2017-09-17T03:18:37.193' AS DateTime), 1212121, 8, 1, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (9, CAST(N'2017-09-17T03:19:30.997' AS DateTime), 121245, 9, 2, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (10, CAST(N'2017-09-17T03:19:43.493' AS DateTime), 455663, 10, 2, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (11, CAST(N'2017-09-17T03:20:00.687' AS DateTime), 122332, 11, 3, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (12, CAST(N'2017-09-17T03:20:09.770' AS DateTime), 111122, 12, 3, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (13, CAST(N'2017-09-17T03:20:31.720' AS DateTime), 123456, 13, 8, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (14, CAST(N'2017-09-17T03:21:08.233' AS DateTime), 1000000, 14, 9, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (15, CAST(N'2017-09-17T03:21:35.443' AS DateTime), 200000, 15, 3, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (16, CAST(N'2017-09-17T03:30:53.657' AS DateTime), 12660, 16, 4, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (17, CAST(N'2017-09-17T03:31:04.770' AS DateTime), 456321, 17, 4, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (18, CAST(N'2017-09-17T03:32:05.820' AS DateTime), 98765, 18, 5, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (19, CAST(N'2017-09-17T03:32:19.153' AS DateTime), 11123, 19, 5, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (20, CAST(N'2017-09-17T03:32:37.983' AS DateTime), 5000, 20, 9, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (21, CAST(N'2017-09-17T03:32:49.273' AS DateTime), 1256, 21, 9, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (22, CAST(N'2017-09-17T03:33:14.883' AS DateTime), 10236, 22, 6, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (23, CAST(N'2017-09-17T03:33:27.573' AS DateTime), 78995, 23, 6, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (24, CAST(N'2017-09-17T10:36:51.157' AS DateTime), 10000, 24, 4, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (25, CAST(N'2017-09-17T10:37:52.340' AS DateTime), 70000, 25, 4, 4)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (26, CAST(N'2017-09-17T10:55:35.460' AS DateTime), 9864, 26, 2, 7)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (27, CAST(N'2017-09-17T11:27:57.850' AS DateTime), 50000, 27, 9, 6)
+GO
+INSERT [dbo].[DonationOnPosts] ([DonationId], [DonationDate], [DonationAmount], [TransectionId], [PostId], [UserInformationId]) VALUES (28, CAST(N'2017-10-14T12:29:58.423' AS DateTime), 500, 28, 9, 6)
+GO
+SET IDENTITY_INSERT [dbo].[DonationOnPosts] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FundRequestPosts] ON 
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (1, N'Laura''s Russian Lifeline-Chemo/HSCT', N'My name is Archie O Connor. I have set up this page on behalf of myself and my 5 year old daughter Freya Lilly, with the aim of raising money to help fund life changing treatment for my wife Laura Noonan.   Laura desperately requires chemotherapy and a stem cell transplant. Unfortunately, this treatment is not available for Laura in Ireland. She has been accepted to hospital in Russia under the care of a specialist Haematologist where she will receive this treatment. This is currently the last treatment option available for Laura.    Your help would be hugely apreciated by all of us. Any donation, of any amount, will go towards the hospital treatment fees and stay in Russia. There is no funding available at all towards this treatment from the HSE or her private health insurance. She has been down many treatment avenues to date and as her medical problems are many and complex she has been unsuitable for many conventional treatments. No treatment that she has received to date has been successful or halted disease progress. She is suffering severe side effects from the different treatments she has received to date.  She will now be stopping some of her current treatments in order to have a drug washout period to allow her to commence intensive treatment in Moscow.', 1000000, CAST(N'2017-09-12T20:18:25.200' AS DateTime), CAST(N'2017-10-22T20:18:25.200' AS DateTime), 1222121, 1222121, N'131496995052010967 Capture.PNG', N'Completed', 4, 1, NULL, 12)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (2, N'Hayleys Cancer Treatment Fund', N'Hi all,  Thank you for visiting my Go Fund me Page.  Unfortunately, my treatment options are now coming to an end. The cancer is becoming aggressive, unresponsive and difficult to treat. Here is a little about me!  I''m Hayley Kalinins, age 35 from Derby.  I was diagnosed with Stage 4 Incureable Secondary Breast Cancer in July 2011.   My breast cancer has spread to my Liver and Lungs. (There is no stage 5) I have wonderful husband and 4 young children.  In August 2011 i started Chemotherapy and to this day i have been on Chemotherapy every 3 weeks. Some of the Chemotherapies nearly killed me, however i am still here and have just had my 70th Chemotherapy Treatment. I have responded to some better than others and have been on the most recent Chemotherapy for the past 18 months. When i was diagnosed i was given just 8 months to live, but have defined the odds against me. In January we set up a go fund me page with a target of £50,000 to go for Alternative treatment in America.  Before we set out to America to start treatment I had a wonderful consultation with a expert in Nottingham who specialises in private cancer consultancy and working at the forefront of cancer treatment developments around the world. She advised us about the Hallwang Clinic in Germany and advised us this was one of the best clinics in the world offering the latest Integrated medicine along with alternative treatments. We came away from this meeting full of hope so contacted the clinic straight away and started further research. We soon realised the original plan of going to the American Clinic was not the right choice for me…. We set an initial target of £50,000 to get to America, this was including the cost of flights, 3 weeks of Alternative treatments and the stay at the clinic. We decided to visit the Hallwang Clinic in Germany, First for an initial consultation with the Doctor. Last week i flew to Germany for the second time to start some treatment.  I had a biopsy taken of the tumour in my breast at a local hospital to the clinic in Germany, then it was a case of getting all the results together from my Biopsy, the private full body pet scan i had to have done in Cheltenham and latest blood results.  On receiving all the results today we now have a plan of treatment at The Hallwang Clinic in  Germany. They want to administer to me the latest integrated medicine including immune therapy vaccines.  The cost of the treatment and vaccines far outweighed our initial financial calculations.', 2000000, CAST(N'2017-09-12T20:24:23.493' AS DateTime), CAST(N'2017-10-12T20:24:23.493' AS DateTime), 712417, 712417, N'131496998634917464 Capture.PNG', N'Expired', 4, 1, NULL, 12)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (3, N'Ritesh''s fight for life', N'On March 5th, my brother Ritesh Sevanthi Dilipan (2 weeks after his 32nd birthday) was driving back home when he was hit by another car on the Marsha Sharp freeway, Lubbock (TX) [Click here to view the news article ]. He has suffered severe head injuries with extensive damage to his brain, medical term being Diffused Axonal Injury and Brain Stem Injury. He is currently in the UMC Surgical ICU battling for life. Our Story - Ritu, as known to his dear ones has had a humble upbringing. With his ‘never give up’ attitude he came to Lubbock 6 years ago to pursue his Masters in Civil and Environmental Engineering post his Bachelors in Chemical Engineering from Dayanand Sagar College, Bangalore. His passion for a cleaner world helped him get a full scholarship to pursue Doctorate (PhD) in ‘Waste Water treatment for NASA’. With several international publications to his credit, Ritu was on course to receive his Doctorate in a few months and on the night of the fatal accident, he had made a significant progress on his PhD proposal.  Ritu’s love for learning and teaching always saw him amidst passionate discussions on engineering and supporting the student community & friends in understanding life in the US. Like a true Bangalore boy, his love for food was evident and he never missed an opportunity to demonstrate his culinary skills.  Ritesh has been an incredible student, brother, son and friend and is respected, loved and adored by his faculty & his students equally. It would be a shame if such a young and bright student was denied the best chance at a life that he deserved. ', 1500000, CAST(N'2017-09-12T20:26:19.117' AS DateTime), CAST(N'2017-10-22T20:26:19.117' AS DateTime), 458454, 458454, N'131496999791157000 Capture.PNG', N'Active', 4, 1, NULL, 16)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (4, N'Hurricane Harvey Relief Fund', N'Hurricane Harvey has caused widespread, catastrophic flooding and damage in Texas and along the Gulf Coast. This fund will provide relief to survivors in the form of emergency supplies like food, water, and medicine in addition to longer-term recovery assistance to help residents recover and rebuild. All donations to this fund will exclusively support relief and recovery efforts from this storm.', 5000000, CAST(N'2017-09-17T02:45:33.740' AS DateTime), CAST(N'2017-12-26T02:45:33.740' AS DateTime), 580092, 578981, N'131500683337411503 Capture.JPG', N'Active', 6, 1, NULL, 15)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (5, N'Mexico Earthquake and Hurricane Relief Fund', N'On September 8, one of the most powerful earthquakes in Mexico''s history struck, killing at least 90 people and destroying homes. Additional damage is expected soon from Hurricane Katia. This fund will provide relief to survivors in the form of emergency supplies like food, water, and medicine in addition to longer-term recovery assistance to help residents recover and rebuild. All donations to this fund will exclusively support any necessary relief and recovery efforts for these disasters.', 1000000, CAST(N'2017-09-17T02:48:59.330' AS DateTime), CAST(N'2017-11-06T02:48:59.330' AS DateTime), 366785, 321329, N'131500685393309156 proof.JPG', N'Active', 6, 1, NULL, 5)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (6, N'Help to Set-up Mobile Clinic for Rohingya Refugee', N'Our project will set up a mobile clinic to provide primary healthcare support to the Rohingya refugees in Bangladesh and also to help them in getting advance services when needed through developing a network with advanced healthcare hospitals in the mainland. It should be noted here that Rohingya refugees are taking shelter in different places. They are not allowed to travel in the main land freely. Therefore, a mobile clinic may provide necessary primary healthcare support effectively.', 250000, CAST(N'2017-09-17T02:51:47.583' AS DateTime), CAST(N'2017-10-17T02:51:47.583' AS DateTime), 114231, 109231, N'131500687075842019 Capture.JPG', N'Active', 6, 1, NULL, 6)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (7, N'Water damage in millions in the Berlin animal shelter - please help us!', N'The Berlin animal shelter could not withstand the intermittent rain of the last weeks and urgently needs your help! The water has fallen under the roof skin and has caused damage in millions of dollars and as a purely non-profit charitable organization we do not know how to pay! Boxes in our mother''s house and in the hospital were under water and we had to partly place the animals in emergency accommodation.  The inspection of the approximately 13,000 square meter roof with a building expert in the middle of this week was a shock: large parts of the roof construction, now 17 years old, suffered severely from the hours of heavy rainfall. The water has paved its way through light shafts and wall joints and the insulation is softened. If the water masses lead to a short circuit in the electrics, the consequences would be catastrophic. The rehabilitation of the entire roof will cost millions according to the first expert estimates. The Berlin animal shelter has so far received no financial support from the state of Berlin. Feed, veterinary care, the salaries of the employees - everything is managed by the animal welfare association solely from donations, rebates and membership fees.', 10000, CAST(N'2017-09-17T02:56:50.480' AS DateTime), CAST(N'2018-02-14T02:56:50.480' AS DateTime), 0, 0, N'131500690104798579 Capture.JPG', N'Pending', 5, 4, NULL, 1)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (8, N'Syria crisis: Children need our help!', N'Years of war in Syria has led to the worst humanitarian crisis in a generation. Since the beginning of the conflict, Syrian children have been the forgotten victims of the horrific war. Today millions of children are in need of assistance. These children are at risk of becoming a "lost generation" and cannot be ignored.  SAVE THE CHILDREN is inside Syria giving children the basics they need to survive. They are also in Lebanon, Jordan, Iraq and Egypt providing urgent relief and long term aid to refugee children and their families. But with no end to the crisis in sight we continue to need your support to help more children.', 102563, CAST(N'2017-09-17T02:58:39.030' AS DateTime), CAST(N'2018-02-17T02:58:39.030' AS DateTime), 123456, 123456, N'131500691190313726 Capture.JPG', N'Completed', 5, 2, NULL, 5)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (9, N'United for Hope - clean water for rural BD', N'United for Hope is an NGO born out of a love for India and the wish to create more equality in the world. The United for Hope team works on a volunteer basis to create more dignified and safer living for rural India''s desperately poor.  The donated money will go directly to the village of Tirmahasun in the state of Uttar Pradesh, one of the poorest states in India.  Before our work, 87&% of the villagers had no access to a toilet.  People have to go into the surrounding fields. Especially for women this means a life of hardship and without any female hygienic facilities, diseases spread easily.  United for Hope provides sustainable toilets for all by providing up to 90% of the building cost. We ask the community to contribute the rest. This inclusive, local ownership system - people having their own share and responsibility - has been proven to be the best long-term efficient development strategy by many organizations.  The first 110 families have already received toilets and we have a waiting list of over 200 hopeful families. A toilet for a family of five costs just 200€.  To ensure the systems bring the most benefits, United for Hope also provides ongoing WASH (Water, Sanitation & Hygiene) workshops for all villagers and trains individuals in maintenance and repair of the toilets. ', 1500000, CAST(N'2017-09-17T03:02:48.623' AS DateTime), CAST(N'2017-11-16T03:02:48.623' AS DateTime), 1056756, 1056756, N'131500693686222620 ca.jpg', N'Active', 5, 3, NULL, 17)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (10, N'Help saving a cancer patient', N'Help saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patientHelp saving a cancer patient Help saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patientHelp saving a cancer patient Help saving a cancer patient Help saving a cancer patient Help saving a cancer patientHelp saving a cancer patient', 10000000, CAST(N'2017-09-17T10:57:55.093' AS DateTime), CAST(N'2017-11-06T10:57:55.093' AS DateTime), 0, 0, N'131500978750932413 ca.jpg', N'Pending', 7, 1, NULL, 1)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (11, N'Scholarship', N'I need help for going to abroad', 10000, CAST(N'2017-09-17T11:16:00.310' AS DateTime), CAST(N'2017-12-26T11:16:00.310' AS DateTime), 0, 0, N'131500989603088045 proof.JPG', N'Reject', 5, 2, NULL, 1)
+GO
+INSERT [dbo].[FundRequestPosts] ([PostId], [PostTitle], [PostDetails], [RequiredAmount], [StartDate], [EndDate], [CollectedAmount], [RemainingAmount], [PostImage], [PostStatus], [UserInformationId], [CategoryId], [RefundId], [ClickCounter]) VALUES (12, N'Scholarship', N'I need help for going to abroad', 10000, CAST(N'2017-09-17T11:19:28.667' AS DateTime), CAST(N'2017-12-26T11:19:28.667' AS DateTime), 0, 0, N'131500991686681032 proof.JPG', N'Active', 5, 2, NULL, 5)
+GO
+SET IDENTITY_INSERT [dbo].[FundRequestPosts] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FundWithdraws] ON 
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (1, 1111, CAST(N'2017-09-17T03:22:08.817' AS DateTime), N'Transfered', 6, 4)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (2, 45456, CAST(N'2017-09-17T03:22:31.873' AS DateTime), N'Transfered', 6, 5)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (3, 5000, CAST(N'2017-09-17T03:22:45.123' AS DateTime), N'Transfered', 6, 6)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (4, 1222121, CAST(N'2017-09-17T03:29:48.857' AS DateTime), N'Pending', 4, 1)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (5, 700000, CAST(N'2017-09-17T03:30:21.783' AS DateTime), N'Pending', 4, 2)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (6, 300000, CAST(N'2017-09-17T11:30:05.980' AS DateTime), N'Pending', 6, 5)
+GO
+INSERT [dbo].[FundWithdraws] ([WithdrawId], [WithdrawAmount], [WithdrawDate], [RequestStatus], [UserInformationId], [PostId]) VALUES (7, 5000, CAST(N'2017-10-14T12:30:52.420' AS DateTime), N'Pending', 6, 4)
+GO
+SET IDENTITY_INSERT [dbo].[FundWithdraws] OFF
+GO
+SET IDENTITY_INSERT [dbo].[OnlineTransections] ON 
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (1, N'4 17-Sep-17 3:14:50 AM 20000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (2, N'1 17-Sep-17 3:15:14 AM 10000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (3, N'2 17-Sep-17 3:15:33 AM 125645', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (4, N'3 17-Sep-17 3:15:51 AM 25000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (5, N'4 17-Sep-17 3:16:06 AM 11111', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (6, N'5 17-Sep-17 3:16:28 AM 256897', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (7, N'6 17-Sep-17 3:16:44 AM 25000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (8, N'1 17-Sep-17 3:18:37 AM 1212121', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (9, N'2 17-Sep-17 3:19:30 AM 121245', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (10, N'2 17-Sep-17 3:19:43 AM 455663', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (11, N'3 17-Sep-17 3:20:00 AM 122332', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (12, N'3 17-Sep-17 3:20:09 AM 111122', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (13, N'8 17-Sep-17 3:20:31 AM 123456', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (14, N'9 17-Sep-17 3:21:08 AM 1000000', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (15, N'3 17-Sep-17 3:21:35 AM 200000', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (16, N'4 17-Sep-17 3:30:53 AM 12660', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (17, N'4 17-Sep-17 3:31:04 AM 456321', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (18, N'5 17-Sep-17 3:32:05 AM 98765', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (19, N'5 17-Sep-17 3:32:19 AM 11123', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (20, N'9 17-Sep-17 3:32:37 AM 5000', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (21, N'9 17-Sep-17 3:32:49 AM 1256', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (22, N'6 17-Sep-17 3:33:14 AM 10236', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (23, N'6 17-Sep-17 3:33:27 AM 78995', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (24, N'4 17-Sep-17 10:36:51 AM 10000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (25, N'4 17-Sep-17 10:37:52 AM 70000', 2, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (26, N'2 17-Sep-17 10:55:35 AM 9864', 3, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (27, N'9 17-Sep-17 11:27:57 AM 50000', 1, 0)
+GO
+INSERT [dbo].[OnlineTransections] ([TransectionId], [GetwayId], [MethodId], [DonationId]) VALUES (28, N'9 10/14/2017 12:29:58 PM 500', 1, 0)
+GO
+SET IDENTITY_INSERT [dbo].[OnlineTransections] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PostingCategories] ON 
+GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (1, N'Medical')
+GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (2, N'Education')
+GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (3, N'Sanitation')
+GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (4, N'Animal Health')
+GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (6, N'Releaf')
+GO
+SET IDENTITY_INSERT [dbo].[PostingCategories] OFF
+GO
+SET IDENTITY_INSERT [dbo].[PostProofs] ON 
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (1, N'131496995052390252 Cature.PNG', 1)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (2, N'131496998635112599 Cature.PNG', 2)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (3, N'131496999791237061 Cature.PNG', 3)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (4, N'131500683343464447 proof.JPG', 4)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (5, N'131500685402559819 Capture.JPG', 5)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (6, N'131500687075942085 proof.JPG', 6)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (7, N'131500690114023373 proof.JPG', 7)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (8, N'131500691190423058 proof.JPG', 8)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (9, N'131500693686326094 proof.JPG', 9)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (10, N'131500978751122565 proof.JPG', 10)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (11, N'131500989604937788 ca.jpg', 11)
+GO
+INSERT [dbo].[PostProofs] ([ProofId], [PictureForProof], [PostId]) VALUES (12, N'131500991687058673 ca.jpg', 12)
+GO
+SET IDENTITY_INSERT [dbo].[PostProofs] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TransectionMethodNames] ON 
+GO
+INSERT [dbo].[TransectionMethodNames] ([MethodId], [MethodName], [BankName]) VALUES (1, N'Nexus', N'DBBL')
+GO
+INSERT [dbo].[TransectionMethodNames] ([MethodId], [MethodName], [BankName]) VALUES (2, N'BKash', N'Brac Bank')
+GO
+INSERT [dbo].[TransectionMethodNames] ([MethodId], [MethodName], [BankName]) VALUES (3, N'Rocket', N'DBBL')
+GO
+SET IDENTITY_INSERT [dbo].[TransectionMethodNames] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserBankAccounts] ON 
+GO
+INSERT [dbo].[UserBankAccounts] ([UserBankAccountId], [UserAccountNo], [UserInformationId], [BankId]) VALUES (1, N'105.131.43225', 4, 2)
+GO
+INSERT [dbo].[UserBankAccounts] ([UserBankAccountId], [UserAccountNo], [UserInformationId], [BankId]) VALUES (2, N'110.105.22701', 5, 2)
+GO
+INSERT [dbo].[UserBankAccounts] ([UserBankAccountId], [UserAccountNo], [UserInformationId], [BankId]) VALUES (3, N'111.222.3256', 6, 1)
+GO
+INSERT [dbo].[UserBankAccounts] ([UserBankAccountId], [UserAccountNo], [UserInformationId], [BankId]) VALUES (4, N'958744', 7, 1)
+GO
+SET IDENTITY_INSERT [dbo].[UserBankAccounts] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserInformations] ON 
+GO
+INSERT [dbo].[UserInformations] ([UserInformationId], [FirstName], [LastName], [PresentAddress], [PermanentAddress], [ContactNo], [NationalId], [Country], [ProfilePicture], [UserId]) VALUES (4, N'Jaowat', N'Raihan', N'Dhaka', N'Rajshahi', N'01679074498', N'19968198503000235', N'Bangladesh', N'131496992816230745 cv2-01.jpeg', 1)
+GO
+INSERT [dbo].[UserInformations] ([UserInformationId], [FirstName], [LastName], [PresentAddress], [PermanentAddress], [ContactNo], [NationalId], [Country], [ProfilePicture], [UserId]) VALUES (5, N'Sapgreen', N'Gem', N'Tibbet', N'Kushtia Bangladesh', N'01675560322', N'1234567890', N'Bangladesh', N'131500673074179477 hulk_pictures_cartoonincredible_hulk_cartoon_incredible_hulk_comics_400x444.jpg-1b0d496bd134eecd07433e1f428611fa.jpg', 2)
+GO
+INSERT [dbo].[UserInformations] ([UserInformationId], [FirstName], [LastName], [PresentAddress], [PermanentAddress], [ContactNo], [NationalId], [Country], [ProfilePicture], [UserId]) VALUES (6, N'Pushpak', N'Pramanik', N'Tibbet Colony Bazar', N'Kushtia Bangladesh', N'01721074829', N'1234567890121', N'Bangladesh', N'131500680764819692 Passport IMG_0195.jpg', 4)
+GO
+INSERT [dbo].[UserInformations] ([UserInformationId], [FirstName], [LastName], [PresentAddress], [PermanentAddress], [ContactNo], [NationalId], [Country], [ProfilePicture], [UserId]) VALUES (7, N'anik', N'roy', N'nikunja', N'same', N'01761713227', N'9444470403758936', N'BD', N'131500977192255087 Capture.JPG', 5)
+GO
+SET IDENTITY_INSERT [dbo].[UserInformations] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserLogins] ON 
+GO
+INSERT [dbo].[UserLogins] ([UserId], [Email], [Password], [AutoGeneratedLink], [UserCreationDate], [Status]) VALUES (1, N'raihanhelal345@gmail.com', N'123', N'', CAST(N'2017-09-12T20:14:10.670' AS DateTime), N'Active')
+GO
+INSERT [dbo].[UserLogins] ([UserId], [Email], [Password], [AutoGeneratedLink], [UserCreationDate], [Status]) VALUES (2, N'sapgreengem@gmail.com', N'12345', N'', CAST(N'2017-09-17T02:27:09.040' AS DateTime), N'Active')
+GO
+INSERT [dbo].[UserLogins] ([UserId], [Email], [Password], [AutoGeneratedLink], [UserCreationDate], [Status]) VALUES (4, N'pushpakpramanik@gmail.com', N'123456', N'', CAST(N'2017-09-17T02:40:13.687' AS DateTime), N'Active')
+GO
+INSERT [dbo].[UserLogins] ([UserId], [Email], [Password], [AutoGeneratedLink], [UserCreationDate], [Status]) VALUES (5, N'rudroaiub@gmail.com', N'rudro', N'', CAST(N'2017-09-17T10:51:19.660' AS DateTime), N'Blocked')
+GO
+SET IDENTITY_INSERT [dbo].[UserLogins] OFF
+GO
