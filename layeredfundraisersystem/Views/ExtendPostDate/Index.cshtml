@@ -1,0 +1,35 @@
+﻿@model FundRaiserSystemEntity.FundRequestPost
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Send Time Extend Request</strong></div>
+                    <div class="panel-body">
+                        <h4>Post Title: @Model.PostTitle</h4>
+                        <h4>Post expired date: @Model.EndDate</h4>
+                        <div class="form-group">
+                            <label for="amount">Enter days to increase</label>
+                            <input type="number" class="form-control" name="days" />
+                        </div>
+                        <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
+                        <a href="#">See Time Extend Request</a>
+                        <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-send"></i> Send Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section username{
+    @ViewBag.LoginName
+}
