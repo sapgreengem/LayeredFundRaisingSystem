@@ -15,13 +15,6 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ManageWithdrawRequests
         public ActionResult Index()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             ViewBag.WithdrawRequests = this.loadRequest();
             return View();
         }
@@ -49,7 +42,7 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.ErrorMessage = "Fund Cannot Be Transferred <br> Invalid Requested Amount";
             }
             ViewBag.WithdrawRequests = this.loadRequest();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public IEnumerable<JoinFundUithdraws_FundRequestPost_UserInfo> loadRequest()

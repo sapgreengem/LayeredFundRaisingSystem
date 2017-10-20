@@ -18,13 +18,6 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ManageBankInformation
         public ActionResult Index()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             ViewBag.BankList = service.GetAll();
             return View();
         }
@@ -43,13 +36,6 @@ namespace layeredFundRaiserSystem.Controllers
             if (id == 0) return View("Error");
             else
             {
-                CountPendings count = new CountPendings();
-                ViewBag.Posts = count.CountPendingPost();
-                ViewBag.Withdraws = count.CountPendingWithdraws();
-
-                ShowUserName name = new ShowUserName();
-                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
                 BankInformation info = service.Get(id);
                 return View(info);
             }

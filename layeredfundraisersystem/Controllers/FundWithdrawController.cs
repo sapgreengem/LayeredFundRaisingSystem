@@ -18,8 +18,6 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View(selectPost);
         }
         [HttpPost]
@@ -87,8 +85,6 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.AllRequests = service.GetAll().Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
             }
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
     }

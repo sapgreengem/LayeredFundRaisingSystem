@@ -16,24 +16,11 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
             return View();
         }
         [HttpGet]
         public ActionResult TopDonor()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             IDonationOnPostService donationService = ServiceFactory.GetDonationOnPostService();
             IUserInformationService infoService = ServiceFactory.GetUserInformationService();
             IEnumerable<UserInformation> userInformation = infoService.GetAll();
@@ -51,36 +38,15 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult TopDonatedPosts()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             ViewBag.TopDonatedPosts = this.LoadPosts().OrderByDescending(a => a.CollectedAmount);
             return View();
         }
         public ActionResult CollectedAmmountOfMonth()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             return View();
         }
         public ActionResult MostViewedPosts()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             ViewBag.MostViewedPosts = this.LoadPosts().OrderByDescending(a => a.ClickCounter);
 
             return View();

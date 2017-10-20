@@ -17,8 +17,6 @@ namespace layeredFundRaiserSystem.Controllers
         {
             ITransectionMethodNameService service = ServiceFactory.GetTransectionMethodNameService();
             ViewBag.TransectionMethodName = service.GetAll();
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
 

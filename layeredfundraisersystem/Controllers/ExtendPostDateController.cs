@@ -10,7 +10,7 @@ using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
-    public class ExtendPostDateController : Controller
+    public class ExtendPostDateController : BaseUserController
     {
         // GET: ExtendPostDate
         [HttpGet]
@@ -18,10 +18,6 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
-            //postService.Get(id);
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View(selectPost);
         }
 

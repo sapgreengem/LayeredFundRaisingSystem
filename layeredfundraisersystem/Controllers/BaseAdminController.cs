@@ -1,4 +1,5 @@
-﻿using System;
+﻿using layeredFundRaiserSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,14 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 Response.Redirect("/Login/AdminLogin");
             }
+
+            CountPendings count = new CountPendings();
+            ViewBag.Posts = count.CountPendingPost();
+            ViewBag.Withdraws = count.CountPendingWithdraws();
+            ViewBag.CountTimeExtendReq = count.CountTimeExtendReq();
+
+            ShowUserName name = new ShowUserName();
+            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
         }
     }
 }

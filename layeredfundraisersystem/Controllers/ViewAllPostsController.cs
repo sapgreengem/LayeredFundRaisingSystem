@@ -38,6 +38,12 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.Posts = this.GetPostsByTitle(search["searchName"]);
             }
+
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
             return View();
         }
         public IEnumerable<FundRequestPost> GetPostsById(int Category)

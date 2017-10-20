@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@*@model layeredFundRaiserSystem.Controllers.BaseAdminController*@
+<!DOCTYPE html>
 <html>
 <head>
     <title>@RenderSection("title", false)</title>
@@ -27,8 +28,9 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/AdminHome">Home</a></li>
-                <li><a href="/ManagePost">Approve Post&nbsp;&nbsp;<span class="badge">@RenderSection("pendingPost", false)</span></a></li>
-                <li><a href="/ManageWithdrawRequests">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@RenderSection("pendingWithdraw", false)</span></a></li>
+                <li><a href="/ManagePost">Approve Post&nbsp;&nbsp;<span class="badge">@ViewBag.Posts</span></a></li>
+                <li><a href="/ManageWithdrawRequests">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@ViewBag.Withdraws</span></a></li>
+                <li><a href="/ManageTimeExtend">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>
                 @*<li><a href="/ManageCategory">Category Management</a></li>
                     <li><a href="/ManageUser">User Management</a></li>
                     <li><a href="/ManageBankInformation">Bank Information Management</a></li>*@
@@ -48,7 +50,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="glyphicon glyphicon-user"></i> @RenderSection("username", false)
+                        <i class="glyphicon glyphicon-user"></i> @ViewBag.adminName
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
