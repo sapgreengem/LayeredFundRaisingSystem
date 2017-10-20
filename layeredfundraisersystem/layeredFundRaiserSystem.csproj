@@ -234,6 +234,7 @@
     <Content Include="Views\AdminProfile\ChangePassword.cshtml" />
     <Content Include="Views\ExtendPostDate\Index.cshtml" />
     <Content Include="Views\ManageTimeExtend\Index.cshtml" />
+    <Content Include="Views\ExtendPostDate\MyTimeExtend.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

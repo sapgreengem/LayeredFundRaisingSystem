@@ -60,5 +60,23 @@ namespace layeredFundRaiserSystem.Controllers
             }
             return View(selectPost);
         }
+
+        [HttpGet]
+        public ActionResult MyTimeExtend()
+        {
+            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+            IEnumerable<FundRequestPost> rows = service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+
+            if (rows.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "No Request available";
+            }
+            else
+            {
+                ViewBag.AllRequests = service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+            }
+
+            return View();
+        }
     }
 }

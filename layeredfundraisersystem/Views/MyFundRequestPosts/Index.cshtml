@@ -11,7 +11,7 @@
         <th style="text-align: center;">Total Earned Amount</th>
         <th style="text-align: center;">Total Withdrawan Amount</th>
         <th style="text-align: center;">Total Remaining Amount</th>
-        <th style="text-align: center;">Check Withdraws</th>
+        <th style="text-align: center;">Check Requests</th>
     </tr>
     <tr>
         <td>@ViewBag.CountNumberofPosts</td>
@@ -20,7 +20,8 @@
         <td>@ViewBag.SumWithdrawanAmount/=</td>
         <td>@ViewBag.SumRemainingAmount/=</td>
         <td>
-            <a href="/FundWithdraw/MyWithdraws" class="pull-left">See Withdraw Requests</a>
+            <a href="/FundWithdraw/MyWithdraws" class="btn btn-primary pull-left">See Withdraw Requests</a>
+            <a href="/ExtendPostDate/MyTimeExtend" class="btn btn-primary pull-right">See Time Extend Request</a>
         </td>
     </tr>
 </table>
