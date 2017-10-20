@@ -150,6 +150,7 @@
     <Compile Include="Controllers\AdminProfileController.cs" />
     <Compile Include="Controllers\BaseAdminController.cs" />
     <Compile Include="Controllers\BaseUserController.cs" />
+    <Compile Include="Controllers\ExtendPostDateController.cs" />
     <Compile Include="Controllers\FillAllInfoController.cs" />
     <Compile Include="Controllers\FundWithdrawController.cs" />
     <Compile Include="Controllers\ManageWithdrawRequestsController.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Views\AdminProfile\Index.cshtml" />
     <Content Include="Views\AdminProfile\Edit.cshtml" />
     <Content Include="Views\AdminProfile\ChangePassword.cshtml" />
+    <Content Include="Views\ExtendPostDate\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

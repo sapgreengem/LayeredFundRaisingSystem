@@ -30,12 +30,13 @@ namespace layeredFundRaiserSystem.Controllers
                     DonationAmount = item.DonationAmount,
                     TransectionId = item.TransectionId,
                     PostId = item.FundRequestPost.PostId,
-                    FirstName = item.UserInformation.FirstName,
-                    LastName = item.UserInformation.LastName,
+                    FirstName = item.FundRequestPost.UserInformation.FirstName,
+                    LastName = item.FundRequestPost.UserInformation.LastName,
                     PostTitle = item.FundRequestPost.PostTitle,
                     PostStatus = item.FundRequestPost.PostStatus,
                     RequiredAmount = item.FundRequestPost.RequiredAmount,
                     EndDate = item.FundRequestPost.EndDate
+                    
                     
                 };
                 joinData.Add(addData);
