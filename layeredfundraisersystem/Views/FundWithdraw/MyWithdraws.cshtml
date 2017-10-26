@@ -5,8 +5,8 @@
 }
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Withdraw Requests Pending</a></li>
-    <li><a data-toggle="tab" href="#menu1">Withdraw Requests Transfered</a></li>
+    <li class="active"><a data-toggle="tab" href="#home">Requests Pending</a></li>
+    <li><a data-toggle="tab" href="#menu1">Fund Transfered</a></li>
 
 </ul>
 <div class="tab-content">
@@ -20,7 +20,7 @@
                     <div>
                         <table class="table table-bordered">
                             <tr>
-                                <th>Post Id</th>
+                                <th>Post Title</th>
                                 <th>Requested Amount</th>
                                 <th>Requested Date</th>
                             </tr>
@@ -29,7 +29,7 @@
                                 if (item.RequestStatus == "Pending")
                                 {
                                     <tr>
-                                        <th>@item.PostId</th>
+                                        <th>@item.PostTitle</th>
                                         <th>@item.WithdrawAmount/=</th>
                                         <th>@item.WithdrawDate</th>
                                     </tr>
@@ -43,7 +43,6 @@
             </div>
         }
 
-
     </div>
     <div id="menu1" class="tab-pane fade">
         <h2>@ViewBag.ErrorMessage</h2>
@@ -55,7 +54,7 @@
                     <div>
                         <table class="table table-bordered">
                             <tr>
-                                <th>Post Id</th>
+                                <th>Post Title</th>
                                 <th>Requested Amount</th>
                                 <th>Requested Date</th>
                             </tr>
@@ -64,7 +63,7 @@
                                 if (item.RequestStatus == "Transfered")
                                 {
                                     <tr>
-                                        <th>@item.PostId</th>
+                                        <th>@item.PostTitle</th>
                                         <th>@item.WithdrawAmount/=</th>
                                         <th>@item.WithdrawDate</th>
                                     </tr>
@@ -82,8 +81,3 @@
     </div>
 
 </div>
-
-
-@section username{
-    @ViewBag.LoginName
-}

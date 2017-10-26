@@ -18,27 +18,12 @@ namespace layeredFundRaiserSystem.Controllers
             IAdministrationService adminService = ServiceFactory.GetAdministrationService();
             //adminService.Get(Convert.ToInt32(Session["AdminLogin"]));
 
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
         }
 
         [HttpGet]
         public ActionResult Edit()
         {
-
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             IAdministrationService adminService = ServiceFactory.GetAdministrationService();
             return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
         }
@@ -46,13 +31,6 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection collection)
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             if ( !String.IsNullOrWhiteSpace(collection["FirstName"].ToString()) 
                 && !String.IsNullOrWhiteSpace(collection["LastName"].ToString()) 
                 && !String.IsNullOrWhiteSpace(collection["Email"].ToString()) 
@@ -81,13 +59,6 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             IAdministrationService adminService = ServiceFactory.GetAdministrationService();
             
             return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
@@ -122,13 +93,6 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.ErrorMessage = "Please Fill Data";
             }
-
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
 
             return View(adminService.Get(Convert.ToInt32(Session["AdminLogin"])));
         }

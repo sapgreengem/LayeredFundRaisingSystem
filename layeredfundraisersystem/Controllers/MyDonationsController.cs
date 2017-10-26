@@ -47,9 +47,6 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.SumOfDonatedAmount = joinData.Sum(a => a.DonationAmount);
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-
             return View();
         }
     }

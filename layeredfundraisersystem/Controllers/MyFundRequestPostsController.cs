@@ -50,8 +50,6 @@ namespace layeredFundRaiserSystem.Controllers
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
                 .Sum(a=> a.WithdrawAmount);
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
     }

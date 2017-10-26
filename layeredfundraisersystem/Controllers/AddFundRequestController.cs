@@ -31,9 +31,6 @@ namespace layeredFundRaiserSystem.Controllers
             }
             ViewBag.Categories = categoryList;
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-
             return View();
         }
 

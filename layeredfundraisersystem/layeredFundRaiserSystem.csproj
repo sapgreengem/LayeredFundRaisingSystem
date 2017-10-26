@@ -153,6 +153,7 @@
     <Compile Include="Controllers\ExtendPostDateController.cs" />
     <Compile Include="Controllers\FillAllInfoController.cs" />
     <Compile Include="Controllers\FundWithdrawController.cs" />
+    <Compile Include="Controllers\ManageTimeExtendController.cs" />
     <Compile Include="Controllers\ManageWithdrawRequestsController.cs" />
     <Compile Include="Controllers\MyDonationsController.cs" />
     <Compile Include="Controllers\MyFundRequestPostsController.cs" />
@@ -232,6 +233,8 @@
     <Content Include="Views\AdminProfile\Edit.cshtml" />
     <Content Include="Views\AdminProfile\ChangePassword.cshtml" />
     <Content Include="Views\ExtendPostDate\Index.cshtml" />
+    <Content Include="Views\ManageTimeExtend\Index.cshtml" />
+    <Content Include="Views\ExtendPostDate\MyTimeExtend.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

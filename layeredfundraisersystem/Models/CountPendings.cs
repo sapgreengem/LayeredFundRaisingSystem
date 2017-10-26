@@ -19,5 +19,11 @@ namespace layeredFundRaiserSystem.Controllers
             IFundWithdrawService service = ServiceFactory.GetFundWithdrawService();
             return service.GetAll().Where(a => a.RequestStatus == "Pending").Count();
         }
+
+        public int CountTimeExtendReq()
+        {
+            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+            return service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Count();
+        }
     }
 }

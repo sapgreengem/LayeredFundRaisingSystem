@@ -10,7 +10,7 @@ using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
-    public class ExtendPostDateController : Controller
+    public class ExtendPostDateController : BaseUserController
     {
         // GET: ExtendPostDate
         [HttpGet]
@@ -18,10 +18,6 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
-            //postService.Get(id);
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View(selectPost);
         }
 
@@ -63,6 +59,24 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.ErrorMessage = "Please give number of extended days";
             }
             return View(selectPost);
+        }
+
+        [HttpGet]
+        public ActionResult MyTimeExtend()
+        {
+            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+            IEnumerable<FundRequestPost> rows = service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+
+            if (rows.Count() <= 0)
+            {
+                ViewBag.ErrorMessage = "No Request available";
+            }
+            else
+            {
+                ViewBag.AllRequests = service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+            }
+
+            return View();
         }
     }
 }

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "MyTimeExtend";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>MyTimeExtend</h2>
+
+
+@if (ViewBag.ErrorMessage == null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="table">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>Post Title</th>
+                            <th>Start Date</th>
+                            <th>Requested End Date</th>
+                            <th>Request Status</th>
+
+                        </tr>
+                        @foreach (var item in ViewBag.AllRequests)
+                        {
+                            <tr>
+                                <td>@item.PostTitle</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>Pending</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @ViewBag.ErrorMessage
+}

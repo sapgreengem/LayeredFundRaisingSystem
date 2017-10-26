@@ -15,9 +15,6 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: MyProfile
         public ActionResult Index()
         {
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-
             IUserLoginService loginService = ServiceFactory.GetUserLoginService();
             ViewBag.LoginData = loginService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
 
@@ -36,9 +33,6 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-
             IUserInformationService UserInfoService = ServiceFactory.GetUserInformationService();
             ViewBag.UserInfo = UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
 
@@ -99,9 +93,6 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-
             if (Session["Login"] == null && Session["UserInformationId"] == null)
             {
                 return RedirectToAction("Index", "Home");

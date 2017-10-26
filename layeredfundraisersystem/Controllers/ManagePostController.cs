@@ -21,25 +21,11 @@ namespace layeredFundRaiserSystem.Controllers
             if (post.Count() <= 0)
             {
                 ViewBag.viewPost = this.loadRequest();
-                CountPendings count = new CountPendings();
-                ViewBag.Posts = count.CountPendingPost();
-                ViewBag.Withdraws = count.CountPendingWithdraws();
-
-                ShowUserName name = new ShowUserName();
-                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
                 ViewBag.ErrorMessage = "No Request Available";
             }
             else
             {
                 ViewBag.viewPost = this.loadRequest();
-                CountPendings count = new CountPendings();
-                ViewBag.Posts = count.CountPendingPost();
-                ViewBag.Withdraws = count.CountPendingWithdraws();
-
-                ShowUserName name = new ShowUserName();
-                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
                 return View();
             }
             return View();
@@ -69,13 +55,6 @@ namespace layeredFundRaiserSystem.Controllers
             IPostProofService proofService = ServiceFactory.GetPostProofService();
             ViewBag.Proofs = proofService.GetAll().Where(a => a.PostId == id);
 
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             return View();
         }
 
@@ -96,13 +75,6 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.ProfilePic = item.ProfilePicture;
             }
             ViewBag.viewPost = this.loadRequest();
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
-
             return View();
         }
 

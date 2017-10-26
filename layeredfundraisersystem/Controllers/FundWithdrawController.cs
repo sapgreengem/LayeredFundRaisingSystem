@@ -18,8 +18,6 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View(selectPost);
         }
         [HttpPost]
@@ -74,21 +72,37 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult MyWithdraws()
         {
-            IFundWithdrawService service = ServiceFactory.GetFundWithdrawService();
-            IEnumerable<FundWithdraw> rows = service.GetAll().Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
-
-            if (rows.Count() <=0)
+            IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
+            IEnumerable<FundWithdraw> withdrawList = withdrawService.GetAll(true, true).Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+            List<JoinFundUithdraws_FundRequestPost_UserInfo> joinData = new List<JoinFundUithdraws_FundRequestPost_UserInfo>();
+            foreach (FundWithdraw item in withdrawList)
             {
-                ViewBag.AllRequests = service.GetAll().Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+                JoinFundUithdraws_FundRequestPost_UserInfo load = new JoinFundUithdraws_FundRequestPost_UserInfo()
+                {
+                    PostId = item.PostId,
+                    PostTitle = item.FundRequestPost.PostTitle,
+                    RequiredAmount = item.FundRequestPost.RequiredAmount,
+                    RemainingAmount = item.FundRequestPost.RemainingAmount,
+                    FirstName = item.UserInformation.FirstName,
+                    LastName = item.UserInformation.LastName,
+
+                    WithdrawId = item.WithdrawId,
+                    WithdrawAmount = item.WithdrawAmount,
+                    WithdrawDate = item.WithdrawDate,
+                    RequestStatus = item.RequestStatus
+                };
+                joinData.Add(load);
+            }
+
+            if (withdrawList.Count() <=0)
+            {
                 ViewBag.ErrorMessage = "No Request available";
             }
             else
             {
-                ViewBag.AllRequests = service.GetAll().Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
+                ViewBag.AllRequests = joinData.ToList();
             }
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
     }
