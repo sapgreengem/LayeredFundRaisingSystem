@@ -32,7 +32,9 @@ namespace layeredFundRaiserSystem.Controllers
         public IEnumerable<FundRequestPost> topViewed()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
-            IEnumerable<FundRequestPost> posts = service.GetAll().Where(a => a.PostStatus == "Active").OrderByDescending(a=> a.ClickCounter);
+            IEnumerable<FundRequestPost> posts = service.GetAll()
+                .Where(a => a.PostStatus == "Active")
+                .OrderByDescending(a=> a.ClickCounter);
             return posts;
         }
         public IEnumerable<FundRequestPost> trending()
@@ -48,7 +50,9 @@ namespace layeredFundRaiserSystem.Controllers
         public IEnumerable<FundRequestPost> recomended()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
-            IEnumerable<FundRequestPost> posts = service.GetAll().Where(a => a.PostStatus == "Active").OrderBy(a => (a.CollectedAmount / a.RequiredAmount) * 100);
+            IEnumerable<FundRequestPost> posts = service.GetAll()
+                .Where(a => a.PostStatus == "Active")
+                .OrderBy(a => (a.CollectedAmount / a.RequiredAmount) * 100);
             return posts;
         }
 
