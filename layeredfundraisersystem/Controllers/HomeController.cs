@@ -16,10 +16,9 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
             this.ChangePostStatus();
-            this.topViewed();
-            //ViewBag.topViewed = this.topViewed();
+            this.topViewed1();
+            ViewBag.topViewed = this.topViewed();
             ViewBag.trending = this.trending();
             ViewBag.recomended = this.recomended();
             if (Session["Login"] != null)
@@ -30,12 +29,12 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public void topViewed()
+        public void topViewed1()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
                 .Where(a => a.PostStatus == "Active")
-                .OrderByDescending(a=> a.ClickCounter);
+                .OrderByDescending(a => a.ClickCounter);
 
             List<FundRequestPost> top = new List<FundRequestPost>();
             List<FundRequestPost> nextTop = new List<FundRequestPost>();
@@ -53,7 +52,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
                     top.Add(fundRequestPost);
                 }
-                if (count >=4 && count <=7)
+                if (count >= 4 && count <= 7)
                 {
                     FundRequestPost fundRequestPost = new FundRequestPost();
                     fundRequestPost.CollectedAmount = item.CollectedAmount;
@@ -68,8 +67,14 @@ namespace layeredFundRaiserSystem.Controllers
             }
             ViewBag.Top = top.ToList();
             ViewBag.nextTop = nextTop.ToList();
-
-            //return posts;
+        }
+        public IEnumerable<FundRequestPost> topViewed()
+        {
+            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+            IEnumerable<FundRequestPost> posts = service.GetAll()
+                .Where(a => a.PostStatus == "Active")
+                .OrderByDescending(a=> a.ClickCounter);
+            return posts;
         }
         public IEnumerable<FundRequestPost> trending()
         {
