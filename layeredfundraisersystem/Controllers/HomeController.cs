@@ -18,7 +18,8 @@ namespace layeredFundRaiserSystem.Controllers
         {
             
             this.ChangePostStatus();
-            ViewBag.topViewed = this.topViewed();
+            this.topViewed();
+            //ViewBag.topViewed = this.topViewed();
             ViewBag.trending = this.trending();
             ViewBag.recomended = this.recomended();
             if (Session["Login"] != null)
@@ -29,13 +30,46 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public IEnumerable<FundRequestPost> topViewed()
+        public void topViewed()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
                 .Where(a => a.PostStatus == "Active")
                 .OrderByDescending(a=> a.ClickCounter);
-            return posts;
+
+            List<FundRequestPost> top = new List<FundRequestPost>();
+            List<FundRequestPost> nextTop = new List<FundRequestPost>();
+            int count = 0;
+            foreach (var item in posts)
+            {
+                if (count < 4)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    top.Add(fundRequestPost);
+                }
+                if (count >=4 && count <=7)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    nextTop.Add(fundRequestPost);
+                }
+                count++;
+            }
+            ViewBag.Top = top.ToList();
+            ViewBag.nextTop = nextTop.ToList();
+
+            //return posts;
         }
         public IEnumerable<FundRequestPost> trending()
         {

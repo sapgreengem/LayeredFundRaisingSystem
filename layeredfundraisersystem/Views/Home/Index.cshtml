@@ -85,7 +85,7 @@
     
 </div>
 
-<!-- CONTENT WRAPPER START -->
+@*<!-- CONTENT WRAPPER START -->
 <div class="content-wrapper bg-dark-white clearfix">
     <!-- PRODUCT CONTAINER START -->
     <div class="container">
@@ -213,7 +213,7 @@
             </div>
         </div> 	<!-- ROW END -->
     </div>	<!-- PRODUCT CONTAINER END -->
-</div>	<!-- CONTENT WRAPPER END -->
+</div>	<!-- CONTENT WRAPPER END -->*@
 
 
 <div class="container">
@@ -223,8 +223,7 @@
             <div class="carousel-inner test">
                 <div class="item active">
                     @{
-                        processed2 = 0;
-                        foreach (var item in ViewBag.topViewed)
+                        foreach (var item in ViewBag.Top)
                         {
                             <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                                 <a class="post" href="/PostDetailsView/Index/@item.PostId">
@@ -245,18 +244,13 @@
                                     </div>
                                 </div>
                             </div>
-                            if (++processed2 == 4)
-                            {
-                                break;
-                            }
-                            continue;
                         }
                     }
                 </div>
                 <div class="item">
                    @{
                        //processed2 = 0;
-                       foreach (var item in ViewBag.topViewed)
+                       foreach (var item in ViewBag.nextTop)
                        {
                         <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                             <a class="post" href="/PostDetailsView/Index/@item.PostId">
@@ -277,10 +271,6 @@
                                 </div>
                             </div>
                         </div>
-                           if (++processed2 == 8)
-                           {
-                               break;
-                           }
                        }
                 }
                 </div>
