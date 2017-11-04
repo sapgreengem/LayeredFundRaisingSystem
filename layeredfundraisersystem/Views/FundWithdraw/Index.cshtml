@@ -17,7 +17,7 @@
                         <h4>Available Amount @Model.RemainingAmount/=</h4>
                         <div class="form-group">
                             <label for="amount">Enter Expected Amount</label>
-                            <input type="number" step=".01" class="form-control" name="Amount" />
+                            <input type="number" min="0" step=".01" class="form-control" name="Amount" />
                         </div>
                         <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-send"></i> Send Request</button>
