@@ -23,10 +23,26 @@ namespace layeredFundRaiserSystem.Controllers
         {
             ISettingService service = ServiceFactory.GetSettingService();
             Setting settings = service.Get(1);
-            settings.ServiceCharge = Convert.ToDouble(coll["ServiceCharge"]);
-            settings.RefundCharge = Convert.ToDouble(coll["RefundCharge"]);
-            service.Update(settings);
-            return Redirect("~/Settings");
+
+            if (!String.IsNullOrWhiteSpace(coll["ServiceCharge"]) && !String.IsNullOrWhiteSpace(coll["RefundCharge"])
+                && !String.IsNullOrWhiteSpace(coll["ContactNo"]) && !String.IsNullOrWhiteSpace(coll["Address"])
+                && !String.IsNullOrWhiteSpace(coll["AccNo"]))
+            {
+                settings.ServiceCharge = Convert.ToDouble(coll["ServiceCharge"]);
+                settings.RefundCharge = Convert.ToDouble(coll["RefundCharge"]);
+                settings.SystemContactNo = coll["ContactNo"].ToString();
+                settings.SystemAddress = coll["Address"].ToString();
+                settings.SystemBankAccount = coll["AccNo"].ToString();
+                service.Update(settings);
+                return Redirect("~/Settings");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "No field can be empty";
+                return View(service.Get(1));
+            }
+            
+
         }
     }
 }
