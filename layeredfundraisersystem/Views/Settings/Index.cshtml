@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Service Charge</th>
+            <th>Refund Charge</th>
+            <th>Total Income</th>
+            <th>Total Collected amount</th>
+        </tr>
+        <tr>
+            <td>@Model.ServiceCharge %</td>
+            <td>@Model.RefundCharge %</td>
+            <td>@Model.TotalIncome /=</td>
+            <td>@Model.CollectedAmount /=</td>
+        </tr>
+    </table>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post">
+                <table>
+                    <tr>
+                        <td>Change Service Charge: </td>
+                        <td><input type="number" name="ServiceCharge" min="0" step=".01" value="@Model.ServiceCharge" /></td>
+                    </tr>
+                    <tr>
+                        <td>Change Refund Charge: </td>
+                        <td><input type="number" name="RefundCharge" min="0" step=".01" value="@Model.RefundCharge" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Change" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />

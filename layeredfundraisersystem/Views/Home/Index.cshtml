@@ -82,7 +82,6 @@
 <div class="im-overlay">
     <a href="~/AddFundRequest" class="btn btn-lg btn-success">Start Campain</a>
     <a href="~/ViewAllPosts" class="btn btn-lg btn-success">Donate Now</a>
-    
 </div>
 
 <!-- CONTENT WRAPPER START -->
@@ -223,8 +222,7 @@
             <div class="carousel-inner test">
                 <div class="item active">
                     @{
-                        processed2 = 0;
-                        foreach (var item in ViewBag.topViewed)
+                        foreach (var item in ViewBag.Top)
                         {
                             <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                                 <a class="post" href="/PostDetailsView/Index/@item.PostId">
@@ -245,85 +243,37 @@
                                     </div>
                                 </div>
                             </div>
-                            if (++processed2 == 4)
-                            {
-                                break;
-                            }
-                            continue;
                         }
                     }
                 </div>
                 <div class="item">
                    @{
-                       //processed2 = 0;
-                       foreach (var item in ViewBag.topViewed)
+                       foreach (var item in ViewBag.nextTop)
                        {
-                        <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
-                            <a class="post" href="/PostDetailsView/Index/@item.PostId">
-                                <div class="post-image" style="height:200px; width:260px">
-                                    <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
-                                </div>
-                                <div style="padding-top:5px; padding-bottom:5px; height:50px;">
-                                    <h4 class="post-title" style="overflow:hidden">@item.PostTitle</h4>
-                                </div>
-                            </a>
+                            <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
+                                <a class="post" href="/PostDetailsView/Index/@item.PostId">
+                                    <div class="post-image" style="height:200px; width:260px">
+                                        <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
+                                    </div>
+                                    <div style="padding-top:5px; padding-bottom:5px; height:50px;">
+                                        <h4 class="post-title" style="overflow:hidden">@item.PostTitle</h4>
+                                    </div>
+                                </a>
 
-                            <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">@item.CollectedAmount/= Raised of @item.RequiredAmount/=</div>
+                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">@item.CollectedAmount/= Raised of @item.RequiredAmount/=</div>
 
-                            <div class="progress">
-                                <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
-                                    @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
+                                <div class="progress">
+                                    <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
+                                        @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                           if (++processed2 == 8)
-                           {
-                               break;
-                           }
                        }
-                }
+                    }
                 </div>
+            </div><!-- /carousel-inner -->
 
-
-                    @*<div class="item">
-                <div data-target="#carousel" data-slide-to="4" class=" col-sm-3 thumb">
-                    <img src="5.jpg">
-                    <center>
-                        <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a><br />
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-                    </center>
-                </div>
-                <div data-target="#carousel" data-slide-to="5" class="col-sm-3 thumb">
-                    <img src="6.jpg">
-                    <center>
-                        <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a><br />
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-                    </center>
-                </div>
-                <div data-target="#carousel" data-slide-to="6" class="col-sm-3 thumb">
-                    <img src="7.jpg">
-                    <center>
-                        <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a><br />
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-                    </center>
-                </div>
-                <div data-target="#carousel" data-slide-to="7" class="col-sm-3 thumb">
-                    <img src="8.jpg">
-                    <center>
-                        <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a><br />
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-                    </center>
-                </div>
-                <div data-target="#carousel" data-slide-to="1" class="col-sm-3 thumb">
-                    <img src="2.jpg">
-                    <center>
-                        <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a><br />
-                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-                    </center>
-                </div>
-            </div>*@<!-- /item -->
-                </div><!-- /carousel-inner -->
             <a class="left carousel-control previous" href="#thumbcarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>

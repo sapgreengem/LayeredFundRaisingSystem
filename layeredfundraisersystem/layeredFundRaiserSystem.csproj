@@ -159,6 +159,7 @@
     <Compile Include="Controllers\MyFundRequestPostsController.cs" />
     <Compile Include="Controllers\MyProfileController.cs" />
     <Compile Include="Controllers\AdminReportsController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\ViewAllPostsController.cs" />
     <Compile Include="Models\CountPendings.cs" />
     <Compile Include="Controllers\DonateOnPostController.cs" />
@@ -235,6 +236,7 @@
     <Content Include="Views\ExtendPostDate\Index.cshtml" />
     <Content Include="Views\ManageTimeExtend\Index.cshtml" />
     <Content Include="Views\ExtendPostDate\MyTimeExtend.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
