@@ -3,48 +3,99 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th>Service Charge</th>
-            <th>Refund Charge</th>
-            <th>Total Income</th>
-            <th>Total Collected amount</th>
-        </tr>
-        <tr>
-            <td>@Model.ServiceCharge %</td>
-            <td>@Model.RefundCharge %</td>
-            <td>@Model.TotalIncome /=</td>
-            <td>@Model.CollectedAmount /=</td>
-        </tr>
-    </table>
-</div>
-<br />
-<br />
-<br />
-<br />
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form method="post">
-                <table>
-                    <tr>
-                        <td>Change Service Charge: </td>
-                        <td><input type="number" name="ServiceCharge" min="0" step=".01" value="@Model.ServiceCharge" /></td>
-                    </tr>
-                    <tr>
-                        <td>Change Refund Charge: </td>
-                        <td><input type="number" name="RefundCharge" min="0" step=".01" value="@Model.RefundCharge" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Change" /></td>
-                    </tr>
-                </table>
-            </form>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Current System Info</a></li>
+    <li><a data-toggle="tab" href="#menu1">Change System Info</a></li>
+
+</ul>
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-info">
+                        @*<div class="panel-heading"><strong>Current Settings</strong></div>*@
+                        <div class="panel-body" style="text-align:center">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <th style="text-align:center">Service Charge</th>
+                                    <th style="text-align:center">Refund Charge</th>
+                                    <th style="text-align:center">Total Income</th>
+                                    <th style="text-align:center">Total Collected amount</th>
+                                </tr>
+                                <tr>
+                                    <td>@Model.ServiceCharge %</td>
+                                    <td>@Model.RefundCharge %</td>
+                                    <td>@Model.TotalIncome /=</td>
+                                    <td>@Model.CollectedAmount /=</td>
+                                </tr>
+                            </table>
+                            <div class="col-md-6 col-md-offset-3">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Contact No</th>
+                                        <td>@Model.SystemContactNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>@Model.SystemAddress</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bank Account No</th>
+                                        <td>@Model.SystemBankAccount</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div id="menu1" class="tab-pane fade">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-info">
+                        @*<div class="panel-heading"><strong>Add Category</strong></div>*@
+                        <div class="panel-body">
+                            <form method="post">
+                                <table class="table">
+                                    <tr>
+                                        <th>Change Service Charge: (in %) </th>
+                                        <td><input type="number" name="ServiceCharge" min="0" step=".01" value="@Model.ServiceCharge" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Change Refund Charge: (in %) </th>
+                                        <td><input type="number" name="RefundCharge" min="0" step=".01" value="@Model.RefundCharge" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Change Contact No: </th>
+                                        <td><input type="text" name="ContactNo" value="@Model.SystemContactNo" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Change Address: </th>
+                                        <td><input type="text" name="Address" value="@Model.SystemAddress" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Change Bank Account No: </th>
+                                        <td><input type="text" name="AccNo" value="@Model.SystemBankAccount" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-danger">@ViewBag.ErrorMessage</span></td>
+                                        <td class="pull-right"><input type="submit" value="Change" /></td>
+                                    </tr>
+                                </table>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
-<br />
-<br />
-<br />
-<br />
