@@ -90,7 +90,8 @@ namespace layeredFundRaiserSystem.Controllers
             string systemPassword = "deluxismykeyboard12";
             string host = "localhost:16720";//Domain Name
 
-            GeneratedLink = returnDynamicLink();
+            Guid obj = new Guid();
+            GeneratedLink = obj.ToString();
 
             string MessageBody =
                 "<strong>Dear "+ email + "</strong>" +
@@ -118,35 +119,6 @@ namespace layeredFundRaiserSystem.Controllers
             return result;
         }
 
-        public static string returnDynamicLink()
-        {
-            char[] generatedLink = CreateMD5(DateTime.Now.ToString("dd/MM/yyyy h:mm:ss tt")).ToCharArray();
-            string x1 = "";
-
-            for (int i = 0; i < generatedLink.Length - 5; i++)
-            {
-                x1 += generatedLink[i];
-            }
-            return x1;
-        }
-
-        public static string CreateMD5(string input)
-        {
-            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
-            {
-                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    sb.Append(hashBytes[i].ToString("X2"));
-                }
-                return sb.ToString();
-            }
-        }
-
-        
         [HttpGet]
         public JsonResult VerifyEmail(string id)
         {
