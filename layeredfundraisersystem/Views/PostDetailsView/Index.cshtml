@@ -21,7 +21,7 @@
                 <br />
                 @foreach (var item in ViewBag.UserName)
                 {
-                    <h4>Posted By @item.FirstName @item.LastName</h4> 
+                    <h4>Posted By @item.FirstName @item.LastName</h4>
                 }
                 <br />
                 <h4>Description</h4>
@@ -34,64 +34,21 @@
                 <a class="btn btn-default" href="#">Twitter</a>
                 <a class="btn btn-default" href="#">Email</a>
             </div>
-            <div class="demo-content">
-                <div style="width:600px;">
-                    <div class="section clearfix">
 
-                        <!-- SECTION HEADER -->
-                        <h4 class="section-header">Discussions</h4>
+            <div>
+                <h2>Leave a comment</h2>
 
-                        <!-- MOBILE TAB SELECT -->
-                        <form class="col-xs-6 pull-right visible-xs">
-                            <select class="mobileTab form-control" style="display: none;">
-                                <option value="0">Mobile Accessories</option>
-                                <option value="1">Tablet Accessories</option>
-                                <option value="2">Powerbanks</option>
-                                <option value="3">Lorem</option>
-                                <option value="4">Ipsum</option>
-                            </select>
-                        </form>
+                <textarea rows="4" cols="50" id="msg" placeholder="Not More Than 50 words"></textarea>
+                <button style="height:25px; width:75px;" id="comment">Comment</button>
+                <input type="hidden" value="@ViewBag.UserInformationId" id="user_id" />
+                <input type="hidden" value="@Model.PostId" id="post_id" />
 
-                        <!-- TAB MENU -->
-                        <ul class="tabMenu nav nav-tabs">
+                <h2>Recent Comments</h2>
+                <div id="ShowRecentComments">
 
-                            <li class="active"><a data-toggle="tab" href="#" aria-expanded="true">All Comments</a></li>
-                            <li class=""><a data-toggle="tab" href="#" aria-expanded="false">Comment On Post</a></li>
-
-                        </ul>
-
-                        <!-- TAB CONTENT -->
-                        <div class="tab-content">
-                            <!-- All Comments -->
-                            <div id="mobile-accessories" class="tab-pane fade active in">
-                                <div class="clearfix"></div>
-                                <!-- PRODUCT SLIDER -->
-                                <div class="product-slider bg-dark-white clearfix slick-initialized slick-slider">
-                                    <!-- PRODUCT -->
-                                    <div aria-live="polite" class="slick-list draggable">
-                                        <div class="slick-track" style="opacity: 1; width: 103px; transform: translate3d(0px, 0px, 0px);" role="listbox">
-                                            <h1>Hello</h1>
-                                        </div>
-                                    </div>	<!-- PRODUCT END -->
-                                </div>	<!-- PRODUCT SLIDER END -->
-                            </div>
-                            <!-- All Comments END -->
-                            <!-- TABLET ACCESSORIES -->
-                            <div id="tablet-accessories" class="tab-pane fade">
-                                <!-- PRODUCT SLIDER -->
-                                <div class="product-slider bg-dark-white clearfix slick-initialized slick-slider">
-                                    <!-- PRODUCT -->
-                                    <div aria-live="polite" class="slick-list draggable">
-                                        <div class="slick-track" style="opacity: 1; width: 103px; transform: translate3d(0px, 0px, 0px);" role="listbox">
-                                            <h1>Hellodfsdf</h1>
-                                        </div>
-                                    </div>	<!-- PRODUCT END -->
-                                </div>	<!-- PRODUCT SLIDER END -->
-                            </div>	<!-- TABLET ACCESSORIES END -->
-                        </div>	<!-- TAB CONTENT END -->
-                    </div>	<!-- SECTION WRAPPER END -->
                 </div>
             </div>
+
         </div>
         <div class="col-md-4">
             <div class="demo-content">
@@ -109,7 +66,7 @@
                     <div class="progress">
                         <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
                              aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
-                             @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
+                            @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
                         </div>
                     </div>
                     <br />
@@ -127,19 +84,70 @@
                         foreach (var item in ViewBag.DonorList)
                         {
                             <div>
-                                <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50"/>
+                                <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" />
                                 <b><span>@item.FirstName donated @item.DonationAmount/=</span></b>
                                 <hr />
                             </div>
-                            
+
                             if (++processed == 6)
                             {
                                 break;
                             }
                         }
-                    } 
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@if (Session["Login"] != null)
+{
+    @section username{
+        @ViewBag.LoginName
+    }
+}
+
+<script type="text/javascript">
+    function executeQuery() {
+        $.ajax({
+            url: '@Url.Action("Comment", "PostDetailsView")',
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: { id: $("#post_id").val(), id1:0, id2:"null" },
+            success: function (response) {
+                var data = response.list;
+                var str1 = "";
+                for (var i = 0; i < 6; i++) {
+                    str1 = str1 + "<div>Post ID:" + data[i].UserName + "<img src='~/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                }
+                $("#ShowRecentComments").html(str1);
+                console.log(str1);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        executeQuery();
+        $("#comment").click(function () {
+            $.ajax({
+                url: '@Url.Action("Comment", "PostDetailsView")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: { id: $("#post_id").val(), id1: $("#user_id").val(), id2: $("#msg").val() },
+                success: function (response) {
+                    var data = response.list;
+                    var str = "";
+                    for (var i = 0; i < 6; i++) {
+                        str = str + "<div>User Name:" + data[i].UserName + "<br /><img src='~/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                    }
+                    $("#ShowRecentComments").html(str1);
+                }
+            });
+        });
+    });
+</script>
