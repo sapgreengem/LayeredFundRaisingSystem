@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -133,12 +134,17 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dataTables.bootstrap.css" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jaktutorial.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\passwordscheck.css" />
+    <Content Include="Scripts\passwordscheck.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\signin.css" />
     <Content Include="Web.config" />
@@ -152,6 +158,7 @@
     <Compile Include="Controllers\BaseUserController.cs" />
     <Compile Include="Controllers\ExtendPostDateController.cs" />
     <Compile Include="Controllers\FillAllInfoController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\FundWithdrawController.cs" />
     <Compile Include="Controllers\ManageTimeExtendController.cs" />
     <Compile Include="Controllers\ManageWithdrawRequestsController.cs" />
@@ -182,6 +189,7 @@
     <Compile Include="Models\JoinFundUithdraws_FundRequestPost_UserInfo.cs" />
     <Compile Include="Models\JoinUserLogin_UserInfo.cs" />
     <Compile Include="Models\LoadAllCategory.cs" />
+    <Compile Include="Models\PostComment.cs" />
     <Compile Include="Models\ShowUserName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +245,7 @@
     <Content Include="Views\ManageTimeExtend\Index.cshtml" />
     <Content Include="Views\ExtendPostDate\MyTimeExtend.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\ForgetPassword\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

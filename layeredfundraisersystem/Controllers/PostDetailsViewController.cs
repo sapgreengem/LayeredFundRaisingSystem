@@ -15,13 +15,13 @@ namespace layeredFundRaiserSystem.Controllers
     {
         IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
-
+        ShowUserName name = new ShowUserName();
         // GET: PostDetailsView
         public ActionResult Index(int id)
         {
             if (Session["Login"] != null)
             {
-                ShowUserName name = new ShowUserName();
+                
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             }
             FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
@@ -68,6 +68,39 @@ namespace layeredFundRaiserSystem.Controllers
             };
             userInfo.Add(user);
             return userInfo;
+        }
+
+        [HttpGet]
+        public JsonResult Comment(int id, int id1, string id2)
+        {
+            IUserCommentService user = ServiceFactory.GetUserCommentService();
+
+            if (id1 != 0 && id2 != "null")
+            {
+                if (Session["Login"] == null)
+                {
+                    Response.Redirect("Login");
+                }
+                UserComment comment = new UserComment();
+                comment.PostId = id;
+                comment.UserInformationId = id1;
+                comment.Comment = id2;
+                user.Insert(comment);
+            }
+
+            var LatestComments = user.GetAll();
+
+            List<PostComment> postComment = new List<PostComment>();
+            foreach (var x in LatestComments)
+            {
+                PostComment comment = new PostComment();
+                comment.UserName = name.UserName(Convert.ToInt32(x.UserInformationId));
+                comment.UserImage = name.UserImage(Convert.ToInt32(x.UserInformationId));
+                comment.Comment = x.Comment;
+
+                postComment.Add(comment);
+            }
+            return Json(new { list = postComment }, JsonRequestBehavior.AllowGet);
         }
     }
 }
