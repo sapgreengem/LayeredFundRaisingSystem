@@ -84,7 +84,7 @@ namespace layeredFundRaiserSystem.Controllers
                 comment.Comment = id2;
                 user.Insert(comment);
             }
-            var LatestComments = user.GetAll();
+            var LatestComments = user.GetAll().OrderByDescending(a => a.CommentId).Where(a => a.PostId == id);
 
             List<PostComment> postComment = new List<PostComment>();
             foreach (var x in LatestComments)
