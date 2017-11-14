@@ -20,8 +20,8 @@ namespace layeredFundRaiserSystem
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}/{id1}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, id1 = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}/{id1}/{id2}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, id1 = UrlParameter.Optional, id2 = UrlParameter.Optional }
             );
         }
     }

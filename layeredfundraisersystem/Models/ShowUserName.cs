@@ -10,9 +10,10 @@ namespace layeredFundRaiserSystem.Models
 {
     public class ShowUserName
     {
-        public IUserInformationService userInformationService = ServiceFactory.GetUserInformationService();
+        
         public string UserName(int id)
         {
+           IUserInformationService userInformationService = ServiceFactory.GetUserInformationService();
             UserInformation userInformation = userInformationService.Get(id);
             return userInformation.FirstName.ToString();
         }
@@ -24,6 +25,7 @@ namespace layeredFundRaiserSystem.Models
         }
         public string UserImage(int id)
         {
+            IUserInformationService userInformationService = ServiceFactory.GetUserInformationService();
             UserInformation userInformation = userInformationService.Get(id);
             return userInformation.ProfilePicture.ToString();
         }
