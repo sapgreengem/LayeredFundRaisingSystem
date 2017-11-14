@@ -58,3 +58,4 @@ E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemEntity\bin\Debug\EntityFrame
 E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.dll
 E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.pdb
 E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.csprojResolveAssemblyReference.cache
+E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemEntity\obj\Debug\FundRaiserSystemEntity.csprojResolveAssemblyReference.cache

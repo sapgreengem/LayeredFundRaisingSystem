@@ -28,7 +28,7 @@ namespace layeredFundRaiserSystem.Controllers
             post.ClickCounter += 1;
             service.Update(post);
 
-            ViewBag.UserName = this.loadFundPostUserName(id);
+            //ViewBag.UserName = this.loadFundPostUserName(id);
             ViewBag.PercentageFunded = (post.CollectedAmount / post.RequiredAmount) * 100;
 
             ViewBag.NumberOfPeopleDonated = donateService.GetAll().Where(q => q.PostId == id).Count();
