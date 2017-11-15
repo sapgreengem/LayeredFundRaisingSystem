@@ -121,7 +121,7 @@
                 var data = response.list;
                 var str1 = "";
                 for (var i = 0; i < 6; i++) {
-                    str1 = str1 + "<div>Post ID:" + data[i].UserName + "<img src='~/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                    str1 = str1 + "<div>Post ID:" + data[i].UserName + "<img width='50' height='50' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
                 }
                 $("#ShowRecentComments").html(str1);
                 console.log(str1);
@@ -141,16 +141,13 @@
                 async: true,
                 data: { id: $("#post_id").val(), id1: $("#user_id").val(), id2: $("#msg").val() },
                 success: function (response) {
-                    if (response.length > 0)
-                    {
-                        var data = response.list;
-                        var str = "";
-                        for (var i = 0; i < 6; i++) {
-                            str = str + "<div>User Name:" + data[i].UserName + "<br /><img src='~/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
-                            console.log(str);
-                        }
-                        $("#ShowRecentComments").html(str1);
-                    } 
+                    var data = response.list;
+                    var str = "";
+                    for (var i = 0; i < 6; i++) {
+                        str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                        console.log(str);
+                    }
+                    $("#ShowRecentComments").html(str1);
                 }
             });
         });
