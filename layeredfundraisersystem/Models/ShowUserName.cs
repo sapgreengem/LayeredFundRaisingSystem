@@ -13,7 +13,7 @@ namespace layeredFundRaiserSystem.Models
         
         public string UserName(int id)
         {
-           IUserInformationService userInformationService = ServiceFactory.GetUserInformationService();
+            IUserInformationService userInformationService = ServiceFactory.GetUserInformationService();
             UserInformation userInformation = userInformationService.Get(id);
             return userInformation.FirstName.ToString();
         }
