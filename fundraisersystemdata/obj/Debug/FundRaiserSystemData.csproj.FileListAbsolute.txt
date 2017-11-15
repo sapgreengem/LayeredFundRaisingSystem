@@ -53,7 +53,7 @@ E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\F
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.dll
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.pdb
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.dll.config
-E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csproj.CoreCompileInputs.cache
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
 E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb
+E:\Fund Raising System\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
