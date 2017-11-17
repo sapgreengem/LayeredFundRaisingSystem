@@ -65,7 +65,10 @@ namespace layeredFundRaiserSystem.Controllers
                     ViewBag.EmailError = msg;
                 }
             }
-            
+            else
+            {
+                ViewBag.PassError = "Please use a valid email and password";
+            }
             return View();
         }
 

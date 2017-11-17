@@ -56,19 +56,17 @@ namespace layeredFundRaiserSystem.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage2 = "Give valid Amount";
+                        ViewBag.ErrorMessage = "Give valid Amount";
                     }
                 }
                 else
                 {
-                    ViewBag.ErrorMessage1 = "You Cannot Donate on your own post";
+                    ViewBag.ErrorMessage = "You Cannot Donate on your own post";
                 }
                 //return View();
             }
             else
             {
-                //ITransectionMethodNameService service = ServiceFactory.GetTransectionMethodNameService();
-                //ViewBag.TransectionMethodName = service.GetAll();
                 ViewBag.ErrorMessage = "Select payment method and Fill amount first";
             }
             return View();
