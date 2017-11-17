@@ -16,31 +16,35 @@
                         <tr>
                             <td>Post Title</td>
                             <td>
-                                <input type="text" name="PostTitle" />
+                                <input type="text" name="PostTitle" id="title" />
+                                <span id="error_title" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Post Details</td>
                             <td>
-                                <input type="text" name="PostDetails" />
+                                <textarea style="min-width:180px;" name="PostDetails" id="details"></textarea>
+                                <span id="error_details" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Required Amount</td>
                             <td>
-                                <input type="text" name="RequiredAmount" />
+                                <input type="number" name="RequiredAmount" id="rm" min="1"  onkeypress="return isNumberKey(event)"/>
+                                <span id="error_rm" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Expected duration(in days)</td>
                             <td>
-                                <input type="text" name="EndDateInDays" />
+                                <input type="number" name="EndDateInDays" id="ed" min="1" onkeypress="return isNumberKey(event)" />
+                                <span id="error_ed" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Posting Category</td>
                             <td>
-                                <select name="Category">
+                                <select name="Category" id="category">
                                     <option value="0">Select One</option>
 
                                     @foreach (var ListItem in ViewBag.Categories)
@@ -48,18 +52,21 @@
                                         <option value="@ListItem.Value">@ListItem.Text</option>
                                     }
                                 </select>
+                                <span id="error_category" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Post Image</td>
                             <td>
-                                <input type="file" name="file" />
+                                <input type="file" name="file" id="img" />
+                                <span id="error_img" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Proof For the Post</td>
                             <td>
-                                <input type="file" name="proof" />
+                                <input type="file" name="proof" id="proof" />
+                                <span id="error_proof" class="text-danger"></span>
                             </td>
                         </tr>
                         <tr>
@@ -74,3 +81,82 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }   
+
+    $(function () {
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#title").val() == "")
+            {
+                $("#error_title").html("Title is empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_title").html("");
+
+            if ($("#details").val() == "")
+            {
+                $("#error_details").html("Details is empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_details").html("");
+
+            if ($("#rm").val() == "")
+            {
+                $("#error_rm").html("Required Ammount Is Empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_rm").html("");
+            
+            if ($("#ed").val() == "")
+            {
+                $("#error_ed").html("Expected Duration is empty");
+                e.preventDefault();
+                return false;
+            }
+            else 
+                $("#error_ed").html("");
+
+            if ($("#category").val() == 0)
+            {
+                $("#error_category").html("Choose a Category");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_category").html("");
+
+            if ($("#img").val() == "") {
+                $("#error_img").html("Choose a Category");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_img").html("");
+
+            if ($("#proof").val() == 0) {
+                $("#error_proof").html("Choose a Category");
+                e.preventDefault();
+                return false;
+            }
+            else
+            {
+                $("#error_proof").html("");
+                return true;
+            }      
+        });
+    });
+</script>

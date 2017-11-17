@@ -9,7 +9,7 @@ namespace FundRaiserSystemData
 {
     public interface IPostingCategoryDataAccess
     {
-        IEnumerable<PostingCategory> GetAll();
+        List<PostingCategory> GetAll();
         PostingCategory Get(int id);
         int Insert(PostingCategory postingCategory);
         int Update(PostingCategory postingCategory);

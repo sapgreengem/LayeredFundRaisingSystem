@@ -13,7 +13,7 @@ namespace FundRaiserSystemData
         {
             this.data = data;
         }
-        public IEnumerable<PostingCategory> GetAll()
+        public List<PostingCategory> GetAll()
         {
             return this.data.GetAll();
         }

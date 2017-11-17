@@ -14,7 +14,7 @@ namespace FundRaiserSystemData
             this.context = context;
         }
 
-        public IEnumerable<PostingCategory> GetAll()
+        public List<PostingCategory> GetAll()
         {          
             return this.context.PostingCategories.ToList();
         }

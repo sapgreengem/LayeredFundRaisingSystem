@@ -29,10 +29,44 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection cat, FormCollection search)
         {
-            ViewBag.Categories = this.getCategory();
+            List<PostingCategory> categories = this.getCategory();
+            List<PostingCategory> categories1 = new List<PostingCategory>();
+
             if (search["searchName"] == null && cat["Category"] != null)
             {
-                ViewBag.Posts = this.GetPostsById(Convert.ToInt32(cat["Category"]));
+                if (Convert.ToInt32(cat["Category"]) != 0)
+                {
+                    int categoryID = Convert.ToInt32(cat["Category"]);
+                    PostingCategory category = this.getCategory().Where(a => a.CategoryId == categoryID).SingleOrDefault();
+                    string categoryName = category.CategoryName.ToString();
+
+                    foreach (var item in categories)
+                    {
+                        if (item.CategoryName != categoryName)
+                        {
+                            PostingCategory ostingCategory = new PostingCategory();
+                            ostingCategory.CategoryId = item.CategoryId;
+                            ostingCategory.CategoryName = item.CategoryName;
+
+                            categories1.Add(ostingCategory);
+                        }
+                    }
+
+                    PostingCategory postingCategory = new PostingCategory();
+                    postingCategory.CategoryId = categoryID;
+                    postingCategory.CategoryName = categoryName;
+
+                    categories1.Insert(0, postingCategory);
+
+                    ViewBag.Categories = categories1;
+                    ViewBag.Posts = this.GetPostsById(Convert.ToInt32(cat["Category"]));
+                }
+                else
+                {
+                    ViewBag.Categories = categories;
+                    ViewBag.Posts = this.GetPostsById(Convert.ToInt32(cat["Category"]));
+                }
+                
             }
             else
             {
@@ -46,6 +80,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             return View();
         }
+
         public IEnumerable<FundRequestPost> GetPostsById(int Category)
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
@@ -58,10 +93,10 @@ namespace layeredFundRaiserSystem.Controllers
             IEnumerable<FundRequestPost> post = service.GetAll().Where(b => b.PostTitle.Contains(title)).Where(a => a.PostStatus == "Active");
             return post;
         }
-        public IEnumerable<PostingCategory> getCategory()
+        public List<PostingCategory> getCategory()
         {
             IPostingCategoryService catService = ServiceFactory.GetPostingCategoryService();
-            IEnumerable<PostingCategory> loadCategories = catService.GetAll();
+            List<PostingCategory> loadCategories = catService.GetAll().ToList();
             return loadCategories;
         }
     }

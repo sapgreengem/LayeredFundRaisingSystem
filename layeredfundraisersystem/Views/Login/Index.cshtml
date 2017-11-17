@@ -12,11 +12,13 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="username">EMAIL</label>
-                            <input type="text" class="form-control" name="email"/>
+                            <input type="text" class="form-control" name="email" id="email"/>
+                            <span id="error_message" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="password">PASSWORD</label>
-                            <input type="password" class="form-control" name="password" />
+                            <input type="password" class="form-control" name="password" id="password" />
+                            <span id="error_pass" class="text-danger"></span>
                         </div>
                         <span class="text-danger">@ViewBag.ErrorMessage1</span>
                         <span class="text-danger">@ViewBag.ErrorMessage</span>
@@ -33,3 +35,35 @@
         </div>
     </div>
 </form>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#email").val() == "") {
+                $("#error_message").html("Email Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+
+            else
+                $("#error_message").html("");
+
+            if ($("#password").val() == "")
+            {
+                $("#error_pass").html("Password Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+            {
+                $("#error_pass").html("");
+                return true;
+            }
+        });
+    });
+</script>

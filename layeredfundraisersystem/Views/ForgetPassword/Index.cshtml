@@ -13,10 +13,10 @@
                         <h3>Type Your Email</h3>
                         <div class="form-group">
                             <label for="email">EMAIL</label>
-                            <input type="text" id="email" name="email" /><br />
+                            <input type="text" id="email" name="email" />
+                            <span class="text-danger" id="error_message">@ViewBag.EmailError</span>
+                            <span class="text-danger" id="error_empty"></span><br />
                         </div>
-                        <span class="text-danger" id="error"></span>
-                        <span class="text-success" id="noterror"></span>
                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Get Your Password</button>
                     </div>
                 </div>
@@ -25,3 +25,49 @@
     </div>
 </form>
 
+<h1>@ViewBag.message</h1>
+
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#email").keyup(function () {
+            $("#error_empty").html("");
+            $.ajax({
+                url: '@Url.Action("VerifyEmail", "ForgetPassword")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: { id: $("#email").val() },
+                success: function (response) {
+                    $('#error_message').html(response.message);
+                }
+            });
+        });
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#email").val() == "")
+            {
+                $("#error_empty").html("Email Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+
+            else if ($('#error_message').html() == "Invalid Email")
+            {
+                
+                e.preventDefault();
+                return false;
+            }
+
+            else
+            {
+                $("#error_message").html("");
+                return true;
+            }
+        });
+    });
+</script>

@@ -14,7 +14,8 @@
 <h2>Index</h2>
 
 <div>
-    <form method="post">
+    <form method="post" id="register">
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
@@ -23,11 +24,11 @@
                             <div class="form-group">
                                 <label for="username">Enter Email</label>
                                 <input type="email" name="Email" id="email" placeholder="Enter Valid Email" class="form-control" />
-                                <span id="error_message"></span>
+                                <span id="error_message" style="color:red">@ViewBag.EmailError</span>
                             </div>
                             <div class="form-group">
                                 <label for="password">Enter Password</label>
-                                <input type="password" id="password" name="Password" placeholder="Password must be more than 8 charecter" class="form-control" />
+                                <input type="password" id="password" name="Password" class="form-control" />
                                 <span id="result"></span>
                                 <span id="error_pass"></span>
                             </div>
@@ -50,12 +51,12 @@
     </form>
 </div>
 <h1>@ViewBag.message</h1>
-<h1>@ViewBag.x</h1>
 
 
 
 <script type="text/javascript">
     $(function () {
+
         $("#email").keyup(function () {
             $.ajax({
                 url: '@Url.Action("VerifyEmail", "UserRegistration")',
@@ -75,8 +76,15 @@
             if ($("#email").val() == "") {
                 $("#error_message").html("Email Cannot be empty");
                 e.preventDefault();
-                return flag;
+                return false;
             }
+
+            else if ($('#error_message').html() == "Email Already Exists")
+            {
+                e.preventDefault();
+                return false;
+            }
+                
             else
                 $("#error_message").html("");
 
@@ -84,7 +92,7 @@
             {
                 $("#error_pass").html("Password Cannot be empty");
                 e.preventDefault();
-                return flag;
+                return false;
             }
             else
                 $("#error_pass").html("");
