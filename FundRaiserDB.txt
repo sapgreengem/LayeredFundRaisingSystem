@@ -448,6 +448,8 @@ SET IDENTITY_INSERT [dbo].[OnlineTransections] OFF
 GO
 SET IDENTITY_INSERT [dbo].[PostingCategories] ON 
 GO
+INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (0, N'All')
+GO
 INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (1, N'Medical')
 GO
 INSERT [dbo].[PostingCategories] ([CategoryId], [CategoryName]) VALUES (2, N'Education')
