@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<h2>@ViewBag.PostConfirmation</h2>
+<h2 class="text-success">@ViewBag.PostConfirmation</h2>
 <div class="container">
     <div class="row">
         <div class="col col-md-8 col-md-offset-2">
@@ -77,6 +77,7 @@
                         </tr>
                     </table>
                 }
+                <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
             </div>
         </div>
     </div>

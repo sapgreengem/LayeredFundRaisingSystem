@@ -35,7 +35,7 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection collection, HttpPostedFileBase file)
         {
-            if (Session["UserInformationId"] == null)
+            if (Session["UserInformationId"] == null && Session["Login"] != null)
             {
                 IUserLoginService userService = ServiceFactory.GetUserLoginService();
                 UserLogin user = userService.Get(Convert.ToInt32(Session["Login"]));
