@@ -20,8 +20,12 @@ namespace layeredFundRaiserSystem.Controllers
                 Response.Redirect("/Login");
             }
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            if (Session["UserInformationId"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            
         }
     }
 }

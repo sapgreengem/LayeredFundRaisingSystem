@@ -17,7 +17,7 @@
                         <h4>Post expired date: @Model.EndDate</h4>
                         <div class="form-group">
                             <label for="amount">Enter days to increase</label>
-                            <input type="number" class="form-control" name="days" />
+                            <input type="number" class="form-control" name="days" min="1"/>
                         </div>
                         <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                         <a href="/ExtendPostDate/MyTimeExtend">See Time Extend Request</a>

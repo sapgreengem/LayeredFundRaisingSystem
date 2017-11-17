@@ -16,11 +16,10 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: AddFundRequest
         public ActionResult Index()
         {
-
-            //IPostingCategoryService service = ServiceFactory.GetPostingCategoryService();
+            //IPostingCategoryService postingService = ServiceFactory.GetPostingCategoryService();
 
             //List<SelectListItem> categoryList = new List<SelectListItem>();
-            //foreach (PostingCategory category in service.GetAll())
+            //foreach (PostingCategory category in postingService.GetAll())
             //{
             //    SelectListItem item = new SelectListItem()
             //    {
@@ -101,18 +100,6 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.ErrorMessage = "Fields cannot be empty. Please fill all informations";
             }
 
-            //IPostingCategoryService postingService = ServiceFactory.GetPostingCategoryService();
-
-            //List<SelectListItem> categoryList = new List<SelectListItem>();
-            //foreach (PostingCategory category in postingService.GetAll())
-            //{
-            //    SelectListItem item = new SelectListItem()
-            //    {
-            //        Text = category.CategoryName,
-            //        Value = category.CategoryId.ToString()
-            //    };
-            //    categoryList.Add(item);
-            //}
             ViewBag.Categories = this.Catagories();
 
             return View();

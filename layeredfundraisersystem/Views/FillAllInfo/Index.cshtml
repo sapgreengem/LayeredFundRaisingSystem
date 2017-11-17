@@ -13,69 +13,74 @@
 
 <h2>FillAllInfo</h2>
 
-<div>
-    Dear <strong>@Model.Email</strong>, Please Fill Up the form to complete registration.
-    <br />
-    <h1>@Session["UserInformationId"]</h1>
-    <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
-    <br />
-    @using (Html.BeginForm("Index", "FillAllInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <table>
-            <tr>
-                <td>First Name</td>
-                <td><input type="text" name="firstName" /></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td><input type="text" name="lastName" /></td>
-            </tr>
-            <tr>
-                <td>Present Address</td>
-                <td><input type="text" name="presentAddress" /></td>
-            </tr>
-            <tr>
-                <td>Permanent Address</td>
-                <td><input type="text" name="permanentAddress" /></td>
-            </tr>
-            <tr>
-                <td>Contact No</td>
-                <td><input type="text" name="contactNo" /></td>
-            </tr>
-            <tr>
-                <td>National ID</td>
-                <td><input type="text" name="nationalID" /></td>
-            </tr>
-            <tr>
-                <td>Country</td>
-                <td><input type="text" name="country" /></td>
-            </tr>
-            <tr>
-                <td>Profile Picture</td>
-                <td><input type="file" name="file" /></td>
-            </tr>
-            <tr>
-                <td>User Account No</td>
-                <td><input type="text" name="userAccountNo" /></td>
-            </tr>
-            <tr>
-                <td>Select Bank</td>
-                <td>
-                    <select name="BankList">
-                        <option value="0">Select One</option>
-                        @foreach (var item in ViewBag.BankList)
-                        {
-                            <option value="@item.BankId">@item.BankName @item.BranchName Branch</option>
-                        }
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="submit"><i class="glyphicon glyphicon-save"></i> Save</button>
-                </td>
-            </tr>
-        </table>
-    }
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            Dear <strong>@Model.Email</strong>, Please Fill Up the form to complete registration.
+            <br />
+            <h1>@Session["UserInformationId"]</h1>
+            <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
+            <br />
+            @using (Html.BeginForm("Index", "FillAllInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <table>
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" name="firstName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text" name="lastName" /></td>
+                    </tr>
+                    <tr>
+                        <td>Present Address</td>
+                        <td><input type="text" name="presentAddress" /></td>
+                    </tr>
+                    <tr>
+                        <td>Permanent Address</td>
+                        <td><input type="text" name="permanentAddress" /></td>
+                    </tr>
+                    <tr>
+                        <td>Contact No</td>
+                        <td><input type="number" name="contactNo" min="0" /></td>
+                    </tr>
+                    <tr>
+                        <td>National ID</td>
+                        <td><input type="number" name="nationalID" min="0" /></td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td><input type="text" name="country" /></td>
+                    </tr>
+                    <tr>
+                        <td>Profile Picture</td>
+                        <td><input type="file" name="file" /></td>
+                    </tr>
+                    <tr>
+                        <td>User Account No</td>
+                        <td><input type="text" name="userAccountNo" /></td>
+                    </tr>
+                    <tr>
+                        <td>Select Bank</td>
+                        <td>
+                            <select name="BankList">
+                                <option value="0">Select One</option>
+                                @foreach (var item in ViewBag.BankList)
+                                {
+                                    <option value="@item.BankId">@item.BankName @item.BranchName Branch</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit"><i class="glyphicon glyphicon-save"></i> Save</button>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+
+    </div>
 </div>
