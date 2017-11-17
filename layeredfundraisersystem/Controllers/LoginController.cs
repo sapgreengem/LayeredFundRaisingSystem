@@ -62,7 +62,7 @@ namespace layeredFundRaiserSystem.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorMessage1 = "Email and Password Do not match";
+                    ViewBag.ErrorMessage = "Email and Password Do not match";
                 }
             }
             else
@@ -91,26 +91,35 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult AdminLogin(FormCollection collection)
         {
-            IAdministrationService service = ServiceFactory.GetAdministrationService();
-
-            int countRow = service.GetAll().Where(email => email.Email == collection["email"].ToString())
-                                    .Where(pass => pass.Password == collection["password"].ToString())
-                                    .Count();
-            if (countRow == 1)
+            if (!String.IsNullOrWhiteSpace(collection["email"].ToString()) && !String.IsNullOrWhiteSpace(collection["password"].ToString()))
             {
-                IEnumerable<Administration> admin = service.GetAll().Where(email => email.Email == collection["email"].ToString())
-                                                                    .Where(pass => pass.Password == collection["password"].ToString());
-                foreach (var item in admin)
+                IAdministrationService service = ServiceFactory.GetAdministrationService();
+
+                int countRow = service.GetAll().Where(email => email.Email == collection["email"].ToString())
+                                        .Where(pass => pass.Password == collection["password"].ToString())
+                                        .Count();
+                if (countRow == 1)
                 {
-                    Session["AdminLogin"] = item.AdminId;
+                    IEnumerable<Administration> admin = service.GetAll().Where(email => email.Email == collection["email"].ToString())
+                                                                        .Where(pass => pass.Password == collection["password"].ToString());
+                    foreach (var item in admin)
+                    {
+                        Session["AdminLogin"] = item.AdminId;
+                    }
+                    countRow = 0;
+                    return RedirectToAction("Index", "AdminHome");
                 }
-                countRow = 0;
-                return RedirectToAction("Index", "AdminHome");
+                else
+                {
+                    ViewBag.ErrorMessage = "Email and Password Do not match";
+                }
             }
             else
             {
-                return View();
+                ViewBag.ErrorMessage = "Please Provide Email and Password";
             }
+
+            return View();
         }
 
         public int getUserInfoId()

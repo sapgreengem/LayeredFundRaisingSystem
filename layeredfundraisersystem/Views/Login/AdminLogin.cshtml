@@ -16,12 +16,14 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="username">EMAIL</label>
-                            <input type="text" class="form-control" name="email" />
+                            <input type="email" class="form-control" name="email" />
                         </div>
                         <div class="form-group">
                             <label for="password">PASSWORD</label>
                             <input type="password" class="form-control" name="password" />
                         </div>
+                        <span class="text-danger">@ViewBag.ErrorMessage</span>
+                        <br />
                         <a href="#">Forgot Password?</a>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Login</button>
                     </div>
