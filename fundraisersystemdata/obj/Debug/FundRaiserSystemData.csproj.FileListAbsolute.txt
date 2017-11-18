@@ -34,3 +34,10 @@ C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSys
 C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
 C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
 C:\Users\GEM\git\LayeredFundRaisingSystem\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRaiserSystemEntity.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb
