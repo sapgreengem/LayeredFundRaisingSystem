@@ -85,7 +85,7 @@ namespace layeredFundRaiserSystem.Controllers
                 user.Insert(comment);
             }
             var LatestComments = user.GetAll()
-                //.Where(a => a.PostId == id)
+                .Where(a => a.PostId == id)
                 .OrderByDescending(a => a.CommentId);
 
             List<PostComment> postComment = new List<PostComment>();

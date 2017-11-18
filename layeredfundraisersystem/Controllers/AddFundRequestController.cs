@@ -40,7 +40,7 @@ namespace layeredFundRaiserSystem.Controllers
             
             if (!String.IsNullOrWhiteSpace(form["PostTitle"]) && !String.IsNullOrWhiteSpace(form["PostDetails"])
                 && !String.IsNullOrWhiteSpace(form["RequiredAmount"]) && !String.IsNullOrWhiteSpace(form["EndDateInDays"])
-                && Convert.ToInt32(form["Category"]) != 0)
+                && Convert.ToInt32(form["Category"]) != 0 && file != null && proof != null)
             {
                 IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
                 FundRequestPost post = new FundRequestPost();
@@ -67,7 +67,7 @@ namespace layeredFundRaiserSystem.Controllers
                     var path = Path.Combine(Server.MapPath("~/PostImages"), NewFileName);
                     file.SaveAs(path);
                     service.Insert(post);
-                }
+                }                    
                 else
                 {
                     ViewBag.ErrorMessage = "Please give an Image of your post";
@@ -93,6 +93,7 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "Please give an Image for proof";
                 }
+
                 ViewBag.PostConfirmation = "Post is pending for Approval";
             }
             else
