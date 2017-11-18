@@ -41,3 +41,5 @@ C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\FundRai
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.csprojResolveAssemblyReference.cache
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.dll
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\obj\Debug\FundRaiserSystemData.pdb
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\EntityFramework.xml
+C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemData\bin\Debug\EntityFramework.SqlServer.xml
