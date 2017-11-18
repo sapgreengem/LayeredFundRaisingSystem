@@ -22,6 +22,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 Response.Redirect("/Login");
             }
+            
             //else if (Session["Login"] != null)
             //{
             //    int check = 0;
@@ -37,10 +38,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ShowUserName name = new ShowUserName();
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-            }
-
-
-            
+            }   
         }
     }
 }

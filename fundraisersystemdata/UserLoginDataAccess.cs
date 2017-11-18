@@ -42,5 +42,10 @@ namespace FundRaiserSystemData
             this.context.UserLogins.Remove(login);
             return this.context.SaveChanges();
         }
+
+        public UserLogin GetUser(string email, string password, string status)
+        {
+            return this.context.UserLogins.SingleOrDefault(x => x.Email == email && x.Password == password && x.Status == status);
+        }
     }
 }

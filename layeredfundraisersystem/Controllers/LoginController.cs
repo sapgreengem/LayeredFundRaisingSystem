@@ -33,35 +33,28 @@ namespace layeredFundRaiserSystem.Controllers
             if (!String.IsNullOrWhiteSpace(collection["email"].ToString()) && !String.IsNullOrWhiteSpace(collection["password"].ToString()))
             {
                 IUserLoginService service = ServiceFactory.GetUserLoginService();
+                UserLogin user = service.GetUser(collection["email"].ToString(), collection["password"].ToString(), "Active");
 
-                int countRow = service.GetAll().Where(email => email.Email == collection["email"].ToString())
-                                        .Where(pass => pass.Password == collection["password"].ToString())
-                                        .Where(status=> status.Status != "Pending")
-                                        .Count();
-                if (countRow == 1)
+                if (user != null)
                 {
-                    IEnumerable<UserLogin> user = service.GetAll().Where(email => email.Email == collection["email"].ToString())
-                                                                  .Where(pass => pass.Password == collection["password"].ToString())
-                                                                  .Where(status => status.Status != "Pending");
-                    foreach (var item in user)
+                    Session["Login"] = user.UserId;
+ 
+                    if (this.getUserInfoId(user.UserId) > 0)
                     {
-                        Session["Login"] = item.UserId;
-                    }
-                    if (this.getUserInfoId() > 0)
-                    {
-                        Session["UserInformationId"] = this.getUserInfoId();
-                        countRow = 0;
+                        Session["UserInformationId"] = this.getUserInfoId(user.UserId);
+                        if (Session["RedirectToDonateOnPost"] != null)
+                        {
+                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString());
+                        }
+                        else if (Session["RedirectToAddFundRequest"] != null)
+                        {
+                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString());
+                        }
                     }
                     else
                     {
-                        countRow = 0;
                         return RedirectToAction("Index", "FillAllInfo");
                     }
-                    countRow = 0;
-
-                    if (Session["DonateNowPostID"] != null)
-                        return RedirectToAction("Index","DonateOnPost",Convert.ToInt32(Session["DonateNowPostID"]));
-
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -126,15 +119,12 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public int getUserInfoId()
+        public int getUserInfoId(int id)
         {
             int userInfoId = 0;
             IUserInformationService userInfoService = ServiceFactory.GetUserInformationService();
-            IEnumerable<UserInformation> user = userInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
-            foreach (var item in user)
-            {
-                userInfoId = item.UserInformationId;
-            }
+            UserInformation user = userInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(id)).FirstOrDefault();
+            userInfoId = user.UserInformationId;
             return userInfoId;
         }
     }

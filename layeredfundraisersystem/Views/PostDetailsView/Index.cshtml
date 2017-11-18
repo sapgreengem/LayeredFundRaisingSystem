@@ -72,6 +72,11 @@
                     <br />
                     @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                     {
+                        if (Session["Login"] == null && Model.PostId != 0)
+                        {
+                            Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + Model.PostId;
+                        }
+                        
                         <a class="btn btn-default" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
                     }
                 </div>
@@ -101,12 +106,12 @@
     </div>
 </div>
 
-@if (Session["Login"] != null)
+@*@if (Session["Login"] != null)
 {
     @section username{
         @ViewBag.LoginName
     }
-}
+}*@
 
 <script type="text/javascript">
     function executeQuery() {

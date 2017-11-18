@@ -10,11 +10,26 @@ using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
-    public class DonateOnPostController : BaseUserController
+    public class DonateOnPostController : Controller
     {
-        // GET: DonateOnPost
+        // GET: DonateOnPost/Index/4
         public ActionResult Index(int id)
         {
+            if (Session["Login"] == null && id != 0)
+            {
+                Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/"+id;
+                Response.Redirect("/Login");
+            }
+            if (Session["UserInformationId"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            else
+            {
+                Response.Redirect("/Login");
+            }
+
             ITransectionMethodNameService service = ServiceFactory.GetTransectionMethodNameService();
             ViewBag.TransectionMethodName = service.GetAll();
             return View();

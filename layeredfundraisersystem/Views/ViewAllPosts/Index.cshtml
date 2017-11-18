@@ -68,7 +68,7 @@
 
                             @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                             {
-                                Session["DonateNowPostID"] = @item.PostId;
+                                //Session["DonateNowPostID"] = @item.PostId;
                                 <a class="btn btn-default" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
                             }
                         </td>

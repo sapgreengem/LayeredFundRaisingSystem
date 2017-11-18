@@ -3,7 +3,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h5 class="text-danger">@ViewBag.ErrorMessage</h5>
 
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">List of Category</a></li>
@@ -63,9 +62,9 @@
                             <form method="post">
                                 <div class="form-group">
                                     <label for="CategoryName">Category Name</label>
-                                    <input type="text" class="form-control" name="CategoryName" />
+                                    <input type="text" class="form-control" name="CategoryName" id="category" />
+                                    <span id="error_category" class="text-danger">@ViewBag.ErrorMessage</span>
                                 </div>
-                                <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                                 <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
                             </form>
                         </div>
@@ -88,7 +87,18 @@
                 e.preventDefault();
                 return false;
             }
+        });
+        $(document).on("submit", "form", function (e) {
 
+            if ($("#category").val() == "") {
+                $("#error_category").html("Category Name can not be empty");
+                e.preventDefault();
+                return false;
+            }
+            else {
+                $("#error_category").html("");
+                return true;
+            }
         });
     });
 </script>
