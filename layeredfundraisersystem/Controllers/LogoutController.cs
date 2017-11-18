@@ -16,8 +16,10 @@ namespace layeredFundRaiserSystem.Controllers
                 Session["Login"] = null;
                 Session["AdminLogin"] = null;
                 Session["UserInformationId"] = null;
+                Session["RedirectToAddFundRequest"] = null;
+                Session["RedirectToDonateOnPost"] = null;
             }
-            return Redirect("/Login");
+            return Redirect("/Home");
         }
     }
 }

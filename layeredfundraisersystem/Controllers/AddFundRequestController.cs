@@ -11,24 +11,21 @@ using System.Web.Mvc;
 
 namespace layeredFundRaiserSystem.Controllers
 {
-    public class AddFundRequestController : BaseUserController
+    public class AddFundRequestController : Controller
     {
         // GET: AddFundRequest
         public ActionResult Index()
         {
-            //IPostingCategoryService postingService = ServiceFactory.GetPostingCategoryService();
-
-            //List<SelectListItem> categoryList = new List<SelectListItem>();
-            //foreach (PostingCategory category in postingService.GetAll())
-            //{
-            //    SelectListItem item = new SelectListItem()
-            //    {
-            //        Text = category.CategoryName,
-            //        Value = category.CategoryId.ToString()
-            //    };
-            //    categoryList.Add(item);
-            //}
-            //ViewBag.Categories = categoryList;
+            if (Session["Login"] == null)
+            {
+                Session["RedirectToDonateOnPost"] = "/AddFundRequest/Index/";
+                Response.Redirect("/Login");
+            }
+            if (Session["UserInformationId"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
 
             ViewBag.Categories = this.Catagories();
             return View();
