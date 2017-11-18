@@ -13,7 +13,10 @@
 <script>
   $(function(){
     $("#example").dataTable();
-  })
+    })
+    $(function () {
+        $("#example2").dataTable();
+    })
 </script>
 
 <div class="tab-content">
@@ -58,7 +61,7 @@
                                         <td>@item.UserCreationDate</td>
                                         <td>@item.Status</td>
                                         <td>
-                                            <a href="/ManageUser/BlockUser/@item.UserId" class="btn btn-default">Block User</a><br />
+                                            <a href="/ManageUser/BlockUser/@item.UserId" class="btn btn-default" id="ActionButton">Block User</a><br />
                                         </td>
                                     </tr>
                                 }
@@ -79,43 +82,47 @@
             <div class="panel panel-info">
                 <div class="panel-heading"><strong>Blocked User</strong></div>
                 <div class="table tab-pane" style="text-align:center">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Present Address</th>
-                            <th>Permanent Address</th>
-                            <th>Contact No</th>
-                            <th>National Id</th>
-                            <th>Country</th>
-                            <th>ProfilePicture</th>
-                            <th>Created At</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            if (item.Status == "Blocked")
+                    <table class="table table-striped" id="example2">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Present Address</th>
+                                <th>Permanent Address</th>
+                                <th>Contact No</th>
+                                <th>National Id</th>
+                                <th>Country</th>
+                                <th>ProfilePicture</th>
+                                <th>Created At</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.FirstName</td>
-                                    <td>@item.LastName</td>
-                                    <td>@item.Email</td>
-                                    <td>@item.PresentAddress</td>
-                                    <td>@item.PermanentAddress</td>
-                                    <td>@item.ContactNo</td>
-                                    <td>@item.NationalId</td>
-                                    <td>@item.Country</td>
-                                    <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
-                                    <td>@item.UserCreationDate</td>
-                                    <td>@item.Status</td>
-                                    <td>
-                                        <a href="/ManageUser/UnBlockUser/@item.UserId" class="btn btn-default">Unblock User</a>
-                                    </td>
-                                </tr>
+                                if (item.Status == "Blocked")
+                                {
+                                    <tr>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.PresentAddress</td>
+                                        <td>@item.PermanentAddress</td>
+                                        <td>@item.ContactNo</td>
+                                        <td>@item.NationalId</td>
+                                        <td>@item.Country</td>
+                                        <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
+                                        <td>@item.UserCreationDate</td>
+                                        <td>@item.Status</td>
+                                        <td>
+                                            <a href="/ManageUser/UnBlockUser/@item.UserId" id="ActionButton" class="btn btn-default">Unblock User</a>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
+                        </tbody>
                     </table>
 
                 </div>
@@ -129,3 +136,19 @@
 
 <br />
 <br />
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", "#ActionButton", function (e) {
+            if (confirm('Are you sure?')) {
+                return true;
+            }
+            else {
+                e.preventDefault();
+                return false;
+            }
+
+        });
+    });
+</script>
+

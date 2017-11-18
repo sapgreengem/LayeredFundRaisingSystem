@@ -16,7 +16,8 @@
                         <div class="form-group">
                             <label for="CategoryName">Category Name</label>
                             <input type="hidden" name="id" value="@Model.CategoryId" />
-                            <input type="text" class="form-control" name="CategoryName"  value="@Model.CategoryName" />
+                            <input type="text" class="form-control" name="CategoryName" id="CategoryName"  value="@Model.CategoryName" />
+                            <span id="error_message" class="text-danger"></span>
                         </div>
                         <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-edit"></i> Edit</button>
@@ -34,3 +35,22 @@
         <input type="submit" value="Edit" class="btn btn-default" />
     </form>
 </div>*@
+
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", "form", function (e) {
+
+            if ($("#CategoryName").val() == "") {
+                $("#error_message").html("Enter a valid category");
+                e.preventDefault();
+                return false;
+            }
+            else
+            {
+                $("#error_message").html("");
+                return true;
+            }
+        });
+    });
+</script>

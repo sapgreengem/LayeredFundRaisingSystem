@@ -16,11 +16,13 @@
                     <form method="post">
                         <div class="form-group">
                             <label for="BankName">Bank Name</label>
-                            <input type="text" class="form-control" name="BankName" value="@Model.BankName" />
+                            <input type="text" class="form-control" name="BankName" id="bank_name" value="@Model.BankName" />
+                            <span id="error_bank" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="BranchName">Branch Name</label>
-                            <input type="text" class="form-control" name="BranchName" value="@Model.BranchName" />
+                            <input type="text" class="form-control" name="BranchName" id="branch_name" value="@Model.BranchName" />
+                            <span id="error_branch" class="text-danger"></span>
                         </div>
                         <input type="hidden" name="id" value="@Model.BankId" />
                         <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
@@ -31,3 +33,28 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#bank_name").val() == "") {
+                $("#error_bank").html("Valid Bank Name is Expected");
+                e.preventDefault();
+                return false;
+            }
+
+            else
+                $("#error_bank").html("");
+
+            if ($("#branch_name").val() == "") {
+                $("#error_branch").html("Valid Bank Name is Expected");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_branch").html("");
+        });
+    });
+</script>

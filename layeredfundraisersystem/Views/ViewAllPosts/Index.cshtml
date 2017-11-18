@@ -30,8 +30,9 @@
                 <form method="post" name="search">
                     <div class="pull-right">
                         Search By Name
-                        <input type="text" name="searchName" />
-                        <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        <input type="text" name="searchName" id="searchName" />
+                        <button type="submit"><i class="glyphicon glyphicon-search"></i></button><br />
+                        <span id="error_searchName" class="text-danger"></span>
                     </div>
                 </form>
             </div>
@@ -67,6 +68,7 @@
 
                             @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                             {
+                                Session["DonateNowPostID"] = @item.PostId;
                                 <a class="btn btn-default" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
                             }
                         </td>
@@ -77,3 +79,41 @@
 
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#searchName").keyup(function () {
+            $("#error_searchName").html("");
+            $.ajax({
+                url: '@Url.Action("VerifyEmail", "UserRegistration")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: { id: $("#email").val() },
+                success: function (response) {
+                    $('#error_message').html(response.message);
+                }
+            });
+        });
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#searchName").val() == "")
+            {
+                $("#error_searchName").html("Type something here.");
+                e.preventDefault();
+                return false;
+            }
+
+             
+
+            else
+            {
+                $("#error_searchName").html("");
+                return true;
+            }
+        });
+    });
+</script>

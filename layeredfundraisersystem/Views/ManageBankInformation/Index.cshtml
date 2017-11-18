@@ -10,6 +10,13 @@
     <li><a data-toggle="tab" href="#menu1">Add Bank Information</a></li>
 
 </ul>
+
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
+
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
         <div class="container">
@@ -17,23 +24,27 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><strong>All Bank Info</strong></div>
                     <div class="table tab-pane" style="text-align:center">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Bank Name</th>
-                                <th>Branch Name</th>
-                                <th>Action</th>
-                            </tr>
-                            @foreach (var item in ViewBag.BankList)
-                            {
+                        <table class="table table-bordered" id="example">
+                            <thead>
                                 <tr>
-                                    <td>@item.BankName</td>
-                                    <td>@item.BranchName</td>
-                                    <td style="text-align:center">
-                                        <a href="/ManageBankInformation/Edit/@item.BankId" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
-                                        <a href="/ManageBankInformation/Delete/@item.BankId" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-                                    </td>
+                                    <th>Bank Name</th>
+                                    <th>Branch Name</th>
+                                    <th>Action</th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.BankList)
+                                {
+                                    <tr>
+                                        <td>@item.BankName</td>
+                                        <td>@item.BranchName</td>
+                                        <td style="text-align:center">
+                                            <a href="/ManageBankInformation/Edit/@item.BankId" class="btn btn-primary ActionButton"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
+                                            <a href="/ManageBankInformation/Delete/@item.BankId" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -51,11 +62,13 @@
                             <form method="post">
                                 <div class="form-group">
                                     <label for="BankName">Bank Name</label>
-                                    <input type="text" class="form-control" name="BankName" />
+                                    <input type="text" class="form-control" name="BankName" id="bank_name" />
+                                    <span id="error_bank" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="BranchName">Branch Name</label>
-                                    <input type="text" class="form-control" name="BranchName" />
+                                    <input type="text" class="form-control" name="BranchName" id="branch_name"/>
+                                    <span id="error_branch" class="text-danger"></span>
                                 </div>
                                 <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                                 <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
@@ -71,3 +84,39 @@
 </div>
 
 <br />
+
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", ".ActionButton", function (e) {
+            if (confirm('Are you sure?')) {
+                return true;
+            }
+            else {
+                e.preventDefault();
+                return false;
+            }
+
+        });
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#bank_name").val() == "") {
+                $("#error_bank").html("Valid Bank Name is Expected");
+                e.preventDefault();
+                return false;
+            }
+
+            else
+                $("#error_bank").html("");
+
+            if ($("#branch_name").val() == "") {
+                $("#error_branch").html("Valid Bank Name is Expected");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_branch").html("");
+        });
+    });
+</script>

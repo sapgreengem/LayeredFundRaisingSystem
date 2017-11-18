@@ -58,6 +58,10 @@ namespace layeredFundRaiserSystem.Controllers
                         return RedirectToAction("Index", "FillAllInfo");
                     }
                     countRow = 0;
+
+                    if (Session["DonateNowPostID"] != null)
+                        return RedirectToAction("Index","DonateOnPost",Convert.ToInt32(Session["DonateNowPostID"]));
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

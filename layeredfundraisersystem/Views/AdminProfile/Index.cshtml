@@ -36,3 +36,49 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(document).on("submit", "form", function (e) {
+
+            if ($("#fname").val() == "") {
+                $("#error_fname").html("First Name Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+
+            else
+                $("#error_message").html("");
+
+            if ($("#lname").val() == "")
+            {
+                $("#error_lname").html("Last Name Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_lname").html("");
+
+            if ($("#email").val() == "")
+            {
+                $("#error_email").html("Email Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+                $("#error_email").html("");
+
+            if ($("#address").val() == "") {
+                $("#error_address").html("Address Cannot be empty");
+                e.preventDefault();
+                return false;
+            }
+            else
+            {
+                $("#error_address").html("");
+                return true;
+            }
+        });
+    });
+</script>

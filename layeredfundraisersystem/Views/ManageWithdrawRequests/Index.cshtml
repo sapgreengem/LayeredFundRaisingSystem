@@ -6,36 +6,63 @@
 
 <h2>Index</h2>
 
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
+
 <div class="container">
     <div class="row">
         <div>
             <span class="text-danger">@ViewBag.ErrorMessage</span>
             <br />
-            <table class="table table-bordered">
-                <tr>
-                    <th>Requester Name</th>
-                    <th>Post Title</th>
-                    <th>Remaining Amount</th>
-                    <th>Requested Amount</th>
-                    <th>Request Date</th>
-                    <th>Request Status</th>
-                    <th>Action</th>
-                </tr>
-                @foreach (var item in ViewBag.WithdrawRequests)
-                {
+            <table class="table table-bordered" id="example">
+                <thead>
                     <tr>
-                        <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
-                        <td>@item.PostTitle</td>
-                        <td>@item.RemainingAmount/=</td>
-                        <td>@item.WithdrawAmount/=</td>
-                        <td>@item.WithdrawDate</td>
-                        <td>@item.RequestStatus</td>
-                        <td>
-                            <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary">Transfer</a>
-                        </td>
+                        <th>Requester Name</th>
+                        <th>Post Title</th>
+                        <th>Remaining Amount</th>
+                        <th>Requested Amount</th>
+                        <th>Request Date</th>
+                        <th>Request Status</th>
+                        <th>Action</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.WithdrawRequests)
+                    {
+                        <tr>
+                            <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
+                            <td>@item.PostTitle</td>
+                            <td>@item.RemainingAmount/=</td>
+                            <td>@item.WithdrawAmount/=</td>
+                            <td>@item.WithdrawDate</td>
+                            <td>@item.RequestStatus</td>
+                            <td>
+                                <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary" id="ActionButton">Transfer</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", "#ActionButton", function (e) {
+            if (confirm('Are you sure?'))
+            {
+                return true;
+            }
+            else
+            {
+                e.preventDefault();
+                return false;
+            }
+
+        });
+    });
+</script>

@@ -3,38 +3,64 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
+
 <h2>Index</h2>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form method="post">
                 <div class="table">
-                    <table class="table-bordered">
-                        <tr>
-                            <th>PostID</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                        @foreach (var item in ViewBag.ExtendRequests)
-                        {
+                    <table class="table-bordered" id="example">
+                        <thead>
                             <tr>
-                                <td>@item.PostId</td>
-                                <td>@item.EndDate</td>
-                                <td>@item.PostStatus</td>
-                                <td>@item.RequiredAmount</td>
-                                <td>@item.CollectedAmount</td>
-                                <td>
-                                    <a href="/ManageTimeExtend/ApproveReq/@item.PostId" class="btn btn-success">Accept</a>
-                                    <a href="/ManageTimeExtend/RejectReq/@item.PostId" class="btn btn-danger">Reject</a>
-                                </td>
+                                <th>PostID</th>
+                                <th>Date</th>
+                                <th>Status</th>
                             </tr>
-                        }
-
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ExtendRequests)
+                            {
+                                <tr>
+                                    <td>@item.PostId</td>
+                                    <td>@item.EndDate</td>
+                                    <td>@item.PostStatus</td>
+                                    <td>@item.RequiredAmount</td>
+                                    <td>@item.CollectedAmount</td>
+                                    <td>
+                                        <a href="/ManageTimeExtend/ApproveReq/@item.PostId" class="btn btn-success ActionButton">Accept</a>
+                                        <a href="/ManageTimeExtend/RejectReq/@item.PostId" class="btn btn-danger ActionButton">Reject</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
-
             </form>
-
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", ".ActionButton", function (e) {
+            if (confirm('Are you sure?'))
+            {
+                return true;
+            }
+            else
+            {
+                e.preventDefault();
+                return false;
+            }
+
+        });
+    });
+</script>

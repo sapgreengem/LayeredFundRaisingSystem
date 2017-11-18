@@ -10,6 +10,14 @@
     <li><a data-toggle="tab" href="#menu1">Add Category</a></li>
 
 </ul>
+
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
+
+
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
         <div class="container">
@@ -18,21 +26,25 @@
                     <div class="panel panel-info">
                         <div class="panel-heading"><strong>List of Category</strong></div>
                         <div class="panel-body" style="text-align:center">
-                            <table class="table table-border">
-                                <tr>
-                                    <th>Category Name</th>
-                                    <th>Action</th>
-                                </tr>
-                                @foreach (var item in Model)
-                                {
+                            <table class="table table-border" id="example">
+                                <thead>
                                     <tr>
-                                        <td>@item.CategoryName</td>
-                                        <td>
-                                            <a href="/ManageCategory/Edit/@item.CategoryId" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
-                                            <a href="/ManageCategory/Delete/@item.CategoryId" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>
-                                        </td>
+                                        <th>Category Name</th>
+                                        <th>Action</th>
                                     </tr>
-                                }
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.CategoryName</td>
+                                            <td>
+                                                <a href="/ManageCategory/Edit/@item.CategoryId" class="btn btn-primary ActionButton"><i class="glyphicon glyphicon-edit"></i> Edit</a>&nbsp;
+                                                <a href="/ManageCategory/Delete/@item.CategoryId" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -63,3 +75,20 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on("click", ".ActionButton", function (e) {
+            if (confirm('Are you sure?'))
+            {
+                return true;
+            }
+            else
+            {
+                e.preventDefault();
+                return false;
+            }
+
+        });
+    });
+</script>
