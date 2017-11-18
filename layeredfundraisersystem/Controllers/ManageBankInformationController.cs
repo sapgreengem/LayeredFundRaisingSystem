@@ -28,7 +28,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 int existingBankInfoCounter = 0;
                 existingBankInfoCounter = service.GetAll().Where(a => a.BankName == coll["BankName"].ToString()).Where(a => a.BranchName == coll["BranchName"].ToString()).Count();
-                if (existingBankInfoCounter <= 0)
+                if (existingBankInfoCounter == 0)
                 {
                     BankInformation info = new BankInformation();
                     info.BankName = coll["BankName"].ToString();

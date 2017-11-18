@@ -28,7 +28,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 int countExistingCategory = 0;
                 countExistingCategory = service.GetAll().Where(a => a.CategoryName == form["CategoryName"].ToString()).Count();
-                if (countExistingCategory <= 0)
+                if (countExistingCategory == 0)
                 {
                     PostingCategory category = new PostingCategory();
                     category.CategoryName = form["CategoryName"].ToString();
