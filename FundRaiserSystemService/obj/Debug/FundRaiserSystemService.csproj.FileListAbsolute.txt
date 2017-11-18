@@ -51,13 +51,3 @@ C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\Fund
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
 C:\Users\GEM\git\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.dll
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemService.pdb
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.dll
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.dll
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\EntityFramework.dll
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemData.pdb
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\bin\Debug\FundRaiserSystemEntity.pdb
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.csprojResolveAssemblyReference.cache
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.dll
-E:\Gem\FRS\LayeredFundRaisingSystem\FundRaiserSystemService\obj\Debug\FundRaiserSystemService.pdb

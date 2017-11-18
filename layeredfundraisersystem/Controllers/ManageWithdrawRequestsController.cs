@@ -45,6 +45,25 @@ namespace layeredFundRaiserSystem.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult UserProfile(int id, int id1)
+        {
+            IUserLoginService loginService = ServiceFactory.GetUserLoginService();
+            ViewBag.LoginData = loginService.GetAll().Where(a => a.UserId == id);
+
+            IUserInformationService UserInfoService = ServiceFactory.GetUserInformationService();
+            ViewBag.UserInfo = UserInfoService.GetAll().Where(a => a.UserId == id);
+
+
+            ViewBag.UserBankAccountDetails = this.userBankAccount(id1);
+
+            foreach (var item in UserInfoService.GetAll().Where(a => a.UserId == id))
+            {
+                ViewBag.ProfilePic = item.ProfilePicture;
+            }
+            return View();
+        }
+
         public IEnumerable<JoinFundUithdraws_FundRequestPost_UserInfo> loadRequest()
         {
             IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
@@ -58,6 +77,8 @@ namespace layeredFundRaiserSystem.Controllers
                     PostTitle = item.FundRequestPost.PostTitle,
                     RequiredAmount = item.FundRequestPost.RequiredAmount,
                     RemainingAmount = item.FundRequestPost.RemainingAmount,
+                    UserId = item.UserInformation.UserId,
+                    UserInformationId = item.UserInformation.UserInformationId,
                     FirstName = item.UserInformation.FirstName,
                     LastName = item.UserInformation.LastName,
 
@@ -65,6 +86,27 @@ namespace layeredFundRaiserSystem.Controllers
                     WithdrawAmount = item.WithdrawAmount,
                     WithdrawDate = item.WithdrawDate,
                     RequestStatus = item.RequestStatus
+                };
+                joinData.Add(load);
+            }
+            return joinData.ToList();
+        }
+        
+        public IEnumerable<JoinBankInformations_UserBankAccounts_UserInfo> userBankAccount(int UserInfoId)
+        {
+            IUserBankAccountService accService = ServiceFactory.GetUserBankAccountService();
+            IEnumerable<UserBankAccount> getAccData = accService.GetAll(true, true).Where(a => a.UserInformationId == UserInfoId);
+            List<JoinBankInformations_UserBankAccounts_UserInfo> joinData = new List<JoinBankInformations_UserBankAccounts_UserInfo>();
+            foreach (UserBankAccount item in getAccData)
+            {
+                JoinBankInformations_UserBankAccounts_UserInfo load = new JoinBankInformations_UserBankAccounts_UserInfo()
+                {
+                    BankId = item.BankId,
+                    BankName = item.BankInformation.BankName,
+                    BranchName = item.BankInformation.BranchName,
+
+                    UserAccountNo = item.UserAccountNo,
+                    UserBankAccountId = item.UserBankAccountId
                 };
                 joinData.Add(load);
             }

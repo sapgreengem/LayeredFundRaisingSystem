@@ -24,7 +24,7 @@
                 @foreach (var item in ViewBag.WithdrawRequests)
                 {
                     <tr>
-                        <td>@item.FirstName</td>
+                        <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
                         <td>@item.PostTitle</td>
                         <td>@item.RemainingAmount/=</td>
                         <td>@item.WithdrawAmount/=</td>
