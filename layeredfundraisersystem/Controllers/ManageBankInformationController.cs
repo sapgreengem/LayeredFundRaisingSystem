@@ -24,10 +24,28 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection coll)
         {
-            BankInformation info = new BankInformation();
-            info.BankName = coll["BankName"].ToString();
-            info.BranchName = coll["BranchName"].ToString();
-            service.Insert(info);
+            if (!String.IsNullOrWhiteSpace(coll["BankName"]) && !String.IsNullOrWhiteSpace(coll["BranchName"]))
+            {
+                int existingBankInfoCounter = 0;
+                existingBankInfoCounter = service.GetAll().Where(a => a.BankName == coll["BankName"].ToString()).Where(a => a.BranchName == coll["BranchName"].ToString()).Count();
+                if (existingBankInfoCounter <= 0)
+                {
+                    BankInformation info = new BankInformation();
+                    info.BankName = coll["BankName"].ToString();
+                    info.BranchName = coll["BranchName"].ToString();
+                    service.Insert(info);
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Bank already exists";
+                }
+
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Give all informations";
+            }
+            
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -43,10 +61,17 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            BankInformation info = service.Get(Convert.ToInt32( form["id"]));
-            info.BankName = form["BankName"];
-            info.BranchName = form["BranchName"];
-            service.Update(info);
+            if (!String.IsNullOrWhiteSpace(form["BankName"]) && !String.IsNullOrWhiteSpace(form["BranchName"]))
+            {
+                BankInformation info = service.Get(Convert.ToInt32(form["id"]));
+                info.BankName = form["BankName"].ToString();
+                info.BranchName = form["BranchName"].ToString();
+                service.Update(info);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Give all informations";
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]

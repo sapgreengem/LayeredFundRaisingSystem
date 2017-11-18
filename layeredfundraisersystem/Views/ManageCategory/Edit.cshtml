@@ -3,6 +3,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<h5 class="text-danger">@ViewBag.ErrorMessage</h5>
 
 <h2>Edit</h2>
 <div class="container">
@@ -17,6 +18,7 @@
                             <input type="hidden" name="id" value="@Model.CategoryId" />
                             <input type="text" class="form-control" name="CategoryName"  value="@Model.CategoryName" />
                         </div>
+                        <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                     </form>
                 </div>

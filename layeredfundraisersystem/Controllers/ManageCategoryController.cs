@@ -24,10 +24,25 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
-            PostingCategory category = new PostingCategory();
-            category.CategoryName = form["CategoryName"].ToString();
-            service.Insert(category);
-            
+            if (!String.IsNullOrWhiteSpace(form["CategoryName"]))
+            {
+                int countExistingCategory = 0;
+                countExistingCategory = service.GetAll().Where(a => a.CategoryName == form["CategoryName"].ToString()).Count();
+                if (countExistingCategory <= 0)
+                {
+                    PostingCategory category = new PostingCategory();
+                    category.CategoryName = form["CategoryName"].ToString();
+                    service.Insert(category); 
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Category Already Exists";
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Category Name can not be empty";
+            }
             return View(service.GetAll());
         }
 
@@ -40,9 +55,16 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            PostingCategory category = service.Get(Convert.ToInt32(form["id"]));
-            category.CategoryName = form["CategoryName"].ToString();
-            service.Update(category);
+            if (!String.IsNullOrWhiteSpace(form["CategoryName"]))
+            {
+                PostingCategory category = service.Get(Convert.ToInt32(form["id"]));
+                category.CategoryName = form["CategoryName"].ToString();
+                service.Update(category);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Category Name can not be empty";
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]

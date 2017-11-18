@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<h5 class="text-danger">@ViewBag.ErrorMessage</h5>
 
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">List of Category</a></li>
@@ -38,8 +39,6 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
 
     <div id="menu1" class="tab-pane fade">
@@ -54,6 +53,7 @@
                                     <label for="CategoryName">Category Name</label>
                                     <input type="text" class="form-control" name="CategoryName" />
                                 </div>
+                                <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                                 <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
                             </form>
                         </div>
@@ -61,7 +61,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>

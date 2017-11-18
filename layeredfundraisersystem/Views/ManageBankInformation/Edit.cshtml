@@ -5,6 +5,7 @@
 }
 
 <h2>Edit</h2>
+<h5 class="text-danger">@ViewBag.ErrorMessage</h5>
 
 <div class="container">
     <div class="row">
@@ -22,6 +23,7 @@
                             <input type="text" class="form-control" name="BranchName" value="@Model.BranchName" />
                         </div>
                         <input type="hidden" name="id" value="@Model.BankId" />
+                        <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                     </form>
                 </div>
