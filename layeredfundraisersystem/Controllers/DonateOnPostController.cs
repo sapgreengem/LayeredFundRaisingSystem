@@ -70,7 +70,6 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "You Cannot Donate on your own post";
                 }
-                //return View();
             }
             else
             {
@@ -86,16 +85,20 @@ namespace layeredFundRaiserSystem.Controllers
             
             IFundRequestPostService fundService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost postAmount = fundService.Get(id);
-
             postAmount.CollectedAmount += amount;
             postAmount.RemainingAmount += amount;
             fundService.Update(postAmount);
-
+            
             if ((postAmount.RequiredAmount - postAmount.CollectedAmount) <= 0)
             {
                 postAmount.PostStatus = "Completed";
                 fundService.Update(postAmount);
             }
+
+            ISettingService settingsService = ServiceFactory.GetSettingService();
+            Setting settings = settingsService.Get(1);
+            settings.CollectedAmount += amount;
+            settingsService.Update(settings);
         }
         public void loginUserName()
         {
