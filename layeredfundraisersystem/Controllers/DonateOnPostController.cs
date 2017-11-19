@@ -17,18 +17,10 @@ namespace layeredFundRaiserSystem.Controllers
         {
             if (Session["Login"] == null && id != 0)
             {
-                Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/"+id;
+                Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + id;
                 Response.Redirect("/Login");
             }
-            if (Session["UserInformationId"] != null)
-            {
-                ShowUserName name = new ShowUserName();
-                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
-            }
-            else
-            {
-                Response.Redirect("/Login");
-            }
+            this.loginUserName();
 
             ITransectionMethodNameService service = ServiceFactory.GetTransectionMethodNameService();
             ViewBag.TransectionMethodName = service.GetAll();
@@ -84,6 +76,8 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.ErrorMessage = "Select payment method and Fill amount first";
             }
+
+            this.loginUserName();
             return View();
         }
 
@@ -101,6 +95,18 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 postAmount.PostStatus = "Completed";
                 fundService.Update(postAmount);
+            }
+        }
+        public void loginUserName()
+        {
+            if (Session["UserInformationId"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            else
+            {
+                Response.Redirect("/Login");
             }
         }
     }
