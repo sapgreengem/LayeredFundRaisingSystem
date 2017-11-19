@@ -26,6 +26,9 @@ namespace layeredFundRaiserSystem.Controllers
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
 
+            ISettingService settingsService = ServiceFactory.GetSettingService();
+            Setting settings = settingsService.Get(1);
+
             if (!String.IsNullOrWhiteSpace(coll["Amount"].ToString()))
             {
                 int check = postService.GetAll().Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"])).Where(a => a.PostId == id).Count();
@@ -48,7 +51,9 @@ namespace layeredFundRaiserSystem.Controllers
                             withdraw.RequestStatus = "Pending";
                             withdraw.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
                             withdrawService.Insert(withdraw);
-                            return Redirect("/FundWithdraw/MyWithdraws");
+
+                            ViewBag.ErrorMessage = "Request sent. After " + settings.ServiceCharge + " % service charge you will get " + (Convert.ToDouble(coll["Amount"]) - Convert.ToDouble(coll["Amount"]) * (settings.ServiceCharge / 100)) + " /=";
+                            return View(selectPost);
                         }
                     }
                     else
