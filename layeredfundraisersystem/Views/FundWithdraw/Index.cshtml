@@ -14,10 +14,11 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><strong>Send Fund Withdraw Request</strong></div>
                     <div class="panel-body">
-                        <h4>@Model.PostTitle</h4>
-                        <h4>Available Amount @Model.RemainingAmount/=</h4>
+                        <h3>@Model.PostTitle</h3>
+                        <span>Available Amount @Model.RemainingAmount/=</span>
+                        <br />
                         <div class="form-group">
-                            <label for="amount">Enter Expected Amount</label>
+                            <label for="amount">Enter Amount</label>
                             <input type="number" min="0" step=".01" class="form-control" name="Amount" />
                         </div>
                         <h5 class="text-danger">@ViewBag.ErrorMessage</h5>

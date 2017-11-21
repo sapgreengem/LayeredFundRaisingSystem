@@ -27,6 +27,9 @@ namespace layeredFundRaiserSystem.Controllers
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost fundRequestPost = postService.Get(fundWithdraw.PostId);
 
+            ISettingService settingsService = ServiceFactory.GetSettingService();
+            Setting settings = settingsService.Get(1);
+
             if (fundRequestPost.RemainingAmount >= fundWithdraw.WithdrawAmount)
             {
 
@@ -35,6 +38,9 @@ namespace layeredFundRaiserSystem.Controllers
 
                 fundWithdraw.RequestStatus = "Transfered";
                 withdrawService.Update(fundWithdraw);
+
+                settings.TotalIncome += fundWithdraw.WithdrawAmount * (settings.ServiceCharge / 100);
+                settingsService.Update(settings);
 
             }
             else
