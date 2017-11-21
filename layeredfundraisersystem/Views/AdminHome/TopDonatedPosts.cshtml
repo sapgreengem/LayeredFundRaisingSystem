@@ -6,29 +6,39 @@
 
 <h2>Top Donated Posts</h2>
 
+<script>
+    $(function () {
+        $(".example").dataTable();
+    })
+</script>
+
 <div class="container">
     <div class="row">
         <div>
-            <table class="table table-bordered">
-                <tr>
-                    <th>Post Name</th>
-                    <th>Post Category</th>
-                    <th>User Name</th>
-                    <th>Post Start Date</th>
-                    <th>Post End Date</th>
-                    <th>Collected Amount</th>
-                </tr>
-                @foreach (var item in ViewBag.TopDonatedPosts)
-                {
+            <table class="table table-bordered example">
+                <thead>
                     <tr>
-                        <td>@item.PostTitle</td>
-                        <td>@item.CategoryName</td>
-                        <td>@item.FirstName @item.LastName</td>
-                        <td>@item.StartDate</td>
-                        <td>@item.EndDate</td>
-                        <td>@item.CollectedAmount/=</td>
+                        <th>Post Name</th>
+                        <th>Post Category</th>
+                        <th>User Name</th>
+                        <th>Post Start Date</th>
+                        <th>Post End Date</th>
+                        <th>Collected Amount</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.TopDonatedPosts)
+                    {
+                        <tr>
+                            <td>@item.PostTitle</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.CollectedAmount/=</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

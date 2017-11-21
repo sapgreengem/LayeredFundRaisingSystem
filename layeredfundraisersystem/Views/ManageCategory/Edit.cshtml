@@ -13,6 +13,7 @@
                 <div class="panel-heading"><strong>Edit Category</strong></div>
                 <div class="panel-body">
                     <form method="post">
+                        @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label for="CategoryName">Category Name</label>
                             <input type="hidden" name="id" value="@Model.CategoryId" />

@@ -23,6 +23,7 @@
             <br />
             @using (Html.BeginForm("Index", "FillAllInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                @Html.AntiForgeryToken()
                 <table>
                     <tr>
                         <td>First Name</td>

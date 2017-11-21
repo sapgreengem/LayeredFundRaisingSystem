@@ -64,7 +64,7 @@
                     <h4>@(Model.RequiredAmount - Model.CollectedAmount)/= More Needed</h4>
                     <h5>Collection Completed</h5>
                     <div class="progress">
-                        <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
+                        <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
                              aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
                             @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
                         </div>
@@ -106,12 +106,9 @@
     </div>
 </div>
 
-@*@if (Session["Login"] != null)
-{
-    @section username{
-        @ViewBag.LoginName
-    }
-}*@
+
+<input type="button" id="sendmessage" value="Click Me" />
+<input type="hidden" id="url" name="url" />
 
 <script type="text/javascript">
     function executeQuery() {
@@ -124,12 +121,11 @@
             data: { id: $("#post_id").val(), id1:0, id2:"null" },
             success: function (response) {
                 var data = response.list;
-                var str1 = "";
-                for (var i = 0; i < 6; i++) {
-                    str1 = str1 + "<div>Post ID:" + data[i].UserName + "<img width='50' height='50' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                var str = "";
+                for (var i = 0; i < data.length; i++) {
+                    str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
                 }
-                $("#ShowRecentComments").html(str1);
-                console.log(str1);
+                $("#ShowRecentComments").html(str);
             }
         });
     }
@@ -137,7 +133,35 @@
     $(document).ready(function () {
         executeQuery();
         $("#comment").click(function () {
-            alert($("#msg").val());
+
+            if ($("#msg").val() == "")
+            {
+                alert("Type a comment");
+                e.preventDefault();
+                return false;
+            }
+
+            @*$.ajax({
+                url: '@Url.Action("CheckLogin", "Login")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: {  },
+                success: function (response)
+                {
+                    var str = response.message;
+
+                    if (str != "")
+                    {
+                        var url = "http://localhost:16720/PostDetailsView/Index/" + $("#post_id").val();
+                        $("#url").val() = url;
+                        window.location = "http://localhost:16720/Login" ;
+                    }
+                        
+                }
+            });*@
+
             $.ajax({
                 url: '@Url.Action("Comment", "PostDetailsView")',
                 dataType: "json",
@@ -148,13 +172,38 @@
                 success: function (response) {
                     var data = response.list;
                     var str = "";
-                    for (var i = 0; i < 6; i++) {
+                    for (var i = 0; i < data.length; i++) {
                         str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
-                        console.log(str);
                     }
-                    $("#ShowRecentComments").html(str1);
+                    $("#ShowRecentComments").html(str);
+                    $("#msg").val('');
                 }
             });
         });
     });
 </script>
+
+
+@*<script type="text/javascript">
+
+    $(function () {
+
+        var customHubChat = $.connection.CustomHubNewName;
+
+        customHubChat.client.broadcastMessage = function (percentage) {
+            var percentage = percentage;
+            $("#progress").text(percentage);
+        };
+
+        $.connection.hub.start().done(function () {
+            $('#sendmessage').click(function () {
+                customHubChat.server.CustomSendMethod($("#post_id").val());
+            });
+        });
+    });
+
+</script>*@
+
+
+
+

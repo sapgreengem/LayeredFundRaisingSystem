@@ -5,7 +5,7 @@
 }
 <script>
     $(function () {
-        $("#example").dataTable();
+        $(".example").dataTable();
     })
 </script>
 
@@ -13,28 +13,36 @@
 <div class="container">
     <div class="row">
         <div class="col col-md-8">
-            <table class="table-bordered pull-left">
-                <tr>
-                    <th>User Name</th>
-                </tr>
-                @foreach (var item in ViewBag.TopDonarList)
-                {
+            <table class="table-bordered pull-left example">
+                <thead>
                     <tr>
-                        <td>@item.FirstName @item.LastName</td>
+                        <th>User Name</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.TopDonarList)
+                    {
+                        <tr>
+                            <td>@item.FirstName @item.LastName</td>
+                        </tr>
 
-                }
+                    }
+                </tbody>
             </table>
-            <table class="table-bordered" style="float:left">
-                <tr>
-                    <th>Donatated Amount</th>
-                </tr>
-                @foreach (var item in ViewBag.Sum)
-                {
+            <table class="table-bordered example" style="float:left">
+                <thead>
                     <tr>
-                        <td>@item.ToString()/=</td>
+                        <th>Donatated Amount</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Sum)
+                    {
+                        <tr>
+                            <td>@item.ToString()/=</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

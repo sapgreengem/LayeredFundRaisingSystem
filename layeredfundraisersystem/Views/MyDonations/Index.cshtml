@@ -6,15 +6,25 @@
 
 <h2>My Donations</h2>
 
-<table class="table table-bordered text-center">
-    <tr>
-        <th class="text-center">Total Donated on</th>
-        <th class="text-center">Total Donated Amount</th>
-    </tr>
-    <tr>
-        <td>@ViewBag.numberOfDonatedPosts posts</td>
-        <td>@ViewBag.SumOfDonatedAmount/=</td>
-    </tr>
+<script>
+    $(function () {
+        $(".example").dataTable();
+    })
+</script>
+
+<table class="table table-bordered text-center example">
+    <thead>
+        <tr>
+            <th class="text-center">Total Donated on</th>
+            <th class="text-center">Total Donated Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.numberOfDonatedPosts posts</td>
+            <td>@ViewBag.SumOfDonatedAmount/=</td>
+        </tr>
+    </tbody>
 </table>
 
 <div class="container">
@@ -22,26 +32,30 @@
         <div class="panel panel-info">
             <div class="panel-heading"><strong>My Donations</strong></div>
             <div class="table tab-pane">
-                <table class="table table-bordered" style="text-align: center;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Required Amount</th>
-                        <th>Donated Amount</th>
-                        <th>Date</th>
-                        <th>Posted By</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (var item in ViewBag.DonationList)
-                    {
+                <table class="table table-bordered example" style="text-align: center;">
+                    <thead>
                         <tr>
-                            <td>@item.PostTitle</td>
-                            <td>@item.RequiredAmount/=</td>
-                            <td>@item.DonationAmount/=</td>
-                            <td>@item.DonationDate</td>
-                            <td>@item.FirstName @item.LastName</td>
-                            <td>@item.PostStatus</td>
+                            <th>Title</th>
+                            <th>Required Amount</th>
+                            <th>Donated Amount</th>
+                            <th>Date</th>
+                            <th>Posted By</th>
+                            <th>Status</th>
                         </tr>
-                    }
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.DonationList)
+                        {
+                            <tr>
+                                <td>@item.PostTitle</td>
+                                <td>@item.RequiredAmount/=</td>
+                                <td>@item.DonationAmount/=</td>
+                                <td>@item.DonationDate</td>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.PostStatus</td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

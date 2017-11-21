@@ -73,5 +73,17 @@ namespace layeredFundRaiserSystem.Controllers
             service.Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public JsonResult CheckExistingCategory(string id)
+        {
+            var countExistingCategory = service.GetAll().Where(a => a.CategoryName == id).Count();
+            var msg = "";
+
+            if (countExistingCategory != 0) msg = "Category Already Exists"; 
+            else msg = "";
+
+            return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

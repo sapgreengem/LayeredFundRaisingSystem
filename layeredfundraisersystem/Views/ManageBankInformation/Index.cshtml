@@ -71,7 +71,7 @@
                                     <span id="error_branch" class="text-danger"></span>
                                 </div>
                                 <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
-                                <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                <button type="submit" id="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
                             </form>
                         </div>
                     </div>
@@ -88,6 +88,7 @@
 
 <script type="text/javascript">
     $(function () {
+
         $(document).on("click", ".ActionButton", function (e) {
             if (confirm('Are you sure?')) {
                 return true;
@@ -101,6 +102,18 @@
 
         $(document).on("submit", "form", function (e) {
 
+            $.ajax({
+                url: '@Url.Action("CheckExistingBank", "ManageBankInformation")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: { id: $("#bank_name").val(), id1: $("#branch_name").val() },
+                success: function (response) {
+                    $('#error_bank').html(response.message);
+                }
+            });
+
             if ($("#bank_name").val() == "") {
                 $("#error_bank").html("Valid Bank Name is Expected");
                 e.preventDefault();
@@ -111,12 +124,19 @@
                 $("#error_bank").html("");
 
             if ($("#branch_name").val() == "") {
-                $("#error_branch").html("Valid Bank Name is Expected");
+                $("#error_branch").html("Valid Branch Name is Expected");
                 e.preventDefault();
                 return false;
             }
             else
                 $("#error_branch").html("");
+
+            if ($("#error_bank").html() == "Bank Already Exists") {
+                e.preventDefault();
+                return false;
+            }
+            else
+                return true;
         });
     });
 </script>

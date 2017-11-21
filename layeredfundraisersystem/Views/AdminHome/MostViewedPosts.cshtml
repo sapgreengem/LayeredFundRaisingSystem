@@ -6,10 +6,17 @@
 
 <h2>Most Viewed Posts</h2>
 
+<script type="text/javascript">
+    $(function () {
+        $(".example").dataTable();
+    });
+</script>
+
 <div class="container">
     <div class="row">
         <div>
-            <table class="table table-bordered">
+            <table class="table table-bordered example">
+                <thead>
                 <tr>
                     <th>Post Name</th>
                     <th>Post Category</th>
@@ -18,17 +25,20 @@
                     <th>Post End Date</th>
                     <th>Viewed</th>
                 </tr>
-                @foreach (var item in ViewBag.MostViewedPosts)
-                {
-                    <tr>
-                        <td>@item.PostTitle</td>
-                        <td>@item.CategoryName</td>
-                        <td>@item.FirstName @item.LastName</td>
-                        <td>@item.StartDate</td>
-                        <td>@item.EndDate</td>
-                        <td>@item.ClickCounter Times</td>
-                    </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.MostViewedPosts)
+                    {
+                        <tr>
+                            <td>@item.PostTitle</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.ClickCounter Times</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

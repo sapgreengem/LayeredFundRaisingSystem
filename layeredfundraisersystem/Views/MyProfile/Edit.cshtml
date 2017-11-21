@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col col-md-8 col-md-offset-2">
             <form method="post">
+                @Html.AntiForgeryToken()
                 <table class="table">
                     @foreach (var item in ViewBag.UserInfo)
                     {

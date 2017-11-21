@@ -9,6 +9,13 @@
     <li><a data-toggle="tab" href="#menu1">Fund Transfered</a></li>
 
 </ul>
+
+<script>
+    $(function () {
+        $(".example").dataTable();
+    })
+</script>
+
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
         <h2>@ViewBag.ErrorMessage</h2>
@@ -18,24 +25,28 @@
             <div class="container">
                 <div class="row">
                     <div>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Post Title</th>
-                                <th>Requested Amount</th>
-                                <th>Requested Date</th>
-                            </tr>
-                            @foreach (var item in ViewBag.AllRequests)
-                            {
-                                if (item.RequestStatus == "Pending")
+                        <table class="table table-bordered example">
+                            <thead>
+                                <tr>
+                                    <th>Post Title</th>
+                                    <th>Requested Amount</th>
+                                    <th>Requested Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.AllRequests)
                                 {
-                                    <tr>
-                                        <th>@item.PostTitle</th>
-                                        <th>@item.WithdrawAmount/=</th>
-                                        <th>@item.WithdrawDate</th>
-                                    </tr>
-                                }
+                                    if (item.RequestStatus == "Pending")
+                                    {
+                                        <tr>
+                                            <th>@item.PostTitle</th>
+                                            <th>@item.WithdrawAmount/=</th>
+                                            <th>@item.WithdrawDate</th>
+                                        </tr>
+                                    }
 
-                            }
+                                }
+                            </tbody>
                         </table>
 
                     </div>
@@ -52,32 +63,32 @@
             <div class="container">
                 <div class="row">
                     <div>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Post Title</th>
-                                <th>Requested Amount</th>
-                                <th>Requested Date</th>
-                            </tr>
-                            @foreach (var item in ViewBag.AllRequests)
-                            {
-                                if (item.RequestStatus == "Transfered")
+                        <table class="table table-bordered example">
+                            <thead>
+                                <tr>
+                                    <th>Post Title</th>
+                                    <th>Requested Amount</th>
+                                    <th>Requested Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.AllRequests)
                                 {
-                                    <tr>
-                                        <th>@item.PostTitle</th>
-                                        <th>@item.WithdrawAmount/=</th>
-                                        <th>@item.WithdrawDate</th>
-                                    </tr>
+                                    if (item.RequestStatus == "Transfered")
+                                    {
+                                        <tr>
+                                            <th>@item.PostTitle</th>
+                                            <th>@item.WithdrawAmount/=</th>
+                                            <th>@item.WithdrawDate</th>
+                                        </tr>
+                                    }
+
                                 }
-
-                            }
+                            </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         }
-
-
     </div>
-
 </div>

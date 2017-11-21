@@ -80,5 +80,17 @@ namespace layeredFundRaiserSystem.Controllers
             service.Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public JsonResult CheckExistingBank(string id, string id1)
+        {
+            var existingBankInfoCounter = service.GetAll().Where(a => a.BankName == id).Where(a => a.BranchName == id1).Count();
+            var msg = "";
+
+            if (existingBankInfoCounter != 0) msg = "Bank Already Exists";
+            else msg = "";
+
+            return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

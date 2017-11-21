@@ -14,6 +14,7 @@
                 <div class="panel-heading"><strong>Provide New Information</strong></div>
                 <div class="panel-body">
                     <form method="post">
+                        @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label for="BankName">Bank Name</label>
                             <input type="text" class="form-control" name="BankName" id="bank_name" value="@Model.BankName" />
