@@ -192,7 +192,6 @@
     <Compile Include="Controllers\AdminReportsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\ViewAllPostsController.cs" />
-    <Compile Include="CustomHubName.cs" />
     <Compile Include="Models\CountPendings.cs" />
     <Compile Include="Controllers\DonateOnPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -291,6 +290,10 @@
     <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FundRaiserSystemData\FundRaiserSystemData.csproj">
+      <Project>{CBF939B1-785F-4F60-82CB-A0B79B54C916}</Project>
+      <Name>FundRaiserSystemData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FundRaiserSystemEntity\FundRaiserSystemEntity.csproj">
       <Project>{4912eca3-f47c-4d0e-9ee2-dd975e272adb}</Project>
       <Name>FundRaiserSystemEntity</Name>
