@@ -44,8 +44,9 @@
                                                 <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
                                                 <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
                                                 <td>
-                                                    <a href="/ManagePost/Approve/@item.PostId" class="btn btn-success ActionButton"><i class="glyphicon glyphicon-ok"></i></a>
-                                                    <a href="/ManagePost/Reject/@item.PostId" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-remove"></i></a>
+                                                    <input type="hidden" id="post_id" value="@item.PostId" />
+                                                    <a href="/ManagePost/Approve/@item.PostId" id="Approve" class="btn btn-success ActionButton"><i class="glyphicon glyphicon-ok"></i></a>
+                                                    <a href="/ManagePost/Reject/@item.PostId" id="Reject" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-remove"></i></a>
                                                 </td>
                                             </tr>
                                         }
@@ -76,3 +77,23 @@
         });
     });
 </script>
+
+@*<script type="text/javascript">
+
+        $(function () {
+
+            var customHubChat = $.connection.CustomHubNewName;
+
+            $.connection.hub.start().done(function () {
+                $('#Approve, #Reject').click(function () {
+                    if (this.id == 'Approve') {
+                        console.log();
+                        customHubChat.server.CustomSendMethod('Approve', $("#post_id").val());
+                    }
+                    else if (this.id == 'Reject') {
+                        customHubChat.server.CustomSendMethod('Reject', $("#post_id").val());
+                    }
+                });
+            });
+
+</script>*@

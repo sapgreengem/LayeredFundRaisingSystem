@@ -107,8 +107,6 @@
 </div>
 
 
-<input type="button" id="sendmessage" value="Click Me" />
-<input type="hidden" id="url" name="url" />
 
 <script type="text/javascript">
     function executeQuery() {
@@ -134,6 +132,8 @@
         executeQuery();
         $("#comment").click(function () {
 
+            var login = true;
+
             if ($("#msg").val() == "")
             {
                 alert("Type a comment");
@@ -141,7 +141,7 @@
                 return false;
             }
 
-            @*$.ajax({
+            $.ajax({
                 url: '@Url.Action("CheckLogin", "Login")',
                 dataType: "json",
                 type: "GET",
@@ -150,59 +150,38 @@
                 data: {  },
                 success: function (response)
                 {
-                    var str = response.message;
-
-                    if (str != "")
+                    if (response.message != "")
                     {
-                        var url = "http://localhost:16720/PostDetailsView/Index/" + $("#post_id").val();
-                        $("#url").val() = url;
-                        window.location = "http://localhost:16720/Login" ;
+                        login = false;
+                        alert('Please Login To Comment');
                     }
-                        
-                }
-            });*@
-
-            $.ajax({
-                url: '@Url.Action("Comment", "PostDetailsView")',
-                dataType: "json",
-                type: "GET",
-                contentType: 'application/json; charset=utf-8',
-                async: true,
-                data: { id: $("#post_id").val(), id1: $("#user_id").val(), id2: $("#msg").val() },
-                success: function (response) {
-                    var data = response.list;
-                    var str = "";
-                    for (var i = 0; i < data.length; i++) {
-                        str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
-                    }
-                    $("#ShowRecentComments").html(str);
-                    $("#msg").val('');
                 }
             });
+
+            if (login == true)
+            {
+                $.ajax({
+                    url: '@Url.Action("Comment", "PostDetailsView")',
+                    dataType: "json",
+                    type: "GET",
+                    contentType: 'application/json; charset=utf-8',
+                    async: true,
+                    data: { id: $("#post_id").val(), id1: $("#user_id").val(), id2: $("#msg").val() },
+                    success: function (response) {
+                        var data = response.list;
+                        var str = "";
+                        for (var i = 0; i < data.length; i++) {
+                            str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                        }
+                        $("#ShowRecentComments").html(str);
+                        $("#msg").val('');
+                    }
+                });
+            }
         });
     });
 </script>
 
-
-@*<script type="text/javascript">
-
-    $(function () {
-
-        var customHubChat = $.connection.CustomHubNewName;
-
-        customHubChat.client.broadcastMessage = function (percentage) {
-            var percentage = percentage;
-            $("#progress").text(percentage);
-        };
-
-        $.connection.hub.start().done(function () {
-            $('#sendmessage').click(function () {
-                customHubChat.server.CustomSendMethod($("#post_id").val());
-            });
-        });
-    });
-
-</script>*@
 
 
 

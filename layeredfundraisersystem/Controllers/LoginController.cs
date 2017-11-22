@@ -127,5 +127,16 @@ namespace layeredFundRaiserSystem.Controllers
             userInfoId = user.UserInformationId;
             return userInfoId;
         }
+
+        public JsonResult CheckLogin()
+        {
+            string msg = "";
+            if (Session["UserInformationId"] == null)
+                msg = "Please Login";
+            else
+                msg = "";
+
+            return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

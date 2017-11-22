@@ -14,13 +14,28 @@ namespace layeredFundRaiserSystem
     public class CustomHubName : Hub
     {
         [HubMethodName("CustomSendMethod")]
-        public void Send(int id)
+        public void Send(string id, int id1 )
         {
-            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
-            FundRequestPost post = service.Get(id, true, true, false);
-            var percentage = Convert.ToInt32(((post.CollectedAmount / post.RequiredAmount) * 100));
+            //IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+            //FundRequestPost itemToUpdate = service.Get(id1, true, true, false);
+            //if (id == "Active")
+            //{
+            //    itemToUpdate.PostStatus = "Active"; 
+            //}
+            //else
+            //{
+            //    itemToUpdate.PostStatus = "Reject";
+            //}
+            //service.Update(itemToUpdate);
 
-            Clients.All.broadcastMessage(id);
+            string msg = id;
+
+            if (id == "Active")
+                msg = "Post Has Been Accepted";
+            else
+                msg = "Post Has Been Rejected";
+
+            Clients.All.broadcastMessage(msg);
         }
     }
 }

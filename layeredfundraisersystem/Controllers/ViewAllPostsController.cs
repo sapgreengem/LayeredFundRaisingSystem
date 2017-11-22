@@ -77,7 +77,6 @@ namespace layeredFundRaiserSystem.Controllers
             #endregion SearchByCategory
 
             #region SearchByText
-
             else if (search["searchName"] != null && cat["Category"] == null)
             {
 
