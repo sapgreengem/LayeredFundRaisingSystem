@@ -9,14 +9,21 @@
     })
 </script>
 
-<table class="table table-bordered example" style="text-align: center;">
+<style type="text/css">
+    .tabMenu{
+        margin-left:90px;
+    }
+</style>
+
+
+<table class="table table-bordered" style="text-align: center;">
     <thead>
         <tr>
-            <th style="text-align: center;">Total Number of Posts</th>
+            <th>Total Number of Posts</th>
             <th style="text-align: center;">Collection Completed</th>
             <th style="text-align: center;">Total Earned Amount</th>
             <th style="text-align: center;">Total Withdrawan Amount</th>
-            <th style="text-align: center;">Total Withdrawan After Service Charge</th>
+            <th style="text-align: center;">After Service Charge</th>
             <th style="text-align: center;">Total Remaining Amount</th>
             <th style="text-align: center;">Check Requests</th>
         </tr>
@@ -30,14 +37,12 @@
             <td>@ViewBag.SumWithdrawWithCharge/=</td>
             <td>@ViewBag.SumRemainingAmount/=</td>
             <td>
-                <a href="/FundWithdraw/MyWithdraws" class="btn btn-primary pull-left Action">Withdraw Requests</a>
-                <a href="/ExtendPostDate/MyTimeExtend" class="btn btn-primary pull-right Action">Time Extend Request</a>
+                <a href="/FundWithdraw/MyWithdraws"  class="btn btn-primary pull-left Action">Withdraws</a>
+                <a href="/ExtendPostDate/MyTimeExtend" class="btn btn-primary pull-right Action">Time Extend</a>
             </td>
         </tr>
     </tbody>
 </table>
-
-    </div>
 
     <ul class="nav nav-tabs tabMenu">
         <li class="active"><a data-toggle="tab" href="#home">Running Posts</a></li>
