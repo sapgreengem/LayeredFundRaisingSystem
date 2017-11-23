@@ -19,7 +19,13 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: PostDetailsView
         public ActionResult Index(int id=0)
         {
-            if(id == 0)
+            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+
+            if (id == 0)
+            {
+                Response.Redirect("/Error");
+            }
+            if(post == null)
             {
                 Response.Redirect("/Error");
             }
@@ -27,7 +33,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             }
-            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+            
             post.ClickCounter += 1;
             service.Update(post);
 

@@ -27,68 +27,73 @@
     </style>
 </head>
 <body>
-    @*<a href="/Home"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/Home"><i class="glyphicon glyphicon-home"></i> Fund Raising System</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/Home">Home</a></li>
-                <li><a href="/AddFundRequest">Start Campain</a></li>
-                <li><a href="/ViewAllPosts">Donate Now</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
-                    <ul class="dropdown-menu">
-                        @{
-                            layeredFundRaiserSystem.Models.LoadAllCategory loadCategory = new layeredFundRaiserSystem.Models.LoadAllCategory();
+        @*<a href="/Home"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/Home"><i class="glyphicon glyphicon-home"></i> Fund Raising System</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/Home">Home</a></li>
+                    <li><a href="/AddFundRequest">Start Campain</a></li>
+                    <li><a href="/ViewAllPosts">Donate Now</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
+                        <ul class="dropdown-menu">
+                            @{
+                                layeredFundRaiserSystem.Models.LoadAllCategory loadCategory = new layeredFundRaiserSystem.Models.LoadAllCategory();
 
-                            foreach (var item in loadCategory.getCategory())
-                            {
-                                <li><a href="~/ViewAllPosts/Index/@item.CategoryId">@item.CategoryName</a></li>
+                                foreach (var item in loadCategory.getCategory())
+                                {
+                                    <li><a href="~/ViewAllPosts/Index/@item.CategoryId">@item.CategoryName</a></li>
+                                }
                             }
-                        }
-                    </ul>
-                </li>
-                <li><a href="/MyFundRequestPosts">My Campains</a></li>
-                <li><a href="/MyDonations">Donated by me</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" title="Notifications"><i class="glyphicon glyphicon-bell"></i><span class="badge">1 @RenderSection("Notifications", false)</span></a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="glyphicon glyphicon-user"></i> @ViewBag.LoginName @*@RenderSection("username", false)*@
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/MyProfile"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                        <li><a href="/MyProfile/Edit"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
-                        <li><a href="/MyProfile/ChangePassword"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/Logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    @RenderBody()
-    <nav class="copyright" style="background-color: #e3f2fd;">
-        <div class="container">
-            <div class="col-md-12">
-                <br />
-                <p class="pull-left">© 2016 - All Rights with Webenlance</p>
-                <ul class="bottom_ul navbar-right">
-                    <li><a href="#">webenlance.com</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Faq's</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Site Map</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/MyFundRequestPosts">My Campains</a></li>
+                    <li><a href="/MyDonations">Donated by me</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" title="Notifications"><i class="glyphicon glyphicon-bell"></i><span class="badge">1 @RenderSection("Notifications", false)</span></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="glyphicon glyphicon-user"></i> @ViewBag.LoginName @*@RenderSection("username", false)*@
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/MyProfile"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                            <li><a href="/MyProfile/Edit"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
+                            <li><a href="/MyProfile/ChangePassword"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/Logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+        </nav>
+        @RenderBody()
+        <nav class="copyright" style="background-color: #e3f2fd;">
+            <div class="container">
+                <div class="col-md-12">
+                    <br />
+                    <p class="pull-left">© 2016 - All Rights with Webenlance</p>
+                    <ul class="bottom_ul navbar-right">
+                        <li><a href="#">webenlance.com</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Faq's</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <noscript>
+        <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
+                height: 100%; width: 100%; background-color: #FFFFFF">
+            <p style="margin-left: 10px">We're sorry, but This site doesn't work properly without JavaScript enabled. Please Enable Javascript</p>
         </div>
-    </nav>
-
+    </noscript>
 </body>
 </html>
 
