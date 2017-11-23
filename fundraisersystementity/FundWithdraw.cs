@@ -10,6 +10,7 @@ namespace FundRaiserSystemEntity
         [Key]
         public int WithdrawId { get; set; }
         public double WithdrawAmount { get; set; }
+        public double WithdrawWithCharge { get; set; }
         public System.DateTime WithdrawDate { get; set; }
         public string RequestStatus { get; set; }
         public int UserInformationId { get; set; }

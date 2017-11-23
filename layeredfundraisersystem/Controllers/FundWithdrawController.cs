@@ -18,6 +18,11 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
             FundRequestPost selectPost = postService.Get(id);
+
+            ISettingService settingsService = ServiceFactory.GetSettingService();
+            Setting settings = settingsService.Get(1);
+            ViewBag.ServiceCharge = settings.ServiceCharge.ToString();
+
             return View(selectPost);
         }
         [HttpPost]
@@ -47,12 +52,15 @@ namespace layeredFundRaiserSystem.Controllers
                             FundWithdraw withdraw = new FundWithdraw();
                             withdraw.PostId = id;
                             withdraw.WithdrawAmount = Convert.ToDouble(coll["Amount"]);
+                            withdraw.WithdrawWithCharge = (Convert.ToDouble(coll["Amount"]) - Convert.ToDouble(coll["Amount"]) * (settings.ServiceCharge / 100));
                             withdraw.WithdrawDate = DateTime.Now;
                             withdraw.RequestStatus = "Pending";
                             withdraw.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
                             withdrawService.Insert(withdraw);
 
                             ViewBag.ErrorMessage = "Request sent. After " + settings.ServiceCharge + " % service charge you will get " + (Convert.ToDouble(coll["Amount"]) - Convert.ToDouble(coll["Amount"]) * (settings.ServiceCharge / 100)) + " /=";
+
+                            ViewBag.ServiceCharge = settings.ServiceCharge.ToString();
                             return View(selectPost);
                         }
                     }
@@ -65,12 +73,13 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "You Can Only Request For Withdraw from your own post";
                 }
-                
             }
             else
             {
                 ViewBag.ErrorMessage = "Please Give Amount";
             }
+
+            ViewBag.ServiceCharge = settings.ServiceCharge.ToString();
             return View(selectPost);
         }
 
@@ -93,6 +102,7 @@ namespace layeredFundRaiserSystem.Controllers
 
                     WithdrawId = item.WithdrawId,
                     WithdrawAmount = item.WithdrawAmount,
+                    WithdrawWithCharge = item.WithdrawWithCharge,
                     WithdrawDate = item.WithdrawDate,
                     RequestStatus = item.RequestStatus
                 };

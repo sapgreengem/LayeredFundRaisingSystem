@@ -30,6 +30,7 @@
                                 <tr>
                                     <th>Post Title</th>
                                     <th>Requested Amount</th>
+                                    <th>Amount After Service Charge</th>
                                     <th>Requested Date</th>
                                 </tr>
                             </thead>
@@ -39,9 +40,10 @@
                                     if (item.RequestStatus == "Pending")
                                     {
                                         <tr>
-                                            <th>@item.PostTitle</th>
-                                            <th>@item.WithdrawAmount/=</th>
-                                            <th>@item.WithdrawDate</th>
+                                            <td>@item.PostTitle</td>
+                                            <td>@item.WithdrawAmount/=</td>
+                                            <td>@item.WithdrawWithCharge/=</td>
+                                            <td>@item.WithdrawDate</td>
                                         </tr>
                                     }
 
@@ -68,6 +70,7 @@
                                 <tr>
                                     <th>Post Title</th>
                                     <th>Requested Amount</th>
+                                    <th>Amount After Service Charge</th>
                                     <th>Requested Date</th>
                                 </tr>
                             </thead>
@@ -77,9 +80,10 @@
                                     if (item.RequestStatus == "Transfered")
                                     {
                                         <tr>
-                                            <th>@item.PostTitle</th>
-                                            <th>@item.WithdrawAmount/=</th>
-                                            <th>@item.WithdrawDate</th>
+                                            <td>@item.PostTitle</td>
+                                            <td>@item.WithdrawAmount/=</td>
+                                            <td>@item.WithdrawWithCharge/=</td>
+                                            <td>@item.WithdrawDate</td>
                                         </tr>
                                     }
 

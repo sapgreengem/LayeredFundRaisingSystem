@@ -26,8 +26,7 @@
         width:100%;
 
         }
-    </style>
-    
+    </style>    
 }
 
 
@@ -84,22 +83,19 @@
     <a href="~/ViewAllPosts" class="btn btn-lg btn-success">Donate Now</a>
 </div>
 
-<!-- CONTENT WRAPPER START -->
-<div class="content-wrapper bg-dark-white clearfix">
-    <!-- PRODUCT CONTAINER START -->
-    <div class="container">
-        <div class="row">
-            <!-- SECTION WRAPPER -->
-            <!---------------------------- TRENDING Start --------------------------->
-            <div class="section clearfix">
-                <h1 class="section-header">Trending</h1>
-                <div class="clearfix"></div>
-                <div class="featured-product-slider clearfix">
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <h1 class="section-header">Recomended</h1>
+        <div id="thumbcarousel" class="carousel slide" data-interval="false">
+            <div class="carousel-inner test">
+                <div class="item active">
                     @{
-                        int processed2 = 0;
-                        foreach (var item in ViewBag.trending)
+                        foreach (var item in ViewBag.recomended)
                         {
-                            <div style="float:left; padding-left:15px; padding-right:15px; width:290px; height:300px; text-align:center;">
+                            <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                                 <a class="post" href="/PostDetailsView/Index/@item.PostId">
                                     <div class="post-image" style="height:200px; width:260px">
                                         <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
@@ -118,39 +114,24 @@
                                     </div>
                                 </div>
                             </div>
-                            if (++processed2 == 4)
-                            {
-                                break;
-                            }
                         }
                     }
                 </div>
-                <a class="pull-right btn btn-default" href="/ViewAllPosts">View All</a>
-            </div>
-            <!---------------------------- TRENDING END  --------------------------->
-            <!----------------------------Top Viewed Start --------------------------->
-            <div class="section clearfix">
-                <h1 class="section-header">Top Viewed</h1>
-                <div class="clearfix"></div>
-                <div class="featured-product-slider clearfix">
+                <div class="item">
                     @{
-                        int processed = 0;
-                        foreach (var item in ViewBag.topViewed)
+                        foreach (var item in ViewBag.nextRecomended)
                         {
-                            <div style="float:left; padding-left:15px; padding-right:15px; width:290px; height:300px; text-align:center;">
+                            <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                                 <a class="post" href="/PostDetailsView/Index/@item.PostId">
                                     <div class="post-image" style="height:200px; width:260px">
-                                        <img src="~/PostImages/@item.PostImage" style="height:200px; width:250px" alt="N/A">
+                                        <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
                                     </div>
                                     <div style="padding-top:5px; padding-bottom:5px; height:50px;">
-                                        <h4 class="post-title">@item.PostTitle</h4>
+                                        <h4 class="post-title" style="overflow:hidden">@item.PostTitle</h4>
                                     </div>
                                 </a>
 
-
-                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">
-                                    @item.CollectedAmount/= Raised of @item.RequiredAmount/=
-                                </div>
+                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">@item.CollectedAmount/= Raised of @item.RequiredAmount/=</div>
 
                                 <div class="progress">
                                     <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
@@ -159,40 +140,44 @@
                                     </div>
                                 </div>
                             </div>
-                            if (++processed == 4)
-                            {
-                                break;
-                            }
                         }
                     }
-
                 </div>
-                <a class="pull-right btn btn-default" href="/ViewAllPosts">View All</a>
-            </div>
-            <!----------------------------Top Viewed end --------------------------->
-            <!----------------------------Recomended start --------------------------->
-            <div class="section clearfix">
-                <h1 class="section-header">Recommended for you</h1>
-                <div class="clearfix"></div>
-                <div class="featured-product-slider clearfix">
+            </div><!-- /carousel-inner -->
+
+            <a class="left carousel-control previous" href="#thumbcarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div> <!-- /thumbcarousel -->
+    </div> <!-- /row -->
+</div>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <h1 class="section-header">Trending</h1>
+        <div id="thumbcarousel" class="carousel slide" data-interval="false">
+            <div class="carousel-inner test">
+                <div class="item active">
                     @{
-                        int processed1 = 0;
-                        foreach (var item in ViewBag.recomended)
+                        foreach (var item in ViewBag.trending)
                         {
-                            <div style="float:left; padding-left:15px; padding-right:15px; width:290px; height:300px; text-align:center;">
+                            <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
                                 <a class="post" href="/PostDetailsView/Index/@item.PostId">
                                     <div class="post-image" style="height:200px; width:260px">
-                                        <img src="~/PostImages/@item.PostImage" style="height:200px; width:250px" alt="N/A">
+                                        <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
                                     </div>
                                     <div style="padding-top:5px; padding-bottom:5px; height:50px;">
-                                        <h4 class="post-title">@item.PostTitle</h4>
+                                        <h4 class="post-title" style="overflow:hidden">@item.PostTitle</h4>
                                     </div>
                                 </a>
 
-
-                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">
-                                    @item.CollectedAmount/= Raised of @item.RequiredAmount/=
-                                </div>
+                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">@item.CollectedAmount/= Raised of @item.RequiredAmount/=</div>
 
                                 <div class="progress">
                                     <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
@@ -201,19 +186,49 @@
                                     </div>
                                 </div>
                             </div>
-                            if (++processed1 == 4)
-                            {
-                                break;
-                            }
                         }
                     }
                 </div>
-                <a class="pull-right btn btn-default" href="/ViewAllPosts">View All</a>
-            </div>
-        </div> 	<!-- ROW END -->
-    </div>	<!-- PRODUCT CONTAINER END -->
-</div>	<!-- CONTENT WRAPPER END -->
+                <div class="item">
+                    @{
+                        foreach (var item in ViewBag.nextTrending)
+                        {
+                            <div data-target="#carousel" data-slide-to="0" class="col-sm-3 thumb ">
+                                <a class="post" href="/PostDetailsView/Index/@item.PostId">
+                                    <div class="post-image" style="height:200px; width:260px">
+                                        <img style="height:200px; width:250px" src="~/PostImages/@item.PostImage" alt="@item.PostImage">
+                                    </div>
+                                    <div style="padding-top:5px; padding-bottom:5px; height:50px;">
+                                        <h4 class="post-title" style="overflow:hidden">@item.PostTitle</h4>
+                                    </div>
+                                </a>
 
+                                <div class="post-money" style="height:15px; padding-top:5px; padding-bottom:20px;">@item.CollectedAmount/= Raised of @item.RequiredAmount/=</div>
+
+                                <div class="progress">
+                                    <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
+                                        @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div><!-- /carousel-inner -->
+
+            <a class="left carousel-control previous" href="#thumbcarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#thumbcarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div> <!-- /thumbcarousel -->
+    </div> <!-- /row -->
+</div>
+
+<br />
+<br />
 
 <div class="container">
     <div class="row">

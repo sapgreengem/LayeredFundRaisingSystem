@@ -23,7 +23,7 @@
                             <tr>
                                 <th>Post Title</th>
                                 <th>Start Date</th>
-                                <th>Requested End Date</th>
+                                <th>Requested To Extend</th>
                                 <th>Request Status</th>
 
                             </tr>
@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>@item.PostTitle</td>
                                     <td>@item.StartDate</td>
-                                    <td>@item.EndDate</td>
+                                    <td>@(Convert.ToInt32((item.EndDate - item.StartDate).TotalDays)) Days</td>
                                     <td>Pending</td>
                                 </tr>
                             }

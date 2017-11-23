@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
+using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
@@ -15,10 +16,27 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            //JoinFundRequestPost_UserInformation
             IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
-            IEnumerable<FundRequestPost> post = postService.GetAll().Where(a => a.PostStatus == "ExtendRequest");
+            IEnumerable<FundRequestPost> post = postService.GetAll(true).Where(a => a.PostStatus == "ExtendRequest");
 
-            ViewBag.ExtendRequests = post;
+            List<JoinFundRequestPost_UserInformation> joinData = new List<JoinFundRequestPost_UserInformation>();
+            foreach (var item in post)
+            {
+                JoinFundRequestPost_UserInformation addData = new JoinFundRequestPost_UserInformation()
+                {
+                    PostTitle = item.PostTitle,
+                    StartDate = item.StartDate,
+                    EndDate = item.EndDate,
+                    RequiredAmount = item.RequiredAmount,
+                    CollectedAmount = item.CollectedAmount,
+                    PostStatus = item.PostStatus,
+                    UserInformationId = item.UserInformationId,
+                    FirstName = item.UserInformation.FirstName
+                };
+                joinData.Add(addData);
+            }
+            ViewBag.ExtendRequests = joinData.ToList();
             return View();
         }
 

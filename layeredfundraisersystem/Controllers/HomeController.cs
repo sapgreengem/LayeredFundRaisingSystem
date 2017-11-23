@@ -17,10 +17,10 @@ namespace layeredFundRaiserSystem.Controllers
         public ActionResult Index()
         {
             this.ChangePostStatus();
-            this.topViewed1();
-            ViewBag.topViewed = this.topViewed();
-            ViewBag.trending = this.trending();
-            ViewBag.recomended = this.recomended();
+            this.topViewed();
+            this.trending();
+            this.recomended();
+
             if (Session["Login"] != null)
             {
                 ShowUserName name = new ShowUserName();
@@ -29,7 +29,7 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public void topViewed1()
+        public void topViewed()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
@@ -68,15 +68,8 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.Top = top.ToList();
             ViewBag.nextTop = nextTop.ToList();
         }
-        public IEnumerable<FundRequestPost> topViewed()
-        {
-            IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
-            IEnumerable<FundRequestPost> posts = service.GetAll()
-                .Where(a => a.PostStatus == "Active")
-                .OrderByDescending(a=> a.ClickCounter);
-            return posts;
-        }
-        public IEnumerable<FundRequestPost> trending()
+
+        public void trending()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
@@ -84,15 +77,78 @@ namespace layeredFundRaiserSystem.Controllers
                 .OrderByDescending(a => a.StartDate)
                 .OrderByDescending(a => a.ClickCounter)
                 .OrderByDescending(a => a.CollectedAmount);
-            return posts;
+
+            List<FundRequestPost> trending = new List<FundRequestPost>();
+            List<FundRequestPost> nextTrending = new List<FundRequestPost>();
+            int count = 0;
+            foreach (var item in posts)
+            {
+                if (count < 4)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    trending.Add(fundRequestPost);
+                }
+                if (count >= 4 && count <= 7)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    nextTrending.Add(fundRequestPost);
+                }
+                count++;
+            }
+            ViewBag.trending = trending.ToList();
+            ViewBag.nextTrending = nextTrending.ToList();
         }
-        public IEnumerable<FundRequestPost> recomended()
+
+        public void recomended()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
                 .Where(a => a.PostStatus == "Active")
                 .OrderBy(a => (a.CollectedAmount / a.RequiredAmount) * 100);
-            return posts;
+
+            List<FundRequestPost> recomended = new List<FundRequestPost>();
+            List<FundRequestPost> nextRecomended = new List<FundRequestPost>();
+            int count = 0;
+            foreach (var item in posts)
+            {
+                if (count < 4)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    recomended.Add(fundRequestPost);
+                }
+                if (count >= 4 && count <= 7)
+                {
+                    FundRequestPost fundRequestPost = new FundRequestPost();
+                    fundRequestPost.CollectedAmount = item.CollectedAmount;
+                    fundRequestPost.PostId = item.PostId;
+                    fundRequestPost.PostImage = item.PostImage;
+                    fundRequestPost.PostTitle = item.PostTitle;
+                    fundRequestPost.RemainingAmount = item.RemainingAmount;
+                    fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    nextRecomended.Add(fundRequestPost);
+                }
+                count++;
+            }
+            ViewBag.recomended = recomended.ToList();
+            ViewBag.nextRecomended = nextRecomended.ToList();
         }
 
         public void ChangePostStatus()

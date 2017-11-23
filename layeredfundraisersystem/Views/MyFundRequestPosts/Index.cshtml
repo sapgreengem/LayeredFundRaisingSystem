@@ -16,6 +16,7 @@
             <th style="text-align: center;">Collection Completed</th>
             <th style="text-align: center;">Total Earned Amount</th>
             <th style="text-align: center;">Total Withdrawan Amount</th>
+            <th style="text-align: center;">Total Withdrawan After Service Charge</th>
             <th style="text-align: center;">Total Remaining Amount</th>
             <th style="text-align: center;">Check Requests</th>
         </tr>
@@ -26,6 +27,7 @@
             <td>@ViewBag.CountMyCompletedPosts</td>
             <td>@ViewBag.SumCollectedAmount/=</td>
             <td>@ViewBag.SumWithdrawanAmount/=</td>
+            <td>@ViewBag.SumWithdrawWithCharge/=</td>
             <td>@ViewBag.SumRemainingAmount/=</td>
             <td>
                 <a href="/FundWithdraw/MyWithdraws" class="btn btn-primary pull-left Action">Withdraw Requests</a>

@@ -21,13 +21,17 @@ namespace layeredFundRaiserSystem.Controllers
                 Response.Redirect("/Login/AdminLogin");
             }
 
-            CountPendings count = new CountPendings();
-            ViewBag.Posts = count.CountPendingPost();
-            ViewBag.Withdraws = count.CountPendingWithdraws();
-            ViewBag.CountTimeExtendReq = count.CountTimeExtendReq();
+            if (Session["AdminLogin"] != null)
+            {
+                CountPendings count = new CountPendings();
+                ViewBag.Posts = count.CountPendingPost();
+                ViewBag.Withdraws = count.CountPendingWithdraws();
+                ViewBag.CountTimeExtendReq = count.CountTimeExtendReq();
 
-            ShowUserName name = new ShowUserName();
-            ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+                ShowUserName name = new ShowUserName();
+                ViewBag.adminName = name.AdminName(Convert.ToInt32(Session["AdminLogin"]));
+            }
+            
         }
     }
 }

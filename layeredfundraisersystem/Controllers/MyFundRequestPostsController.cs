@@ -50,7 +50,10 @@ namespace layeredFundRaiserSystem.Controllers
                 .Where(a => a.RequestStatus == "Transfered")
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
                 .Sum(a=> a.WithdrawAmount);
-
+            ViewBag.SumWithdrawWithCharge = withdrawService.GetAll()
+                .Where(a => a.RequestStatus == "Transfered")
+                .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
+                .Sum(a => a.WithdrawWithCharge);
             return View();
         }
     }

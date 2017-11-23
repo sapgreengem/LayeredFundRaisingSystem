@@ -64,6 +64,7 @@ namespace FundRaiserSystemData
         {
             FundWithdraw withdraw = this.context.FundWithdraws.SingleOrDefault(x => x.WithdrawId == fundWithdraw.WithdrawId);
             withdraw.WithdrawAmount = fundWithdraw.WithdrawAmount;
+            withdraw.WithdrawWithCharge = fundWithdraw.WithdrawWithCharge;
             withdraw.WithdrawDate = fundWithdraw.WithdrawDate;
             withdraw.RequestStatus = fundWithdraw.RequestStatus;
             withdraw.UserInformationId = fundWithdraw.UserInformationId;

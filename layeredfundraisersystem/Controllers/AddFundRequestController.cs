@@ -98,6 +98,12 @@ namespace layeredFundRaiserSystem.Controllers
                 ViewBag.ErrorMessage = "Fields cannot be empty. Please fill all informations";
             }
 
+            if (Session["UserInformationId"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+
             ViewBag.Categories = this.Catagories();
 
             return View();
