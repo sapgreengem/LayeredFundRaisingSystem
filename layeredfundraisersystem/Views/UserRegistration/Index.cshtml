@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label for="password">Enter Password</label>
                                 <input type="password" id="password" name="Password" class="form-control" />
-                                <span id="result"></span>
+                                <span class="text-danger" id="result"></span>
                                 <span id="error_pass"></span>
                             </div>
                             <div class="form-group">
@@ -37,9 +37,6 @@
                                 <input type="password" id="confPass" name="confirmPassword" placeholder="Re-Type Password" class="form-control" />
                                 <span id="error_confPass"></span>
                                 <h5 class="text-danger">@ViewBag.PassError</h5>
-                            </div>
-                            <div class="progress progress-striped active">
-                                <div id="strength" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                             </div>
                             <a href="/Login" class="btn-link">Already Registered</a>
                             <input type="submit" id="submit" value="Register" class="btn btn-primary pull-right" />

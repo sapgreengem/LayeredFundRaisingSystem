@@ -12,20 +12,28 @@
     })
 </script>
 
-<table class="table table-bordered text-center example">
-    <thead>
-        <tr>
-            <th class="text-center">Total Donated on</th>
-            <th class="text-center">Total Donated Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@ViewBag.numberOfDonatedPosts posts</td>
-            <td>@ViewBag.SumOfDonatedAmount/=</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="table tab-pane">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Total Donated on</th>
+                            <th class="text-center">Total Donated Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.numberOfDonatedPosts posts</td>
+                            <td>@ViewBag.SumOfDonatedAmount/=</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">

@@ -17,13 +17,23 @@ namespace layeredFundRaiserSystem.Controllers
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
         ShowUserName name = new ShowUserName();
         // GET: PostDetailsView
-        public ActionResult Index(int id)
+        public ActionResult Index(int id=0)
         {
+            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+
+            if (id == 0)
+            {
+                Response.Redirect("/Error");
+            }
+            if(post == null)
+            {
+                Response.Redirect("/Error");
+            }
             if (Session["Login"] != null)
             {
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             }
-            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+            
             post.ClickCounter += 1;
             service.Update(post);
 
