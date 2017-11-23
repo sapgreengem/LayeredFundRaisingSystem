@@ -17,8 +17,12 @@ namespace layeredFundRaiserSystem.Controllers
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
         ShowUserName name = new ShowUserName();
         // GET: PostDetailsView
-        public ActionResult Index(int id)
+        public ActionResult Index(int id=0)
         {
+            if(id == 0)
+            {
+                Response.Redirect("/Error");
+            }
             if (Session["Login"] != null)
             {
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
