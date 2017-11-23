@@ -20,6 +20,17 @@ namespace layeredFundRaiserSystem.Controllers
                 Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + id;
                 Response.Redirect("/Login");
             }
+
+        #region HandleError
+            var userID = Convert.ToInt32(Session["UserInformationId"]);
+
+            IFundRequestPostService fundRequestPostService = ServiceFactory.GetFundRequestPostService();
+            FundRequestPost fundRequestPost = fundRequestPostService.Get(id);
+
+            if (fundRequestPost.UserInformationId == userID)
+                Response.Redirect("/Error");
+        #endregion HandleError
+
             this.loginUserName();
 
             ITransectionMethodNameService service = ServiceFactory.GetTransectionMethodNameService();
