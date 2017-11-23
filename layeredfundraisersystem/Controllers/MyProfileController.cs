@@ -184,5 +184,22 @@ namespace layeredFundRaiserSystem.Controllers
             }
             return joinData.ToList();
         }
+
+        [HttpGet]
+        public JsonResult GetCurrentPassword(string id)
+        {
+            IUserLoginService service = ServiceFactory.GetUserLoginService();
+            var User = Convert.ToInt32(Session["Login"]);
+            var x = 1;
+            string msg = "";
+            var login = service.Get(User);
+
+            if (id != login.Password)
+                msg = "Password Do Not Match";
+            else
+                msg = "Password Matched";
+
+            return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
