@@ -74,7 +74,7 @@
                     {
                         if (Session["Login"] == null && Model.PostId != 0)
                         {
-                            Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + Model.PostId;
+                            //Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + Model.PostId;
                         }
                         
                         <a class="btn btn-default" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>

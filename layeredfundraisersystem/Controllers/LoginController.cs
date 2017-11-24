@@ -38,7 +38,7 @@ namespace layeredFundRaiserSystem.Controllers
                 if (user != null)
                 {
                     Session["Login"] = user.UserId;
- 
+
                     if (this.getUserInfoId(user.UserId) > 0)
                     {
                         Session["UserInformationId"] = this.getUserInfoId(user.UserId);
