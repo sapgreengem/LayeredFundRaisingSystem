@@ -25,6 +25,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 JoinFundRequestPost_UserInformation addData = new JoinFundRequestPost_UserInformation()
                 {
+                    PostId = item.PostId,
                     PostTitle = item.PostTitle,
                     StartDate = item.StartDate,
                     EndDate = item.EndDate,
