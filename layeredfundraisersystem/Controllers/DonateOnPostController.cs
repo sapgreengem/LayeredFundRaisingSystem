@@ -18,7 +18,7 @@ namespace layeredFundRaiserSystem.Controllers
             if (Session["Login"] == null && id != 0)
             {
                 Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + id;
-                Response.Redirect("/Login");
+                Response.Redirect("/Login", false);
             }
 
         #region HandleError

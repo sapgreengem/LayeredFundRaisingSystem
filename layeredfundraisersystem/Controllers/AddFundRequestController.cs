@@ -18,8 +18,8 @@ namespace layeredFundRaiserSystem.Controllers
         {
             if (Session["Login"] == null)
             {
-                Session["RedirectToAddFundRequest"] = "/AddFundRequest/Index/";
-                Response.Redirect("/Login");
+                Session["RedirectToAddFundRequest"] = "/AddFundRequest/Index";
+                Response.Redirect("/Login", false);
             }
             if (Session["UserInformationId"] != null)
             {

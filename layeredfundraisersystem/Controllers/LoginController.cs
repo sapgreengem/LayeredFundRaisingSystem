@@ -42,13 +42,15 @@ namespace layeredFundRaiserSystem.Controllers
                     if (this.getUserInfoId(user.UserId) > 0)
                     {
                         Session["UserInformationId"] = this.getUserInfoId(user.UserId);
-                        if (Session["RedirectToDonateOnPost"].ToString() != null)
+
+                        if (Session["RedirectToDonateOnPost"] != null)
                         {
-                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString());
+                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString(), false);
                         }
-                        if (Session["RedirectToAddFundRequest"] != null )             
+
+                        if (Session["RedirectToAddFundRequest"] != null)
                         {
-                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString());
+                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString(), false);
                         }
                     }
                     else
