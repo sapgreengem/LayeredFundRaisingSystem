@@ -18,7 +18,7 @@ namespace layeredFundRaiserSystem.Controllers
         {
             if (Session["Login"] == null)
             {
-                Session["RedirectToDonateOnPost"] = "/AddFundRequest/Index/";
+                Session["RedirectToAddFundRequest"] = "/AddFundRequest/Index/";
                 Response.Redirect("/Login");
             }
             if (Session["UserInformationId"] != null)
