@@ -121,7 +121,8 @@
                 var data = response.list;
                 var str = "";
                 for (var i = 0; i < data.length; i++) {
-                    str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                    str = str + "<div style='text-align:left'><div> <img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>   " + data[i].UserName + "</b></span><br><span>Comment: " + data[i].Comment + "</span><hr /></div ></div >";
+                    //str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment: " + data[i].Comment + "</div >";
                 }
                 $("#ShowRecentComments").html(str);
             }
@@ -171,7 +172,8 @@
                         var data = response.list;
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
-                            str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height: 200px; width: 400px;' src='ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                            str = str + "<div style='text-align:left'><div> <img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>   " + data[i].UserName + "</b></span><br><span>Comment: " + data[i].Comment + "</span><hr /></div ></div >";
+                            //str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
                         }
                         $("#ShowRecentComments").html(str);
                         $("#msg").val('');
