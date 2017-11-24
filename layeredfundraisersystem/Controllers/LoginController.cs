@@ -45,12 +45,12 @@ namespace layeredFundRaiserSystem.Controllers
 
                         if (Session["RedirectToDonateOnPost"] != null)
                         {
-                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString(), false);
+                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString());
                         }
 
                         if (Session["RedirectToAddFundRequest"] != null)
                         {
-                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString(), false);
+                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString());
                         }
                     }
                     else
