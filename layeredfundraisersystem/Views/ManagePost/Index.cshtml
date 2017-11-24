@@ -42,6 +42,7 @@
                                                 <td>@item.EndDate</td>
                                                 <td>@item.CategoryName</td>
                                                 <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
+                                                
                                                 <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
                                                 <td>
                                                     <input type="hidden" id="post_id" value="@item.PostId" />
@@ -62,7 +63,8 @@
 
 
 <script type="text/javascript">
-    $(function () { 
+    $(function () {
+
         $(document).on("click", ".ActionButton", function (e) {
             if (confirm('Are you sure?'))
             {
@@ -73,7 +75,7 @@
                 e.preventDefault();
                 return false;
             }
-            
+
         });
     });
 </script>
