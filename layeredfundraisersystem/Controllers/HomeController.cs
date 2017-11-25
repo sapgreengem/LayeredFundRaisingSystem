@@ -21,6 +21,10 @@ namespace layeredFundRaiserSystem.Controllers
             this.trending();
             this.recomended();
 
+            if (Session["AdminLogin"] != null)
+            {
+                Response.Redirect("/AdminHome");
+            }
             if (Session["Login"] != null)
             {
                 ShowUserName name = new ShowUserName();

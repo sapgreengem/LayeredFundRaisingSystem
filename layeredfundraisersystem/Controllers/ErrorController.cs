@@ -1,4 +1,5 @@
-﻿using System;
+﻿using layeredFundRaiserSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,11 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: Error
         public ActionResult Index()
         {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
             return View();
         }
     }

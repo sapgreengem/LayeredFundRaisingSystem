@@ -1,8 +1,19 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Error.cshtml";
-}
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else if (Session["Login"] != null)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
+    }
+
+}
 <h2>Something Went Wrong</h2>
 

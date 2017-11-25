@@ -13,6 +13,7 @@ namespace layeredFundRaiserSystem.Controllers
 {
     public class PostDetailsViewController : Controller
     {
+
         IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
         ShowUserName name = new ShowUserName();
@@ -21,11 +22,12 @@ namespace layeredFundRaiserSystem.Controllers
         {
             FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
 
-            if (id == 0)
+            if (Session["AdminLogin"] != null)
             {
-                Response.Redirect("/Error");
+                Response.Redirect("/AdminHome");
             }
-            if(post == null)
+
+            if (post == null)
             {
                 Response.Redirect("/Error");
             }

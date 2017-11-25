@@ -1,7 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "Error";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Index";
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else if (Session["Login"] != null)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    }
+
 }
 <noscript>
     <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;

@@ -15,6 +15,10 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ViewAllPosts
         public ActionResult Index()
         {
+            if (Session["AdminLogin"] != null)
+            {
+                Response.Redirect("/AdminHome");
+            }
             ViewBag.Categories = this.getCategory();
 
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
