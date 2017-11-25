@@ -15,9 +15,18 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ViewAllPosts
         public ActionResult Index()
         {
+            if (Session["Login"] == null)
+            {
+                Session["StoreURL"] = "/ViewAllPosts/Index"; 
+            }
+
             if (Session["AdminLogin"] != null)
             {
                 Response.Redirect("/AdminHome");
+            }
+            if (Session["Login"] != null && Session["UserInformationId"] == null)
+            {
+                Response.Redirect("/FillAllInfo/Index");
             }
             ViewBag.Categories = this.getCategory();
 

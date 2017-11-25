@@ -15,6 +15,10 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: MyFundRequestPosts
         public ActionResult Index()
         {
+            if (Session["Login"] != null && Session["UserInformationId"] == null)
+            {
+                Response.Redirect("/FillAllInfo/Index");
+            }
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             ViewBag.MyRunningPosts = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))

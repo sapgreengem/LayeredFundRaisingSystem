@@ -43,14 +43,9 @@ namespace layeredFundRaiserSystem.Controllers
                     {
                         Session["UserInformationId"] = this.getUserInfoId(user.UserId);
 
-                        if (Session["RedirectToDonateOnPost"] != null)
+                        if (Session["StoreURL"] != null)
                         {
-                            Response.Redirect(Session["RedirectToDonateOnPost"].ToString());
-                        }
-
-                        if (Session["RedirectToAddFundRequest"] != null)
-                        {
-                            Response.Redirect(Session["RedirectToAddFundRequest"].ToString());
+                            Response.Redirect(Session["StoreURL"].ToString());
                         }
                     }
                     else
@@ -126,7 +121,14 @@ namespace layeredFundRaiserSystem.Controllers
             int userInfoId = 0;
             IUserInformationService userInfoService = ServiceFactory.GetUserInformationService();
             UserInformation user = userInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(id)).FirstOrDefault();
-            userInfoId = user.UserInformationId;
+            if (user == null)
+            {
+                userInfoId = 0;
+            }
+            else
+            {
+                userInfoId = user.UserInformationId;
+            }
             return userInfoId;
         }
 

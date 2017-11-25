@@ -12,7 +12,6 @@ namespace layeredFundRaiserSystem.Controllers
 {
     public class FillAllInfoController : BaseUserController
     {
-
         public ActionResult Index()
         {
             if (Session["UserInformationId"] != null)

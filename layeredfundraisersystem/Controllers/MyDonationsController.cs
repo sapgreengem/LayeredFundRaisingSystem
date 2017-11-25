@@ -15,6 +15,10 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: MyDonations
         public ActionResult Index()
         {
+            if (Session["Login"] != null && Session["UserInformationId"] == null)
+            {
+                Response.Redirect("/FillAllInfo/Index");
+            }
             IDonationOnPostService donationService = ServiceFactory.GetDonationOnPostService();
 
             IEnumerable<DonationOnPost> listData = donationService.GetAll(true,true,true)

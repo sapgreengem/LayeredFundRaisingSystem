@@ -18,10 +18,14 @@ namespace layeredFundRaiserSystem.Controllers
         {
             if (Session["Login"] == null)
             {
-                Session["RedirectToAddFundRequest"] = "/AddFundRequest/Index";
+                Session["StoreURL"] = "/AddFundRequest/Index";
                 Response.Redirect("/Login", false);
             }
-            if (Session["UserInformationId"] != null)
+            if (Session["Login"] != null && Session["UserInformationId"] == null)
+            {
+                Response.Redirect("/FillAllInfo/Index");
+            }
+            if (Session["Login"] != null && Session["UserInformationId"] != null)
             {
                 ShowUserName name = new ShowUserName();
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));

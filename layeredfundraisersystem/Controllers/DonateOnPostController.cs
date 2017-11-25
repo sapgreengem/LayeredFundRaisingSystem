@@ -17,7 +17,7 @@ namespace layeredFundRaiserSystem.Controllers
         {
             if (Session["Login"] == null && id != 0)
             {
-                Session["RedirectToDonateOnPost"] = "/DonateOnPost/Index/" + id;
+                Session["StoreURL"] = "/DonateOnPost/Index/" + id;
                 Response.Redirect("/Login", false);
             }
 

@@ -22,6 +22,10 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["Login"] == null)
+            {
+                Session["StoreURL"] = "/Home/Index";
+            }
             return View();
         }
         [HttpPost]

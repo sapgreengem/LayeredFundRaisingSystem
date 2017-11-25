@@ -31,6 +31,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 Response.Redirect("/Error");
             }
+
             if (Session["Login"] != null)
             {
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
@@ -39,6 +40,10 @@ namespace layeredFundRaiserSystem.Controllers
             post.ClickCounter += 1;
             service.Update(post);
 
+            if (Session["Login"] == null)
+            {
+                Session["StoreURL"] = "/PostDetailsView/Index/" + id;
+            }
             ViewBag.UserName = this.loadFundPostUserName(id);
             ViewBag.PercentageFunded = (post.CollectedAmount / post.RequiredAmount) * 100;
 

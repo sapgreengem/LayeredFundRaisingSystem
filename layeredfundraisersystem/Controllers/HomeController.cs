@@ -25,6 +25,14 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 Response.Redirect("/AdminHome");
             }
+            if (Session["Login"] != null && Session["UserInformationId"] == null)
+            {
+                Response.Redirect("/FillAllInfo/Index");
+            }
+            if (Session["Login"] == null)
+            {
+                Session["StoreURL"] = "/Home/Index";
+            }
             if (Session["Login"] != null)
             {
                 ShowUserName name = new ShowUserName();
