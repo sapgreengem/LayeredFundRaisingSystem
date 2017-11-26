@@ -49,7 +49,7 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.numberOfDonatedPosts = joinData.GroupBy(a => a.PostId).Count();
 
-            ViewBag.SumOfDonatedAmount = joinData.Sum(a => a.DonationAmount);
+            ViewBag.SumOfDonatedAmount = joinData.Sum(a => a.DonationAmount).ToString("0.00");
 
             return View();
         }

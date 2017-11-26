@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Most Viewed Posts</h2>
-
 <script type="text/javascript">
     $(function () {
         $(".example").dataTable();
@@ -14,32 +12,35 @@
 
 <div class="container">
     <div class="row">
-        <div>
-            <table class="table table-bordered example">
-                <thead>
-                <tr>
-                    <th>Post Name</th>
-                    <th>Post Category</th>
-                    <th>User Name</th>
-                    <th>Post Start Date</th>
-                    <th>Post End Date</th>
-                    <th>Viewed</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.MostViewedPosts)
-                    {
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Most Viewed Posts</strong></div>
+            <div class="table tab-pane" style="text-align:center">
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>@item.PostTitle</td>
-                            <td>@item.CategoryName</td>
-                            <td>@item.FirstName @item.LastName</td>
-                            <td>@item.StartDate</td>
-                            <td>@item.EndDate</td>
-                            <td>@item.ClickCounter Times</td>
+                            <th>Post Name</th>
+                            <th>Post Category</th>
+                            <th>User Name</th>
+                            <th>Post Start Date</th>
+                            <th>Post End Date</th>
+                            <th>Viewed</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.MostViewedPosts)
+                        {
+                            <tr>
+                                <td>@item.PostTitle</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.ClickCounter Times</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

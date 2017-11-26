@@ -16,18 +16,8 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ManagePost
         public ActionResult Index()
         {
-
             IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            if (post.Count() <= 0)
-            {
-                ViewBag.viewPost = this.loadRequest();
-                ViewBag.ErrorMessage = "No Request Available";
-            }
-            else
-            {
-                ViewBag.viewPost = this.loadRequest();
-                return View();
-            }
+            ViewBag.viewPost = this.loadRequest();
             return View();
         }
 
@@ -117,17 +107,6 @@ namespace layeredFundRaiserSystem.Controllers
 
                     UserAccountNo = item.UserAccountNo,
                     UserBankAccountId = item.UserBankAccountId
-
-                    //UserInformationId = item.UserInformation.UserInformationId,
-                    //ProfilePicture = item.UserInformation.ProfilePicture,
-                    //FirstName = item.UserInformation.FirstName,
-                    //LastName = item.UserInformation.LastName,
-                    //ContactNo = item.UserInformation.ContactNo,
-                    //Country = item.UserInformation.Country,
-                    //NationalId = item.UserInformation.NationalId,
-                    //PermanentAddress = item.UserInformation.PermanentAddress,
-                    //PresentAddress = item.UserInformation.PresentAddress,
-                    //UserId = item.UserInformation.UserId
                 };
                 joinData.Add(load);
             }

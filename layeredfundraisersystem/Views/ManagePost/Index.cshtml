@@ -10,56 +10,50 @@
     })
 </script>
 
-<h2>@ViewBag.ErrorMessage</h2>
-        @{
-            if (ViewBag.ErrorMessage == null)
-            {
-                <div class="container">
-                    <div class="row">
-                        <div class="panel panel-info">
-                            <div class="panel-heading"><strong>Pending Posts</strong></div>
-                            <div class="table tab-pane" style="text-align:center">
-                                <table class="table table-bordered table-hover" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Ammount</th>
-                                            <th>Tentative Start Date</th>
-                                            <th>Tentative End Date Date</th>
-                                            <th>Category</th>
-                                            <th>User Name</th>
-                                            <th>Post Proof</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in ViewBag.viewPost)
-                                        {
-                                            <tr>
-                                                <td>@item.PostTitle</td>
-                                                <td>@item.RequiredAmount</td>
-                                                <td>@item.StartDate</td>
-                                                <td>@item.EndDate</td>
-                                                <td>@item.CategoryName</td>
-                                                <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
-                                                
-                                                <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
-                                                <td>
-                                                    <input type="hidden" id="post_id" value="@item.PostId" />
-                                                    <a href="/ManagePost/Approve/@item.PostId" id="Approve" class="btn btn-success ActionButton"><i class="glyphicon glyphicon-ok"></i></a>
-                                                    <a href="/ManagePost/Reject/@item.PostId" id="Reject" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-remove"></i></a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Pending Posts</strong></div>
+            <div class="table tab-pane" style="text-align:center">
+                <table class="table table-bordered table-hover" id="example">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Ammount</th>
+                            <th>Tentative Start Date</th>
+                            <th>Tentative End Date</th>
+                            <th>Category</th>
+                            <th>User Name</th>
+                            <th>Post Proof</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.viewPost)
+                        {
+                            <tr>
+                                <td>@item.PostTitle</td>
+                                <td>@item.RequiredAmount.ToString("0.00")</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.CategoryName</td>
+                                <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
 
-            }
-        }
+                                <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
+                                <td>
+                                    <input type="hidden" id="post_id" value="@item.PostId" />
+                                    <a href="/ManagePost/Approve/@item.PostId" id="Approve" class="btn btn-success ActionButton"><i class="glyphicon glyphicon-ok"></i></a>
+                                    <a href="/ManagePost/Reject/@item.PostId" id="Reject" class="btn btn-danger ActionButton"><i class="glyphicon glyphicon-remove"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script type="text/javascript">

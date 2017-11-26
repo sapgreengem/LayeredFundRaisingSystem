@@ -63,8 +63,8 @@
                             <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
                         </td>
                         <td style="vertical-align:middle; text-align:center; width:15%">
-                            <h5>Targeted @item.RequiredAmount/=</h5>
-                            <h5>Raised @item.CollectedAmount/=</h5>
+                            <h5>Targeted @item.RequiredAmount.ToString("0.00")/=</h5>
+                            <h5>Raised @item.CollectedAmount.ToString("0.00")/=</h5>
 
                             @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                             {
@@ -106,9 +106,6 @@
                 e.preventDefault();
                 return false;
             }
-
-             
-
             else
             {
                 $("#error_searchName").html("");

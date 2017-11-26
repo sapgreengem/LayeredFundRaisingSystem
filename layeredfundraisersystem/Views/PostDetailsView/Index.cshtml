@@ -44,7 +44,7 @@
                 <input type="hidden" value="@Model.PostId" id="post_id" />
 
                 <h2>Recent Comments</h2>
-                <div id="ShowRecentComments">
+                <div id="ShowRecentComments" style="overflow-y: scroll; height:400px;">
 
                 </div>
             </div>
@@ -57,19 +57,35 @@
                     <br />
                     <h4>Campain Ends in @(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) Days </h4>
                     <br />
-                    <h4>Collected Amount @Model.CollectedAmount/= </h4>
+                    <h4>Collected Amount @Model.CollectedAmount.ToString("0.00")/= </h4>
                     <br />
                     <h4>Number Of People Donated @ViewBag.NumberOfPeopleDonated</h4>
                     <br />
-                    <h4>@(Model.RequiredAmount - Model.CollectedAmount)/= More Needed</h4>
+                    @if (Model.RequiredAmount > Model.CollectedAmount)
+                    {
+                        <h4>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00")) /= More Needed </h4>
+                        <br />
+                    }
                     <h5>Collection Completed</h5>
                     <div class="progress">
-                        <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
-                            @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
-                        </div>
+                        @{
+                            if (Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100)) <= 100)
+                            {
+                                <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
+                                    @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:100%; color:White">
+                                    @Convert.ToInt32(100)%
+                                </div>
+                            }
+                        }
+                        
                     </div>
-                    <br />
                     @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                     {                        
                         <a class="btn btn-default" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
@@ -83,9 +99,13 @@
                         int processed = 0;
                         foreach (var item in ViewBag.DonorList)
                         {
-                            <div>
+                            <div style="float:left">
                                 <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" />
-                                <b><span>@item.FirstName donated @item.DonationAmount/=</span></b>
+                            </div>
+                            <div>
+                                <b><span>&nbsp;&nbsp;@item.FirstName</span></b>
+                                <br />
+                                <span>&nbsp;&nbsp;Doneted: @item.DonationAmount.ToString("0.00")/=</span>
                                 <hr />
                             </div>
 
@@ -116,8 +136,7 @@
                 var data = response.list;
                 var str = "";
                 for (var i = 0; i < data.length; i++) {
-                    str = str + "<div style='text-align:left'><div> <img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>   " + data[i].UserName + "</b></span><br><span>Comment: " + data[i].Comment + "</span><hr /></div ></div >";
-                    //str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment: " + data[i].Comment + "</div >";
+                    str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr /></div></div>";
                 }
                 $("#ShowRecentComments").html(str);
             }
@@ -167,8 +186,7 @@
                         var data = response.list;
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
-                            str = str + "<div style='text-align:left'><div> <img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>   " + data[i].UserName + "</b></span><br><span>Comment: " + data[i].Comment + "</span><hr /></div ></div >";
-                            //str = str + "<div>User Name:" + data[i].UserName + "<br /><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "' /><br />Comment:" + data[i].Comment + "</div >";
+                            str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr /></div></div>";
                         }
                         $("#ShowRecentComments").html(str);
                         $("#msg").val('');

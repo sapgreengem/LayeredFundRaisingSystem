@@ -45,7 +45,6 @@ namespace layeredFundRaiserSystem.Controllers
             List<PostingCategory> categories = this.getCategory();
             List<PostingCategory> categories1 = new List<PostingCategory>();
 
-
             #region SearchByCategory 
 
             if (search["searchName"] == null && cat["Category"] != null)
@@ -85,21 +84,21 @@ namespace layeredFundRaiserSystem.Controllers
                     ViewBag.Categories = categories;
                     ViewBag.Posts = post;
                 }
-                
             }
             #endregion SearchByCategory
 
             #region SearchByText
             else if (search["searchName"] != null && cat["Category"] == null)
             {
-
+                ViewBag.Categories = this.getCategory();
+                ViewBag.Posts = this.GetPostsByTitle(search["searchName"].ToString()).ToList();
             }
             #endregion SearchByText
-
-            else
-            {
-                ViewBag.Posts = this.GetPostsByTitle(search["searchName"]);
-            }
+            //else
+            //{
+            //    ViewBag.Categories = this.getCategory();
+            //    ViewBag.Posts = this.GetPostsByTitle(search["searchName"]).ToList();
+            //}
 
             if (Session["Login"] != null)
             {

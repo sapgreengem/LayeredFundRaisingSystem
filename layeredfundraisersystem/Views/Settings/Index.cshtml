@@ -26,8 +26,8 @@
                                 <tr>
                                     <td>@Model.ServiceCharge %</td>
                                     <td>@Model.RefundCharge %</td>
-                                    <td>@Model.TotalIncome /=</td>
-                                    <td>@Model.CollectedAmount /=</td>
+                                    <td>@Model.TotalIncome.ToString("0.00") /=</td>
+                                    <td>@Model.CollectedAmount.ToString("0.00") /=</td>
                                 </tr>
                             </table>
                             <div class="col-md-6 col-md-offset-3">

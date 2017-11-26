@@ -10,45 +10,47 @@
     })
 </script>
 
-<h2>Index</h2>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form method="post">
-                <div class="table">
-                    <table class="table-bordered" id="example">
-                        @Html.AntiForgeryToken()
-                        <thead>
-                            <tr>
-                                <th>Post Title</th>
-                                <th>User Name</th>
-                                <th>Days to Extended</th>
-                                <th>Fund Required</th>
-                                <th>Fund Collected </th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in ViewBag.ExtendRequests)
-                            {
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Pending Time Extend Requests</strong></div>
+            <div class="table tab-pane" style="text-align:center">
+                <form method="post">
+                    <div class="table">
+                        <table class="table table-bordered" id="example">
+                            @Html.AntiForgeryToken()
+                            <thead>
                                 <tr>
-                                    <td>@item.PostTitle</td>
-                                    <td>@item.FirstName</td>
-                                    <td>@(Convert.ToInt32((item.EndDate - item.StartDate).TotalDays)) Days</td>
-                                    <td>@item.RequiredAmount /=</td>
-                                    <td>@item.CollectedAmount /=</td>
-                                    <td>@item.PostStatus</td>
-                                    <td>
-                                        <a href="/ManageTimeExtend/ApproveReq/@item.PostId" class="btn btn-success ActionButton">Accept</a>
-                                        <a href="/ManageTimeExtend/RejectReq/@item.PostId" class="btn btn-danger ActionButton">Reject</a>
-                                    </td>
+                                    <th>Post Title</th>
+                                    <th>User Name</th>
+                                    <th>Days to Extended</th>
+                                    <th>Fund Required</th>
+                                    <th>Fund Collected </th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </form>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.ExtendRequests)
+                                {
+                                    <tr>
+                                        <td>@item.PostTitle</td>
+                                        <td>@item.FirstName</td>
+                                        <td>@(Convert.ToInt32((item.EndDate - item.StartDate).TotalDays)) Days</td>
+                                        <td>@item.RequiredAmount.ToString("0.00") /=</td>
+                                        <td>@item.CollectedAmount.ToString("0.00") /=</td>
+                                        <td>@item.PostStatus</td>
+                                        <td>
+                                            <a href="/ManageTimeExtend/ApproveReq/@item.PostId" class="btn btn-success ActionButton">Accept</a>
+                                            <a href="/ManageTimeExtend/RejectReq/@item.PostId" class="btn btn-danger ActionButton">Reject</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -57,12 +59,10 @@
 <script type="text/javascript">
     $(function () {
         $(document).on("click", ".ActionButton", function (e) {
-            if (confirm('Are you sure?'))
-            {
+            if (confirm('Are you sure?')) {
                 return true;
             }
-            else
-            {
+            else {
                 e.preventDefault();
                 return false;
             }

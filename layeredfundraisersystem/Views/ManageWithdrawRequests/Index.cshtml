@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
-
 <script>
     $(function () {
         $("#example").dataTable();
@@ -14,38 +12,41 @@
 
 <div class="container">
     <div class="row">
-        <div>
-            <span class="text-danger">@ViewBag.ErrorMessage</span>
-            <br />
-            <table class="table table-bordered" id="example">
-                <thead>
-                    <tr>
-                        <th>Requester Name</th>
-                        <th>Post Title</th>
-                        <th>Remaining Amount</th>
-                        <th>Requested Amount</th>
-                        <th>Request Date</th>
-                        <th>Request Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.WithdrawRequests)
-                    {
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Pending Withdraw Requests</strong></div>
+            <div class="table tab-pane" style="text-align:center">
+                <span class="text-danger">@ViewBag.ErrorMessage</span>
+                <br />
+                <table class="table table-bordered" id="example">
+                    <thead>
                         <tr>
-                            <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
-                            <td>@item.PostTitle</td>
-                            <td>@item.RemainingAmount/=</td>
-                            <td>@item.WithdrawAmount/=</td>
-                            <td>@item.WithdrawDate</td>
-                            <td>@item.RequestStatus</td>
-                            <td>
-                                <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary" id="ActionButton">Transfer</a>
-                            </td>
+                            <th>Requester Name</th>
+                            <th>Post Title</th>
+                            <th>Remaining Amount</th>
+                            <th>Requested Amount</th>
+                            <th>Request Date</th>
+                            <th>Request Status</th>
+                            <th>Action</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.WithdrawRequests)
+                        {
+                            <tr>
+                                <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
+                                <td>@item.PostTitle</td>
+                                <td>@item.RemainingAmount.ToString("0.00")/=</td>
+                                <td>@item.WithdrawAmount.ToString("0.00")/=</td>
+                                <td>@item.WithdrawDate</td>
+                                <td>@item.RequestStatus</td>
+                                <td>
+                                    <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary" id="ActionButton">Transfer</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -53,12 +54,10 @@
 <script type="text/javascript">
     $(function () {
         $(document).on("click", "#ActionButton", function (e) {
-            if (confirm('Are you sure?'))
-            {
+            if (confirm('Are you sure?')) {
                 return true;
             }
-            else
-            {
+            else {
                 e.preventDefault();
                 return false;
             }

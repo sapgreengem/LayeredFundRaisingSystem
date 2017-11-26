@@ -55,9 +55,9 @@
                         {
                             <tr>
                                 <td>@item.PostTitle</td>
-                                <td>@item.RequiredAmount/=</td>
-                                <td>@item.DonationAmount/=</td>
-                                <td>@item.DonationDate</td>
+                                <td>@item.RequiredAmount.ToString("0.00")/=</td>
+                                <td>@item.DonationAmount.ToString("0.00")/=</td>
+                                <td>@item.DonationDate.ToShortDateString()</td>
                                 <td>@item.FirstName @item.LastName</td>
                                 <td>@item.PostStatus</td>
                             </tr>

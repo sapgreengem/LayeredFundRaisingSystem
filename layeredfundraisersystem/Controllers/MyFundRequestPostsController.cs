@@ -42,22 +42,22 @@ namespace layeredFundRaiserSystem.Controllers
                 .Count();
             ViewBag.SumCollectedAmount = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
-                .Sum(a=> a.CollectedAmount);
+                .Sum(a=> a.CollectedAmount).ToString("0.00");
 
             ViewBag.SumRemainingAmount = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
-                .Sum(a => a.RemainingAmount);
+                .Sum(a => a.RemainingAmount).ToString("0.00");
 
 
             IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
             ViewBag.SumWithdrawanAmount = withdrawService.GetAll()
                 .Where(a => a.RequestStatus == "Transfered")
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
-                .Sum(a=> a.WithdrawAmount);
+                .Sum(a=> a.WithdrawAmount).ToString("0.00");
             ViewBag.SumWithdrawWithCharge = withdrawService.GetAll()
                 .Where(a => a.RequestStatus == "Transfered")
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
-                .Sum(a => a.WithdrawWithCharge);
+                .Sum(a => a.WithdrawWithCharge).ToString("0.00");
             return View();
         }
     }
