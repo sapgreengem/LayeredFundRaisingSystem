@@ -1,0 +1,100 @@
+﻿.background {
+    background-color: #d6d6d7;
+    /*background-image: url('../../Image/white-rhombus-pattern_1053-249.jpg');*/
+    background-repeat: repeat;
+    padding: 4%;
+}
+
+img {
+    margin-top: 5px;
+}
+
+.alert-warning {
+    width: 100%;
+}
+
+.panel {
+    margin: 11px 33px 0 -51px;
+    padding: 9px 11px 0 10px;
+}
+
+hr {
+    background-color: #8AAA21;
+    height: 4px;
+    width: 99%;
+}
+
+h3 {
+    color: black;
+}
+
+.panel2 {
+    margin: 0px -74px 0 -45px;
+    padding: 0px 0px 9px 9px;
+}
+
+.btn2 {
+    margin: 6px 0 18px 0;
+    font-size: 37px;
+    width: 98%;
+    background-color: #8AAA21;
+    color: white;
+}
+
+.panel3 {
+    margin: 13px -74px 0 -45px;
+    padding: 0px 0px 9px 9px;
+}
+
+.panel4 {
+    margin-left: -44px;
+    width: 477px;
+    padding-bottom: 11px;
+}
+
+.progress {
+    background-color: #f1e9d1;
+    width: 99%;
+    margin: 9px -32px 7px -4px;
+    padding: 1px;
+}
+
+#clock {
+    margin: 30px;
+    font-size: 67px;
+}
+
+#details {
+    resize: none;
+    border-style: none;
+    border-bottom: 1px solid black;
+    box-shadow: unset;
+    border-radius: 0%;
+    height: 37px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+#comment {
+    height: 35px;
+    width: 95px;
+    margin-left: 648px;
+    font-size: 15px;
+}
+
+#tk {
+    margin: 20px 0 0 -3px;
+    color: black;
+}
+
+#people1 {
+    color: black;
+    margin-left: 3px;
+}
+
+#people2 {
+    color: black;
+    margin-left: 3px;
+}
