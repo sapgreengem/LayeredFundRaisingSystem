@@ -147,9 +147,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AddFundRequest.css" />
+    <Content Include="Content\AdminLogin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ChangePassword.css" />
+    <Content Include="Content\DonationOnPost.css" />
+    <Content Include="Content\ForgaetPassword.css" />
+    <Content Include="Content\FundWithDraw.css" />
+    <Content Include="Content\Home.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\MyDonation.css" />
+    <Content Include="Content\MyFundRequestPost.css" />
+    <Content Include="Content\MyProfile.css" />
+    <Content Include="Content\MyProfileEdit.css" />
+    <Content Include="Content\MyWithDraw.css" />
+    <Content Include="Content\NewPassword.css" />
+    <Content Include="Content\Partial.css" />
+    <Content Include="Content\PostDetails.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\UserLayout.css" />
+    <Content Include="Content\UserRegistration.css" />
+    <Content Include="Content\ViewAllPost.css" />
+    <Content Include="Content\ViewersLayout.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular.min.js" />

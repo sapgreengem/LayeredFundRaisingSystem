@@ -1,0 +1,35 @@
+﻿.background {
+        background-color: #d6d6d7;
+
+    /*background-image: url('../../Image/white-rhombus-pattern_1053-249.jpg');*/
+    background-repeat: repeat;
+    padding: 5%;
+}
+
+.container .row {
+    padding: 2% 0% 0% 0%;
+    width: 110%;
+    left: 42%;
+}
+
+    .container .row .panel {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+        .container .row .panel .panel-heading {
+            color: white;
+            background-color: darkkhaki;
+            font-size: 16px;
+        }
+
+.panel-body {
+    padding: 40px;
+}
+
+.pull-right {
+    background-color: #8AAA21;
+    font-size: 24px;
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+}
