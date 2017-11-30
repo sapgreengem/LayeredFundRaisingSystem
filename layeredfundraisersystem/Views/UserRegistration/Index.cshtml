@@ -11,15 +11,14 @@
     }
 }
 
-<h2>Index</h2>
-
 <div>
     <form method="post" id="register">
-        
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
+                    <h2 class="text-danger">@ViewBag.message</h2>
                     <div class="panel panel-info">
+                        <div class="panel-heading"><strong>Register Yourself</strong></div>
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="username">Enter Email</label>
@@ -28,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Enter Password</label>
-                                <input type="password" id="password" name="Password" class="form-control" />
+                                <input type="password" id="password" name="Password" placeholder="Password more than 8 characters" class="form-control" />
                                 <span class="text-danger" id="result"></span>
                                 <span id="error_pass"></span>
                             </div>
@@ -47,9 +46,6 @@
         </div>
     </form>
 </div>
-<h1>@ViewBag.message</h1>
-
-
 
 <script type="text/javascript">
     $(function () {
