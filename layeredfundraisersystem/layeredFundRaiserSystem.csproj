@@ -147,36 +147,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\AddFundRequest.css" />
-    <Content Include="Content\AdminLogin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\ChangePassword.css" />
-    <Content Include="Content\DonationOnPost.css" />
-    <Content Include="Content\ForgaetPassword.css" />
-    <Content Include="Content\FundWithDraw.css" />
-    <Content Include="Content\Home.css" />
-    <Content Include="Content\Login.css" />
-    <Content Include="Content\MyDonation.css" />
-    <Content Include="Content\MyFundRequestPost.css" />
-    <Content Include="Content\MyProfile.css" />
-    <Content Include="Content\MyProfileEdit.css" />
-    <Content Include="Content\MyWithDraw.css" />
-    <Content Include="Content\NewPassword.css" />
-    <Content Include="Content\Partial.css" />
-    <Content Include="Content\PostDetails.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\UserLayout.css" />
-    <Content Include="Content\UserRegistration.css" />
-    <Content Include="Content\ViewAllPost.css" />
-    <Content Include="Content\ViewersLayout.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\dataTables.bootstrap.css" />
+    <Content Include="css\dataTables.bootstrap.css" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jaktutorial.js" />
@@ -188,10 +168,10 @@
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\passwordscheck.css" />
+    <Content Include="css\passwordscheck.css" />
     <Content Include="Scripts\passwordscheck.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\signin.css" />
+    <Content Include="css\signin.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
