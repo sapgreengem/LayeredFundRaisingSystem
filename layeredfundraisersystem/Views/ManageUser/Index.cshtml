@@ -4,136 +4,127 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Active User</a></li>
-    <li><a data-toggle="tab" href="#menu1">Blocked User</a></li>
-
-</ul>
-
 <script>
-  $(function(){
-    $("#example").dataTable();
+    $(function () {
+        $("#example").dataTable();
     })
     $(function () {
         $("#example2").dataTable();
     })
 </script>
 
-<div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-        <div>
-            <br />
-            <div class="panel panel-info">
-                <div class="panel-heading"><strong>Active User</strong></div>
-                <div class="table tab-pane" style="text-align:center">
-                    <table class="table table-striped" id="example">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Present Address</th>
-                                <th>Permanent Address</th>
-                                <th>Contact No</th>
-                                <th>National Id</th>
-                                <th>Country</th>
-                                <th>ProfilePicture</th>
-                                <th>Created At</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                if (item.Status == "Active")
+<ul class="nav nav-tabs tabMenu">
+    <li class="active"><a data-toggle="tab" href="#home">Active User</a></li>
+    <li><a data-toggle="tab" href="#menu1">Blocked User</a></li>
+</ul>
+<div class="container">
+    <div class="row">
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <br />
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Active User</strong></div>
+                    <div class="table tab-pane" style="text-align:center">
+                        <table class="table table-striped" id="example">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Present Address</th>
+                                    <th>Permanent Address</th>
+                                    <th>Contact No</th>
+                                    <th>National Id</th>
+                                    <th>Country</th>
+                                    <th>ProfilePicture</th>
+                                    <th>Created At</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.FirstName</td>
-                                        <td>@item.LastName</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.PresentAddress</td>
-                                        <td>@item.PermanentAddress</td>
-                                        <td>@item.ContactNo</td>
-                                        <td>@item.NationalId</td>
-                                        <td>@item.Country</td>
-                                        <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
-                                        <td>@item.UserCreationDate</td>
-                                        <td>@item.Status</td>
-                                        <td>
-                                            <a href="/ManageUser/BlockUser/@item.UserId" class="btn btn-default" id="ActionButton">Block User</a><br />
-                                        </td>
-                                    </tr>
+                                    if (item.Status == "Active")
+                                    {
+                                        <tr>
+                                            <td>@item.FirstName</td>
+                                            <td>@item.LastName</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.PresentAddress</td>
+                                            <td>@item.PermanentAddress</td>
+                                            <td>@item.ContactNo</td>
+                                            <td>@item.NationalId</td>
+                                            <td>@item.Country</td>
+                                            <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
+                                            <td>@item.UserCreationDate</td>
+                                            <td>@item.Status</td>
+                                            <td>
+                                                <a href="/ManageUser/BlockUser/@item.UserId" class="btn btn-default" id="ActionButton">Block User</a><br />
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
-
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-
-        </div>
-    </div>
-
-    <div id="menu1" class="tab-pane fade">
-        <div>
-            <br />
-            <div class="panel panel-info">
-                <div class="panel-heading"><strong>Blocked User</strong></div>
-                <div class="table tab-pane" style="text-align:center">
-                    <table class="table table-striped" id="example2">
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Present Address</th>
-                                <th>Permanent Address</th>
-                                <th>Contact No</th>
-                                <th>National Id</th>
-                                <th>Country</th>
-                                <th>ProfilePicture</th>
-                                <th>Created At</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                if (item.Status == "Blocked")
+            <div id="menu1" class="tab-pane fade">
+                <br />
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>Blocked User</strong></div>
+                    <div class="table tab-pane" style="text-align:center">
+                        <table class="table table-striped" id="example2">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Present Address</th>
+                                    <th>Permanent Address</th>
+                                    <th>Contact No</th>
+                                    <th>National Id</th>
+                                    <th>Country</th>
+                                    <th>ProfilePicture</th>
+                                    <th>Created At</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>@item.FirstName</td>
-                                        <td>@item.LastName</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.PresentAddress</td>
-                                        <td>@item.PermanentAddress</td>
-                                        <td>@item.ContactNo</td>
-                                        <td>@item.NationalId</td>
-                                        <td>@item.Country</td>
-                                        <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
-                                        <td>@item.UserCreationDate</td>
-                                        <td>@item.Status</td>
-                                        <td>
-                                            <a href="/ManageUser/UnBlockUser/@item.UserId" id="ActionButton" class="btn btn-default">Unblock User</a>
-                                        </td>
-                                    </tr>
+                                    if (item.Status == "Blocked")
+                                    {
+                                        <tr>
+                                            <td>@item.FirstName</td>
+                                            <td>@item.LastName</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.PresentAddress</td>
+                                            <td>@item.PermanentAddress</td>
+                                            <td>@item.ContactNo</td>
+                                            <td>@item.NationalId</td>
+                                            <td>@item.Country</td>
+                                            <td><img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" /></td>
+                                            <td>@item.UserCreationDate</td>
+                                            <td>@item.Status</td>
+                                            <td>
+                                                <a href="/ManageUser/UnBlockUser/@item.UserId" id="ActionButton" class="btn btn-default">Unblock User</a>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-
 <br />
 <br />
 

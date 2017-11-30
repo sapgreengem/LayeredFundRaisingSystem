@@ -1,2 +1,12 @@
-﻿body {
+﻿
+table tr th {
+    text-align: center;
+}
+
+table thead tr th {
+    text-align: center;
+}
+
+.tabMenu {
+    margin-left: 7%;
 }
