@@ -1,0 +1,33 @@
+﻿.background {
+    background-color: #d6d6d7;
+    /*background-image: url('../../Image/white-rhombus-pattern_1053-249.jpg');*/
+    background-repeat: repeat;
+    padding: 5%;
+}
+
+.form-control {
+    height: 52px;
+    padding: 11px 17px;
+    font-size: 17px;
+}
+
+.btn-primary {
+    margin-left: 730px;
+    font-size: 21px;
+}
+
+h5 {
+    font-size: 17px;
+}
+
+.row {
+    margin-right: -93px;
+    margin-left: -94px;
+}
+
+.btn-default {
+    background-color: #8AAA21;
+    color: white;
+    margin-top: 27px;
+    font-size: 21px;
+}

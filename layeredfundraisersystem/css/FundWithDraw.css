@@ -1,0 +1,16 @@
+﻿.background {
+    background-image: url('../../Image/white-rhombus-pattern_1053-249.jpg');
+    background-repeat: repeat;
+    padding: 12%;
+}
+
+.row {
+    margin-right: -8px;
+    margin-left: -71px;
+    margin-top: 27px;
+}
+
+.container .row .panel .panel-heading {
+    color: white;
+    background-color: #8AAA21;
+}
