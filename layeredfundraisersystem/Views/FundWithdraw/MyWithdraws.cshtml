@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs tabMenu">
     <li class="active"><a data-toggle="tab" href="#home">Requests Pending</a></li>
     <li><a data-toggle="tab" href="#menu1">Fund Transfered</a></li>
 
@@ -18,14 +18,13 @@
 
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-        <h2>@ViewBag.ErrorMessage</h2>
-
-        @if (ViewBag.ErrorMessage == null)
-        {
-            <div class="container">
-                <div class="row">
-                    <div>
-                        <table class="table table-bordered example">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div>
+                    @if (ViewBag.ErrorMessage == null)
+                    {
+                        <table class="table table-bordered" style="text-align: center;">
                             <thead>
                                 <tr>
                                     <th>Post Title</th>
@@ -46,26 +45,27 @@
                                             <td>@item.WithdrawDate</td>
                                         </tr>
                                     }
-
                                 }
                             </tbody>
                         </table>
-
-                    </div>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.ErrorMessage</span>
+                    }
                 </div>
             </div>
-        }
+        </div>
 
     </div>
     <div id="menu1" class="tab-pane fade">
-        <h2>@ViewBag.ErrorMessage</h2>
-
-        @if (ViewBag.ErrorMessage == null)
-        {
-            <div class="container">
-                <div class="row">
-                    <div>
-                        <table class="table table-bordered example">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div>
+                    @if (ViewBag.ErrorMessage == null)
+                    {
+                        <table class="table table-bordered" style="text-align: center;">
                             <thead>
                                 <tr>
                                     <th>Post Title</th>
@@ -90,9 +90,14 @@
                                 }
                             </tbody>
                         </table>
-                    </div>
+                    }
+                    else
+                    {
+                        <span>@ViewBag.ErrorMessage</span>
+
+                    }
                 </div>
             </div>
-        }
+        </div>
     </div>
 </div>

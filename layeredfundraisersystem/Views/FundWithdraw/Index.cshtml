@@ -4,20 +4,19 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>Index</h2>
-
 <form method="post">
     @Html.AntiForgeryToken()
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-info">
-                    <div class="panel-heading"><strong>Send Fund Withdraw Request</strong></div>
+                    <div class="panel-heading"><strong>Request for fund withdraw</strong></div>
                     <div class="panel-body">
-                        <h3>@Model.PostTitle</h3>
-                        <span>Service Charge Per withdraw @ViewBag.ServiceCharge %</span>
+                        <h3 class="text-center">@Model.PostTitle</h3>
                         <br />
-                        <span>Withwrawable Amount @Model.RemainingAmount.ToString("0.00") /=</span>
+                        <b><span class="pull-left text-success">Withwrawable Amount @Model.RemainingAmount.ToString("0.00") /=</span></b>
+                        <b><span class="pull-right text-danger">Service Charge Per withdraw @ViewBag.ServiceCharge %</span></b>
+                        <br />
                         <br />
                         <div class="form-group">
                             <label for="amount">Enter Amount</label>

@@ -8,45 +8,36 @@
     <div class="row">
         <div class="col col-md-8 col-md-offset-2">
             <div class="panel panel-body">
-                <h4>FundRequestPost</h4>
                 <br />
                 @using (Html.BeginForm("Index", "AddFundRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
-
-                    <table class="table">
-                        <tr>
-                            <td>Post Title</td>
-                            <td>
-                                <input type="text" name="PostTitle" id="title" />
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><strong>Provide Informations to creaate your fund request post</strong></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Title of the post</label>
+                                <input type="text" class="form-control" name="PostTitle" id="title" />
                                 <span id="error_title" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Post Details</td>
-                            <td>
-                                <textarea style="min-width:180px;" name="PostDetails" id="details"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Details of the post</label>
+                                <textarea style="min-width:180px;" class="form-control" name="PostDetails" id="details"></textarea>
                                 <span id="error_details" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Required Amount</td>
-                            <td>
-                                <input type="number" name="RequiredAmount" id="rm" min="1" step=".01" onkeypress="return isNumberKey(event)"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Required Amount (in BDT)</label>
+                                <input type="number" class="form-control" name="RequiredAmount" id="rm" min="1" step=".01" onkeypress="return isNumberKey(event)" />
                                 <span id="error_rm" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Expected duration(in days)</td>
-                            <td>
-                                <input type="number" name="EndDateInDays" id="ed" min="1" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="form-group">
+                                <label>Expected duration (in days)</label>
+                                <input type="number" class="form-control" name="EndDateInDays" id="ed" min="1" onkeypress="return isNumberKey(event)" />
                                 <span id="error_ed" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Posting Category</td>
-                            <td>
-                                <select name="Category" id="category">
+                            </div>
+                            <div class="form-group">
+                                <label>Category of your post</label>
+                                <select name="Category" class="form-control" id="category">
                                     <option value="0">Select One</option>
 
                                     @foreach (var ListItem in ViewBag.Categories)
@@ -55,25 +46,21 @@
                                     }
                                 </select>
                                 <span id="error_category" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Post Image</td>
-                            <td>
-                                <input type="file" name="file" id="img" />
+                            </div>
+                            <div class="form-group">
+                                <label>Picture of the post</label>
+                                <input type="file" class="form-control" name="file" id="img" />
                                 <span id="error_img" class="text-danger"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Proof For the Post</td>
-                            <td>
-                                <input type="file" name="proof" id="proof" />
+                            </div>
+                            <div class="form-group">
+                                <label>Proof against your need</label>
+                                <input type="file" class="form-control" name="proof" id="proof" />
                                 <span id="error_proof" class="text-danger"></span>
-                            </td>
-                        </tr>
-                    </table>
-                    <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
-                    <button type="submit" class="btn btn-primary pull-right">Create</button>
+                            </div>
+                            <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
+                            <button type="submit" class="btn btn-primary pull-right">Create</button>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -87,13 +74,12 @@
         if (charCode > 31 && (charCode < 48 || charCode > 57))
             return false;
         return true;
-    }   
+    }
 
     $(function () {
         $(document).on("submit", "form", function (e) {
 
-            if ($("#title").val() == "")
-            {
+            if ($("#title").val() == "") {
                 $("#error_title").html("Title is empty");
                 e.preventDefault();
                 return false;
@@ -101,8 +87,7 @@
             else
                 $("#error_title").html("");
 
-            if ($("#details").val() == "")
-            {
+            if ($("#details").val() == "") {
                 $("#error_details").html("Details is empty");
                 e.preventDefault();
                 return false;
@@ -110,26 +95,23 @@
             else
                 $("#error_details").html("");
 
-            if ($("#rm").val() == "")
-            {
+            if ($("#rm").val() == "") {
                 $("#error_rm").html("Required Ammount Is Empty");
                 e.preventDefault();
                 return false;
             }
             else
                 $("#error_rm").html("");
-            
-            if ($("#ed").val() == "")
-            {
+
+            if ($("#ed").val() == "") {
                 $("#error_ed").html("Expected Duration is empty");
                 e.preventDefault();
                 return false;
             }
-            else 
+            else
                 $("#error_ed").html("");
 
-            if ($("#category").val() == 0)
-            {
+            if ($("#category").val() == 0) {
                 $("#error_category").html("Choose a Category");
                 e.preventDefault();
                 return false;
@@ -150,11 +132,10 @@
                 e.preventDefault();
                 return false;
             }
-            else
-            {
+            else {
                 $("#error_proof").html("");
                 return true;
-            }      
+            }
         });
     });
 </script>

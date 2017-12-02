@@ -4,48 +4,56 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h2>MyTimeExtend</h2>
-
 <script>
     $(function () {
         $(".example").dataTable();
     })
 </script>
 
-@if (ViewBag.ErrorMessage == null)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="table">
-                    <table class="table-bordered example">
-                        <thead>
-                            <tr>
-                                <th>Post Title</th>
-                                <th>Start Date</th>
-                                <th>Requested To Extend</th>
-                                <th>Request Status</th>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>Pending Requests</strong></div>
+                <div class="panel-body">
+                    @if (ViewBag.ErrorMessage == null)
+                    {
+                        <div class="table">
+                            <table class="table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>Post Title</th>
+                                        <th>Start Date</th>
+                                        <th>Requested To Extend</th>
+                                        <th>Request Status</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in ViewBag.AllRequests)
-                            {
-                                <tr>
-                                    <td>@item.PostTitle</td>
-                                    <td>@item.StartDate</td>
-                                    <td>@(Convert.ToInt32((item.EndDate - item.StartDate).TotalDays)) Days</td>
-                                    <td>Pending</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.AllRequests)
+                                    {
+                                        <tr>
+                                            <td>@item.PostTitle</td>
+                                            <td>@item.StartDate</td>
+                                            <td>@(Convert.ToInt32((item.EndDate - item.StartDate).TotalDays)) Days</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    }
+                    else
+                    {
+                        @ViewBag.ErrorMessage
+                    }
+
                 </div>
             </div>
         </div>
     </div>
-}
-else
-{
-    @ViewBag.ErrorMessage
-}
+</div>
+
+
+

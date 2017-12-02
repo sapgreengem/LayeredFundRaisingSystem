@@ -30,8 +30,8 @@
             <td>@ViewBag.SumWithdrawWithCharge/=</td>
             <td>@ViewBag.SumRemainingAmount/=</td>
             <td>
-                <a href="/FundWithdraw/MyWithdraws" class="btn btn-primary pull-left">Withdraws</a>
-                <a href="/ExtendPostDate/MyTimeExtend" class="btn btn-primary pull-right">Time Extend</a>
+                <a href="/FundWithdraw/MyWithdraws" class="pull-left">Withdraw</a>
+                <a href="/ExtendPostDate/MyTimeExtend" class="pull-right">Time Extend</a>
             </td>
         </tr>
     </tbody>
@@ -83,7 +83,7 @@
                                             <td>@item.PostStatus</td>
 
                                             <td>
-                                                <a class="btn btn-default Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
+                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
                                             </td>
                                         </tr>
                                 }
@@ -133,7 +133,7 @@
                                             <td>@item.RemainingAmount.ToString("0.00")/=</td>
                                             <td>@item.PostStatus</td>
                                             <td>
-                                                <a class="btn btn-default Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i> Collect Fund</a>
+                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
                                             </td>
                                         </tr>
                                 }
@@ -184,9 +184,9 @@
                                             <td>@item.RemainingAmount.ToString("0.00")/=</td>
                                             <td>@item.PostStatus</td>
                                             <td>
-                                                <a class="btn btn-default Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Collect Fund</a>
+                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
 
-                                                <a class="btn btn-default Action" href="/ExtendPostDate/Index/@item.PostId"><i class="glyphicon glyphicon-forward"></i>Extend Time</a>
+                                                <a class="btn btn-default Action" href="/ExtendPostDate/Index/@item.PostId"><i class="glyphicon glyphicon-time"></i>Extend Time</a>
 
                                             </td>
                                         </tr>
