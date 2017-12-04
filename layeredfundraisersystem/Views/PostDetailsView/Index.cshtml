@@ -14,107 +14,124 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="demo-content" style="width:750px">
+            <div class="demo-content">
                 <h2>@Model.PostTitle</h2>
-                <img style="height:200px; width:400px;" src="~/PostImages/@Model.PostImage" />
-                <br />
-                <br />
                 @foreach (var item in ViewBag.UserName)
                 {
-                    <h4>Posted By @item.FirstName @item.LastName</h4>
+                    <span>Posted By <strong>@item.FirstName @item.LastName</strong></span>
                 }
                 <br />
+                <br />
+
+                <img class="img-responsive" style="height:400px; width:100%;" src="~/PostImages/@Model.PostImage" />
+                <br />
+                
                 <h4>Description</h4>
+                <hr />
                 <p style="text-align:justify">@Model.PostDetails</p>
                 <br />
             </div>
-            <div>
-                <h4>Share Now</h4>
-                <a class="btn btn-default" href="#">Facebook</a>
-                <a class="btn btn-default" href="#">Twitter</a>
-                <a class="btn btn-default" href="#">Email</a>
-            </div>
-
-            <div>
-                <h2>Leave a comment</h2>
-
-                <textarea rows="4" cols="50" id="msg" placeholder="Not More Than 50 words"></textarea>
-                <button style="height:25px; width:75px;" id="comment">Comment</button>
-                <input type="hidden" value="@ViewBag.UserInformationId" id="user_id" />
-                <input type="hidden" value="@Model.PostId" id="post_id" />
-
-                <h2>Recent Comments</h2>
-                <div id="ShowRecentComments" style="overflow-y: scroll; height:400px;">
-
-                </div>
-            </div>
-
         </div>
+
         <div class="col-md-4">
             <div class="demo-content">
-                <div style="width:400px;height:400px;" class="text-primary">
+                <div style="padding-top:30%">
+                        <h4 class="text-center">Collected <strong>@Model.CollectedAmount.ToString("0.00") TK</strong>  of <strong>@Model.RequiredAmount.ToString("0.00") TK</strong>  </h4>
                     <br />
-                    <br />
-                    <h4>Campain Ends in @(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) Days </h4>
-                    <br />
-                    <h4>Collected Amount @Model.CollectedAmount.ToString("0.00")/= </h4>
-                    <br />
-                    <h4>Number Of People Donated @ViewBag.NumberOfPeopleDonated</h4>
-                    <br />
-                    @if (Model.RequiredAmount > Model.CollectedAmount)
-                    {
-                        <h4>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00")) /= More Needed </h4>
                         <br />
-                    }
-                    <h5>Collection Completed</h5>
-                    <div class="progress">
-                        @{
-                            if (Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100)) <= 100)
-                            {
-                                <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
-                                    @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:100%; color:White">
-                                    @Convert.ToInt32(100)%
-                                </div>
-                            }
+
+
+                        @if (Model.RequiredAmount > Model.CollectedAmount)
+                        {
+                            <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
                         }
-                        
+                    <div style="padding-top:15%">
+                        <h4 class="pull-left"><strong>@ViewBag.NumberOfPeopleDonated</strong> people donated</h4>
+                        <h4 class="pull-right"><strong>@(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) days</strong>  remaining </h4>
                     </div>
-                    @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
-                    {                        
-                        <a class="btn btn-default" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
-                    }
+                    <div style="padding-top:35%">
+                        <label>Collection Completed</label>
+                        <div class="progress">
+                            @{
+                                if (Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100)) <= 100)
+                                {
+                                    <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
+                                        @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:100%; color:White">
+                                        @Convert.ToInt32(100)%
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                        @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
+                        {
+                            <a class="btn btn-success pull-right" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
+                        }
+                    </div>
                 </div>
             </div>
-            <div class="demo-content">
+            <div class="demo-content" style="padding-top:15%">
+                <h4>Share Now</h4>
+                <hr />
+                <a href="#"><img src="~/icon/facebook-logo-png-2335.png" height="80" width="90"/></a>
+                <a href="#"><img src="~/icon/google-plus-logo-1263.png" height="70" width="70"/></a>
+                <a href="#"><img src="~/icon/twitter-icon-81.png" height="80" width="80"/></a>
+            </div>
+
+            <div class="demo-content" style="padding-top:5%">
                 <h4>Recent Donors</h4>
+                <hr />
                 <div style="text-align:left">
                     @{
                         int processed = 0;
                         foreach (var item in ViewBag.DonorList)
                         {
                             <div style="float:left">
-                                <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" />
+                                <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" style="border-radius:50%;"/>
                             </div>
                             <div>
                                 <b><span>&nbsp;&nbsp;@item.FirstName</span></b>
                                 <br />
-                                <span>&nbsp;&nbsp;Doneted: @item.DonationAmount.ToString("0.00")/=</span>
-                                <hr />
+                                <span>&nbsp;&nbsp;Donated: <strong>@item.DonationAmount.ToString("0.00")/=</strong></span>
                             </div>
-
+                            <hr style="background-color:unset; height:unset; border-radius:unset;" />
                             if (++processed == 6)
                             {
                                 break;
                             }
                         }
                     }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="demo-content">
+                <h4>Leave a comment</h4>
+                <hr />
+                <textarea class="form-control" rows="4" cols="50" id="msg" placeholder="Not More Than 50 words"></textarea>
+                <br />
+                <button class="btn btn-primary pull-right" id="comment">Comment</button>
+                <input type="hidden" value="@ViewBag.UserInformationId" id="user_id" />
+                <input type="hidden" value="@Model.PostId" id="post_id" />
+
+                <div style="padding-top:5%;">
+                    <h4>Recent Comments</h4>
+                    <hr />
+                    <div id="ShowRecentComments" style="overflow-y: scroll; height:400px;">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,12 +148,12 @@
             type: "GET",
             contentType: 'application/json; charset=utf-8',
             async: true,
-            data: { id: $("#post_id").val(), id1:0, id2:"null" },
+            data: { id: $("#post_id").val(), id1: 0, id2: "null" },
             success: function (response) {
                 var data = response.list;
                 var str = "";
                 for (var i = 0; i < data.length; i++) {
-                    str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr /></div></div>";
+                    str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px; border-radius:50%;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr style='background-color:unset; height:unset; border-radius:unset;' /></div></div>";
                 }
                 $("#ShowRecentComments").html(str);
             }
@@ -149,8 +166,7 @@
 
             var login = true;
 
-            if ($("#msg").val() == "")
-            {
+            if ($("#msg").val() == "") {
                 alert("Type a comment");
                 e.preventDefault();
                 return false;
@@ -162,19 +178,16 @@
                 type: "GET",
                 contentType: 'application/json; charset=utf-8',
                 async: true,
-                data: {  },
-                success: function (response)
-                {
-                    if (response.message != "")
-                    {
+                data: {},
+                success: function (response) {
+                    if (response.message != "") {
                         login = false;
                         alert('Please Login To Comment');
                     }
                 }
             });
 
-            if (login == true)
-            {
+            if (login == true) {
                 $.ajax({
                     url: '@Url.Action("Comment", "PostDetailsView")',
                     dataType: "json",
@@ -186,7 +199,7 @@
                         var data = response.list;
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
-                            str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr /></div></div>";
+                            str = str + "<div style='text-align:justify'><div><img style='height:50px; width:50px; border-radius:50%;' src='/ProfilePictures/" + data[i].UserImage + "'/><span><b>&nbsp;&nbsp;" + data[i].UserName + "</b></span><br/><span>" + data[i].Comment + "</span><hr style='background-color:unset; height:unset; border-radius:unset;' /></div></div>";
                         }
                         $("#ShowRecentComments").html(str);
                         $("#msg").val('');

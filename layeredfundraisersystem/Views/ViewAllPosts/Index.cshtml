@@ -18,8 +18,8 @@
             <div>
                 <form method="post" name="cat">
                     <div style="float:left">
-                        Find by Category
-                        <select name="Category" onchange="this.form.submit()">
+                        <span>Find by Category</span>
+                        <select name="Category" class="form-control" onchange="this.form.submit()">
                             @foreach (var ListItem in ViewBag.Categories)
                             {
                                 <option value="@ListItem.CategoryId">@ListItem.CategoryName</option>
@@ -29,9 +29,10 @@
                 </form>
                 <form method="post" name="search">
                     <div class="pull-right">
-                        Search By Name
-                        <input type="text" name="searchName" id="searchName" />
-                        <button type="submit"><i class="glyphicon glyphicon-search"></i></button><br />
+                        <span>Search By Name</span>
+                        <input type="text" class="form-control" name="searchName" id="searchName" />
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                        <br />
                         <span id="error_searchName" class="text-danger"></span>
                     </div>
                 </form>
@@ -63,13 +64,13 @@
                             <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
                         </td>
                         <td style="vertical-align:middle; text-align:center; width:15%">
-                            <h5>Targeted @item.RequiredAmount.ToString("0.00")/=</h5>
-                            <h5>Raised @item.CollectedAmount.ToString("0.00")/=</h5>
+                            <h5><strong>Targeted</strong> @item.RequiredAmount.ToString("0.00")/=</h5>
+                            <h5><strong>Raised</strong> @item.CollectedAmount.ToString("0.00")/=</h5>
 
                             @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                             {
                                 //Session["DonateNowPostID"] = @item.PostId;
-                                <a class="btn btn-default" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
+                                <a class="btn btn-primary" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
                             }
                         </td>
                     </tr>
