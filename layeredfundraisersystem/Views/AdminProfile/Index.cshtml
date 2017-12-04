@@ -4,35 +4,54 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    table tr td {
+        padding-left: 5%;
+    }
 
+    table tr th {
+        text-align: left;
+    }
+</style>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <table class="table">
-                <tr>
-                    <td>First Name</td>
-                    <td>@Model.FirstName</td>
-                </tr>
-                <tr>
-                    <td>Last Name</td>
-                    <td>@Model.LastName</td>
-                </tr>
-                <tr>
-                    <td>Email Address</td>
-                    <td>@Model.Email</td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td>@Model.Address</td>
-                </tr>
-                <tr>
-                    <td>Role</td>
-                    <td>@Model.Role</td>
-                </tr>
-            </table>
-            <a class="btn btn-primary pull-right" href="/AdminProfile/Edit"><i class="glyphicon glyphicon-edit"></i>Edit Profile</a>
-            <a class="btn btn-primary pull-left" href="/AdminProfile/ChangePassword"><i class="glyphicon glyphicon-lock"></i>Change Password</a>
+        <div class="row">
+            <div class="col col-md-6 col-md-offset-3">
+                <div class="pull-left">
+                    <center>
+                        <img src="~/icon/boss-512.png" height="200" width="200" style="border-radius:50%;" />
+                        <h3>@Model.FirstName @Model.LastName</h3>
+                        <a href="/AdminProfile/ChangePassword">Change Password</a>
+                    </center>
+                </div>
+                <div class="pull-right" style="padding-top:5%">
+                    <table>
+                        <tr>
+                            <th><h4>First Name</h4></th>
+                            <td><h5>@Model.FirstName</h5></td>
+                        </tr>
+                        <tr>
+                            <th><h4>Last Name</h4></th>
+                            <td><h5>@Model.LastName</h5></td>
+                        </tr>
+                        <tr>
+                            <th><h4>Email Address</h4></th>
+                            <td><h5>@Model.Email</h5></td>
+                        </tr>
+                        <tr>
+                            <th><h4>Address</h4></th>
+                            <td><h5>@Model.Address</h5></td>
+                        </tr>
+                        <tr>
+                            <th><h4>Role</h4></th>
+                            <td><h5>@Model.Role</h5></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col col-md-6 col-md-offset-3">
+                <a class="btn btn-primary pull-right" href="/AdminProfile/Edit"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+            </div>
         </div>
     </div>
 </div>
@@ -51,8 +70,7 @@
             else
                 $("#error_message").html("");
 
-            if ($("#lname").val() == "")
-            {
+            if ($("#lname").val() == "") {
                 $("#error_lname").html("Last Name Cannot be empty");
                 e.preventDefault();
                 return false;
@@ -60,8 +78,7 @@
             else
                 $("#error_lname").html("");
 
-            if ($("#email").val() == "")
-            {
+            if ($("#email").val() == "") {
                 $("#error_email").html("Email Cannot be empty");
                 e.preventDefault();
                 return false;
@@ -74,8 +91,7 @@
                 e.preventDefault();
                 return false;
             }
-            else
-            {
+            else {
                 $("#error_address").html("");
                 return true;
             }

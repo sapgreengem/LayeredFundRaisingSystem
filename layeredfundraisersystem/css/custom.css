@@ -10,3 +10,31 @@ table thead tr th {
 .tabMenu {
     margin-left: 7%;
 }
+
+hr {
+    background-color: #8AAA21;
+    height: 7px;
+    border-radius: 26%;
+}
+
+
+.carousel-control.left {
+    background-image: none;
+    bottom: 132px;
+    left: -110px;
+    opacity: 50;
+}
+
+.carousel-control.right {
+    background-image: none;
+    bottom: 132px;
+    right: -90px;
+    opacity: 50;
+}
+
+.progress {
+    background-color: #DEB887;
+    width: 100%;
+    margin: 9px -32px 7px -4px;
+    padding: 1px;
+}
