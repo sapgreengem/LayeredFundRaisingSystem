@@ -20,60 +20,63 @@
     <link href="~/css/custom.css" rel="stylesheet" />
     @RenderSection("styles", false)
     <style type="text/css">
+        .linkColor {
+            color: black;
+        }
+
         ul li {
             font-size: large;
-            /*text-align: center;*/
         }
     </style>
 </head>
 <body>
     @*<a href="/AdminHome"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light" style="background-color: #33ff33;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/AdminHome"><i class="glyphicon glyphicon-home"></i> Fund Raising System</a>
+                <a class="navbar-brand linkColor" href="/AdminHome"><i class="glyphicon glyphicon-home"></i> FRS</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/AdminHome">Home</a></li>
-                <li><a href="/ManagePost">Approve Post&nbsp;&nbsp;<span class="badge">@ViewBag.Posts</span></a></li>
-                <li><a href="/ManageWithdrawRequests">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@ViewBag.Withdraws</span></a></li>
-                <li><a href="/ManageTimeExtend">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>
+                <li class="active"><a href="/AdminHome" class="linkColor">Home</a></li>
+                <li><a href="/ManagePost" class="linkColor">Approve Post&nbsp;&nbsp;<span class="badge">@ViewBag.Posts</span></a></li>
+                <li><a href="/ManageWithdrawRequests" class="linkColor">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@ViewBag.Withdraws</span></a></li>
+                <li><a href="/ManageTimeExtend" class="linkColor">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>
                 @*<li><a href="/ManageCategory">Category Management</a></li>
                     <li><a href="/ManageUser">User Management</a></li>
                     <li><a href="/ManageBankInformation">Bank Information Management</a></li>*@
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/ManageCategory">Category</a></li>
-                        <li><a href="/ManageUser">User Management</a></li>
-                        <li><a href="/ManageBankInformation">Bank Information</a></li>
+                    <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">Manage</a>
+                    <ul class="dropdown-menu" style="background-color:#33ff33">
+                        <li><a href="/ManageCategory" class="linkColor">Category</a></li>
+                        <li><a href="/ManageUser" class="linkColor">User Management</a></li>
+                        <li><a href="/ManageBankInformation" class="linkColor">Bank Information</a></li>
                     </ul>
                 </li>
-                <li><a href="/AdminReports">Reports</a></li>
-                <li><a href="/Settings">Settings</a></li>
+                <li><a href="/AdminReports" class="linkColor">Reports</a></li>
+                <li><a href="/Settings" class="linkColor">Settings</a></li>
 
             </ul>
 
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">
                         <i class="glyphicon glyphicon-user"></i> @ViewBag.adminName
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/AdminProfile"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                        <li><a href="/AdminProfile/Edit"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
-                        <li><a href="/AdminProfile/ChangePassword"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
+                    <ul class="dropdown-menu" style="background-color:#33ff33">
+                        <li><a href="/AdminProfile" class="linkColor"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                        <li><a href="/AdminProfile/Edit" class="linkColor"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
+                        <li><a href="/AdminProfile/ChangePassword" class="linkColor"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/Logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                        <li><a href="/Logout" class="linkColor"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
     @RenderBody()
-    <nav class="copyright" style="background-color: #e3f2fd;">
+    <nav class="copyright" style="background-color: #33ff33;">
         <div class="container">
             <div class="col-md-12">
                 <br />
@@ -81,12 +84,12 @@
                 <br />
                 <br />
                 <ul class="bottom_ul">
-                    <li><a href="#">webenlance.com</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Faq's</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#" class="linkColor">FRS.com</a></li>
+                    <li><a href="#" class="linkColor">About us</a></li>
+                    <li><a href="#" class="linkColor">Blog</a></li>
+                    <li><a href="#" class="linkColor">Faq's</a></li>
+                    <li><a href="#" class="linkColor">Contact us</a></li>
+                    <li><a href="#" class="linkColor">Site Map</a></li>
                 </ul>
             </div>
         </div>

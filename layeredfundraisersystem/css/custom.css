@@ -38,3 +38,12 @@ hr {
     margin: 9px -32px 7px -4px;
     padding: 1px;
 }
+
+.container .row .panel .panel-heading {
+    color: white;
+    background-color: #00cc00;
+}
+
+.btn-primary{
+    background-color: #00cc00;
+}

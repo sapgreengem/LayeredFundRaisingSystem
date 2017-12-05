@@ -16,26 +16,34 @@
     <link href="~/css/custom.css" rel="stylesheet" />
     @RenderSection("styles", false)
 
+    <style type="text/css">
+        .linkColor{
+            color:black;
+        }
+        ul li {
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light" style="background-color: #33ff33;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
+                <a class="navbar-brand linkColor" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/Home">Home</a></li>
-                <li><a href="/AddFundRequest">Start Campain</a></li>
-                <li><a href="/ViewAllPosts">Donate Now</a></li>
+                <li class="active"><a href="/Home" class="linkColor">Home</a></li>
+                <li><a href="/AddFundRequest" class="linkColor">Start Campain</a></li>
+                <li><a href="/ViewAllPosts" class="linkColor">Donate Now</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/UserRegistration"><i class="glyphicon glyphicon-file"></i> Register</a></li>
-                <li><a href="/Login"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
+                <li><a href="/UserRegistration" class="linkColor"><i class="glyphicon glyphicon-file"></i> Register</a></li>
+                <li><a href="/Login" class="linkColor"><i class="glyphicon glyphicon-log-in"></i> Login</a></li>
             </ul>
         </div>
     </nav>
     @RenderBody()
-    <nav class="copyright" style="background-color: #e3f2fd;">
+    <nav class="copyright" style="background-color: #33ff33;">
         <div class="container">
             <div class="col-md-12">
                 <br />
@@ -43,12 +51,12 @@
                 <br />
                 <br />
                 <ul class="bottom_ul">
-                    <li><a href="#">FRS.com</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Faq's</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">Site Map</a></li>
+                    <li><a href="#" class="linkColor">FRS.com</a></li>
+                    <li><a href="#" class="linkColor">About us</a></li>
+                    <li><a href="#" class="linkColor">Blog</a></li>
+                    <li><a href="#" class="linkColor">Faq's</a></li>
+                    <li><a href="#" class="linkColor">Contact us</a></li>
+                    <li><a href="#" class="linkColor">Site Map</a></li>
                 </ul>
             </div>
         </div>
