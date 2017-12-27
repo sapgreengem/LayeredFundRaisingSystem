@@ -44,21 +44,31 @@
                             <input type="text" class="form-control" name="permanentAddress" />
                             <span id="error_pass" class="text-danger"></span>
                         </div>
+
+                        @* ------------------- *@
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                <option value="SelectOne">Select One</option>
+                                @foreach (var item in ViewBag.CountryList)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
+                        @* ----------------------- *@
                         <div class="form-group">
                             <label>Contact No</label>
                             <input type="number" class="form-control" name="contactNo" min="0" />
                             <span id="error_message" class="text-danger"></span>
                         </div>
+
                         <div class="form-group">
                             <label>National ID</label>
                             <input type="number" class="form-control" name="nationalID" min="0" />
                             <span id="error_pass" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" class="form-control" name="country" />
-                            <span id="error_message" class="text-danger"></span>
-                        </div>
+                        
                         <div class="form-group">
                             <label>Profile Picture</label>
                             <input type="file" class="form-control" name="file" />

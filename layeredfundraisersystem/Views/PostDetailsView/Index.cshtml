@@ -80,7 +80,11 @@
             <div class="demo-content" style="padding-top:15%">
                 <h4>Share Now</h4>
                 <hr />
-                <a href="#"><img src="~/icon/facebook-logo-png-2335.png" height="80" width="90"/></a>
+                <div id="shareBtn" style="float:left">
+                    <img src="~/icon/facebook-logo-png-2335.png" class="img-fluid " height="80" width="90"/>
+                </div>
+
+                @*<a href="#"><img src="~/icon/facebook-logo-png-2335.png" height="80" width="90"/></a>*@
                 <a href="#"><img src="~/icon/google-plus-logo-1263.png" height="70" width="70"/></a>
                 <a href="#"><img src="~/icon/twitter-icon-81.png" height="80" width="80"/></a>
             </div>
@@ -141,6 +145,15 @@
 
 
 <script type="text/javascript">
+    
+    document.getElementById('shareBtn').onclick = function () {
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: 'localhost:16720/PostDetailsView/Index/4',
+        }, function (response) { });
+    }
+
     function executeQuery() {
         $.ajax({
             url: '@Url.Action("Comment", "PostDetailsView")',

@@ -7,6 +7,7 @@ using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
+using System.Globalization;
 
 namespace layeredFundRaiserSystem.Controllers
 {
@@ -49,6 +50,8 @@ namespace layeredFundRaiserSystem.Controllers
             IBankInformationService bankService = ServiceFactory.GetBankInformationService();
 
             ViewBag.BankList = bankService.GetAll();
+            ViewBag.CountryList = this.LoadCountry();
+
             return View();
         }
         [HttpPost]
@@ -57,7 +60,7 @@ namespace layeredFundRaiserSystem.Controllers
             if (!String.IsNullOrWhiteSpace(coll["firstName"].ToString()) && !String.IsNullOrWhiteSpace(coll["lastName"].ToString()) &&
                 !String.IsNullOrWhiteSpace(coll["presentAddress"].ToString()) && !String.IsNullOrWhiteSpace(coll["permanentAddress"].ToString()) &&
                 !String.IsNullOrWhiteSpace(coll["contactNo"].ToString()) && !String.IsNullOrWhiteSpace(coll["nationalID"].ToString()) &&
-                !String.IsNullOrWhiteSpace(coll["userAccountNo"].ToString()) && !String.IsNullOrWhiteSpace(coll["country"].ToString()) &&
+                !String.IsNullOrWhiteSpace(coll["userAccountNo"].ToString()) && coll["country"].ToString() != "SelectOne" &&
                 Convert.ToInt32(coll["BankList"]) > 0)
             {
 
@@ -163,6 +166,23 @@ namespace layeredFundRaiserSystem.Controllers
             }
             
             return View(userInformation);
+        }
+
+        public List<string> LoadCountry()
+        {
+            List<string> CountryList = new List<string>();
+
+            CultureInfo[] CInfoList = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+            foreach (CultureInfo CInfo in CInfoList)
+            {
+                RegionInfo R = new RegionInfo(CInfo.LCID);
+                if (!(CountryList.Contains(R.EnglishName)))
+                {
+                    CountryList.Add(R.EnglishName);
+                }
+            }
+            CountryList.Sort();
+            return CountryList;
         }
 
         public IEnumerable<JoinBankInformations_UserBankAccounts_UserInfo> userBankAccount(int UserInfoId)

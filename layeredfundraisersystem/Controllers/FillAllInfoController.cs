@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace layeredFundRaiserSystem.Controllers
 {
@@ -25,6 +26,8 @@ namespace layeredFundRaiserSystem.Controllers
 
                 IBankInformationService bankService = ServiceFactory.GetBankInformationService();
                 ViewBag.BankList = bankService.GetAll();
+
+                ViewBag.CountryList = this.LoadCountry();
 
                 return View(user);
             }
@@ -48,7 +51,7 @@ namespace layeredFundRaiserSystem.Controllers
                     && !String.IsNullOrWhiteSpace(collection["permanentAddress"].ToString())
                     && !String.IsNullOrWhiteSpace(collection["nationalID"].ToString())
                     && !String.IsNullOrWhiteSpace(collection["contactNo"].ToString())
-                    && !String.IsNullOrWhiteSpace(collection["country"].ToString())
+                    && collection["country"].ToString() != "SelectOne"
                     && !String.IsNullOrWhiteSpace(collection["userAccountNo"].ToString())
                     && Convert.ToInt32(collection["BankList"]) > 0)
                 {
@@ -87,6 +90,8 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "Fill All Info";
                 }
+                ViewBag.BankList = bankService.GetAll();
+                ViewBag.CountryList = this.LoadCountry();
                 return View(user);
             }
             else
@@ -95,6 +100,22 @@ namespace layeredFundRaiserSystem.Controllers
             }
         }
 
+        public List<string> LoadCountry()
+        {
+            List<string> CountryList = new List<string>();
+            
+            CultureInfo[] CInfoList = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+            foreach (CultureInfo CInfo in CInfoList)
+            {
+                RegionInfo R = new RegionInfo(CInfo.LCID);
+                if (!(CountryList.Contains(R.EnglishName)))
+                {
+                    CountryList.Add(R.EnglishName);
+                }
+            }
+            CountryList.Sort();
+            return CountryList;
+        }
         public int getUserInfoId()
         {
             int userInfoId = 0;

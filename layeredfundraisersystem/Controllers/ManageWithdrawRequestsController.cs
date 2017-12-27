@@ -23,32 +23,40 @@ namespace layeredFundRaiserSystem.Controllers
         {
             IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
             FundWithdraw fundWithdraw = withdrawService.Get(id);
-            
-            IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
-            FundRequestPost fundRequestPost = postService.Get(fundWithdraw.PostId);
 
-            ISettingService settingsService = ServiceFactory.GetSettingService();
-            Setting settings = settingsService.Get(1);
-
-            if (fundRequestPost.RemainingAmount >= fundWithdraw.WithdrawAmount)
+            if (fundWithdraw != null)
             {
+                IFundRequestPostService postService = ServiceFactory.GetFundRequestPostService();
+                FundRequestPost fundRequestPost = postService.Get(fundWithdraw.PostId);
 
-                fundRequestPost.RemainingAmount -= fundWithdraw.WithdrawAmount;
-                postService.Update(fundRequestPost);
+                ISettingService settingsService = ServiceFactory.GetSettingService();
+                Setting settings = settingsService.Get(1);
 
-                fundWithdraw.RequestStatus = "Transfered";
-                withdrawService.Update(fundWithdraw);
+                if (fundRequestPost.RemainingAmount >= fundWithdraw.WithdrawAmount)
+                {
 
-                settings.TotalIncome += fundWithdraw.WithdrawAmount * (settings.ServiceCharge / 100);
-                settingsService.Update(settings);
+                    fundRequestPost.RemainingAmount -= fundWithdraw.WithdrawAmount;
+                    postService.Update(fundRequestPost);
 
+                    fundWithdraw.RequestStatus = "Transfered";
+                    withdrawService.Update(fundWithdraw);
+
+                    settings.TotalIncome += fundWithdraw.WithdrawAmount * (settings.ServiceCharge / 100);
+                    settingsService.Update(settings);
+
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Fund Cannot Be Transferred <br> Invalid Requested Amount";
+                }
             }
             else
             {
-                ViewBag.ErrorMessage = "Fund Cannot Be Transferred <br> Invalid Requested Amount";
+                ViewBag.ErrorMessage = "Invalid Withdraw Request";
             }
+
             ViewBag.WithdrawRequests = this.loadRequest();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "ManageWithdrawRequests");
         }
 
         [HttpGet]

@@ -159,6 +159,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="css\dataTables.bootstrap.css" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\FBSDKJavaScript.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jaktutorial.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
