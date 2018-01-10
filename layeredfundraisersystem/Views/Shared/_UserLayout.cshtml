@@ -35,62 +35,62 @@
 
 </head>
 <body>
-        @*<a href="/Home"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
-        <nav class="navbar navbar-light" style="background-color: #33ff33;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand linkColor" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/Home" class="linkColor">Home</a></li>
-                    <li><a href="/AddFundRequest" class="linkColor">Start Campain</a></li>
-                    <li><a href="/ViewAllPosts" class="linkColor">Donate Now</a></li>
-                    <li><a href="/MyFundRequestPosts" class="linkColor">My Campains</a></li>
-                    <li><a href="/MyDonations" class="linkColor">Donated by me</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+    @*<a href="/Home"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
+    <nav class="navbar navbar-light" style="background-color: #33ff33;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand linkColor" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/Home" class="linkColor">Home</a></li>
+                <li><a href="/AddFundRequest" class="linkColor">Start Campain</a></li>
+                <li><a href="/ViewAllPosts" class="linkColor">Donate Now</a></li>
+                <li><a href="/MyFundRequestPosts" class="linkColor">My Campains</a></li>
+                <li><a href="/MyDonations" class="linkColor">Donated by me</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
 
-                    <li>
-                        <a href="#" title="Notifications" class="linkColor">
-                            <i class="glyphicon glyphicon-bell"></i>
-                            <span class="badge">1 @RenderSection("Notifications", false)</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">
-                            <i class="glyphicon glyphicon-user"></i> @ViewBag.LoginName @*@RenderSection("username", false)*@
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" style="background-color:#33ff33">
-                            <li><a href="/MyProfile" class="linkColor"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                            <li><a href="/MyProfile/Edit" class="linkColor"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
-                            <li><a href="/MyProfile/ChangePassword" class="linkColor"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/Logout" class="linkColor"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
-                        </ul>
-                    </li>
+                <li>
+                    <a href="#" title="Notifications" class="linkColor">
+                        <i class="glyphicon glyphicon-bell"></i>
+                        <span class="badge">1 @RenderSection("Notifications", false)</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">
+                        <i class="glyphicon glyphicon-user"></i> @ViewBag.LoginName @*@RenderSection("username", false)*@
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="background-color:#33ff33">
+                        <li><a href="/MyProfile" class="linkColor"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                        <li><a href="/MyProfile/Edit" class="linkColor"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
+                        <li><a href="/MyProfile/ChangePassword" class="linkColor"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/Logout" class="linkColor"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+    <nav class="copyright" style="background-color: #33ff33;">
+        <div class="container">
+            <div class="col-md-12">
+                <br />
+                <h5 class="pull-left">© 2016 - All Rights with Webenlance</h5>
+                <br />
+                <br />
+                <ul class="bottom_ul">
+                    <li><a href="#" class="linkColor">FRS.com</a></li>
+                    <li><a href="#" class="linkColor">About us</a></li>
+                    <li><a href="#" class="linkColor">Blog</a></li>
+                    <li><a href="#" class="linkColor">Faq's</a></li>
+                    <li><a href="#" class="linkColor">Contact us</a></li>
+                    <li><a href="#" class="linkColor">Site Map</a></li>
                 </ul>
             </div>
-        </nav>
-        @RenderBody()
-        <nav class="copyright" style="background-color: #33ff33;">
-            <div class="container">
-                <div class="col-md-12">
-                    <br />
-                    <h5 class="pull-left">© 2016 - All Rights with Webenlance</h5>
-                    <br />
-                    <br />
-                    <ul class="bottom_ul">
-                        <li><a href="#" class="linkColor">FRS.com</a></li>
-                        <li><a href="#" class="linkColor">About us</a></li>
-                        <li><a href="#" class="linkColor">Blog</a></li>
-                        <li><a href="#" class="linkColor">Faq's</a></li>
-                        <li><a href="#" class="linkColor">Contact us</a></li>
-                        <li><a href="#" class="linkColor">Site Map</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
     <noscript>
         <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
                 height: 100%; width: 100%; background-color: #FFFFFF">

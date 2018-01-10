@@ -25,6 +25,24 @@ namespace layeredFundRaiserSystem.Controllers
             IUserInformationService infoService = ServiceFactory.GetUserInformationService();
             IEnumerable<UserInformation> userInformation = infoService.GetAll();
 
+            List<JoinDonationOnPosts_UserInformations_FundReqPosts> joinData = new List<JoinDonationOnPosts_UserInformations_FundReqPosts>();
+            foreach (var item in donationService.GetAll(true))
+            {
+                JoinDonationOnPosts_UserInformations_FundReqPosts addData = new JoinDonationOnPosts_UserInformations_FundReqPosts()
+                {
+                    FirstName = item.UserInformation.FirstName,
+                    DonationAmount = item.DonationAmount,
+                    UserInformationId = item.UserInformationId
+                };
+                joinData.Add(addData);
+            }
+
+            //.GroupBy(item => item.GroupKey)
+            //.Select(group => group.Sum(item => item.Aggregate));
+
+            ViewBag.TopDonarListNew = joinData.GroupBy(a => a.UserInformationId)
+                .Select(a => new { Name = a.FirstOrDefault().FirstName, TotalDonationAmount = a.Sum(b => b.DonationAmount) }).OrderByDescending(a => a.TotalDonationAmount).ToList();
+
             ViewBag.TopDonarList = userInformation;
             List<double> val = new List<double>();
 

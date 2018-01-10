@@ -28,7 +28,16 @@ namespace layeredFundRaiserSystem.Controllers
             if (Session["Login"] != null && Session["UserInformationId"] != null)
             {
                 ShowUserName name = new ShowUserName();
+
+                string LoginUserName= name.UserName(Convert.ToInt32(Session["UserInformationId"]));
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+
+                IUserInformationService service = ServiceFactory.GetUserInformationService();
+                UserInformation userInformation = service.Get(Convert.ToInt32(Session["UserInformationId"]));
+                if (userInformation.Country != "Bangladesh")
+                {
+                    ViewBag.Message = "Sorry " + LoginUserName + " You are not allowed to Request for fund";
+                }
             }
 
             ViewBag.Categories = this.Catagories();
