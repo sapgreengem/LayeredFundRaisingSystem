@@ -68,7 +68,8 @@ namespace layeredFundRaiserSystem.Controllers
                     PostId = item.PostId,
                     FirstName = item.UserInformation.FirstName,
                     ProfilePicture = item.UserInformation.ProfilePicture,
-                    DonationAmount = item.DonationAmount
+                    DonationAmount = item.DonationAmount,
+                    ShowDonationInfo = item.ShowDonationInfo
                 };
                 list.Add(load);
             }

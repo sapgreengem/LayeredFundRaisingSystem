@@ -50,7 +50,7 @@ namespace layeredFundRaiserSystem.Controllers
                 FundRequestPost item = postService.Get(id);
                 if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]))
                 {
-                    if (Convert.ToDouble(coll["Ammount"]) > 0)
+                    if (Convert.ToDouble(coll["Ammount"]) >= 50)
                     {
                         IOnlineTransectionService transectionService = ServiceFactory.GetOnlineTransectionService();
                         OnlineTransection transection = new OnlineTransection();
@@ -66,6 +66,13 @@ namespace layeredFundRaiserSystem.Controllers
                         donation.PostId = id;
                         donation.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
                         donation.TransectionId = transection.TransectionId;
+                        if (coll["ShowInfo"] != null)
+                        {
+                            donation.ShowDonationInfo = "NO";
+                        }
+                        else
+                            donation.ShowDonationInfo = "YES";
+
                         donateService.Insert(donation);
 
                         this.updateCollectedMoney(Convert.ToDouble(coll["Ammount"]), id);
@@ -74,7 +81,7 @@ namespace layeredFundRaiserSystem.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage = "Give valid Amount";
+                        ViewBag.ErrorMessage = "Invalid Donation Amount. You cannot donate less than 50/=";
                     }
                 }
                 else

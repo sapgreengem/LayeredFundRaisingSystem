@@ -25,7 +25,7 @@
 
                 <img class="img-responsive" style="height:400px; width:100%;" src="~/PostImages/@Model.PostImage" />
                 <br />
-                
+
                 <h4>Description</h4>
                 <hr />
                 <p style="text-align:justify">@Model.PostDetails</p>
@@ -36,15 +36,15 @@
         <div class="col-md-4">
             <div class="demo-content">
                 <div style="padding-top:30%">
-                        <h4 class="text-center">Collected <strong>@Model.CollectedAmount.ToString("0.00") TK</strong>  of <strong>@Model.RequiredAmount.ToString("0.00") TK</strong>  </h4>
+                    <h4 class="text-center">Collected <strong>@Model.CollectedAmount.ToString("0.00") TK</strong>  of <strong>@Model.RequiredAmount.ToString("0.00") TK</strong>  </h4>
                     <br />
-                        <br />
+                    <br />
 
 
-                        @if (Model.RequiredAmount > Model.CollectedAmount)
-                        {
-                            <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
-                        }
+                    @if (Model.RequiredAmount > Model.CollectedAmount)
+                    {
+                        <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
+                    }
                     <div style="padding-top:15%">
                         <h4 class="pull-left"><strong>@ViewBag.NumberOfPeopleDonated</strong> people donated</h4>
                         <h4 class="pull-right"><strong>@(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) days</strong>  remaining </h4>
@@ -81,12 +81,12 @@
                 <h4>Share Now</h4>
                 <hr />
                 <div id="shareBtn" style="float:left">
-                    <img src="~/icon/facebook-logo-png-2335.png" class="img-fluid " height="80" width="90"/>
+                    <img src="~/icon/facebook-logo-png-2335.png" class="img-fluid " height="80" width="90" />
                 </div>
 
                 @*<a href="#"><img src="~/icon/facebook-logo-png-2335.png" height="80" width="90"/></a>*@
-                <a href="#"><img src="~/icon/google-plus-logo-1263.png" height="70" width="70"/></a>
-                <a href="#"><img src="~/icon/twitter-icon-81.png" height="80" width="80"/></a>
+                <a href="#"><img src="~/icon/google-plus-logo-1263.png" height="70" width="70" /></a>
+                <a href="#"><img src="~/icon/twitter-icon-81.png" height="80" width="80" /></a>
             </div>
 
             <div class="demo-content" style="padding-top:5%">
@@ -97,14 +97,29 @@
                         int processed = 0;
                         foreach (var item in ViewBag.DonorList)
                         {
-                            <div style="float:left">
-                                <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" style="border-radius:50%;"/>
-                            </div>
-                            <div>
-                                <b><span>&nbsp;&nbsp;@item.FirstName</span></b>
-                                <br />
-                                <span>&nbsp;&nbsp;Donated: <strong>@item.DonationAmount.ToString("0.00")/=</strong></span>
-                            </div>
+                            if (item.ShowDonationInfo == "NO")
+                            {
+                                <div style="float:left">
+                                    <img src="~/icon/boss-512.png" height="50" width="50" style="border-radius:50%;" />
+                                </div>
+                                <div>
+                                    <b><span>&nbsp;&nbsp;Annonimus</span></b>
+                                    <br />
+                                    <span>&nbsp;&nbsp;Donated: <strong>@item.DonationAmount.ToString("0.00")/=</strong></span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="float:left">
+                                    <img src="~/ProfilePictures/@item.ProfilePicture" height="50" width="50" style="border-radius:50%;" />
+                                </div>
+                                <div>
+                                    <b><span>&nbsp;&nbsp;@item.FirstName</span></b>
+                                    <br />
+                                    <span>&nbsp;&nbsp;Donated: <strong>@item.DonationAmount.ToString("0.00")/=</strong></span>
+                                </div>
+                            }
+
                             <hr style="background-color:unset; height:unset; border-radius:unset;" />
                             if (++processed == 6)
                             {
@@ -145,7 +160,7 @@
 
 
 <script type="text/javascript">
-    
+
     document.getElementById('shareBtn').onclick = function () {
         FB.ui({
             method: 'share',

@@ -19,16 +19,19 @@
                             <label for="method">Choose paymetnt method</label>
                             <br />
                             @foreach (var item in ViewBag.TransectionMethodName)
-                            {
-                                <input type="radio" name="method" value="@item.MethodId"/> @item.MethodName
-                            }
+        {
+                    <input type="radio" name="method" value="@item.MethodId" /> @item.MethodName
+}
                         </div>
 
                         <div class="form-group">
-                            <label for="Ammount">Enter Ammount</label>
-                            <input type="number" class="form-control" name="Ammount" step="0.01" min="1"/>
+                            <label for="Amount">Enter Amount</label>
+                            <input type="number" class="form-control" name="Ammount" step="0.01" min="1" />
                         </div>
-                        <h4 class="text-danger">@ViewBag.ErrorMessage</h4>
+                        <div class="form-group">
+                            <p style="text-align:center"><input type="checkbox" name="ShowInfo"/> Don't want to show my information</p>
+                        </div>
+                        <p class="text-danger">@ViewBag.ErrorMessage</p>
                         <button type="submit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-shopping-cart"></i> Proceed To Payment</button>
                     </div>
                 </div>

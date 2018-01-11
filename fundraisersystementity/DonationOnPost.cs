@@ -15,6 +15,7 @@ namespace FundRaiserSystemEntity
         public int TransectionId { get; set; }
         public int PostId { get; set; }
         public int UserInformationId { get; set; }
+        public string ShowDonationInfo { get; set; }
 
         public UserInformation UserInformation { get; set; }
         public FundRequestPost FundRequestPost { get; set; }

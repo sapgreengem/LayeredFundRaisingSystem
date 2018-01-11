@@ -13,6 +13,7 @@ namespace layeredFundRaiserSystem.Models
         public int TransectionId { get; set; }
         public int PostId { get; set; }
         public int UserInformationId { get; set; }
+        public string ShowDonationInfo { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -100,14 +100,15 @@ namespace FundRaiserSystemData
             donation.PostId = donationOnPost.PostId;
             donation.UserInformationId = donationOnPost.UserInformationId;
             donation.TransectionId = donationOnPost.TransectionId;
+            donation.ShowDonationInfo = donationOnPost.ShowDonationInfo;
 
             return this.context.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            DonationOnPost dept = this.context.DonationOnPosts.SingleOrDefault(x => x.DonationId == id);
-            this.context.DonationOnPosts.Remove(dept);
+            DonationOnPost donationOnPost = this.context.DonationOnPosts.SingleOrDefault(x => x.DonationId == id);
+            this.context.DonationOnPosts.Remove(donationOnPost);
 
             return this.context.SaveChanges();
         }
