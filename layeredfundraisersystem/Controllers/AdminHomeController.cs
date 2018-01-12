@@ -4,6 +4,7 @@ using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,12 +37,39 @@ namespace layeredFundRaiserSystem.Controllers
                 };
                 joinData.Add(addData);
             }
+            //-----
+            //string con = "Data Source=.;Initial Catalog =CRUD;User Id=sa;Password=sql@123";
+            //SqlConnection db = new SqlConnection(con);
+            //db.Open();
+            //string insert = "select DonorName , sum(DonationAmount) as TotalDonationAmount from " +
+            //                "( select d.DonationAmount, u.FirstName as DonorName"+
+            //                 "from DonationOnPosts d, UserInformations u "+
+            //                 "where d.UserInformationId = u.UserInformationId) as a group by DonorName order by TotalDonationAmount DESC";
+            //SqlCommand cmd = new SqlCommand(insert, db);
+            //int m = cmd.ExecuteNonQuery();
+            //if (m != 0)
+            //{
+            //    Response.Write("  
+            //    < script > alert('Data Inserted !!') </ script >
+            //    ");  
+            //}
+            //else
+            //{
+            //    Response.Write("  
+            //    < script > alert('Data Inserted !!') </ script >
+            //    ");  
+            //}
+            //db.Close();
 
+            //-----
             //.GroupBy(item => item.GroupKey)
             //.Select(group => group.Sum(item => item.Aggregate));
 
             ViewBag.TopDonarListNew = joinData.GroupBy(a => a.UserInformationId)
-                .Select(a => new { Name = a.FirstOrDefault().FirstName, TotalDonationAmount = a.Sum(b => b.DonationAmount) }).OrderByDescending(a => a.TotalDonationAmount).ToList();
+                .Select(a => new { Name = a.FirstOrDefault().FirstName, TotalDonationAmount = a.Sum(b => b.DonationAmount) })
+                .OrderByDescending(a => a.TotalDonationAmount).ToList();
+
+
 
             ViewBag.TopDonarList = userInformation;
             List<double> val = new List<double>();
