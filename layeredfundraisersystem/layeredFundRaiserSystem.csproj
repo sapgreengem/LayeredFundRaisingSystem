@@ -220,6 +220,7 @@
     <Compile Include="Models\LoadAllCategory.cs" />
     <Compile Include="Models\PostComment.cs" />
     <Compile Include="Models\ShowUserName.cs" />
+    <Compile Include="Models\TopDonorList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

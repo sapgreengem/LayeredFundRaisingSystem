@@ -10,48 +10,12 @@
 </script>
 
 <h2>Top Donor</h2>
-<div class="container">
-    <div class="row">
-        <div class="col col-md-8">
-            <table class="table-bordered pull-left">
-                <thead>
-                    <tr>
-                        <th>User Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.TopDonarList)
-                    {
-                        <tr>
-                            <td>@item.FirstName @item.LastName</td>
-                        </tr>
 
-                    }
-                </tbody>
-            </table>
-            <table class="table-bordered" style="float:left">
-                <thead>
-                    <tr>
-                        <th>Donatated Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in ViewBag.Sum)
-                    {
-                        <tr>
-                            <td>@item.ToString("0.00")/=</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
 <div class="container">
     <div class="row">
         <div class="col col-md-8">
-            <table class="table-bordered pull-left">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>User Name</th>
@@ -62,8 +26,8 @@
                     @foreach (var item in ViewBag.TopDonarListNew)
                     {
                         <tr>
-                            <td>@item</td>
-                            <td>@item</td>
+                            <td>@item.Name</td>
+                            <td>@item.TotalDonationAmount</td>
                         </tr>
                     }
                 </tbody>
