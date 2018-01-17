@@ -47,3 +47,17 @@ hr {
 .btn-primary{
     background-color: #00cc00;
 }
+
+/*.icon-button {
+    outline: none;
+    border: 0;
+    background: transparent;
+}*/
+.icon-button {
+    /*appearance: none;*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+}

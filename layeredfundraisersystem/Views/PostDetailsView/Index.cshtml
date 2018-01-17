@@ -47,11 +47,18 @@
                         <h4 class="pull-left"><strong>@ViewBag.NumberOfPeopleDonated</strong> people donated</h4>
                         <h4 class="pull-right"><strong>@(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) days</strong>  remaining </h4>
                     </div>
+
+
+
+                    @*--------------------------Campain Rating start------------------------*@
+
                     <div style="padding-top:15%">
                         <label>Campain Rating</label>
                         <div class="text-center">
                             <h1 id="RatingAvarage"></h1>
-                            <h5><i class="glyphicon glyphicon-user" id="RatingPeopleCount"></i> Rated</h5>
+                            <span><i class="glyphicon glyphicon-user"></i></span>
+                            <span id="RatingPeopleCount"></span>
+                            <span>Rated</span>
                         </div>
                     </div>
                     <div style="text-align:center; padding-top:3%">
@@ -59,19 +66,25 @@
                         @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                         {
                             <label>Rate This Campain:</label>
+
+                            <button class="icon-button" value="1" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button" value="2" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button" value="3" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button" value="4" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button" value="5" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <br />
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star-empty"></i>
                             <i class="glyphicon glyphicon-star-empty" id="four"></i>
                             <i class="glyphicon glyphicon-star-empty"></i>
-                            @*<form method="post">
-                                <input type="number" name="rating" />
-                                <input type="hidden" value="@Convert.ToInt32(Session["UserInformationId"])" name="UserInformationId" />
-                                <input type="hidden" value="@Model.PostId" name="PostId" />
-                                <input type="submit" name="submitRating" value="rate" />
-                            </form>*@
                         }
                     </div>
+
+                    @*--------------------------Campain Rating end------------------------*@
+
+
+
 
 
 
@@ -285,7 +298,7 @@
     $(document).ready(function () {
         LoadRatings();
         $("#four").click(function () {
-            alert("clicked 4");
+            alert("Clicked 4");
             var login = true;
 
             $.ajax({
@@ -312,7 +325,7 @@
                     type: "GET",
                     contentType: 'application/json; charset=utf-8',
                     async: true,
-                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: 4 },
+                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: 4 /*$("#rating").val()*/},
                     success: function (response) {
                         var data = response.list;
                         $("#RatingAvarage").html(data.RatingAvarage);
