@@ -53,9 +53,81 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
 
+            //this.UserPostRating(id);
+
             return View(post);
         }
-        
+
+        //[HttpPost]
+        //public ActionResult Index(int id, FormCollection collection)
+        //{
+
+        //    if (Session["UserInformationId"] != null && Session["Login"] != null)
+        //    {
+        //        IUserRatingService userRatingService = ServiceFactory.GetUserRatingService();
+        //        UserRating userRating = new UserRating();
+        //        userRating.PostId = Convert.ToInt32(collection["PostId"]);
+        //        userRating.Rating = Convert.ToInt32(collection["rating"]);
+        //        userRating.UserInformationId = Convert.ToInt32(collection["UserInformationId"]);
+        //        userRatingService.Insert(userRating);
+
+        //    }
+        //    FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+
+        //    if (Session["AdminLogin"] != null)
+        //    {
+        //        Response.Redirect("/AdminHome");
+        //    }
+
+        //    if (post == null)
+        //    {
+        //        Response.Redirect("/Error");
+        //    }
+
+        //    if (Session["Login"] != null)
+        //    {
+        //        ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+        //    }
+
+        //    post.ClickCounter += 1;
+        //    service.Update(post);
+
+        //    if (Session["Login"] == null)
+        //    {
+        //        Session["StoreURL"] = "/PostDetailsView/Index/" + id;
+        //    }
+        //    ViewBag.UserName = this.loadFundPostUserName(id);
+        //    ViewBag.PercentageFunded = (post.CollectedAmount / post.RequiredAmount) * 100;
+
+        //    ViewBag.NumberOfPeopleDonated = donateService.GetAll().Where(q => q.PostId == id).Count();
+
+        //    ViewBag.DonorList = this.loadAllDonor(id);
+
+        //    ViewBag.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
+
+        //    //this.UserPostRating(id);
+        //    return View(post);
+        //}
+
+        //private void UserPostRating(int id)
+        //{
+        //    var RatingAvarage = 0.0;
+        //    var RatingPeopleCount = 0;
+        //    IUserRatingService userRatingService = ServiceFactory.GetUserRatingService();
+        //    List<UserRating> userRating = userRatingService.GetAll().Where(a => a.PostId == id).ToList();
+        //    if (userRating.Count() > 0)
+        //    {
+        //        RatingAvarage = userRating.Average(a => a.Rating);
+        //        RatingPeopleCount = userRating.Count();
+        //    }
+        //    else
+        //    {
+        //        RatingAvarage = 0;
+        //        RatingPeopleCount = 0;
+        //    }
+            
+        //}
+
         public IEnumerable loadAllDonor(int id) //Load All Donors donated on this post
         {
 
@@ -118,5 +190,51 @@ namespace layeredFundRaiserSystem.Controllers
             }
             return Json(new { list = postComment }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public JsonResult Rating(int PostID, int UserInfoID, int Rating)
+        {
+            IUserRatingService userRatingService = ServiceFactory.GetUserRatingService();
+
+            if (UserInfoID != 0 && Rating != 0 )
+            {
+                UserRating userRating = new UserRating();
+                userRating.PostId = PostID;
+                userRating.Rating = Rating;
+                userRating.UserInformationId = UserInfoID;
+                userRatingService.Insert(userRating);
+            }
+            
+            //this.UserPostRating(PostID);
+
+            var RatingAvarage = 0.0;
+            var RatingPeopleCount = 0;
+            //IUserRatingService userRatingService = ServiceFactory.GetUserRatingService();
+            List<UserRating> userRatings = userRatingService.GetAll().Where(a => a.PostId == PostID).ToList();
+            if (userRatings.Count() > 0)
+            {
+                RatingAvarage = userRatings.Average(a => a.Rating);
+                RatingPeopleCount = userRatings.Count();
+            }
+            else
+            {
+                RatingAvarage = 0;
+                RatingPeopleCount = 0;
+            }
+
+            Rating rating = new Rating();
+            rating.RatingAvarage = RatingAvarage;
+            rating.RatingPeopleCount = RatingPeopleCount;
+
+            return Json(new { list = rating }, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+
+    public class Rating
+    {
+        public double RatingAvarage { get; set; }
+        public int RatingPeopleCount { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace FundRaiserSystemData
         public virtual DbSet<TransectionMethodName> TransectionMethodNames { get; set; }
         public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
+        public virtual DbSet<UserRating> UserRatings { get; set; }
         public virtual DbSet<UserInformation> UserInformations { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
     }

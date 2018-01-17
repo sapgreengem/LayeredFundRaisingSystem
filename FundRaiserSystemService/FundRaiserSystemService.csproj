@@ -61,6 +61,7 @@
     <Compile Include="IUserCommentService.cs" />
     <Compile Include="IUserInformationService.cs" />
     <Compile Include="IUserLoginService.cs" />
+    <Compile Include="IUserRatingService.cs" />
     <Compile Include="OnlineTransectionService.cs" />
     <Compile Include="PostingCategoryService.cs" />
     <Compile Include="PostProofService.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="UserCommentService.cs" />
     <Compile Include="UserInformationService.cs" />
     <Compile Include="UserLoginService.cs" />
+    <Compile Include="UserRatingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FundRaiserSystemData\FundRaiserSystemData.csproj">

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FundRaiserSystemData;
 
-namespace FundRaiserSystemData
+namespace FundRaiserSystemService
 {
     public interface IUserLoginService
     {

@@ -60,6 +60,10 @@ namespace FundRaiserSystemData
         {
             return new UserCommentDataAccess(new FundRaiserDBContext());
         }
+        public static IUserRatingDataAccess GetUserRatingDataAccess()
+        {
+            return new UserRatingDataAccess(new FundRaiserDBContext());
+        }
         public static IUserInformationDataAccess GetUserInformationDataAccess()
         {
             return new UserInformationDataAccess(new FundRaiserDBContext());

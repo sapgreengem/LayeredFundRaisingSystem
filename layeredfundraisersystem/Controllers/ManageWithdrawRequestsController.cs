@@ -47,7 +47,7 @@ namespace layeredFundRaiserSystem.Controllers
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Fund Cannot Be Transferred <br> Invalid Requested Amount";
+                    ViewBag.ErrorMessage = "Fund Cannot Be Transferred, Invalid Requested Amount";
                 }
             }
             else

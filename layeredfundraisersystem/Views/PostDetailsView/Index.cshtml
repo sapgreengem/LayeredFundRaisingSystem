@@ -35,21 +35,47 @@
 
         <div class="col-md-4">
             <div class="demo-content">
-                <div style="padding-top:30%">
+                <div style="padding-top:25%">
                     <h4 class="text-center">Collected <strong>@Model.CollectedAmount.ToString("0.00") TK</strong>  of <strong>@Model.RequiredAmount.ToString("0.00") TK</strong>  </h4>
-                    <br />
-                    <br />
-
-
-                    @if (Model.RequiredAmount > Model.CollectedAmount)
-                    {
-                        <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
-                    }
-                    <div style="padding-top:15%">
+                    <div style="padding-top:1%">
+                        @if (Model.RequiredAmount > Model.CollectedAmount)
+                        {
+                            <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
+                        }
+                    </div>
+                    <div>
                         <h4 class="pull-left"><strong>@ViewBag.NumberOfPeopleDonated</strong> people donated</h4>
                         <h4 class="pull-right"><strong>@(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) days</strong>  remaining </h4>
                     </div>
-                    <div style="padding-top:35%">
+                    <div style="padding-top:15%">
+                        <label>Campain Rating</label>
+                        <div class="text-center">
+                            <h1 id="RatingAvarage"></h1>
+                            <h5><i class="glyphicon glyphicon-user" id="RatingPeopleCount"></i> Rated</h5>
+                        </div>
+                    </div>
+                    <div style="text-align:center; padding-top:3%">
+
+                        @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
+                        {
+                            <label>Rate This Campain:</label>
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            <i class="glyphicon glyphicon-star-empty" id="four"></i>
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                            @*<form method="post">
+                                <input type="number" name="rating" />
+                                <input type="hidden" value="@Convert.ToInt32(Session["UserInformationId"])" name="UserInformationId" />
+                                <input type="hidden" value="@Model.PostId" name="PostId" />
+                                <input type="submit" name="submitRating" value="rate" />
+                            </form>*@
+                        }
+                    </div>
+
+
+
+                    <div style="padding-top:3%">
                         <label>Collection Completed</label>
                         <div class="progress">
                             @{
@@ -77,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="demo-content" style="padding-top:15%">
+            <div class="demo-content" style="padding-top:14%">
                 <h4>Share Now</h4>
                 <hr />
 
@@ -237,6 +263,66 @@
             }
         });
     });
+
+    //--------------------------------------------------------
+    function LoadRatings() {
+        $.ajax({
+            url: '@Url.Action("Rating", "PostDetailsView")',
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: { PostID: $("#post_id").val(), UserInfoID: 0 , Rating: 0 },
+            success: function (response) {
+                var data = response.list;
+                $("#RatingAvarage").html(data.RatingAvarage);
+                $("#RatingPeopleCount").html(data.RatingPeopleCount);
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        LoadRatings();
+        $("#four").click(function () {
+            alert("clicked 4");
+            var login = true;
+
+            $.ajax({
+                url: '@Url.Action("CheckLogin", "Login")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: {},
+                success: function (response) {
+                    if (response.message != "") {
+                        login = false;
+                        alert('Please Login To Rate');
+                    }
+                }
+            });
+
+            if (login == true) {
+                $("#four").css("color", "red");
+
+                $.ajax({
+                    url: '@Url.Action("Rating", "PostDetailsView")',
+                    dataType: "json",
+                    type: "GET",
+                    contentType: 'application/json; charset=utf-8',
+                    async: true,
+                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: 4 },
+                    success: function (response) {
+                        var data = response.list;
+                        $("#RatingAvarage").html(data.RatingAvarage);
+                        $("#RatingPeopleCount").html(data.RatingPeopleCount);
+                    }
+                });
+            }
+        });
+    });
+
 </script>
 
 

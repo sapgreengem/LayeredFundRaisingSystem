@@ -61,6 +61,10 @@ namespace FundRaiserSystemService
         {
             return new UserCommentService(DataAccessFactory.GetUserCommentDataAccess());
         }
+        public static IUserRatingService GetUserRatingService()
+        {
+            return new UserRatingService(DataAccessFactory.GetUserRatingDataAccess());
+        }
         public static IUserInformationService GetUserInformationService()
         {
             return new UserInformationService(DataAccessFactory.GetUserInformationDataAccess());
