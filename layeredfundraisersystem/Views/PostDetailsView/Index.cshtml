@@ -67,26 +67,15 @@
                         {
                             <label>Rate This Campain:</label>
 
-                            <button class="icon-button" value="1" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button" value="2" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button" value="3" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button" value="4" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button" value="5" id="rating"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="1"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="2" ><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="3" ><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="4"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="5"><i class="glyphicon glyphicon-star-empty"></i></button>
                             <br />
-                            <i class="glyphicon glyphicon-star-empty"></i>
-                            <i class="glyphicon glyphicon-star-empty"></i>
-                            <i class="glyphicon glyphicon-star-empty"></i>
-                            <i class="glyphicon glyphicon-star-empty" id="four"></i>
-                            <i class="glyphicon glyphicon-star-empty"></i>
+                            
                         }
                     </div>
-
-                    @*--------------------------Campain Rating end------------------------*@
-
-
-
-
-
 
                     <div style="padding-top:3%">
                         <label>Collection Completed</label>
@@ -297,8 +286,9 @@
 
     $(document).ready(function () {
         LoadRatings();
-        $("#four").click(function () {
-            alert("Clicked 4");
+        $(".rating").click(function () {
+            var rating = $(this).attr('id'); // $(this) refers to button that was clicked
+            alert(rating);
             var login = true;
 
             $.ajax({
@@ -317,15 +307,14 @@
             });
 
             if (login == true) {
-                $("#four").css("color", "red");
-
+                
                 $.ajax({
                     url: '@Url.Action("Rating", "PostDetailsView")',
                     dataType: "json",
                     type: "GET",
                     contentType: 'application/json; charset=utf-8',
                     async: true,
-                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: 4 /*$("#rating").val()*/},
+                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: rating},
                     success: function (response) {
                         var data = response.list;
                         $("#RatingAvarage").html(data.RatingAvarage);

@@ -127,6 +127,9 @@ namespace layeredFundRaiserSystem.Controllers
 
             if (UserInfoID != 0 && Rating != 0 )
             {
+                //var ExistingRating = userRatingService.
+
+
                 UserRating userRating = new UserRating();
                 userRating.PostId = PostID;
                 userRating.Rating = Rating;
@@ -140,7 +143,7 @@ namespace layeredFundRaiserSystem.Controllers
             List<UserRating> userRatings = userRatingService.GetAll().Where(a => a.PostId == PostID).ToList();
             if (userRatings.Count() > 0)
             {
-                RatingAvarage = userRatings.Average(a => a.Rating);
+                RatingAvarage = Math.Round(userRatings.Average(a => a.Rating), 1);
                 RatingPeopleCount = userRatings.Count();
             }
             else
