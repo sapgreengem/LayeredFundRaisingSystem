@@ -71,5 +71,10 @@ namespace FundRaiserSystemData
             this.context.UserRatings.Remove(rating);
             return this.context.SaveChanges();
         }
+
+        public UserRating GetSingle(int postID, int userInfo)
+        {
+            return this.context.UserRatings.SingleOrDefault(x => x.PostId == postID && x.UserInformationId == userInfo);
+        }
     }
 }

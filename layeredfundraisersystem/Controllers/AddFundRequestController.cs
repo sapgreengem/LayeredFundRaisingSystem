@@ -68,6 +68,7 @@ namespace layeredFundRaiserSystem.Controllers
                     post.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
                     post.CategoryId = Convert.ToInt32(form["Category"]);
                     post.ClickCounter = 1;
+                    post.AverageRating = 0;
 
                     // extract only the filename
                     var fileName = Path.GetFileName(file.FileName);

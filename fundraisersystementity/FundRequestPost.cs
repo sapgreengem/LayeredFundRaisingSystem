@@ -22,6 +22,7 @@ namespace FundRaiserSystemEntity
         public int CategoryId { get; set; }
         public Nullable<int> RefundId { get; set; }
         public Nullable<int> ClickCounter { get; set; }
+        public Nullable<double> AverageRating { get; set; }
 
         public PostingCategory PostingCategory { get; set; }
         public UserInformation UserInformation { get; set; }

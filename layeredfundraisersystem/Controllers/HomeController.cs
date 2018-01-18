@@ -17,7 +17,7 @@ namespace layeredFundRaiserSystem.Controllers
         public ActionResult Index()
         {
             this.ChangePostStatus();
-            this.topViewed();
+            this.topRated();
             this.trending();
             this.recomended();
 
@@ -41,12 +41,12 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public void topViewed()
+        public void topRated()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
                 .Where(a => a.PostStatus == "Active")
-                .OrderByDescending(a => a.ClickCounter);
+                .OrderByDescending(a => a.AverageRating);
 
             List<FundRequestPost> top = new List<FundRequestPost>();
             List<FundRequestPost> nextTop = new List<FundRequestPost>();

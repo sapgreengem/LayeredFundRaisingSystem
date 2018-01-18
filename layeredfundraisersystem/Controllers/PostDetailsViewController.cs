@@ -127,14 +127,22 @@ namespace layeredFundRaiserSystem.Controllers
 
             if (UserInfoID != 0 && Rating != 0 )
             {
-                //var ExistingRating = userRatingService.
+                UserRating ExistingRating = userRatingService.GetSingle(PostID, UserInfoID);
+                
 
-
-                UserRating userRating = new UserRating();
-                userRating.PostId = PostID;
-                userRating.Rating = Rating;
-                userRating.UserInformationId = UserInfoID;
-                userRatingService.Insert(userRating);
+                if (ExistingRating != null)
+                {
+                    ExistingRating.Rating = Rating;
+                    userRatingService.Update(ExistingRating);
+                }
+                else
+                {
+                    UserRating userRating = new UserRating();
+                    userRating.PostId = PostID;
+                    userRating.Rating = Rating;
+                    userRating.UserInformationId = UserInfoID;
+                    userRatingService.Insert(userRating);
+                }
             }
             
             var RatingAvarage = 0.0;
@@ -145,6 +153,11 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 RatingAvarage = Math.Round(userRatings.Average(a => a.Rating), 1);
                 RatingPeopleCount = userRatings.Count();
+
+                IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+                FundRequestPost fundRequestPost = service.Get(PostID);
+                fundRequestPost.AverageRating = RatingAvarage;
+                service.Update(fundRequestPost);
             }
             else
             {
