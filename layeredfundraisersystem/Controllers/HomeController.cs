@@ -62,6 +62,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     top.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -73,6 +74,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextTop.Add(fundRequestPost);
                 }
                 count++;
@@ -104,6 +106,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     trending.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -115,6 +118,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextTrending.Add(fundRequestPost);
                 }
                 count++;
@@ -144,6 +148,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     recomended.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -155,6 +160,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextRecomended.Add(fundRequestPost);
                 }
                 count++;

@@ -55,7 +55,11 @@
                     <div style="padding-top:15%">
                         <label>Campain Rating</label>
                         <div class="text-center">
-                            <h1 id="RatingAvarage"></h1>
+                            <h2>
+                                <span id="RatingAvarage"></span>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </h2>
+
                             <span><i class="glyphicon glyphicon-user"></i></span>
                             <span id="RatingPeopleCount"></span>
                             <span>Rated</span>
@@ -68,12 +72,12 @@
                             <label>Rate This Campain:</label>
 
                             <button class="icon-button rating" id="1"><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button rating" id="2" ><i class="glyphicon glyphicon-star-empty"></i></button>
-                            <button class="icon-button rating" id="3" ><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="2"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="3"><i class="glyphicon glyphicon-star-empty"></i></button>
                             <button class="icon-button rating" id="4"><i class="glyphicon glyphicon-star-empty"></i></button>
                             <button class="icon-button rating" id="5"><i class="glyphicon glyphicon-star-empty"></i></button>
                             <br />
-                            
+
                         }
                     </div>
 
@@ -306,7 +310,7 @@
             });
 
             if (login == true) {
-                
+
                 $.ajax({
                     url: '@Url.Action("Rating", "PostDetailsView")',
                     dataType: "json",
