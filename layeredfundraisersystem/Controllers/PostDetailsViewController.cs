@@ -16,6 +16,7 @@ namespace layeredFundRaiserSystem.Controllers
 
         IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
+        IPostProofService postProofService = ServiceFactory.GetPostProofService();
         ShowUserName name = new ShowUserName();
         // GET: PostDetailsView
         public ActionResult Index(int id=0)
@@ -50,6 +51,8 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.NumberOfPeopleDonated = donateService.GetAll().Where(q => q.PostId == id).Count();
 
             ViewBag.DonorList = this.loadAllDonor(id);
+
+            ViewBag.PostProof = postProofService.GetAll().Where(a => a.PostId == id).ToList();
 
             ViewBag.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
 

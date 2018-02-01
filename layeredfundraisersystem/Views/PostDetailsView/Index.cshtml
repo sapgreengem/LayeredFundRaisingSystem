@@ -29,7 +29,23 @@
                 <h4>Description</h4>
                 <hr />
                 <p style="text-align:justify">@Model.PostDetails</p>
+
+                <label>Proofs</label>
                 <br />
+                @{
+                    var a = 0;
+                    foreach (var item in ViewBag.PostProof)
+                    {
+                        a++;
+                        <div style="float:left; text-align:center">
+                            <a href="~/PostProofImages/@item.PictureForProof">
+                                <img src="~/icon/proofimages.png" height="50" width="50" alt="Alternate Text" />
+                                <br />
+                                <span>Proof @a</span>
+                            </a>
+                        </div>
+                    }
+                }
             </div>
         </div>
 

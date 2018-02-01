@@ -15,70 +15,90 @@
     <div class="row">
 
         @*<div class="col-md-8 col-md-offset-2">*@
-            <div>
-                <form method="post" name="cat">
-                    <div style="float:left">
-                        <span>Find By Category</span>
-                        <select name="Category" class="form-control" onchange="this.form.submit()">
-                            @foreach (var ListItem in ViewBag.Categories)
-                            {
-                                <option value="@ListItem.CategoryId">@ListItem.CategoryName</option>
-                            }
-                        </select>
-                    </div>
-                </form>
-                <form method="post" name="search">
-                    <div class="pull-right">
-                        <div style="float:left;"><input type="text" placeholder="Search By Name" class="form-control" name="searchName" id="searchName" /></div>
-                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                        <br />
-                        <span id="error_searchName" class="text-danger"></span>
-                    </div>
-                </form>
-            </div>
+        <div>
+            <form method="post" name="cat">
+                <div style="float:left; width:330px">
+                    <label style="padding-top:1.5%">Find By Category</label>
+                    <select name="Category" class="form-control pull-right" onchange="this.form.submit()" style="width:200px">
+                        @foreach (var ListItem in ViewBag.Categories)
+                        {
+                            <option value="@ListItem.CategoryId">@ListItem.CategoryName</option>
+                        }
+                    </select>
+                </div>
+            </form>
+            <form method="post" name="search">
+                <div class="pull-right">
+                    <div style="float:left;"><input type="text" placeholder="Search By Name" class="form-control" name="searchName" id="searchName" /></div>
+                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    <br />
+                    <span id="error_searchName" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
 
-            <br />
-            <br />
+        <br />
+        <br />
 
-            <table class="table">
-                @foreach (var item in ViewBag.Posts)
-                {
-                    <tr>
-                        <td>
-                            <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+        <table class="table">
+            @foreach (var item in ViewBag.Posts)
+            {
+                <tr>
+                    <td>
+                        <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+                            <div class="image">
                                 <img src="~/PostImages/@item.PostImage" alt="N/A" style="width:300px; height:150px">
-                                <div class="progress" style="width:300px">
-                                    <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
-                                        @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
-                                    </div>
+                                <h3>@item.AverageRating.ToString("0.0") <i class="glyphicon glyphicon-star"></i></h3>
+                            </div>
+                            <div class="progress" style="width:300px">
+                                <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
+                                    @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
                                 </div>
-                            </a>
-                        </td>
-                        <td>
-                            <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
-                                <h4>@item.PostTitle</h4>
-                            </a>
-                            <p style="height:80px; overflow:hidden; text-align:justify">@item.PostDetails</p>
-                            <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
-                        </td>
-                        <td style="vertical-align:middle; text-align:center; width:15%">
-                            <h5><strong>Targeted</strong> @item.RequiredAmount.ToString("0.00")/=</h5>
-                            <h5><strong>Raised</strong> @item.CollectedAmount.ToString("0.00")/=</h5>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+                            <h4>@item.PostTitle</h4>
+                        </a>
+                        <p style="height:80px; overflow:hidden; text-align:justify">@item.PostDetails</p>
+                        <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
+                    </td>
+                    <td style="vertical-align:middle; text-align:center; width:15%">
+                        <h5><strong>Targeted</strong> @item.RequiredAmount.ToString("0.00")/=</h5>
+                        <h5><strong>Raised</strong> @item.CollectedAmount.ToString("0.00")/=</h5>
 
-                            @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
-                            {
-                                //Session["DonateNowPostID"] = @item.PostId;
-                                <a class="btn btn-primary" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
-                            }
-                        </td>
-                    </tr>
-                }
-            </table>
+                        @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
+                        {
+                            //Session["DonateNowPostID"] = @item.PostId;
+                            <a class="btn btn-primary" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
         @*</div>*@
 
     </div>
 </div>
+@section styles{
+
+<style type="text/css">
+    .image {
+        position: relative;
+        width: 100%; /* for IE 6 */
+    }
+
+    h3 {
+        position: absolute;
+        top: 65%;
+        left: 78%;
+        width: 100%;
+        color: #DEB887;
+    }
+    </style>
+}
 
 <script type="text/javascript">
     $(function () {

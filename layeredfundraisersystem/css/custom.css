@@ -33,7 +33,7 @@ hr {
 }
 
 .progress {
-    background-color: #DEB887;
+    background-color: cyan /*#DEB887*/;
     width: 100%;
     margin: 9px -32px 7px -4px;
     padding: 1px;
@@ -44,7 +44,7 @@ hr {
     background-color: #00cc00;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #00cc00;
 }
 
@@ -61,6 +61,3 @@ hr {
     border: 0;
     background: transparent;
 }
-
-
-
