@@ -41,8 +41,10 @@
         <br />
 
         <table class="table">
-            @foreach (var item in ViewBag.Posts)
+            @if(ViewBag.Posts != null)
             {
+                foreach (var item in ViewBag.Posts)
+                {
                 <tr>
                     <td>
                         <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
@@ -77,6 +79,11 @@
                     </td>
                 </tr>
             }
+            }
+            else{ 
+                @ViewBag.PostsError
+            }
+            
         </table>
         @*</div>*@
 

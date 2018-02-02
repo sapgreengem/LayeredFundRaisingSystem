@@ -91,7 +91,12 @@ namespace layeredFundRaiserSystem.Controllers
             else if (search["searchName"] != null && cat["Category"] == null)
             {
                 ViewBag.Categories = this.getCategory();
-                ViewBag.Posts = this.GetPostsByTitle(search["searchName"].ToString()).ToList();
+                var res = this.GetPostsByTitle(search["searchName"].ToString()).ToList();
+
+                if (res == null)
+                    ViewBag.PostsError = "No Matching Result Found";
+                else
+                    ViewBag.Posts = res;
             }
             #endregion SearchByText
             //else
