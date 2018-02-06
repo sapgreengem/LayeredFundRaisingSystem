@@ -29,8 +29,10 @@
             </form>
             <form method="post" name="search">
                 <div class="pull-right">
-                    <div style="float:left;"><input type="text" placeholder="Search By Name" class="form-control" name="searchName" id="searchName" /></div>
-                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    <div style="float:left;">
+                        <input type="text" placeholder="Search By Name" class="form-control" name="searchName" id="searchName" />
+                    </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
                     <br />
                     <span id="error_searchName" class="text-danger"></span>
                 </div>
@@ -40,70 +42,75 @@
         <br />
         <br />
 
-        <table class="table">
-            @if(ViewBag.Posts != null)
+        @{
+            if (ViewBag.Posts != null)
             {
-                foreach (var item in ViewBag.Posts)
-                {
-                <tr>
-                    <td>
-                        <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
-                            <div class="image">
-                                <img src="~/PostImages/@item.PostImage" alt="N/A" style="width:300px; height:150px">
-                                <h3>@item.AverageRating.ToString("0.0") <i class="glyphicon glyphicon-star"></i></h3>
-                            </div>
-                            <div class="progress" style="width:300px">
-                                <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
-                                    @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
-                                </div>
-                            </div>
-                        </a>
-                    </td>
-                    <td>
-                        <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
-                            <h4>@item.PostTitle</h4>
-                        </a>
-                        <p style="height:80px; overflow:hidden; text-align:justify">@item.PostDetails</p>
-                        <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
-                    </td>
-                    <td style="vertical-align:middle; text-align:center; width:15%">
-                        <h5><strong>Targeted</strong> @item.RequiredAmount.ToString("0.00")/=</h5>
-                        <h5><strong>Raised</strong> @item.CollectedAmount.ToString("0.00")/=</h5>
+                <table class="table">
 
-                        @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
-                        {
-                            //Session["DonateNowPostID"] = @item.PostId;
-                            <a class="btn btn-primary" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
-                        }
-                    </td>
-                </tr>
+                    @foreach (var item in ViewBag.Posts)
+                    {
+                    <tr>
+                        <td>
+                            <a style="color:black" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+                                <div class="image">
+                                    <img src="~/PostImages/@item.PostImage" alt="N/A" style="width:300px; height:150px;">
+                                    <h3>@item.AverageRating.ToString("0.0") <i class="glyphicon glyphicon-star"></i></h3>
+                                </div>
+                                <div class="progress" style="width:300px">
+                                    <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount) * 100)%; color:White">
+                                        @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
+                                    </div>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+                                <h4>@item.PostTitle</h4>
+                            </a>
+                            <p style="height:80px; overflow:hidden; text-align:justify">@item.PostDetails</p>
+                            <a class="pull-right" href="/PostDetailsView/Index/@item.PostId">Details</a>
+                        </td>
+                        <td style="vertical-align:middle; text-align:center; width:15%">
+                            <h5><strong>Targeted</strong> @item.RequiredAmount.ToString("0.00")/=</h5>
+                            <h5><strong>Raised</strong> @item.CollectedAmount.ToString("0.00")/=</h5>
+
+                            @if (item.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
+                            {
+                                //Session["DonateNowPostID"] = @item.PostId;
+                                <a class="btn btn-primary" href="/DonateOnPost/Index/@item.PostId">Donate Now</a>
+                            }
+                        </td>
+                    </tr>
+                    }
+                </table>
+
             }
+            else
+            {
+                <h4>@ViewBag.PostsError</h4>
             }
-            else{ 
-                @ViewBag.PostsError
-            }
-            
-        </table>
+        }
+
         @*</div>*@
 
     </div>
 </div>
 @section styles{
 
-<style type="text/css">
-    .image {
-        position: relative;
-        width: 100%; /* for IE 6 */
-    }
+    <style type="text/css">
+        .image {
+            position: relative;
+            width: 100%; /* for IE 6 */
+        }
 
-    h3 {
-        position: absolute;
-        top: 65%;
-        left: 78%;
-        width: 100%;
-        color: #DEB887;
-    }
+        h3 {
+            position: absolute;
+            top: 65%;
+            left: 78%;
+            width: 100%;
+            color: #DEB887;
+        }
     </style>
 }
 

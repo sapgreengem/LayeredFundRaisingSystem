@@ -3,12 +3,23 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Reports</h1>
-<div>
-    <ul>
-        <li><a href="/AdminHome/TopDonor">Top Donor</a></li>
-        <li><a href="/AdminHome/TopDonatedPosts">Top Donated Posts</a></li>
-        <li><a href="#/AdminHome/CollectedAmmountOfMonth">Collected AmmountOf Month</a></li>
-        <li><a href="/AdminHome/MostViewedPosts">Most Viewed Posts</a></li>
-    </ul>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4" style="border:solid">
+            <h1>Running Campains</h1>
+            <h1>@ViewBag.TotalActivePosts</h1>
+        </div>
+        <div class="col-md-4" style="border:solid">
+            <h1>Active Users</h1>
+            <h1>@ViewBag.TotalActiveUsers</h1>
+        </div>
+        <div class="col-md-4" style="border:solid">
+            <h1>Total Income</h1>
+            <h1>@ViewBag.TotalIncome</h1>
+        </div>
+        <div class="col-md-4" style="border:solid">
+            <h1>Collected So Far</h1>
+            <h1>@ViewBag.TotalCollection</h1>
+        </div>
+    </div>
 </div>

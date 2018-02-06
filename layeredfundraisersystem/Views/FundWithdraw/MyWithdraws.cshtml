@@ -21,38 +21,42 @@
         <br />
         <div class="container">
             <div class="row">
-                <div>
-                    @if (ViewBag.ErrorMessage == null)
-                    {
-                        <table class="table table-bordered" style="text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>Post Title</th>
-                                    <th>Requested Amount</th>
-                                    <th>Amount After Service Charge</th>
-                                    <th>Requested Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in ViewBag.AllRequests)
-                                {
-                                    if (item.RequestStatus == "Pending")
+                <div class="panel panel-info">
+                    <div class="table tab-pane">
+                        <div class="panel-heading"><strong>Pending Withdraw Requests</strong></div>
+                        @if (ViewBag.ErrorMessage == null)
+                        {
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>Post Title</th>
+                                        <th>Requested Amount</th>
+                                        <th>Amount After Service Charge</th>
+                                        <th>Requested Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.AllRequests)
                                     {
-                                        <tr>
-                                            <td>@item.PostTitle</td>
-                                            <td>@item.WithdrawAmount/=</td>
-                                            <td>@item.WithdrawWithCharge/=</td>
-                                            <td>@item.WithdrawDate</td>
-                                        </tr>
+                                        if (item.RequestStatus == "Pending")
+                                        {
+                                            <tr>
+                                                <td>@item.PostTitle</td>
+                                                <td>@item.WithdrawAmount/=</td>
+                                                <td>@item.WithdrawWithCharge/=</td>
+                                                <td>@item.WithdrawDate</td>
+                                            </tr>
+                                        }
                                     }
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <span>@ViewBag.ErrorMessage</span>
-                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <span>@ViewBag.ErrorMessage</span>
+                        }
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -62,40 +66,44 @@
         <br />
         <div class="container">
             <div class="row">
-                <div>
-                    @if (ViewBag.ErrorMessage == null)
-                    {
-                        <table class="table table-bordered" style="text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>Post Title</th>
-                                    <th>Requested Amount</th>
-                                    <th>Amount After Service Charge</th>
-                                    <th>Requested Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in ViewBag.AllRequests)
-                                {
-                                    if (item.RequestStatus == "Transfered")
+                <div class="panel panel-info">
+                    <div class="table tab-pane">
+                        <div class="panel-heading"><strong>Fund Received</strong></div>
+                        @if (ViewBag.ErrorMessage == null)
+                        {
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th>Post Title</th>
+                                        <th>Requested Amount</th>
+                                        <th>Amount After Service Charge</th>
+                                        <th>Requested Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.AllRequests)
                                     {
-                                        <tr>
-                                            <td>@item.PostTitle</td>
-                                            <td>@item.WithdrawAmount/=</td>
-                                            <td>@item.WithdrawWithCharge/=</td>
-                                            <td>@item.WithdrawDate</td>
-                                        </tr>
+                                        if (item.RequestStatus == "Transfered")
+                                        {
+                                            <tr>
+                                                <td>@item.PostTitle</td>
+                                                <td>@item.WithdrawAmount/=</td>
+                                                <td>@item.WithdrawWithCharge/=</td>
+                                                <td>@item.WithdrawDate</td>
+                                            </tr>
+                                        }
+
                                     }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <span>@ViewBag.ErrorMessage</span>
 
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <span>@ViewBag.ErrorMessage</span>
+                        }
+                    </div>
 
-                    }
                 </div>
             </div>
         </div>

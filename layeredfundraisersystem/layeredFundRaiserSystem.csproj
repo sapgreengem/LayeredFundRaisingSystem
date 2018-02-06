@@ -265,9 +265,9 @@
     <Content Include="Views\MyProfile\ChangePassword.cshtml" />
     <Content Include="Views\UserRegistration\VerifyEmail.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\AdminHome\MostViewedPosts.cshtml" />
-    <Content Include="Views\AdminHome\TopDonatedPosts.cshtml" />
-    <Content Include="Views\AdminHome\TopDonor.cshtml" />
+    <Content Include="Views\AdminReports\MostViewedPosts.cshtml" />
+    <Content Include="Views\AdminReports\TopDonatedPosts.cshtml" />
+    <Content Include="Views\AdminReports\TopDonor.cshtml" />
     <Content Include="Views\AdminReports\Index.cshtml" />
     <Content Include="Views\AdminProfile\Index.cshtml" />
     <Content Include="Views\AdminProfile\Edit.cshtml" />

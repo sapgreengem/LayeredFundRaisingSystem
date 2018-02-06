@@ -1,0 +1,62 @@
+﻿@using System.Linq
+@{
+    ViewBag.Title = "TopDonor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script>
+    $(function () {
+        $(".example").dataTable();
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>Donor Ranking</strong></div>
+                <div class="table tab-pane">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>User Name</th>
+                                <th>Total Donation Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int a = 0;
+                                foreach (var item in ViewBag.TopDonarListNew)
+                                {
+                                    a++;
+                                    <tr class="text-center">
+                                        <td>@a</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.TotalDonationAmount /=</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+        <div class="row">
+            <div class="col col-md-6 col-md-offset-6">
+                <table>
+                    @foreach (var item in ViewBag.Sum)
+                    {
+                        <tr>
+                            <td>@item.ToString()</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>*@
