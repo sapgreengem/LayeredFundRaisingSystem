@@ -4,11 +4,12 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <style>
-    table tr td{
-        padding-left:5%;
+    table tr td {
+        padding-left: 5%;
     }
-    table tr th{
-        text-align:left;
+
+    table tr th {
+        text-align: left;
     }
 </style>
 <div class="container">
@@ -16,67 +17,61 @@
         <div class="col col-md-8 col-md-offset-2">
             <div class="pull-left">
                 <center style="padding-top:30%">
-                    <img src="~/ProfilePictures/@ViewBag.ProfilePic" height="200" width="200" style="border-radius:50%;" />
-                    @foreach (var item in ViewBag.UserInfo)
-                    {
-                        <h3>@item.FirstName @item.LastName </h3>
-                    }
+                    <img src="~/ProfilePictures/@ViewBag.UserInformationTableData.ProfilePicture" height="200" width="200" style="border-radius:50%;" />
+
+                    <h3>@ViewBag.UserInformationTableData.FirstName @ViewBag.UserInformationTableData.LastName </h3>
+
                     <a href="/MyProfile/ChangePassword">Change Password</a>
                 </center>
             </div>
             <div class="pull-right">
                 <table>
-                    @foreach (var item in ViewBag.LoginData)
-                    {
-                        <tr>
-                            <th><h4>Email</h4></th>
-                            <td><h5>@item.Email</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Account Created</h4></th>
-                            <td><h5>@item.UserCreationDate</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Status</h4></th>
-                            <td><h5>@item.Status</h5></td>
-                        </tr>
-                    }
-                    @foreach (var item in ViewBag.UserInfo)
-                    {
-                        <tr>
-                            <th><h4>First Name</h4></th>
-                            <td><h5>@item.FirstName</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Last Name</h4></th>
-                            <td><h5>@item.LastName</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Present Address</h4></th>
-                            <td><h5>@item.PresentAddress</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Permanent Address</h4></th>
-                            <td><h5>@item.PermanentAddress</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Contact No</h4></th>
-                            <td><h5>@item.ContactNo</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>National Id</h4></th>
-                            <td><h5>@item.NationalId</h5></td>
-                        </tr>
-                        <tr>
-                            <th><h4>Country</h4></th>
-                            <td><h5>@item.Country</h5></td>
-                        </tr>
-                    }
+                    <tr>
+                        <th><h4>Email</h4></th>
+                        <td><h5>@ViewBag.UserLoginTableData.Email</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Account Created</h4></th>
+                        <td><h5>@ViewBag.UserLoginTableData.UserCreationDate</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Status</h4></th>
+                        <td><h5>@ViewBag.UserLoginTableData.Status</h5></td>
+                    </tr>
+
+                    <tr>
+                        <th><h4>First Name</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.FirstName</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Last Name</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.LastName</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Present Address</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.PresentAddress</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Permanent Address</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.PermanentAddress</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Contact No</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.ContactNo</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>National Id</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.NationalId</h5></td>
+                    </tr>
+                    <tr>
+                        <th><h4>Country</h4></th>
+                        <td><h5>@ViewBag.UserInformationTableData.Country</h5></td>
+                    </tr>
                 </table>
             </div>
 
         </div>
-        
+
         <div class="col col-md-8 col-md-offset-2" style="padding-top:5%">
             <table class="table table-bordered table-striped">
                 <tr>

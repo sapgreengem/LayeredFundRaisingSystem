@@ -20,6 +20,7 @@
                 <table class="table table-bordered" id="example">
                     <thead>
                         <tr>
+                            
                             <th>Requester Name</th>
                             <th>Post Title</th>
                             <th>Remaining Amount</th>
@@ -30,10 +31,14 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach (var item in ViewBag.WithdrawRequests)
                         {
+                           
                             <tr>
-                                <td><a href="/ManagePost/UserProfile/@item.UserId/@item.UserInformationId">@item.FirstName</a></td>
+                                <td hidden><input id="user_id" value="@item.UserId" /></td>
+                                <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
+                                <td><button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
                                 <td>@item.PostTitle</td>
                                 <td>@item.RemainingAmount.ToString("0.00")/=</td>
                                 <td>@item.WithdrawAmount.ToString("0.00")/=</td>
@@ -49,10 +54,134 @@
             </div>
         </div>
     </div>
+
 </div>
 
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User Info</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-8 col-md-offset-2">
+                            <div class="pull-left">
+                                <center style="padding-top:30%">
+                                    <img id="ProfilePicture" height="200" width="200" style="border-radius:50%;" />
+                                    <h3 id="FullName"></h3>
+                                </center>
+                            </div>
+                            <div class="pull-right">
+                                <table>
+                                    <tr>
+                                        <th><h4>Email</h4></th>
+                                        <td><h5 id="Email"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Account Created</h4></th>
+                                        <td><h5 id="UserCreationDate"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Status</h4></th>
+                                        <td><h5 id="Status"></h5></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th><h4>First Name</h4></th>
+                                        <td><h5 id="FirstName"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Last Name</h4></th>
+                                        <td><h5 id="LastName"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Present Address</h4></th>
+                                        <td><h5 id="PresentAddress"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Permanent Address</h4></th>
+                                        <td><h5 id="PermanentAddress"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Contact No</h4></th>
+                                        <td><h5 id="ContactNo"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>National Id</h4></th>
+                                        <td><h5 id="NationalId"></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <th><h4>Country</h4></th>
+                                        <td><h5 id="Country"></h5></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        @*<div class="col col-md-8 col-md-offset-2" style="padding-top:5%">
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th style="text-align:left"><h4>Bank Name</h4></th>
+                                    <th style="text-align:left"><h4>User Account No</h4></th>
+                                </tr>
+                                @foreach (var item in ViewBag.UserBankAccountDetails)
+                                {
+                                    <tr>
+                                        <td><h5>@item.BankName @item.BranchName Branch</h5></td>
+                                        <td><h5>@item.UserAccountNo</h5></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>*@
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <script type="text/javascript">
     $(function () {
+        $("#OpenModal").click(function () {
+            $.ajax({
+                url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: { id: $("#user_id").val(), id1: $("#user_info_id").val() },
+                success: function (response) {
+                    var data = response.list;
+
+                    $("#FullName").html(data.FirstName + ' ' + data.LastName);
+                    $("#FirstName").html(data.FirstName);
+                    $("#LastName").html(data.LastName);                   
+                    $("#PresentAddress").html(data.PresentAddress);
+                    $("#PermanentAddress").html(data.PermanentAddress);
+                    $("#ContactNo").html(data.ContactNo);
+                    $("#NationalId").html(data.NationalId);
+                    $("#Country").html(data.Country);
+                    $("#ProfilePicture").attr("src", "/ProfilePictures/" + data.ProfilePicture);
+
+                    $("#UserCreationDate").html(data.UserCreationDate);
+                    $("#Status").html(data.Status);
+                    $("#Email").html(data.Email);
+
+                }
+            });  
+        });
+
         $(document).on("click", "#ActionButton", function (e) {
             if (confirm('Are you sure?')) {
                 return true;

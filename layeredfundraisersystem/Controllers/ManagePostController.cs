@@ -57,7 +57,6 @@ namespace layeredFundRaiserSystem.Controllers
             IUserInformationService UserInfoService = ServiceFactory.GetUserInformationService();
             ViewBag.UserInfo = UserInfoService.GetAll().Where(a => a.UserId == id);
 
-
             ViewBag.UserBankAccountDetails = this.userBankAccount(id1);
 
             foreach (var item in UserInfoService.GetAll().Where(a => a.UserId == id))
@@ -84,8 +83,7 @@ namespace layeredFundRaiserSystem.Controllers
                     CategoryName = item.PostingCategory.CategoryName,
                     FirstName = item.UserInformation.FirstName,
                     UserId = item.UserInformation.UserId,
-                    UserInformationId = item.UserInformationId
-                    
+                    UserInformationId = item.UserInformationId                 
                 };
                 joinData.Add(load);
             }

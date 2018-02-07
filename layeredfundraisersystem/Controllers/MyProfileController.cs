@@ -21,17 +21,12 @@ namespace layeredFundRaiserSystem.Controllers
                 Response.Redirect("/FillAllInfo/Index");
             }
             IUserLoginService loginService = ServiceFactory.GetUserLoginService();
-            ViewBag.LoginData = loginService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
+            ViewBag.UserLoginTableData = loginService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])).FirstOrDefault();
 
             IUserInformationService UserInfoService = ServiceFactory.GetUserInformationService();
-            ViewBag.UserInfo = UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
-            
-            ViewBag.UserBankAccountDetails = this.userBankAccount(Convert.ToInt32(Session["UserInformationId"]));
+            ViewBag.UserInformationTableData = UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])).FirstOrDefault();
 
-            foreach (var item in UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])))
-            {
-                ViewBag.ProfilePic = item.ProfilePicture;
-            }
+            ViewBag.UserBankAccountDetails = this.userBankAccount(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
 
