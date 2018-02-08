@@ -1,5 +1,4 @@
-﻿using FundRaiserSystemData;
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
 using System;
