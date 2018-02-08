@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+}
+
+<h2>FAQ</h2>
+

@@ -40,6 +40,37 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
+        public ActionResult AboutUs()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            return View();
+        }
+
+        public ActionResult FAQ()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            ISettingService setting = ServiceFactory.GetSettingService();
+            return View(setting.Get(1));
+        }
+
         public void topRated()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();

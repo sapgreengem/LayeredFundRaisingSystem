@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+}
+<style>
+    table tr th{
+        text-align:right;
+
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="text-center">
+                <h2>Contact Us</h2>
+                <table class="table table-bordered text-left">
+                    <tr>
+                        <th>
+                            <label>Address:</label>
+                        </th>
+                        <td>
+                            <span>@Model.SystemAddress</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Contact No:</label>
+                        </th>
+                        <td>
+                            <span>@Model.SystemContactNo</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Email Address:</label>
+                        </th>
+                        <td>
+                            <span>@Model.SystemEmail</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Bank Account:</label>
+                        </th>
+                        <td>
+                            <span>@Model.SystemBankAccount</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

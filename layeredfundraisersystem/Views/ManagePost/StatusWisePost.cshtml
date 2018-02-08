@@ -1,46 +1,45 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "StatusWisePost";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<script>
+    $(function () {
+        $("#example").dataTable();
+    })
+</script>
 
 <div class="container">
     <div class="row">
         <div class="panel panel-info">
-            <div class="panel-heading"><strong>Pending Withdraw Requests</strong></div>
+            <div class="panel-heading"><strong>Pending Posts</strong></div>
             <div class="table tab-pane" style="text-align:center">
-                <span class="text-danger">@ViewBag.ErrorMessage</span>
-                <br />
-                <table class="table table-bordered" id="example">
+                <table class="table table-bordered table-hover" id="example">
                     <thead>
                         <tr>
-                            
-                            <th>Seeker Name</th>
-                            <th>Post Title</th>
-                            <th>Remaining Amount</th>
-                            <th>Requested Amount</th>
-                            <th>Request Date</th>
-                            <th>Request Status</th>
-                            <th>Action</th>
+                            <th>Title</th>
+                            <th>Ammount</th>
+                            <th>Start Date</th>
+                            <th>Tentative End Date</th>
+                            <th>Category</th>
+                            <th>User Name</th>
+                            <th>Post Proof</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach (var item in ViewBag.WithdrawRequests)
+                        @foreach (var item in ViewBag.viewPost)
                         {
-                           
                             <tr>
+                                <td>@item.PostTitle</td>
+                                <td>@item.RequiredAmount.ToString("0.00")</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                                <td>@item.CategoryName</td>
                                 <td hidden><input id="user_id" value="@item.UserId" /></td>
                                 <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
-                                <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
-                                <td>@item.PostTitle</td>
-                                <td>@item.RemainingAmount.ToString("0.00")/=</td>
-                                <td>@item.WithdrawAmount.ToString("0.00")/=</td>
-                                <td>@item.WithdrawDate</td>
-                                <td>@item.RequestStatus</td>
-                                <td>
-                                    <a href="/ManageWithdrawRequests/AcceptRequest/@item.WithdrawId" class="btn btn-primary" id="ActionButton">Transfer</a>
-                                </td>
+                                <td><button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
+                                <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
                             </tr>
                         }
                     </tbody>
@@ -48,7 +47,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -62,10 +60,9 @@
                 <h4 class="modal-title">User Info</h4>
             </div>
             <div class="modal-body">
-
                 <div class="container">
                     <div class="row">
-                        <div class="col col-md-8 col-md-offset-2">
+                        <div class="col col-md-8">
                             <div class="pull-left">
                                 <center style="padding-top:30%">
                                     <img id="ProfilePicture" height="200" width="200" style="border-radius:50%;" />
@@ -120,20 +117,20 @@
                         </div>
 
                         @*<div class="col col-md-8 col-md-offset-2" style="padding-top:5%">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <th style="text-align:left"><h4>Bank Name</h4></th>
-                                    <th style="text-align:left"><h4>User Account No</h4></th>
-                                </tr>
-                                @foreach (var item in ViewBag.UserBankAccountDetails)
-                                {
+                                <table class="table table-bordered table-striped">
                                     <tr>
-                                        <td><h5>@item.BankName @item.BranchName Branch</h5></td>
-                                        <td><h5>@item.UserAccountNo</h5></td>
+                                        <th style="text-align:left"><h4>Bank Name</h4></th>
+                                        <th style="text-align:left"><h4>User Account No</h4></th>
                                     </tr>
-                                }
-                            </table>
-                        </div>*@
+                                    @foreach (var item in ViewBag.UserBankAccountDetails)
+                                    {
+                                        <tr>
+                                            <td><h5>@item.BankName @item.BranchName Branch</h5></td>
+                                            <td><h5>@item.UserAccountNo</h5></td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>*@
                     </div>
                 </div>
 
@@ -148,10 +145,6 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#example").dataTable();
-    })
-
-    $(function () {
         $("#OpenModal").click(function () {
             $.ajax({
                 url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
@@ -165,7 +158,7 @@
 
                     $("#FullName").html(data.FirstName + ' ' + data.LastName);
                     $("#FirstName").html(data.FirstName);
-                    $("#LastName").html(data.LastName);                   
+                    $("#LastName").html(data.LastName);
                     $("#PresentAddress").html(data.PresentAddress);
                     $("#PermanentAddress").html(data.PermanentAddress);
                     $("#ContactNo").html(data.ContactNo);
@@ -178,14 +171,16 @@
                     $("#Email").html(data.Email);
 
                 }
-            });  
+            });
         });
 
-        $(document).on("click", "#ActionButton", function (e) {
-            if (confirm('Are you sure?')) {
+        $(document).on("click", ".ActionButton", function (e) {
+            if (confirm('Are you sure?'))
+            {
                 return true;
             }
-            else {
+            else
+            {
                 e.preventDefault();
                 return false;
             }

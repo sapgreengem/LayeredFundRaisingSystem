@@ -20,6 +20,12 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
+        public ActionResult StatusWisePost()
+        {
+            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest();
+            return View();
+        }
         [HttpGet]
         public ActionResult Approve(int id)
         {

@@ -279,6 +279,10 @@
     <Content Include="Views\ForgetPassword\Index.cshtml" />
     <Content Include="Views\ForgetPassword\NewPassword.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\ManagePost\StatusWisePost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -294,6 +298,7 @@
     <Folder Include="ProfilePictures\" />
     <Folder Include="Views\BaseAdmin\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Info\" />
     <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,7 @@
     </style>
 </head>
 <body style="background-color:#eeeff4">
-    <nav class="navbar navbar-light" style="background-color: #16cc6b;">
+    <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #16cc6b;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand linkColor" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
@@ -43,7 +43,7 @@
             </ul>
         </div>
     </nav>
-    <div style="min-height:500px;">
+    <div style="margin-top:5%; min-height:500px;">
         @RenderBody()
     </div>
     <nav class="copyright" style="background-color: #16cc6b;">
@@ -54,11 +54,11 @@
                     <h5 class="pull-left">© 2016 - All Rights with FRS</h5>
                     <br />
                     <div class="col-md-offset-4">
-                        <label><a href="#" class="linkColor">FRS.com</a> ||</label>
-                        <label><a href="#" class="linkColor">About us</a> ||</label>
+                        <label><a href="/Home/Index" class="linkColor">frs.com</a> ||</label>
+                        <label><a href="/Home/AboutUs" class="linkColor">About Us</a> ||</label>
                         <label><a href="#" class="linkColor">Blog</a> ||</label>
-                        <label><a href="#" class="linkColor">Faq's</a> ||</label>
-                        <label><a href="#" class="linkColor">Contact us ||</a></label>
+                        <label><a href="/Home/FAQ" class="linkColor">FAQ's</a> ||</label>
+                        <label><a href="/Home/ContactUs" class="linkColor">Contact Us ||</a></label>
                         <label><a href="#" class="linkColor">Site Map</a></label>
                     </div>
 

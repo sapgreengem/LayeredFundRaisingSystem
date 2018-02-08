@@ -38,7 +38,7 @@ namespace FundRaiserSystemData
             newSettings.TotalIncome = setting.TotalIncome;
             newSettings.SystemBankAccount = setting.SystemBankAccount;
             newSettings.CollectedAmount = setting.CollectedAmount;
-
+            newSettings.SystemEmail = setting.SystemEmail;
             return this.context.SaveChanges();
         }
         public int Delete(int id)
