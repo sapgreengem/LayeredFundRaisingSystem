@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="progress" style="width:300px">
                                     <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount) * 100)%; color:White">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount) * 100)%; color:Black;font-weight:bold">
                                         @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
                                     </div>
                                 </div>
@@ -108,8 +108,8 @@
             position: absolute;
             top: 65%;
             left: 78%;
-            width: 100%;
-            color: #DEB887;
+            font-weight: bold;
+            color: #81EA2C;
         }
     </style>
 }

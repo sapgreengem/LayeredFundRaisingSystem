@@ -69,7 +69,7 @@
 </head>
 <body style="background-color:#eeeff4;">
     @*<a href="/AdminHome"><img src="~/icon/Donate-Icon-4.png" height="100" width="190" /></a>*@
-    <nav class="navbar navbar-light" style="background-color: #47c9af">
+    <nav class="navbar navbar-light" style="background-color: #16cc6b">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand linkColor" href="/AdminHome"><i class="glyphicon glyphicon-home"></i> FRS</a>
@@ -79,7 +79,7 @@
                 <li><a href="/ManagePost" class="linkColor">Approve Post&nbsp;&nbsp;<span class="badge">@ViewBag.Posts</span></a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">Requests&nbsp;&nbsp;<span class="badge">@(ViewBag.Withdraws+ViewBag.CountTimeExtendReq)</span></a>
-                    <ul class="dropdown-menu dropdown-content" style="background-color:#47c9af">
+                    <ul class="dropdown-menu dropdown-content" style="background-color:#16cc6b">
                         <li><a href="/ManageWithdrawRequests" class="linkColor">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@ViewBag.Withdraws</span></a></li>
                         <li><a href="/ManageTimeExtend" class="linkColor">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>
                     </ul>
@@ -90,7 +90,7 @@
         <li><a href="/ManageTimeExtend" class="linkColor">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>*@
                 <li class="dropdown">
                     <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">Manage</a>
-                    <ul class="dropdown-menu dropdown-content" style="background-color:#47c9af">
+                    <ul class="dropdown-menu dropdown-content" style="background-color:#16cc6b">
                         <li><a href="/ManageCategory" class="linkColor">Category</a></li>
                         <li><a href="/ManageUser" class="linkColor">User Management</a></li>
                         <li><a href="/ManageBankInformation" class="linkColor">Bank Information</a></li>
@@ -108,7 +108,7 @@
                         <i class="glyphicon glyphicon-user"></i> @ViewBag.adminName
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-content" style="background-color:#47c9af">
+                    <ul class="dropdown-menu dropdown-content" style="background-color:#16cc6b">
                         <li><a href="/AdminProfile" class="linkColor"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
                         <li><a href="/AdminProfile/Edit" class="linkColor"><i class="glyphicon glyphicon-edit"></i> Edit Info</a></li>
                         <li><a href="/AdminProfile/ChangePassword" class="linkColor"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
@@ -123,7 +123,7 @@
         @RenderBody()
     </div>
    
-    <nav class="copyright" style="background-color: #47c9af;">
+    <nav class="copyright" style="background-color: #16cc6b;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

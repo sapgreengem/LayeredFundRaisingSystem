@@ -12,7 +12,7 @@ table thead tr th {
 }
 
 hr {
-    background-color: #47c9af;
+    background-color: #16cc6b;
     height: 7px;
     border-radius: 26%;
 }
@@ -33,7 +33,7 @@ hr {
 }
 
 .progress {
-    background-color: cyan /*#DEB887*/;
+    background-color: #bdeae8;
     width: 100%;
     margin: 9px -32px 7px -4px;
     padding: 1px;
@@ -41,13 +41,18 @@ hr {
 
 .container .row .panel .panel-heading {
     color: white;
-    background-color: #00cc00;
+    background-color: #1bab69;
 }
 
 .btn-primary {
-    background-color: #00cc00;
+    background-color: #1bab69;
+    border-color: #1bab69;
 }
 
+    .btn-primary:hover {
+        background-color: #4cae4c;
+        border-color: #4cae4c;
+    }
 /*.icon-button {
     outline: none;
     border: 0;
