@@ -19,13 +19,7 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.viewPost = this.loadRequest();
             return View();
         }
-
-        public ActionResult StatusWisePost()
-        {
-            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest();
-            return View();
-        }
+        
         [HttpGet]
         public ActionResult Approve(int id)
         {
@@ -114,6 +108,23 @@ namespace layeredFundRaiserSystem.Controllers
                 joinData.Add(load);
             }
             return joinData.ToList();
+        }
+
+        [HttpGet]
+        public ActionResult StatusWisePost()
+        {
+            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StatusWisePost(FormCollection Status)
+        {
+            string Status = Status[""];
+            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest();
+            return View();
         }
     }
 }

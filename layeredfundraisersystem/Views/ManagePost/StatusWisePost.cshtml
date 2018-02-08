@@ -12,6 +12,19 @@
 
 <div class="container">
     <div class="row">
+        <form method="post" name="PostStatus">
+            <div style="float:left; width:330px">
+                <label style="padding-top:1.5%">Find By Post Status</label>
+                <select name="Status" class="form-control pull-right" onchange="this.form.submit()" style="width:200px">
+                    <option value="Null">All</option>
+                    <option value="Active"></option>
+                    <option value="Reject"></option>
+                    <option value="Expired"></option>
+                    <option value="Completed"></option>
+                </select>
+            </div>
+        </form>
+
         <div class="panel panel-info">
             <div class="panel-heading"><strong>Pending Posts</strong></div>
             <div class="table tab-pane" style="text-align:center">
