@@ -16,14 +16,6 @@ namespace FundRaiserSystemData
         }
         public IEnumerable<UserRating> GetAll(bool includeFundRequestPosts = false, bool includeUserInformations = false)
         {
-            //if (includeFundRequestPosts)
-            //{
-            //    return this.context.UserComments.Include("FundRequestPost").ToList();
-            //}
-            //else if (includeUserInformations)
-            //{
-            //    return this.context.UserComments.Include("UserInformation").ToList();
-            //}
             if (includeFundRequestPosts || includeUserInformations)
             {
                 return this.context.UserRatings.Include("FundRequestPost").Include("UserInformation").ToList();
@@ -35,14 +27,6 @@ namespace FundRaiserSystemData
         }
         public UserRating Get(int id, bool includeFundRequestPosts = false, bool includeUserInformations = false)
         {
-            //if (includeFundRequestPosts)
-            //{
-            //    return this.context.UserComments.Include("FundRequestPost").SingleOrDefault(x=> x.CommentId == id);
-            //}
-            //else if (includeUserInformations)
-            //{
-            //    return this.context.UserComments.Include("UserInformation").SingleOrDefault(x => x.CommentId == id);
-            //}
             if (includeFundRequestPosts || includeUserInformations)
             {
                 return this.context.UserRatings.Include("FundRequestPost").Include("UserInformation").SingleOrDefault(x => x.RatingId == id);
@@ -70,11 +54,6 @@ namespace FundRaiserSystemData
             UserRating rating = this.context.UserRatings.SingleOrDefault(x => x.RatingId == id);
             this.context.UserRatings.Remove(rating);
             return this.context.SaveChanges();
-        }
-
-        public UserRating GetSingle(int postID, int userInfo)
-        {
-            return this.context.UserRatings.SingleOrDefault(x => x.PostId == postID && x.UserInformationId == userInfo);
         }
     }
 }

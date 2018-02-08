@@ -11,7 +11,6 @@ namespace FundRaiserSystemData
     {
         IEnumerable<UserRating> GetAll(bool includeFundRequestPosts = false, bool includeUserInformations = false);
         UserRating Get(int id, bool includeFundRequestPosts = false, bool includeUserInformations = false);
-        UserRating GetSingle(int postID, int userInfo);
         int Insert(UserRating userRating);
         int Update(UserRating userRating);
         int Delete(int id);

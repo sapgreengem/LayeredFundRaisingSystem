@@ -32,7 +32,7 @@ namespace layeredFundRaiserSystem.Controllers
             if (!String.IsNullOrWhiteSpace(collection["email"].ToString()) && !String.IsNullOrWhiteSpace(collection["password"].ToString()))
             {
                 IUserLoginService service = ServiceFactory.GetUserLoginService();
-                UserLogin user = service.GetUser(collection["email"].ToString(), collection["password"].ToString(), "Active");
+                UserLogin user = service.GetAll().Where(a=> a.Email == collection["email"].ToString()).Where(a=> a.Password == collection["password"].ToString()).Where(a=> a.Status == "Active").FirstOrDefault();
 
                 if (user != null)
                 {

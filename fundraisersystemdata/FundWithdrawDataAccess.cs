@@ -17,14 +17,6 @@ namespace FundRaiserSystemData
 
         public IEnumerable<FundWithdraw> GetAll(bool includeUserInformations = false, bool includeFundRequestPosts = false)
         {
-            //if (includeAdministrations)
-            //{
-            //    return this.context.FundWithdraws.Include("Administration").ToList();
-            //}
-            //else if (includeFundRequestPosts)
-            //{
-            //    return this.context.FundWithdraws.Include("FundRequestPost").ToList();
-            //}
             if (includeUserInformations || includeFundRequestPosts )
             {
                 return this.context.FundWithdraws.Include("UserInformation").Include("FundRequestPost").ToList();
@@ -37,14 +29,6 @@ namespace FundRaiserSystemData
         }
         public FundWithdraw Get(int id, bool includeUserInformations = false, bool includeFundRequestPosts = false)
         {
-            //if (includeAdministrations)
-            //{
-            //    return this.context.FundWithdraws.Include("Administration").SingleOrDefault(x => x.WithdrawId == id);
-            //}
-            //else if (includeFundRequestPosts)
-            //{
-            //    return this.context.FundWithdraws.Include("FundRequestPost").SingleOrDefault(x => x.WithdrawId == id);
-            //}
             if (includeUserInformations || includeFundRequestPosts)
             {
                 return this.context.FundWithdraws.Include("UserInformation").Include("FundRequestPost").SingleOrDefault(x => x.WithdrawId == id);

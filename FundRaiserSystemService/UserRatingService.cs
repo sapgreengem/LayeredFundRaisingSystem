@@ -35,10 +35,5 @@ namespace FundRaiserSystemService
         {
             return this.data.Delete(id);
         }
-
-        public UserRating GetSingle(int postID, int userInfo)
-        {
-            return this.data.GetSingle(postID, userInfo);
-        }
     }
 }

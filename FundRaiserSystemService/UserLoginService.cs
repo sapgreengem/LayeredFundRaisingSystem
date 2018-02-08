@@ -35,10 +35,5 @@ namespace FundRaiserSystemService
         {
             return this.data.Delete(id);
         }
-
-        public UserLogin GetUser(string email, string password, string status)
-        {
-            return this.data.GetUser(email, password, status);
-        }
     }
 }

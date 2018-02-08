@@ -16,34 +16,10 @@ namespace FundRaiserSystemData
 
         public IEnumerable<FundRequestPost> GetAll(bool includeUserInformations = false, bool includeCategories = false, bool includeRefunds = false)
         {
-            //if (includeUserInformations)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").ToList();
-            //}
-            //else if (includeCategories)
-            //{
-            //    return this.context.FundRequestPosts.Include("PostingCategory").ToList();
-            //}
-            //else if (includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("RefundingInformation").ToList();
-            //}
             if (includeUserInformations || includeCategories || includeRefunds)
             {
                 return this.context.FundRequestPosts.Include("UserInformation").Include("PostingCategory").Include("RefundingInformation").ToList();
             }
-            //else if (includeUserInformations && includeCategories)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").Include("PostingCategory").ToList();
-            //}
-            //else if (includeUserInformations && includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").Include("RefundingInformation").ToList();
-            //}
-            //else if (includeCategories && includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("PostingCategory").Include("RefundingInformation").ToList();
-            //}
             else
             {
                 return this.context.FundRequestPosts.ToList();
@@ -52,34 +28,10 @@ namespace FundRaiserSystemData
         }
         public FundRequestPost Get(int id, bool includeUserInformations = false, bool includeCategories = false, bool includeRefunds = false)
         {
-            //if (includeUserInformations)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").SingleOrDefault(x => x.PostId == id);
-            //}
-            //else if (includeCategories)
-            //{
-            //    return this.context.FundRequestPosts.Include("PostingCategory").SingleOrDefault(x => x.PostId == id);
-            //}
-            //else if (includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("RefundingInformation").SingleOrDefault(x => x.PostId == id);
-            //}
             if (includeUserInformations || includeCategories || includeRefunds)
             {
                 return this.context.FundRequestPosts.Include("UserInformation").Include("PostingCategory").Include("RefundingInformation").SingleOrDefault(x => x.PostId == id);
             }
-            //else if (includeUserInformations && includeCategories)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").Include("PostingCategory").SingleOrDefault(x => x.PostId == id);
-            //}
-            //else if (includeUserInformations && includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("UserInformation").Include("RefundingInformation").SingleOrDefault(x => x.PostId == id);
-            //}
-            //else if (includeCategories && includeRefunds)
-            //{
-            //    return this.context.FundRequestPosts.Include("PostingCategory").Include("RefundingInformation").SingleOrDefault(x => x.PostId == id);
-            //}
             else
             {
                 return this.context.FundRequestPosts.SingleOrDefault(x => x.PostId == id);

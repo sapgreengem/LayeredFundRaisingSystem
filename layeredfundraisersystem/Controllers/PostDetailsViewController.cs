@@ -130,7 +130,7 @@ namespace layeredFundRaiserSystem.Controllers
 
             if (UserInfoID != 0 && Rating != 0 )
             {
-                UserRating ExistingRating = userRatingService.GetSingle(PostID, UserInfoID);
+                UserRating ExistingRating = userRatingService.GetAll().Where(a=> a.PostId == PostID).Where(a=> a.UserInformationId == UserInfoID).FirstOrDefault();
                 
 
                 if (ExistingRating != null)
