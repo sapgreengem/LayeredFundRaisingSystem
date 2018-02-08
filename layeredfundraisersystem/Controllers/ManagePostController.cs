@@ -15,8 +15,8 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ManagePost
         public ActionResult Index()
         {
-            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest();
+            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest("Pending");//.Where(a => a.PostStatus == "Pending");
             return View();
         }
         
@@ -62,13 +62,23 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.ProfilePic = item.ProfilePicture;
             }
-            ViewBag.viewPost = this.loadRequest();
+            ViewBag.viewPost = this.loadRequest("Pending");//.Where(a => a.PostStatus == "Pending");
             return View();
         }
 
-        public IEnumerable<JoinFundRequestPost_Category_UserInfo> loadRequest()
+        public IEnumerable<JoinFundRequestPost_Category_UserInfo> loadRequest(string status)
         {
-            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            IEnumerable<FundRequestPost> post;
+            if (status == "Null")
+            {
+                post = service.GetAll(true, true, false);//.Where(a => a.PostStatus == status); // Include User & Ctegory
+
+            }
+            else
+            {
+                post = service.GetAll(true, true, false).Where(a => a.PostStatus == status); // Include User & Ctegory
+            }
+            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == status); // Include User & Ctegory
             List<JoinFundRequestPost_Category_UserInfo> joinData = new List<JoinFundRequestPost_Category_UserInfo>();
             foreach (FundRequestPost item in post)
             {
@@ -113,17 +123,17 @@ namespace layeredFundRaiserSystem.Controllers
         [HttpGet]
         public ActionResult StatusWisePost()
         {
-            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest();
+            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false);//.Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest("Null");
             return View();
         }
 
         [HttpPost]
-        public ActionResult StatusWisePost(FormCollection Status)
+        public ActionResult StatusWisePost(FormCollection collection)
         {
-            string Status = Status[""];
-            IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest();
+            string Status = collection["Status"];
+            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == Status); // Include User & Ctegory
+            ViewBag.viewPost = this.loadRequest(Status);//.Where(a => a.PostStatus == Status);
             return View();
         }
     }

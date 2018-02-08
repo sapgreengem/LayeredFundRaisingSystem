@@ -78,7 +78,7 @@
                 <li class="active"><a href="/AdminHome" class="linkColor">Home</a></li>
                 <li><a href="/ManagePost" class="linkColor">Approve Post&nbsp;&nbsp;<span class="badge">@ViewBag.Posts</span></a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">Requests&nbsp;&nbsp;<span class="badge">@(ViewBag.Withdraws+ViewBag.CountTimeExtendReq)</span></a>
+                    <a class="dropdown-toggle linkColor" data-toggle="dropdown" href="#">Requests&nbsp;&nbsp;<span class="badge">@(ViewBag.Withdraws + ViewBag.CountTimeExtendReq)</span></a>
                     <ul class="dropdown-menu dropdown-content" style="background-color:#16cc6b">
                         <li><a href="/ManageWithdrawRequests" class="linkColor">Withdrawal Requests&nbsp;&nbsp;<span class="badge">@ViewBag.Withdraws</span></a></li>
                         <li><a href="/ManageTimeExtend" class="linkColor">Time Extend Requests&nbsp;&nbsp;<span class="badge">@ViewBag.CountTimeExtendReq</span></a></li>
@@ -96,6 +96,7 @@
                         <li><a href="/ManageBankInformation" class="linkColor">Bank Information</a></li>
                     </ul>
                 </li>
+                <li><a href="/ManagePost/StatusWisePost" class="linkColor">Post Status</a></li>
                 <li><a href="/AdminReports" class="linkColor">Reports</a></li>
                 <li><a href="/Settings" class="linkColor">Settings</a></li>
 

@@ -13,20 +13,24 @@
 <div class="container">
     <div class="row">
         <form method="post" name="PostStatus">
-            <div style="float:left; width:330px">
-                <label style="padding-top:1.5%">Find By Post Status</label>
-                <select name="Status" class="form-control pull-right" onchange="this.form.submit()" style="width:200px">
+            <div>
+                <label style="padding-top:.5%;float:left">Find By Post Status&nbsp;&nbsp;</label>
+                <select name="Status" class="form-control pull-left" onchange="this.form.submit()" style="width:20%">
                     <option value="Null">All</option>
-                    <option value="Active"></option>
-                    <option value="Reject"></option>
-                    <option value="Expired"></option>
-                    <option value="Completed"></option>
+                    <option value="Active">Active</option>
+                    <option value="Reject">Reject</option>
+                    <option value="Expired">Expired</option>
+                    <option value="Completed">Completed</option>
                 </select>
             </div>
         </form>
-
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="row">
         <div class="panel panel-info">
-            <div class="panel-heading"><strong>Pending Posts</strong></div>
+            <div class="panel-heading"><strong>Posts</strong></div>
             <div class="table tab-pane" style="text-align:center">
                 <table class="table table-bordered table-hover" id="example">
                     <thead>
@@ -43,17 +47,17 @@
                     <tbody>
                         @foreach (var item in ViewBag.viewPost)
                         {
-                            <tr>
-                                <td>@item.PostTitle</td>
-                                <td>@item.RequiredAmount.ToString("0.00")</td>
-                                <td>@item.StartDate</td>
-                                <td>@item.EndDate</td>
-                                <td>@item.CategoryName</td>
-                                <td hidden><input id="user_id" value="@item.UserId" /></td>
-                                <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
-                                <td><button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
-                                <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
-                            </tr>
+                        <tr>
+                            <td hidden><input id="user_id" value="@item.UserId" /></td>
+                            <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
+                            <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
+                            <td>@item.PostTitle</td>
+                            <td>@item.RequiredAmount.ToString("0.00")</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.CategoryName</td>
+                            <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -61,7 +65,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -73,9 +76,10 @@
                 <h4 class="modal-title">User Info</h4>
             </div>
             <div class="modal-body">
+
                 <div class="container">
                     <div class="row">
-                        <div class="col col-md-8">
+                        <div class="col col-md-8 col-md-offset-2">
                             <div class="pull-left">
                                 <center style="padding-top:30%">
                                     <img id="ProfilePicture" height="200" width="200" style="border-radius:50%;" />
@@ -85,44 +89,44 @@
                             <div class="pull-right">
                                 <table>
                                     <tr>
-                                        <th><h4>Email</h4></th>
+                                        <th style="text-align:left"><h4>Email</h4></th>
                                         <td><h5 id="Email"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Account Created</h4></th>
+                                        <th style="text-align:left"><h4>Account Created</h4></th>
                                         <td><h5 id="UserCreationDate"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Status</h4></th>
+                                        <th style="text-align:left"><h4>Status</h4></th>
                                         <td><h5 id="Status"></h5></td>
                                     </tr>
 
                                     <tr>
-                                        <th><h4>First Name</h4></th>
+                                        <th style="text-align:left"><h4>First Name</h4></th>
                                         <td><h5 id="FirstName"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Last Name</h4></th>
+                                        <th style="text-align:left"><h4>Last Name</h4></th>
                                         <td><h5 id="LastName"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Present Address</h4></th>
+                                        <th style="text-align:left"><h4>Present Address</h4></th>
                                         <td><h5 id="PresentAddress"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Permanent Address</h4></th>
+                                        <th style="text-align:left"><h4>Permanent Address</h4></th>
                                         <td><h5 id="PermanentAddress"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Contact No</h4></th>
+                                        <th style="text-align:left"><h4>Contact No</h4></th>
                                         <td><h5 id="ContactNo"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>National Id</h4></th>
+                                        <th style="text-align:left"><h4>National Id</h4></th>
                                         <td><h5 id="NationalId"></h5></td>
                                     </tr>
                                     <tr>
-                                        <th><h4>Country</h4></th>
+                                        <th style="text-align:left"><h4>Country</h4></th>
                                         <td><h5 id="Country"></h5></td>
                                     </tr>
                                 </table>
@@ -158,6 +162,10 @@
 
 <script type="text/javascript">
     $(function () {
+        $("#example").dataTable();
+    })
+
+    $(function () {
         $("#OpenModal").click(function () {
             $.ajax({
                 url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
@@ -187,13 +195,11 @@
             });
         });
 
-        $(document).on("click", ".ActionButton", function (e) {
-            if (confirm('Are you sure?'))
-            {
+        $(document).on("click", "#ActionButton", function (e) {
+            if (confirm('Are you sure?')) {
                 return true;
             }
-            else
-            {
+            else {
                 e.preventDefault();
                 return false;
             }
