@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Security.Application;
 
 namespace layeredFundRaiserSystem.Controllers
 {
@@ -40,75 +41,97 @@ namespace layeredFundRaiserSystem.Controllers
             }
 
             ViewBag.Categories = this.Catagories();
+            
+
             return View();
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Index(FormCollection form, HttpPostedFileBase file, HttpPostedFileBase proof)
         {
-            
-            if (!String.IsNullOrWhiteSpace(form["PostTitle"]) && !String.IsNullOrWhiteSpace(form["PostDetails"])
+            var PostTitle = Sanitizer.GetSafeHtmlFragment((form["PostTitle"]).ToString());
+            var PostDetails = Sanitizer.GetSafeHtmlFragment((form["PostDetails"]).ToString());
+
+            if (!String.IsNullOrWhiteSpace(PostTitle) && !String.IsNullOrWhiteSpace(PostDetails)
                 && !String.IsNullOrWhiteSpace(form["RequiredAmount"]) && !String.IsNullOrWhiteSpace(form["EndDateInDays"])
                 && Convert.ToInt32(form["Category"]) != 0 && file != null && proof != null)
             {
                 IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
                 FundRequestPost post = new FundRequestPost();
-                // Verify that the user selected a file
-                if (file != null && file.ContentLength > 0)
-                {
-                    post.PostTitle = form["PostTitle"].ToString();
-                    post.PostDetails = form["PostDetails"].ToString();
-                    post.RequiredAmount = Convert.ToDouble(form["RequiredAmount"]);
-                    post.StartDate = DateTime.Now;
-                    post.EndDate = DateTime.Now.AddDays(Convert.ToDouble(form["EndDateInDays"]));
-                    post.CollectedAmount = 0;
-                    post.RemainingAmount = 0;
-                    post.PostStatus = "Pending";
-                    post.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
-                    post.CategoryId = Convert.ToInt32(form["Category"]);
-                    post.ClickCounter = 1;
-                    post.AverageRating = 0;
-
-                    // extract only the filename
-                    var fileName = Path.GetFileName(file.FileName);
-                    var NewFileName = DateTime.Now.ToFileTime()+" "+ fileName;
-                    post.PostImage = NewFileName;
-                    // store the file inside ~/App_Data/uploads folder
-                    var path = Path.Combine(Server.MapPath("~/PostImages"), NewFileName);
-                    file.SaveAs(path);
-                    service.Insert(post);
-                }                    
-                else
-                {
-                    ViewBag.ErrorMessage = "Please give an Image of your post";
-                }
-                //----------------------------------------------------------------------------
 
                 IPostProofService proofService = ServiceFactory.GetPostProofService();
                 PostProof postProofs = new PostProof();
-                // Verify that the user selected a file
-                if (proof != null && proof.ContentLength > 0)
+
+                post.PostTitle = PostTitle;
+                post.PostDetails = PostDetails;
+                post.RequiredAmount = Convert.ToDouble(form["RequiredAmount"]);
+                post.StartDate = DateTime.Now;
+                post.EndDate = DateTime.Now.AddDays(Convert.ToDouble(form["EndDateInDays"]));
+                post.CollectedAmount = 0;
+                post.RemainingAmount = 0;
+                post.PostStatus = "Pending";
+                post.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
+                post.CategoryId = Convert.ToInt32(form["Category"]);
+                post.ClickCounter = 0;
+                post.AverageRating = 0;
+            
+                var fileName = Path.GetFileName(file.FileName);
+                var fileExt = Path.GetExtension(fileName);
+
+                var ProofFileName = Path.GetFileName(proof.FileName);
+                var fileExt1 = Path.GetExtension(fileName);
+
+                if (file.ContentLength > 5242880 || proof.ContentLength > 5242880)
                 {
-                    postProofs.PostId = post.PostId;
-                    // extract only the filename
-                    var fileName = Path.GetFileName(proof.FileName);
-                    var NewFileName = DateTime.Now.ToFileTime() + " " + fileName;
-                    postProofs.PictureForProof = NewFileName;
-                    // store the file inside ~/App_Data/uploads folder
-                    var path = Path.Combine(Server.MapPath("~/PostProofImages"), NewFileName);
-                    proof.SaveAs(path);
-                    proofService.Insert(postProofs);
+                    ViewBag.ErrorMessage = "File size must be less than 5MB";
+                    ViewBag.Categories = this.Catagories();
+                    ViewBag.PostTitle = PostTitle;
+                    ViewBag.Details = PostDetails;
+                    return View();
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Please give an Image for proof";
+                    if (fileExt != ".jpeg" || fileExt != ".JPEG" ||
+                    fileExt != ".jpg" || fileExt != ".JPG" ||
+                    fileExt != ".png" || fileExt != ".PNG")
+                    {
+                        ViewBag.ErrorMessage = "Invalid File Type";
+                        ViewBag.Categories = this.Catagories();
+                        ViewBag.PostTitle = PostTitle;
+                        ViewBag.Details = PostDetails;
+                        return View();
+                    }
+                    else if (fileExt1 != ".jpeg" || fileExt1 != ".JPEG" ||
+                    fileExt1 != ".jpg" || fileExt1 != ".JPG" ||
+                    fileExt1 != ".png" || fileExt1 != ".PNG" || fileExt1 != ".xsl" || fileExt1 != ".xslx" || fileExt1 != ".docx" || fileExt1 != ".doc" || fileExt1 != ".pdf")
+                    {
+                        ViewBag.ErrorMessage = "Invalid File Type";
+                        ViewBag.Categories = this.Catagories();
+                        ViewBag.PostTitle = PostTitle;
+                        ViewBag.Details = PostDetails;
+                        return View();
+                    }
                 }
+                    
+                var NewFileName = DateTime.Now.ToFileTime() + " " + fileName;             
+                var path = Path.Combine(Server.MapPath("~/PostImages"), NewFileName);
+                post.PostImage = NewFileName;
+                file.SaveAs(path);
+                service.Insert(post);
+
+                var ProofNewFileName = DateTime.Now.ToFileTime() + " " + ProofFileName;
+                var path1 = Path.Combine(Server.MapPath("~/PostProofImages"), ProofFileName);
+                postProofs.PictureForProof = ProofNewFileName;               
+                postProofs.PostId = post.PostId;
+                proof.SaveAs(path1);
+                proofService.Insert(postProofs);
 
                 ViewBag.PostConfirmation = "Post is pending for Approval";
             }
             else
             {
-                ViewBag.ErrorMessage = "Fields cannot be empty. Please fill all informations";
+                ViewBag.ErrorMessage = "Fields cannot be empty or fill all authentic information";
             }
 
             if (Session["UserInformationId"] != null)
@@ -118,23 +141,28 @@ namespace layeredFundRaiserSystem.Controllers
             }
 
             ViewBag.Categories = this.Catagories();
-
+            ViewBag.PostTitle = PostTitle;
+            ViewBag.Details = PostDetails;
             return View();
         }
-        public IEnumerable<SelectListItem> Catagories()
+        public List<SelectListItem> Catagories()
         {
             IPostingCategoryService postingService = ServiceFactory.GetPostingCategoryService();
 
             List<SelectListItem> categoryList = new List<SelectListItem>();
             foreach (PostingCategory category in postingService.GetAll())
             {
-                SelectListItem item = new SelectListItem()
+                if(category.CategoryName != "All")
                 {
-                    Text = category.CategoryName,
-                    Value = category.CategoryId.ToString()
-                };
-                categoryList.Add(item);
+                    SelectListItem item = new SelectListItem()
+                    {
+                        Text = category.CategoryName,
+                        Value = category.CategoryId.ToString()
+                    };
+                    categoryList.Add(item);
+                }      
             }
+
             return categoryList;
         }
     }

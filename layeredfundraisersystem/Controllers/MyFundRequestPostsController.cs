@@ -34,6 +34,7 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.CountNumberofPosts = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
+                .Where(a=> a.PostStatus != "Pending")
                 .Count();
 
             ViewBag.CountMyCompletedPosts = service.GetAll()

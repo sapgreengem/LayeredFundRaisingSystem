@@ -57,7 +57,9 @@ namespace layeredFundRaiserSystem.Controllers
                 ShowUserName name = new ShowUserName();
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             }
-            return View();
+            ISettingService settingService = ServiceFactory.GetSettingService();
+            
+            return View(settingService.Get(1));
         }
 
         public ActionResult ContactUs()

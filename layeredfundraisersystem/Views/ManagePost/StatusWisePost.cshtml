@@ -163,6 +163,8 @@
     $(function () {
         $("#example").dataTable();
         $("#OpenModal").click(function () {
+            alert($("#user_id").val());
+
             $.ajax({
                 url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
                 dataType: "json",
