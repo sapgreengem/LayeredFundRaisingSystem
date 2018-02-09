@@ -77,10 +77,10 @@ namespace layeredFundRaiserSystem.Controllers
                 post.AverageRating = 0;
             
                 var fileName = Path.GetFileName(file.FileName);
-                var fileExt = Path.GetExtension(fileName);
+                var fileExt = Path.GetExtension(fileName).ToString();
 
                 var ProofFileName = Path.GetFileName(proof.FileName);
-                var fileExt1 = Path.GetExtension(fileName);
+                var fileExt1 = Path.GetExtension(ProofFileName).ToString();
 
                 if (file.ContentLength > 5242880 || proof.ContentLength > 5242880)
                 {
@@ -92,9 +92,9 @@ namespace layeredFundRaiserSystem.Controllers
                 }
                 else
                 {
-                    if (fileExt != ".jpeg" || fileExt != ".JPEG" ||
-                    fileExt != ".jpg" || fileExt != ".JPG" ||
-                    fileExt != ".png" || fileExt != ".PNG")
+                    if (fileExt != ".jpeg" && fileExt != ".JPEG" &&
+                    fileExt != ".jpg" && fileExt != ".JPG" &&
+                    fileExt != ".png" && fileExt != ".PNG")
                     {
                         ViewBag.ErrorMessage = "Invalid File Type";
                         ViewBag.Categories = this.Catagories();
@@ -102,9 +102,10 @@ namespace layeredFundRaiserSystem.Controllers
                         ViewBag.Details = PostDetails;
                         return View();
                     }
-                    else if (fileExt1 != ".jpeg" || fileExt1 != ".JPEG" ||
-                    fileExt1 != ".jpg" || fileExt1 != ".JPG" ||
-                    fileExt1 != ".png" || fileExt1 != ".PNG" || fileExt1 != ".xsl" || fileExt1 != ".xslx" || fileExt1 != ".docx" || fileExt1 != ".doc" || fileExt1 != ".pdf")
+                    else if (fileExt1 != ".jpeg" && fileExt1 != ".JPEG" &&
+                    fileExt1 != ".jpg" && fileExt1 != ".JPG" &&
+                    fileExt1 != ".png" && fileExt1 != ".PNG" && fileExt1 != ".xsl" &&
+                    fileExt1 != ".xslx" && fileExt1 != ".docx" && fileExt1 != ".doc" && fileExt1 != ".pdf")
                     {
                         ViewBag.ErrorMessage = "Invalid File Type";
                         ViewBag.Categories = this.Catagories();
@@ -121,7 +122,7 @@ namespace layeredFundRaiserSystem.Controllers
                 service.Insert(post);
 
                 var ProofNewFileName = DateTime.Now.ToFileTime() + " " + ProofFileName;
-                var path1 = Path.Combine(Server.MapPath("~/PostProofImages"), ProofFileName);
+                var path1 = Path.Combine(Server.MapPath("~/PostProofImages"), ProofNewFileName);
                 postProofs.PictureForProof = ProofNewFileName;               
                 postProofs.PostId = post.PostId;
                 proof.SaveAs(path1);

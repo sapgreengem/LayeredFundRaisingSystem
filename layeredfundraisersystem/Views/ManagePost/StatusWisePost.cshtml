@@ -49,12 +49,12 @@
                         <tr>
                             <td hidden><input id="user_id" value="@item.UserId" /></td>
                             <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
-                            <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
                             <td>@item.PostTitle</td>
                             <td>@item.RequiredAmount.ToString("0.00")</td>
                             <td>@item.StartDate</td>
                             <td>@item.EndDate</td>
                             <td>@item.CategoryName</td>
+                            <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
                             <td><a href="/ManagePost/Proof/@item.PostId">Proof</a></td>
                         </tr>
                         }
