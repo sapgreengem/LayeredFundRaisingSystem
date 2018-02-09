@@ -150,6 +150,9 @@ namespace layeredFundRaiserSystem.Controllers
             userInfo.UserCreationDate = UserLoginTableData.UserCreationDate.ToShortDateString();
             userInfo.Status = UserLoginTableData.Status;
 
+            userInfo.UserId = id;
+            userInfo.UserInformationId = id1;
+
             return Json(new { list = userInfo }, JsonRequestBehavior.AllowGet);
         }
     }

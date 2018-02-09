@@ -32,7 +32,7 @@
                             <tr>
                                 <td hidden><input id="user_id" value="@item.UserId" /></td>
                                 <td hidden><input id="user_info_id" value="@item.UserInformationId" /></td>
-                                <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" data-target="#myModal" id="OpenModal">@item.FirstName</button></td>
+                                <td><button class="btn btn-info btn-lg" style="width:unset; height:unset" data-toggle="modal" @*data-target="#myModal"*@ id="OpenModal">@item.FirstName</button></td>
                                 <td>@item.PostTitle</td>
                                 <td>@item.RemainingAmount.ToString("0.00")/=</td>
                                 <td>@item.WithdrawAmount.ToString("0.00")/=</td>
@@ -118,28 +118,12 @@
                                 </table>
                             </div>
                         </div>
-
-                        @*<div class="col col-md-8 col-md-offset-2" style="padding-top:5%">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <th style="text-align:left"><h4>Bank Name</h4></th>
-                                    <th style="text-align:left"><h4>User Account No</h4></th>
-                                </tr>
-                                @foreach (var item in ViewBag.UserBankAccountDetails)
-                                {
-                                    <tr>
-                                        <td><h5>@item.BankName @item.BranchName Branch</h5></td>
-                                        <td><h5>@item.UserAccountNo</h5></td>
-                                    </tr>
-                                }
-                            </table>
-                        </div>*@
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="ModalClose">Close</button>
             </div>
         </div>
 
@@ -153,7 +137,8 @@
 
     $(function () {
         $("#OpenModal").click(function () {
-            $.ajax({
+            alert($("#user_id").val());
+            @*$.ajax({
                 url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
                 dataType: "json",
                 type: "GET",
@@ -178,8 +163,12 @@
                     $("#Email").html(data.Email);
 
                 }
-            });  
+            });*@  
         });
+
+        //$('#ModalClose').click(function () {
+        //    $('#myModal').removeData();
+        //});
 
         $(document).on("click", "#ActionButton", function (e) {
             if (confirm('Are you sure?')) {
