@@ -1,5 +1,4 @@
-﻿//
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using System;
 using System.Collections.Generic;
@@ -125,17 +124,28 @@ namespace layeredFundRaiserSystem.Controllers
             mailMessage.Body = MessageBody;
             mailMessage.IsBodyHtml = true;
 
+            mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess;
+            mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.Delay;
+            mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.Never;
+            mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.None;
+
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;//587 for Gmail
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new System.Net.NetworkCredential(systemMailAddress, systemPassword); // Enter sender's Email and password   
-            smtp.EnableSsl = true;
-            smtp.Send(mailMessage);
+            smtp.EnableSsl = true;           
 
-            int x = 1;
-            if (x == 1)
+            try
+            {
+                smtp.Send(mailMessage);
                 result = true;
+            }
+            catch (Exception ep)
+            {
+                ViewBag.MailSendingError = ep.Message + " Check Your Internet connection or try again.";
+            }
 
             return result;
         }
