@@ -152,7 +152,6 @@ namespace layeredFundRaiserSystem.Controllers
 
             return Json(new { list = userInfo }, JsonRequestBehavior.AllowGet);
         }
-
     }
 
     public class UserInfo

@@ -69,16 +69,15 @@ namespace layeredFundRaiserSystem.Controllers
         public IEnumerable<JoinFundRequestPost_Category_UserInfo> loadRequest(string status)
         {
             IEnumerable<FundRequestPost> post;
-            if (status == "Null")
+            if (status == "All")
             {
-                post = service.GetAll(true, true, false);//.Where(a => a.PostStatus == status); // Include User & Ctegory
+                post = service.GetAll(true, true, false);
 
             }
             else
             {
                 post = service.GetAll(true, true, false).Where(a => a.PostStatus == status); // Include User & Ctegory
             }
-            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == status); // Include User & Ctegory
             List<JoinFundRequestPost_Category_UserInfo> joinData = new List<JoinFundRequestPost_Category_UserInfo>();
             foreach (FundRequestPost item in post)
             {
@@ -122,19 +121,43 @@ namespace layeredFundRaiserSystem.Controllers
 
         [HttpGet]
         public ActionResult StatusWisePost()
-        {
-            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false);//.Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest("Null");
+        {          
+            ViewBag.PostStatus = PostStatus();
+            ViewBag.viewPost = this.loadRequest("All");
             return View();
         }
 
         [HttpPost]
         public ActionResult StatusWisePost(FormCollection collection)
         {
-            string Status = collection["Status"];
-            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == Status); // Include User & Ctegory
-            ViewBag.viewPost = this.loadRequest(Status);//.Where(a => a.PostStatus == Status);
+            string status = collection["Status"];
+            ViewBag.viewPost = this.loadRequest(status);
+
+            List<string> Status = PostStatus();
+            List<string> Status1 = new List<string>();
+            foreach (var item in Status)
+            {
+                if(item != status)
+                {
+                    Status1.Add(item);
+                }
+            }
+            Status1.Insert(0, status);
+            ViewBag.PostStatus = Status1;
+
             return View();
+        }
+
+        public List<string> PostStatus()
+        {
+            List<string> PostStatus = new List<string>();
+            PostStatus.Add("All");
+            PostStatus.Add("Active");
+            PostStatus.Add("Reject");
+            PostStatus.Add("Expired");
+            PostStatus.Add("Completed");
+
+            return PostStatus;
         }
     }
 }

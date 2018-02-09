@@ -16,11 +16,10 @@
             <div>
                 <label style="padding-top:.5%;float:left">Find By Post Status&nbsp;&nbsp;</label>
                 <select name="Status" class="form-control pull-left" onchange="this.form.submit()" style="width:20%">
-                    <option value="Null">All</option>
-                    <option value="Active">Active</option>
-                    <option value="Reject">Reject</option>
-                    <option value="Expired">Expired</option>
-                    <option value="Completed">Completed</option>
+                    @foreach (var item in ViewBag.PostStatus)
+                    {
+                        <option value="@item">@item</option>
+                    }                 
                 </select>
             </div>
         </form>
@@ -163,9 +162,6 @@
 <script type="text/javascript">
     $(function () {
         $("#example").dataTable();
-    })
-
-    $(function () {
         $("#OpenModal").click(function () {
             $.ajax({
                 url: '@Url.Action("GetUser", "ManageWithdrawRequests")',
