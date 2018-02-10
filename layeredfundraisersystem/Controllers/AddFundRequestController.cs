@@ -49,6 +49,7 @@ namespace layeredFundRaiserSystem.Controllers
         {
             var PostTitle = Sanitizer.GetSafeHtmlFragment((form["PostTitle"]).ToString());
             var PostDetails = Sanitizer.GetSafeHtmlFragment((form["PostDetails"]).ToString());
+            var x = 0;
 
             if (!String.IsNullOrWhiteSpace(PostTitle) && !String.IsNullOrWhiteSpace(PostDetails)
                 && !String.IsNullOrWhiteSpace(form["RequiredAmount"]) && !String.IsNullOrWhiteSpace(form["EndDateInDays"])
@@ -85,6 +86,9 @@ namespace layeredFundRaiserSystem.Controllers
                     ViewBag.Categories = this.Catagories();
                     ViewBag.PostTitle = PostTitle;
                     ViewBag.Details = PostDetails;
+
+                    ShowUserName name = new ShowUserName();
+                    ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
                     return View();
                 }
                 else
@@ -97,6 +101,9 @@ namespace layeredFundRaiserSystem.Controllers
                         ViewBag.Categories = this.Catagories();
                         ViewBag.PostTitle = PostTitle;
                         ViewBag.Details = PostDetails;
+
+                        ShowUserName name = new ShowUserName();
+                        ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
                         return View();
                     }
                     else if (fileExt1 != ".jpeg" && fileExt1 != ".JPEG" &&
@@ -108,6 +115,9 @@ namespace layeredFundRaiserSystem.Controllers
                         ViewBag.Categories = this.Catagories();
                         ViewBag.PostTitle = PostTitle;
                         ViewBag.Details = PostDetails;
+
+                        ShowUserName name = new ShowUserName();
+                        ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
                         return View();
                     }
                 }
@@ -125,6 +135,7 @@ namespace layeredFundRaiserSystem.Controllers
                 proof.SaveAs(path1);
                 proofService.Insert(postProofs);
 
+                x++;
                 ViewBag.PostConfirmation = "Post is pending for Approval";
             }
             else
@@ -139,8 +150,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
 
             ViewBag.Categories = this.Catagories();
-            ViewBag.PostTitle = PostTitle;
-            ViewBag.Details = PostDetails;
+            ViewBag.PostTitle = (x == 0) ? PostTitle : (x == 1) ? "" : "";
             return View();
         }
         public List<SelectListItem> Catagories()
