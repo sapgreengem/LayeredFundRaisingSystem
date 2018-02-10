@@ -39,16 +39,12 @@ namespace layeredFundRaiserSystem.Controllers
                     PostTitle = item.FundRequestPost.PostTitle,
                     PostStatus = item.FundRequestPost.PostStatus,
                     RequiredAmount = item.FundRequestPost.RequiredAmount,
-                    EndDate = item.FundRequestPost.EndDate
-                    
-                    
+                    EndDate = item.FundRequestPost.EndDate                  
                 };
                 joinData.Add(addData);
             }
             ViewBag.DonationList = joinData.ToList();
-
             ViewBag.numberOfDonatedPosts = joinData.GroupBy(a => a.PostId).Count();
-
             ViewBag.SumOfDonatedAmount = joinData.Sum(a => a.DonationAmount).ToString("0.00");
 
             return View();

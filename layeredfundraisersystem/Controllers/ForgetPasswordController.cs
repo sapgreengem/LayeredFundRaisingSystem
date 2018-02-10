@@ -122,7 +122,6 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult NewPassword(FormCollection collection)
         {

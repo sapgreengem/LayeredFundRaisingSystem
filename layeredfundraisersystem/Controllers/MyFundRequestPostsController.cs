@@ -49,7 +49,6 @@ namespace layeredFundRaiserSystem.Controllers
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
                 .Sum(a => a.RemainingAmount).ToString("0.00");
 
-
             IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
             ViewBag.SumWithdrawanAmount = withdrawService.GetAll()
                 .Where(a => a.RequestStatus == "Transfered")

@@ -27,8 +27,9 @@ namespace layeredFundRaiserSystem.Controllers
             FundRequestPost fundRequestPost = fundRequestPostService.Get(id);
 
             if (fundRequestPost.UserInformationId == userID)
-                Response.Redirect("/Error");
-        #endregion HandleError
+                //Response.Redirect("/Error");
+                return RedirectToAction("Index", "Error", new { id = "You Cannot Donate On Your Post" });
+            #endregion HandleError
 
             this.loginUserName();
 

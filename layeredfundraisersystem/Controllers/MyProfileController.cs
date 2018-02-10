@@ -91,7 +91,7 @@ namespace layeredFundRaiserSystem.Controllers
                 IBankInformationService bankService = ServiceFactory.GetBankInformationService();
                 ViewBag.BankList = bankService.GetAll();
 
-                ViewBag.ErrorMessage = "Any fild Cannot Be Empty";
+                ViewBag.ErrorMessage = "Fields Can't Be Empty";
             }
             return View();
         }
@@ -113,7 +113,6 @@ namespace layeredFundRaiserSystem.Controllers
                 UserInformation userInformation = UserInfoService.Get(Convert.ToInt32(Session["UserInformationId"]));//.Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
                 return View(userInformation);
             }
-
         }
 
         [HttpPost]
@@ -135,7 +134,6 @@ namespace layeredFundRaiserSystem.Controllers
                     {
                         if (coll["NewPassword"].ToString() == coll["confirmPassword"].ToString())
                         {
-
                             userLogin.Password = coll["confirmPassword"].ToString();
                             loginService.Update(userLogin);
                             return Redirect("/Logout");
@@ -195,17 +193,6 @@ namespace layeredFundRaiserSystem.Controllers
 
                     UserAccountNo = item.UserAccountNo,
                     UserBankAccountId = item.UserBankAccountId
-
-                    //UserInformationId = item.UserInformation.UserInformationId,
-                    //ProfilePicture = item.UserInformation.ProfilePicture,
-                    //FirstName = item.UserInformation.FirstName,
-                    //LastName = item.UserInformation.LastName,
-                    //ContactNo = item.UserInformation.ContactNo,
-                    //Country = item.UserInformation.Country,
-                    //NationalId = item.UserInformation.NationalId,
-                    //PermanentAddress = item.UserInformation.PermanentAddress,
-                    //PresentAddress = item.UserInformation.PresentAddress,
-                    //UserId = item.UserInformation.UserId
                 };
                 joinData.Add(load);
             }

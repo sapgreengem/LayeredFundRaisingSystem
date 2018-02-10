@@ -15,7 +15,6 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: ManagePost
         public ActionResult Index()
         {
-            //IEnumerable<FundRequestPost> post = service.GetAll(true, true, false).Where(a => a.PostStatus == "Pending"); // Include User & Ctegory
             ViewBag.viewPost = this.loadRequest("Pending");//.Where(a => a.PostStatus == "Pending");
             return View();
         }
@@ -62,7 +61,7 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.ProfilePic = item.ProfilePicture;
             }
-            ViewBag.viewPost = this.loadRequest("Pending");//.Where(a => a.PostStatus == "Pending");
+            ViewBag.viewPost = this.loadRequest("Pending");
             return View();
         }
 
@@ -72,7 +71,6 @@ namespace layeredFundRaiserSystem.Controllers
             if (status == "All")
             {
                 post = service.GetAll(true, true, false);
-
             }
             else
             {

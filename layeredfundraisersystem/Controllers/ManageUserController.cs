@@ -1,5 +1,4 @@
-﻿//
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
 using System;
@@ -60,23 +59,5 @@ namespace layeredFundRaiserSystem.Controllers
             service.Update(UserLogin);
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public ActionResult FindUser(int id)
-        //{
-        //    UserLogin UserLogin = context.UserLogins.SingleOrDefault(obj => obj.UserId == id);
-        //    UserInformation UserInformation = context.UserInformations.SingleOrDefault(obj => obj.UserId == id);
-
-        //    ViewBag.FirstName = UserInformation.FirstName;
-        //    ViewBag.LastName = UserInformation.LastName;
-        //    ViewBag.Email = UserLogin.Email;
-        //    ViewBag.PresentAddress = UserInformation.PresentAddress;
-        //    ViewBag.PermanentAddress = UserInformation.PermanentAddress;
-        //    ViewBag.ContactNo = UserInformation.ContactNo;
-        //    ViewBag.Country = UserInformation.Country;
-        //    ViewBag.Status = UserLogin.Status;
-        //    ViewBag.ID = UserLogin.UserId;
-
-        //    return View();
-        //}
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -43,7 +42,6 @@ namespace layeredFundRaiserSystem.Controllers
 
                     settings.TotalIncome += fundWithdraw.WithdrawAmount * (settings.ServiceCharge / 100);
                     settingsService.Update(settings);
-
                 }
                 else
                 {

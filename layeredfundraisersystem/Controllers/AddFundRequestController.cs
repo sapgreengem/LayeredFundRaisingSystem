@@ -13,7 +13,6 @@ namespace layeredFundRaiserSystem.Controllers
 {
     public class AddFundRequestController : Controller
     {
-        // GET: AddFundRequest
         public ActionResult Index()
         {
             if (Session["Login"] == null)
@@ -40,9 +39,7 @@ namespace layeredFundRaiserSystem.Controllers
                 }
             }
 
-            ViewBag.Categories = this.Catagories();
-            
-
+            ViewBag.Categories = this.Catagories();            
             return View();
         }
 
@@ -96,7 +93,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fileExt != ".jpg" && fileExt != ".JPG" &&
                     fileExt != ".png" && fileExt != ".PNG")
                     {
-                        ViewBag.ErrorMessage = "Invalid File Type";
+                        ViewBag.ErrorMessage = "Invalid Image File Type";
                         ViewBag.Categories = this.Catagories();
                         ViewBag.PostTitle = PostTitle;
                         ViewBag.Details = PostDetails;
@@ -107,7 +104,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fileExt1 != ".png" && fileExt1 != ".PNG" && fileExt1 != ".xsl" &&
                     fileExt1 != ".xslx" && fileExt1 != ".docx" && fileExt1 != ".doc" && fileExt1 != ".pdf")
                     {
-                        ViewBag.ErrorMessage = "Invalid File Type";
+                        ViewBag.ErrorMessage = "Invalid Proof File Type";
                         ViewBag.Categories = this.Catagories();
                         ViewBag.PostTitle = PostTitle;
                         ViewBag.Details = PostDetails;
@@ -163,7 +160,6 @@ namespace layeredFundRaiserSystem.Controllers
                     categoryList.Add(item);
                 }      
             }
-
             return categoryList;
         }
     }
