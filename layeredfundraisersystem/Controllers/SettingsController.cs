@@ -5,13 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
-//
 
 namespace layeredFundRaiserSystem.Controllers
 {
     public class SettingsController : BaseAdminController
     {
-        // GET: Settings
         public ActionResult Index()
         {
             ISettingService service = ServiceFactory.GetSettingService();
@@ -39,11 +37,9 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "No field can be empty";
+                ViewBag.ErrorMessage = "Fields Can't be empty";
                 return View(service.Get(1));
             }
-            
-
         }
     }
 }

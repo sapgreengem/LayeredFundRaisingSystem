@@ -21,7 +21,7 @@ namespace layeredFundRaiserSystem.Controllers
         // GET: PostDetailsView
         public ActionResult Index(int id=0)
         {
-            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+            FundRequestPost post = service.Get(id, true, true, false);
 
             if (Session["AdminLogin"] != null)
             {
@@ -30,7 +30,8 @@ namespace layeredFundRaiserSystem.Controllers
 
             if (post == null)
             {
-                Response.Redirect("/Error");
+                //Response.Redirect("/Error");
+                return RedirectToAction("Index", "Error", new { id = "Invalid Post" });
             }
 
             if (Session["Login"] != null)
@@ -59,7 +60,7 @@ namespace layeredFundRaiserSystem.Controllers
             return View(post);
         }
         
-        public IEnumerable loadAllDonor(int id) //Load All Donors donated on this post
+        public IEnumerable loadAllDonor(int id)
         {
 
             IEnumerable<DonationOnPost> donation = donateService.GetAll(true, true, false).Where(a => a.PostId == id).OrderByDescending(s=> s.DonationDate); // Include User & donation
@@ -79,7 +80,7 @@ namespace layeredFundRaiserSystem.Controllers
             return list;
         }
 
-        public IEnumerable loadFundPostUserName(int id) //Load Username who started this post
+        public IEnumerable loadFundPostUserName(int id)
         {
             FundRequestPost post = service.Get(id, true, true, false);
             List<JoinFundRequestPost_Category_UserInfo> userInfo = new List<JoinFundRequestPost_Category_UserInfo>();
@@ -174,7 +175,6 @@ namespace layeredFundRaiserSystem.Controllers
 
             return Json(new { list = rating }, JsonRequestBehavior.AllowGet);
         }
-
     }
 
     public class Rating

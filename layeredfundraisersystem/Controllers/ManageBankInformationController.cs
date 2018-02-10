@@ -38,7 +38,6 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "Bank already exists";
                 }
-
             }
             else
             {
@@ -69,7 +68,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Give all informations";
+                ViewBag.ErrorMessage = "Provide all informations";
             }
             return RedirectToAction("Index");
         }
