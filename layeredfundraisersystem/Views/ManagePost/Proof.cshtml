@@ -4,10 +4,27 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Proof</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 style="text-align:center">Proofs</h2>
 
-@foreach (var item in ViewBag.Proofs)
-{
-    <img src="~/PostProofImages/@item.PictureForProof" height="200" width="200"/>
-}
+            @{
+                var a = 0;
+                foreach (var item in ViewBag.Proofs)
+                {
+                    a++;
+                    <div style="float:left; text-align:center">
+                        <a href="~/PostProofImages/@item.PictureForProof">
+                            <img src="~/icon/proofimages.png" height="50" width="50" alt="Alternate Text" />
+                            <br />
+                            <span>Proof @a</span>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
 

@@ -9,14 +9,14 @@ namespace layeredFundRaiserSystem.Controllers
 {
     public class ErrorController : Controller
     {
-        // GET: Error
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             if (Session["Login"] != null)
             {
                 ShowUserName name = new ShowUserName();
                 ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
             }
+            ViewBag.Error = id;
             return View();
         }
     }

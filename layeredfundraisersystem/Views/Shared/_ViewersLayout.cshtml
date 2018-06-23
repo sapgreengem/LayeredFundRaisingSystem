@@ -5,29 +5,29 @@
     <script src="~/Scripts/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery.min.js"></script>
-    <link href="~/css/passwordscheck.css" rel="stylesheet" />
     <script src="~/Scripts/passwordscheck.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="signalr/hubs"></script>
     <script src="~/Scripts/FBSDKJavaScript.js"></script>
 
     @RenderSection("scripts", false)
-
+    <link href="~/css/passwordscheck.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/css/custom.css" rel="stylesheet" />
     @RenderSection("styles", false)
 
     <style type="text/css">
-        .linkColor{
-            color:black;
+        .linkColor {
+            color: black;
         }
+
         ul li {
             font-size: large;
         }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-light" style="background-color: #33ff33;">
+<body style="background-color:#eeeff4">
+    <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #16cc6b;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand linkColor" href="/Home"><i class="glyphicon glyphicon-home"></i> FRS</a>
@@ -43,22 +43,26 @@
             </ul>
         </div>
     </nav>
-    @RenderBody()
-    <nav class="copyright" style="background-color: #33ff33;">
+    <div style="margin-top:5%; min-height:500px;">
+        @RenderBody()
+    </div>
+    <nav class="copyright" style="background-color: #16cc6b;">
         <div class="container">
-            <div class="col-md-12">
-                <br />
-                <h5 class="pull-left">© 2016 - All Rights with Webenlance</h5>
-                <br />
-                <br />
-                <ul class="bottom_ul">
-                    <li><a href="#" class="linkColor">FRS.com</a></li>
-                    <li><a href="#" class="linkColor">About us</a></li>
-                    <li><a href="#" class="linkColor">Blog</a></li>
-                    <li><a href="#" class="linkColor">Faq's</a></li>
-                    <li><a href="#" class="linkColor">Contact us</a></li>
-                    <li><a href="#" class="linkColor">Site Map</a></li>
-                </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <br />
+                    <h5 class="pull-left">© 2016 - All Rights with FRS</h5>
+                    <br />
+                    <div class="col-md-offset-4">
+                        <label><a href="/Home/Index" class="linkColor">frs.com</a> ||</label>
+                        <label><a href="/Home/AboutUs" class="linkColor">About Us</a> ||</label>
+                        <label><a href="#" class="linkColor">Blog</a> ||</label>
+                        <label><a href="/Home/FAQ" class="linkColor">FAQ's</a> ||</label>
+                        <label><a href="/Home/ContactUs" class="linkColor">Contact Us</a> ||</label>
+                        <label><a href="#" class="linkColor">Site Map</a></label>
+                    </div>
+
+                </div>
             </div>
         </div>
     </nav>

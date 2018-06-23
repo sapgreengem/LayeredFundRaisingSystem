@@ -1,5 +1,4 @@
-﻿using FundRaiserSystemData;
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
 using System;
@@ -17,7 +16,7 @@ namespace layeredFundRaiserSystem.Controllers
         public ActionResult Index()
         {
             this.ChangePostStatus();
-            this.topViewed();
+            this.topRated();
             this.trending();
             this.recomended();
 
@@ -41,12 +40,44 @@ namespace layeredFundRaiserSystem.Controllers
             return View();
         }
 
-        public void topViewed()
+        public ActionResult AboutUs()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            return View();
+        }
+
+        public ActionResult FAQ()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            ISettingService settingService = ServiceFactory.GetSettingService();          
+            return View(settingService.Get(1));
+        }
+
+        public ActionResult ContactUs()
+        {
+            if (Session["Login"] != null)
+            {
+                ShowUserName name = new ShowUserName();
+                ViewBag.LoginName = name.UserName(Convert.ToInt32(Session["UserInformationId"]));
+            }
+            ISettingService setting = ServiceFactory.GetSettingService();
+            return View(setting.Get(1));
+        }
+
+        public void topRated()
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> posts = service.GetAll()
                 .Where(a => a.PostStatus == "Active")
-                .OrderByDescending(a => a.ClickCounter);
+                .OrderByDescending(a => a.AverageRating);
 
             List<FundRequestPost> top = new List<FundRequestPost>();
             List<FundRequestPost> nextTop = new List<FundRequestPost>();
@@ -62,6 +93,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     top.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -73,6 +105,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextTop.Add(fundRequestPost);
                 }
                 count++;
@@ -104,6 +137,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     trending.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -115,6 +149,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextTrending.Add(fundRequestPost);
                 }
                 count++;
@@ -144,6 +179,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     recomended.Add(fundRequestPost);
                 }
                 if (count >= 4 && count <= 7)
@@ -155,6 +191,7 @@ namespace layeredFundRaiserSystem.Controllers
                     fundRequestPost.PostTitle = item.PostTitle;
                     fundRequestPost.RemainingAmount = item.RemainingAmount;
                     fundRequestPost.RequiredAmount = item.RequiredAmount;
+                    fundRequestPost.AverageRating = item.AverageRating;
                     nextRecomended.Add(fundRequestPost);
                 }
                 count++;

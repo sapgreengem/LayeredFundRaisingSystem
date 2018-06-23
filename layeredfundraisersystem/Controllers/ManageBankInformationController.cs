@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -39,7 +38,6 @@ namespace layeredFundRaiserSystem.Controllers
                 {
                     ViewBag.ErrorMessage = "Bank already exists";
                 }
-
             }
             else
             {
@@ -70,7 +68,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Give all informations";
+                ViewBag.ErrorMessage = "Provide all informations";
             }
             return RedirectToAction("Index");
         }

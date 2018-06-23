@@ -16,14 +16,6 @@ namespace FundRaiserSystemData
 
         public IEnumerable<OnlineTransection> GetAll(bool includeTransectionMethodNames = false, bool includeDonationOnPosts = false)
         {
-            //if (includeTransectionMethodNames)
-            //{
-            //    return this.context.OnlineTransections.Include("TransectionMethodName").ToList();
-            //}
-            //else if (includeDonationOnPosts)
-            //{
-            //    return this.context.OnlineTransections.Include("DonationOnPost").ToList();
-            //}
             if ( includeTransectionMethodNames || includeDonationOnPosts )
             {
                 return this.context.OnlineTransections.Include("TransectionMethodName").Include("DonationOnPost").ToList();
@@ -36,14 +28,6 @@ namespace FundRaiserSystemData
         }
         public OnlineTransection Get(int id, bool includeTransectionMethodNames = false, bool includeDonationOnPosts = false)
         {
-            //if (includeTransectionMethodNames)
-            //{
-            //    return this.context.OnlineTransections.Include("TransectionMethodName").SingleOrDefault(x => x.TransectionId == id);
-            //}
-            //else if (includeDonationOnPosts)
-            //{
-            //    return this.context.OnlineTransections.Include("DonationOnPost").SingleOrDefault(x => x.TransectionId == id);
-            //}
             if (includeTransectionMethodNames || includeDonationOnPosts)
             {
                 return this.context.OnlineTransections.Include("TransectionMethodName").Include("DonationOnPost").SingleOrDefault(x => x.TransectionId == id);

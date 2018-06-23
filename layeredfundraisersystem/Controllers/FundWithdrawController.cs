@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -76,7 +75,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Please Give Amount";
+                ViewBag.ErrorMessage = "Invalid Amount";
             }
 
             ViewBag.ServiceCharge = settings.ServiceCharge.ToString();
@@ -117,7 +116,6 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.AllRequests = joinData.ToList();
             }
-
             return View();
         }
     }

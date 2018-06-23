@@ -45,11 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\..\EntityFrameworkPacages\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\..\..\EntityFrameworkPacages\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -220,6 +226,7 @@
     <Compile Include="Models\LoadAllCategory.cs" />
     <Compile Include="Models\PostComment.cs" />
     <Compile Include="Models\ShowUserName.cs" />
+    <Compile Include="Models\TopDonorList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -264,9 +271,9 @@
     <Content Include="Views\MyProfile\ChangePassword.cshtml" />
     <Content Include="Views\UserRegistration\VerifyEmail.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\AdminHome\MostViewedPosts.cshtml" />
-    <Content Include="Views\AdminHome\TopDonatedPosts.cshtml" />
-    <Content Include="Views\AdminHome\TopDonor.cshtml" />
+    <Content Include="Views\AdminReports\MostViewedPosts.cshtml" />
+    <Content Include="Views\AdminReports\TopDonatedPosts.cshtml" />
+    <Content Include="Views\AdminReports\TopDonor.cshtml" />
     <Content Include="Views\AdminReports\Index.cshtml" />
     <Content Include="Views\AdminProfile\Index.cshtml" />
     <Content Include="Views\AdminProfile\Edit.cshtml" />
@@ -278,6 +285,10 @@
     <Content Include="Views\ForgetPassword\Index.cshtml" />
     <Content Include="Views\ForgetPassword\NewPassword.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\ManagePost\StatusWisePost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -293,6 +304,7 @@
     <Folder Include="ProfilePictures\" />
     <Folder Include="Views\BaseAdmin\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Info\" />
     <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>

@@ -3,40 +3,38 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<script>
-    $(function () {
-        $(".example").dataTable();
-    })
-</script>
 
-<table class="table table-bordered" style="text-align: center;">
-    <thead>
-        <tr>
-            <th>Total Number of Posts</th>
-            <th style="text-align: center;">Collection Completed</th>
-            <th style="text-align: center;">Total Earned Amount</th>
-            <th style="text-align: center;">Total Withdrawan Amount</th>
-            <th style="text-align: center;">After Service Charge</th>
-            <th style="text-align: center;">Total Remaining Amount</th>
-            <th style="text-align: center;">Check Requests</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@ViewBag.CountNumberofPosts</td>
-            <td>@ViewBag.CountMyCompletedPosts</td>
-            <td>@ViewBag.SumCollectedAmount/=</td>
-            <td>@ViewBag.SumWithdrawanAmount/=</td>
-            <td>@ViewBag.SumWithdrawWithCharge/=</td>
-            <td>@ViewBag.SumRemainingAmount/=</td>
-            <td>
-                <a href="/FundWithdraw/MyWithdraws" class="pull-left">Withdraw</a>
-                <a href="/ExtendPostDate/MyTimeExtend" class="pull-right">Time Extend</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="row">
+    <table class="table text-center" style="border:hidden; color:white; background-color:seagreen">
+        <thead>
+            <tr style="font-size:x-large; border-bottom:hidden">
+                <th style="text-align: center;">Total Number of Posts</th>
+                <th style="text-align: center;">Collection Completed</th>
+                <th style="text-align: center;">Total Earned Amount</th>
+                <th style="text-align: center;">Total Withdrawan Amount</th>
+                <th style="text-align: center;">After Service Charge</th>
+                <th style="text-align: center;">Total Remaining Amount</th>
+                <th style="text-align: center;">Check Requests</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="font-size:xx-large">
+                <td>@ViewBag.CountNumberofPosts</td>
+                <td>@ViewBag.CountMyCompletedPosts</td>
+                <td>@ViewBag.SumCollectedAmount/=</td>
+                <td>@ViewBag.SumWithdrawanAmount/=</td>
+                <td>@ViewBag.SumWithdrawWithCharge/=</td>
+                <td>@ViewBag.SumRemainingAmount/=</td>
+                <td style="font-size:initial;">
+                    <a href="/FundWithdraw/MyWithdraws" class="text-center" style="color:yellow">Withdraw</a>
+                    <br />
+                    <a href="/ExtendPostDate/MyTimeExtend" class="text-center" style="color:yellow">Time Extend</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
+</div>
 <ul class="nav nav-tabs tabMenu">
     <li class="active"><a data-toggle="tab" href="#home">Running Posts</a></li>
     <li><a data-toggle="tab" href="#menu1">Completed Posts</a></li>
@@ -77,15 +75,15 @@
                                         </td>
                                         <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
                                         <td>@item.RequiredAmount.ToString("0.00")/=</td>
-                                            <td>@item.CollectedAmount.ToString("0.00")/=</td>
-                                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                                            <td>@item.RemainingAmount.ToString("0.00")/=</td>
-                                            <td>@item.PostStatus</td>
+                                        <td>@item.CollectedAmount.ToString("0.00")/=</td>
+                                        <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                        <td>@item.RemainingAmount.ToString("0.00")/=</td>
+                                        <td>@item.PostStatus</td>
 
-                                            <td>
-                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
-                                            </td>
-                                        </tr>
+                                        <td>
+                                            <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -128,14 +126,14 @@
                                         </td>
                                         <td>@Convert.ToInt32((item.EndDate - DateTime.Now).TotalDays) Days</td>
                                         <td>@item.RequiredAmount.ToString("0.00")/=</td>
-                                            <td>@item.CollectedAmount.ToString("0.00")/=</td>
-                                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                                            <td>@item.RemainingAmount.ToString("0.00")/=</td>
-                                            <td>@item.PostStatus</td>
-                                            <td>
-                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
-                                            </td>
-                                        </tr>
+                                        <td>@item.CollectedAmount.ToString("0.00")/=</td>
+                                        <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                        <td>@item.RemainingAmount.ToString("0.00")/=</td>
+                                        <td>@item.PostStatus</td>
+                                        <td>
+                                            <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -179,17 +177,17 @@
                                         </td>
                                         <td>@item.EndDate.ToShortDateString()</td>
                                         <td>@item.RequiredAmount.ToString("0.00")/=</td>
-                                            <td>@item.CollectedAmount.ToString("0.00")/=</td>
-                                            <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
-                                            <td>@item.RemainingAmount.ToString("0.00")/=</td>
-                                            <td>@item.PostStatus</td>
-                                            <td>
-                                                <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
+                                        <td>@item.CollectedAmount.ToString("0.00")/=</td>
+                                        <td>@Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%</td>
+                                        <td>@item.RemainingAmount.ToString("0.00")/=</td>
+                                        <td>@item.PostStatus</td>
+                                        <td>
+                                            <a class="btn btn-primary Action" href="/FundWithdraw/Index/@item.PostId"><i class="glyphicon glyphicon-usd"></i> Collect</a>
 
-                                                <a class="btn btn-default Action" href="/ExtendPostDate/Index/@item.PostId"><i class="glyphicon glyphicon-time"></i>Extend Time</a>
+                                            <a class="btn btn-default Action" href="/ExtendPostDate/Index/@item.PostId"><i class="glyphicon glyphicon-time"></i>Extend Time</a>
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -200,6 +198,10 @@
     </div>
 </div>
 <script type="text/javascript">
+    $(function () {
+        $(".example").dataTable();
+    })
+
     $(function () {
         $(document).on("click", ".Action", function (e) {
             if (confirm('Are you sure?')) {

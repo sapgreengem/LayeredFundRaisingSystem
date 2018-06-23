@@ -16,14 +16,6 @@ namespace FundRaiserSystemData
 
         public IEnumerable<RefundingInformation> GetAll(bool includeDonationOnPosts = false, bool includeAdministrations = false)
         {
-            //if (includeDonationOnPosts)
-            //{
-            //    return this.context.RefundingInformations.Include("DonationOnPost").ToList();
-            //}
-            //else if (includeAdministrations)
-            //{
-            //    return this.context.RefundingInformations.Include("Administration").ToList();
-            //}
             if (includeDonationOnPosts || includeAdministrations)
             {
                 return this.context.RefundingInformations.Include("DonationOnPost").Include("Administration").ToList();
@@ -35,14 +27,6 @@ namespace FundRaiserSystemData
         }
         public RefundingInformation Get(int id, bool includeDonationOnPosts = false, bool includeAdministrations = false)
         {
-            //if (includeDonationOnPosts)
-            //{
-            //    return this.context.RefundingInformations.Include("DonationOnPost").SingleOrDefault(x => x.RefundId == id);
-            //}
-            //else if (includeAdministrations)
-            //{
-            //    return this.context.RefundingInformations.Include("Administration").SingleOrDefault(x => x.RefundId == id);
-            //}
             if (includeDonationOnPosts || includeAdministrations)
             {
                 return this.context.RefundingInformations.Include("DonationOnPost").Include("Administration").SingleOrDefault(x => x.RefundId == id);

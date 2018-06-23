@@ -1,4 +1,4 @@
-﻿using FundRaiserSystemData;
+﻿//
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -16,11 +16,12 @@ namespace layeredFundRaiserSystem.Controllers
 
         IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
         IDonationOnPostService donateService = ServiceFactory.GetDonationOnPostService();
+        IPostProofService postProofService = ServiceFactory.GetPostProofService();
         ShowUserName name = new ShowUserName();
         // GET: PostDetailsView
         public ActionResult Index(int id=0)
         {
-            FundRequestPost post = service.Get(id, true, true, false);//.Where(a=> a.PostStatus == "Active");
+            FundRequestPost post = service.Get(id, true, true, false);
 
             if (Session["AdminLogin"] != null)
             {
@@ -29,7 +30,8 @@ namespace layeredFundRaiserSystem.Controllers
 
             if (post == null)
             {
-                Response.Redirect("/Error");
+                //Response.Redirect("/Error");
+                return RedirectToAction("Index", "Error", new { id = "Invalid Post" });
             }
 
             if (Session["Login"] != null)
@@ -51,12 +53,14 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.DonorList = this.loadAllDonor(id);
 
+            ViewBag.PostProof = postProofService.GetAll().Where(a => a.PostId == id).ToList();
+
             ViewBag.UserInformationId = Convert.ToInt32(Session["UserInformationId"]);
 
             return View(post);
         }
         
-        public IEnumerable loadAllDonor(int id) //Load All Donors donated on this post
+        public IEnumerable loadAllDonor(int id)
         {
 
             IEnumerable<DonationOnPost> donation = donateService.GetAll(true, true, false).Where(a => a.PostId == id).OrderByDescending(s=> s.DonationDate); // Include User & donation
@@ -76,7 +80,7 @@ namespace layeredFundRaiserSystem.Controllers
             return list;
         }
 
-        public IEnumerable loadFundPostUserName(int id) //Load Username who started this post
+        public IEnumerable loadFundPostUserName(int id)
         {
             FundRequestPost post = service.Get(id, true, true, false);
             List<JoinFundRequestPost_Category_UserInfo> userInfo = new List<JoinFundRequestPost_Category_UserInfo>();
@@ -118,5 +122,64 @@ namespace layeredFundRaiserSystem.Controllers
             }
             return Json(new { list = postComment }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public JsonResult Rating(int PostID, int UserInfoID, int Rating)
+        {
+            IUserRatingService userRatingService = ServiceFactory.GetUserRatingService();
+
+            if (UserInfoID != 0 && Rating != 0 )
+            {
+                UserRating ExistingRating = userRatingService.GetAll().Where(a=> a.PostId == PostID).Where(a=> a.UserInformationId == UserInfoID).FirstOrDefault();
+                
+
+                if (ExistingRating != null)
+                {
+                    ExistingRating.Rating = Rating;
+                    userRatingService.Update(ExistingRating);
+                }
+                else
+                {
+                    UserRating userRating = new UserRating();
+                    userRating.PostId = PostID;
+                    userRating.Rating = Rating;
+                    userRating.UserInformationId = UserInfoID;
+                    userRatingService.Insert(userRating);
+                }
+            }
+            
+            var RatingAvarage = 0.0;
+            var RatingPeopleCount = 0;
+
+            List<UserRating> userRatings = userRatingService.GetAll().Where(a => a.PostId == PostID).ToList();
+            if (userRatings.Count() > 0)
+            {
+                RatingAvarage = Math.Round(userRatings.Average(a => a.Rating), 1);
+                RatingPeopleCount = userRatings.Count();
+
+                IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
+                FundRequestPost fundRequestPost = service.Get(PostID);
+                fundRequestPost.AverageRating = RatingAvarage;
+                service.Update(fundRequestPost);
+            }
+            else
+            {
+                RatingAvarage = 0;
+                RatingPeopleCount = 0;
+            }
+
+            Rating rating = new Rating();
+            rating.RatingAvarage = RatingAvarage;
+            rating.RatingPeopleCount = RatingPeopleCount;
+
+            return Json(new { list = rating }, JsonRequestBehavior.AllowGet);
+        }
+    }
+
+    public class Rating
+    {
+        public double RatingAvarage { get; set; }
+        public int RatingPeopleCount { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace FundRaiserSystemEntity
         public double TotalIncome { get; set; }
         public string SystemBankAccount { get; set; }
         public double CollectedAmount { get; set; }
+        public string SystemEmail { get; set; }
     }
 }

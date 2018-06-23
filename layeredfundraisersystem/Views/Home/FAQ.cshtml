@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2 class="text-center">FAQs</h2>
+            <h3>1. How to register?</h3>
+            <p>
+                Go to <b>Register</b> option. Use a valid email address and use a password.
+                A varification link will be sent to the email address.
+                Click on the varification link and provide the required informations.
+                And you will be a registered user.
+            </p>
+            <h3>2. How can I start a new campain?</h3>
+            <p>
+                Login to the system using your account. Go to <b>Start Campain</b> option.
+                Fill all the required informations. Select a category of the post and provide a proof against your fund collection issue.
+                Send the request for Admins approval.
+            </p>
+            <h3>3. How can I donate on a post?</h3>
+            <p>
+                Login to the system using your account. Click on the <b>Donate Now</b> button of a post you want to donate.
+                Select a Payment Method and give the donation amount. Click on <b>Proceed to Payment</b> and your money will be donated.
+                You can also hide your name and information checking the <b>Don't want to show my information</b> option.
+            </p>
+            <h3>4. How many time I can donate a campain?</h3>
+            <p>
+                You can donate a campain as many time as you wish.
+            </p>
+            <h3>5. How much I can donate for a campain?</h3>
+            <p>
+                You can donate any amount as you wish.
+            </p>
+            <h3>6. How to withdraw donated money?</h3>
+            <p>
+                From <b>My Campains</b> Page click on the <b>Collect</b> button of the post from which you want to withdraw money.
+                In the input field give the collection amount and send request to admin. After admin's approval money wil be sent to your bank account.
+            </p>
+            <h3>7. Is there any service charge?</h3>
+            <p>
+                Yes. You wil be charged <b>@Model.ServiceCharge %</b> of your withdrawal amount.
+            </p>
+            <h3>8. What is the minimum withdraw amount?</h3>
+            <p>
+                Minimum withdrawal amount is 100 TK.
+            </p>
+            <h3>9. My campain has expired. Is there any way to extend time?</h3>
+            <p>
+                Yes. You can extend the time of your expired post.
+                Send request to admin from <b>Expired Post</b> tab in <b>My Campains</b> and provide the days you want to extend.
+                Admin will review and accept your time extend request.
+            </p>
+            <h3>10. I am not a person of Bangladesh. Can I request for fund?</h3>
+            <p>
+                No. You cannot request for fund if you are not a Bangladeshi person.
+            </p>
+            <h3>11. I want to donate but don't want to show my information. Is that possible?</h3>
+            <p>
+                Yes. Check the <b>Don't want to show my information</b> option while donating.
+            </p>
+            <h3>12. How can I understand fundseeker is not fake?</h3>
+            <p>
+                This is our responsibility to accept the posts of true fundseeker.
+                In campain details there is a segment of post proof. 
+                You can check the proofs and also can use the comment box to contact with fundseeker.
+            </p>
+        </div>
+    </div>
+</div>

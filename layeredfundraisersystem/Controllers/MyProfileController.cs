@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FundRaiserSystemData;
+//
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -21,17 +21,12 @@ namespace layeredFundRaiserSystem.Controllers
                 Response.Redirect("/FillAllInfo/Index");
             }
             IUserLoginService loginService = ServiceFactory.GetUserLoginService();
-            ViewBag.LoginData = loginService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
+            ViewBag.UserLoginTableData = loginService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])).FirstOrDefault();
 
             IUserInformationService UserInfoService = ServiceFactory.GetUserInformationService();
-            ViewBag.UserInfo = UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
-            
-            ViewBag.UserBankAccountDetails = this.userBankAccount(Convert.ToInt32(Session["UserInformationId"]));
+            ViewBag.UserInformationTableData = UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])).FirstOrDefault();
 
-            foreach (var item in UserInfoService.GetAll().Where(a => a.UserId == Convert.ToInt32(Session["Login"])))
-            {
-                ViewBag.ProfilePic = item.ProfilePicture;
-            }
+            ViewBag.UserBankAccountDetails = this.userBankAccount(Convert.ToInt32(Session["UserInformationId"]));
             return View();
         }
 
@@ -96,7 +91,7 @@ namespace layeredFundRaiserSystem.Controllers
                 IBankInformationService bankService = ServiceFactory.GetBankInformationService();
                 ViewBag.BankList = bankService.GetAll();
 
-                ViewBag.ErrorMessage = "Any fild Cannot Be Empty";
+                ViewBag.ErrorMessage = "Fields Can't Be Empty";
             }
             return View();
         }
@@ -118,7 +113,6 @@ namespace layeredFundRaiserSystem.Controllers
                 UserInformation userInformation = UserInfoService.Get(Convert.ToInt32(Session["UserInformationId"]));//.Where(a => a.UserId == Convert.ToInt32(Session["Login"]));
                 return View(userInformation);
             }
-
         }
 
         [HttpPost]
@@ -140,7 +134,6 @@ namespace layeredFundRaiserSystem.Controllers
                     {
                         if (coll["NewPassword"].ToString() == coll["confirmPassword"].ToString())
                         {
-
                             userLogin.Password = coll["confirmPassword"].ToString();
                             loginService.Update(userLogin);
                             return Redirect("/Logout");
@@ -200,17 +193,6 @@ namespace layeredFundRaiserSystem.Controllers
 
                     UserAccountNo = item.UserAccountNo,
                     UserBankAccountId = item.UserBankAccountId
-
-                    //UserInformationId = item.UserInformation.UserInformationId,
-                    //ProfilePicture = item.UserInformation.ProfilePicture,
-                    //FirstName = item.UserInformation.FirstName,
-                    //LastName = item.UserInformation.LastName,
-                    //ContactNo = item.UserInformation.ContactNo,
-                    //Country = item.UserInformation.Country,
-                    //NationalId = item.UserInformation.NationalId,
-                    //PermanentAddress = item.UserInformation.PermanentAddress,
-                    //PresentAddress = item.UserInformation.PresentAddress,
-                    //UserId = item.UserInformation.UserId
                 };
                 joinData.Add(load);
             }

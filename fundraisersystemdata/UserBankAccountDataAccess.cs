@@ -15,14 +15,6 @@ namespace FundRaiserSystemData
         }
         public IEnumerable<UserBankAccount> GetAll(bool includeUserInformations = false, bool includeBankInformations = false)
         {
-            //if (includeUserInformations)
-            //{
-            //    return this.context.UserBankAccounts.Include("UserInformation").ToList();
-            //}
-            //else if (includeBankInformations)
-            //{
-            //    return this.context.UserBankAccounts.Include("BankInformation").ToList();
-            //}
             if (includeUserInformations || includeBankInformations)
             {
                 return this.context.UserBankAccounts.Include("UserInformation").Include("BankInformation").ToList();
@@ -34,14 +26,6 @@ namespace FundRaiserSystemData
         }
         public UserBankAccount Get(int id, bool includeUserInformations = false, bool includeBankInformations = false)
         {
-            //if (includeUserInformations)
-            //{
-            //    return this.context.UserBankAccounts.Include("UserInformation").SingleOrDefault(x=> x.UserBankAccountId == id);
-            //}
-            //else if (includeBankInformations)
-            //{
-            //    return this.context.UserBankAccounts.Include("BankInformation").SingleOrDefault(x => x.UserBankAccountId == id);
-            //}
             if (includeUserInformations || includeBankInformations)
             {
                 return this.context.UserBankAccounts.Include("UserInformation").Include("BankInformation").SingleOrDefault(x => x.UserBankAccountId == id);

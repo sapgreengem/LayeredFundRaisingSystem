@@ -5,13 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
-using FundRaiserSystemData;
 
 namespace layeredFundRaiserSystem.Controllers
 {
     public class SettingsController : BaseAdminController
     {
-        // GET: Settings
         public ActionResult Index()
         {
             ISettingService service = ServiceFactory.GetSettingService();
@@ -31,6 +29,7 @@ namespace layeredFundRaiserSystem.Controllers
                 settings.ServiceCharge = Convert.ToDouble(coll["ServiceCharge"]);
                 settings.RefundCharge = Convert.ToDouble(coll["RefundCharge"]);
                 settings.SystemContactNo = coll["ContactNo"].ToString();
+                settings.SystemEmail = coll["Email"].ToString();
                 settings.SystemAddress = coll["Address"].ToString();
                 settings.SystemBankAccount = coll["AccNo"].ToString();
                 service.Update(settings);
@@ -38,11 +37,9 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "No field can be empty";
+                ViewBag.ErrorMessage = "Fields Can't be empty";
                 return View(service.Get(1));
             }
-            
-
         }
     }
 }

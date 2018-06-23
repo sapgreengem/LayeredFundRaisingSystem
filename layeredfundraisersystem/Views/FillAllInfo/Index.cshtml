@@ -26,22 +26,22 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="firstName" />
+                            <input type="text" class="form-control" value="@ViewBag.FirstName" name="firstName" />
                             <span id="error_message" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" name="lastName" />
+                            <input type="text" class="form-control" value="@ViewBag.LastName" name="lastName" />
                             <span id="error_pass" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Present Address</label>
-                            <input type="text" class="form-control" name="presentAddress" />
+                            <input type="text" class="form-control" value="@ViewBag.PresentAddress" name="presentAddress" />
                             <span id="error_message" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>Permanent Address</label>
-                            <input type="text" class="form-control" name="permanentAddress" />
+                            <input type="text" class="form-control" value="@ViewBag.PermanentAddress" name="permanentAddress" />
                             <span id="error_pass" class="text-danger"></span>
                         </div>
 
@@ -59,13 +59,13 @@
                         @* ----------------------- *@
                         <div class="form-group">
                             <label>Contact No</label>
-                            <input type="number" class="form-control" name="contactNo" min="0" />
+                            <input type="number" class="form-control" value="@ViewBag.ContactNo" name="contactNo" min="0" />
                             <span id="error_message" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
                             <label>National ID</label>
-                            <input type="number" class="form-control" name="nationalID" min="0" />
+                            <input type="number" class="form-control" value="@ViewBag.NID"  name="nationalID" min="0" />
                             <span id="error_pass" class="text-danger"></span>
                         </div>
                         
@@ -75,7 +75,7 @@
                             <span id="error_pass" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label>User Account No</label>
+                            <label>Bank Account No</label>
                             <input type="text" class="form-control" name="userAccountNo" />
                             <span id="error_message" class="text-danger"></span>
                         </div>

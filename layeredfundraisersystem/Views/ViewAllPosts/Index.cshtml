@@ -15,42 +15,50 @@
     <div class="row">
 
         @*<div class="col-md-8 col-md-offset-2">*@
-            <div>
-                <form method="post" name="cat">
-                    <div style="float:left">
-                        <span>Find by Category</span>
-                        <select name="Category" class="form-control" onchange="this.form.submit()">
-                            @foreach (var ListItem in ViewBag.Categories)
-                            {
-                                <option value="@ListItem.CategoryId">@ListItem.CategoryName</option>
-                            }
-                        </select>
+        <div>
+            <form method="post" name="cat">
+                <div style="float:left; width:330px">
+                    <label style="padding-top:1.5%">Find By Category</label>
+                    <select name="Category" class="form-control pull-right" onchange="this.form.submit()" style="width:200px">
+                        @foreach (var ListItem in ViewBag.Categories)
+                        {
+                            <option value="@ListItem.CategoryId">@ListItem.CategoryName</option>
+                        }
+                    </select>
+                </div>
+            </form>
+            <form method="post" name="search">
+                <div class="pull-right">
+                    <div style="float:left;">
+                        <input type="text" placeholder="Search By Name" class="form-control" name="searchName" id="searchName" />
                     </div>
-                </form>
-                <form method="post" name="search">
-                    <div class="pull-right">
-                        <span>Search By Name</span>
-                        <input type="text" class="form-control" name="searchName" id="searchName" />
                         <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                        <br />
-                        <span id="error_searchName" class="text-danger"></span>
-                    </div>
-                </form>
-            </div>
+                    <br />
+                    <span id="error_searchName" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
 
-            <br />
-            <br />
+        <br />
+        <br />
 
-            <table class="table">
-                @foreach (var item in ViewBag.Posts)
-                {
+        @{
+            if (ViewBag.Posts != null)
+            {
+                <table class="table">
+
+                    @foreach (var item in ViewBag.Posts)
+                    {
                     <tr>
                         <td>
-                            <a style="color:black;" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
-                                <img src="~/PostImages/@item.PostImage" alt="N/A" style="width:300px; height:150px">
+                            <a style="color:black" href="/PostDetailsView/Index/@item.PostId" title="Click To View">
+                                <div class="image">
+                                    <img src="~/PostImages/@item.PostImage" alt="N/A" style="width:300px; height:150px;">
+                                    <h3>@item.AverageRating.ToString("0.0") <i class="glyphicon glyphicon-star"></i></h3>
+                                </div>
                                 <div class="progress" style="width:300px">
                                     <div class="progress-bar-success text-center" role="progressbar" aria-valuenow="70"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount)*100)%; color:White">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((item.CollectedAmount / item.RequiredAmount) * 100)%; color:Black;font-weight:bold">
                                         @Convert.ToInt32(((item.CollectedAmount / item.RequiredAmount) * 100))%
                                     </div>
                                 </div>
@@ -74,12 +82,37 @@
                             }
                         </td>
                     </tr>
-                }
-            </table>
+                    }
+                </table>
+
+            }
+            else
+            {
+                <h4>@ViewBag.PostsError</h4>
+            }
+        }
+
         @*</div>*@
 
     </div>
 </div>
+@section styles{
+
+    <style type="text/css">
+        .image {
+            position: relative;
+            width: 100%; /* for IE 6 */
+        }
+
+        h3 {
+            position: absolute;
+            top: 65%;
+            left: 78%;
+            font-weight: bold;
+            color: #81EA2C;
+        }
+    </style>
+}
 
 <script type="text/javascript">
     $(function () {

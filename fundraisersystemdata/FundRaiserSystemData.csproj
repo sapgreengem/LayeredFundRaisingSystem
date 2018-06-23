@@ -69,6 +69,7 @@
     <Compile Include="IUserCommentDataAccess.cs" />
     <Compile Include="IUserInformationDataAccess.cs" />
     <Compile Include="IUserLoginDataAccess.cs" />
+    <Compile Include="IUserRatingDataAccess.cs" />
     <Compile Include="OnlineTransectionDataAccess.cs" />
     <Compile Include="PostingCategoryDataAccess.cs" />
     <Compile Include="PostProofDataAccess.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="UserCommentDataAccess.cs" />
     <Compile Include="UserInformationDataAccess.cs" />
     <Compile Include="UserLoginDataAccess.cs" />
+    <Compile Include="UserRatingDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FundRaiserSystemEntity\FundRaiserSystemEntity.csproj">

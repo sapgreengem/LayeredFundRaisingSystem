@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FundRaiserSystemData;
+//
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -34,6 +34,7 @@ namespace layeredFundRaiserSystem.Controllers
 
             ViewBag.CountNumberofPosts = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
+                .Where(a=> a.PostStatus != "Pending")
                 .Count();
 
             ViewBag.CountMyCompletedPosts = service.GetAll()
@@ -47,7 +48,6 @@ namespace layeredFundRaiserSystem.Controllers
             ViewBag.SumRemainingAmount = service.GetAll()
                 .Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]))
                 .Sum(a => a.RemainingAmount).ToString("0.00");
-
 
             IFundWithdrawService withdrawService = ServiceFactory.GetFundWithdrawService();
             ViewBag.SumWithdrawanAmount = withdrawService.GetAll()

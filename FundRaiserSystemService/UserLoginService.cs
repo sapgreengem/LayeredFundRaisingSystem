@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundRaiserSystemEntity;
-namespace FundRaiserSystemData
+using FundRaiserSystemData;
+
+namespace FundRaiserSystemService
 {
     class UserLoginService: IUserLoginService
     {
@@ -32,11 +34,6 @@ namespace FundRaiserSystemData
         public int Delete(int id)
         {
             return this.data.Delete(id);
-        }
-
-        public UserLogin GetUser(string email, string password, string status)
-        {
-            return this.data.GetUser(email, password, status);
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "AboutUs";
+    if (Session["Login"] == null)
+    {
+        Layout = "~/Views/Shared/_ViewersLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="text-center">
+
+                <h2>About Us</h2>
+
+                <p style="text-align:justify">
+                    frs.com is the largest crowfunding community connecting nonprofits, donars and companies in Bangladesh.
+                    The motto of this platform is to help people who need condition free financial support.
+                    This platform is for helping the needy people by connecting them to the people who have money and want to donate.
+                    This system is designed in the context of Bangladesh as there is no support for online donation.
+                    We help Bangladeshi people to collect fund from people around the world and this is our main objective
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <h3>Our Team</h3>
+            <br />
+            <div style="float:left; padding-left:10%">
+                <img src="~/icon/Anik.jpg" alt="Alternate Text" height="150" width="150" style="border-radius:50%;" />
+                <br />
+                <br />
+                <label>Anik Roy</label>
+            </div>
+            <div style="float:left; padding-left:10%">
+                <img src="~/icon/Raihan.jpg" alt="Alternate Text" height="150" width="150" style="border-radius:50%;" />
+                <br />
+                <br />
+                <label>MD.Jaowat Raihan</label>
+            </div>
+            <div style="float:left;padding-left:10%">
+                <img src="~/icon/Akash.jpg" alt="Alternate Text" height="150" width="150" style="border-radius:50%;" />
+                <br />
+                <br />
+                <label>Akash Sharkar</label>
+            </div>
+            <div style="float:left;padding-left:10%">
+                <img src="~/icon/pushpak.jpg" alt="Alternate Text" height="150" width="150" style="border-radius:50%;" />
+                <br />
+                <br />
+                <label>Pushpak Pramanik</label>
+            </div>
+        </div>
+    </div>
+</div>

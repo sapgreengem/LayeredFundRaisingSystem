@@ -1,5 +1,4 @@
-﻿using FundRaiserSystemData;
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
 using System;
@@ -13,8 +12,7 @@ namespace layeredFundRaiserSystem.Controllers
     public class ManageCategoryController : BaseAdminController
     {
         IPostingCategoryService service = ServiceFactory.GetPostingCategoryService();
-
-        // GET: ManageCategory
+        
         [HttpGet]
         public ActionResult Index()
         {
@@ -41,7 +39,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Category Name can not be empty";
+                ViewBag.ErrorMessage = "Category Name Can't be empty";
             }
             return View(service.GetAll());
         }
@@ -63,7 +61,7 @@ namespace layeredFundRaiserSystem.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "Category Name can not be empty";
+                ViewBag.ErrorMessage = "Category Name Can't be empty";
             }
             return RedirectToAction("Index");
         }
@@ -80,7 +78,7 @@ namespace layeredFundRaiserSystem.Controllers
             var countExistingCategory = service.GetAll().Where(a => a.CategoryName == id).Count();
             var msg = "";
 
-            if (countExistingCategory != 0) msg = "Category Already Exists"; 
+            if (countExistingCategory != 0) msg = "Already Exists!"; 
             else msg = "";
 
             return Json(new { message = msg }, JsonRequestBehavior.AllowGet);

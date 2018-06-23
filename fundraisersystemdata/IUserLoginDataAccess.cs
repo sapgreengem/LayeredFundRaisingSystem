@@ -10,7 +10,6 @@ namespace FundRaiserSystemData
     public interface IUserLoginDataAccess
     {
         IEnumerable<UserLogin> GetAll();
-        UserLogin GetUser(string email, string password, string status);
         UserLogin Get(int id);
         int Insert(UserLogin userLogin);
         int Update(UserLogin userLogin);

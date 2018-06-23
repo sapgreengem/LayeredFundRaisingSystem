@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundRaiserSystemEntity;
+using FundRaiserSystemData;
 
-namespace FundRaiserSystemData
+namespace FundRaiserSystemService
 {
     public interface IUserInformationService
     {

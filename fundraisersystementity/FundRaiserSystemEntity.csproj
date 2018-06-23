@@ -68,6 +68,7 @@
     <Compile Include="UserComment.cs" />
     <Compile Include="UserInformation.cs" />
     <Compile Include="UserLogin.cs" />
+    <Compile Include="UserRating.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

@@ -29,41 +29,89 @@
                 <h4>Description</h4>
                 <hr />
                 <p style="text-align:justify">@Model.PostDetails</p>
+
+                <label>Proofs</label>
                 <br />
+                @{
+                    var a = 0;
+                    foreach (var item in ViewBag.PostProof)
+                    {
+                        a++;
+                        <div style="float:left; text-align:center">
+                            <a href="~/PostProofImages/@item.PictureForProof">
+                                <img src="~/icon/proofimages.png" height="50" width="50" alt="Alternate Text" />
+                                <br />
+                                <span>Proof @a</span>
+                            </a>
+                        </div>
+                    }
+                }
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="demo-content">
-                <div style="padding-top:30%">
+                <div style="padding-top:25%">
                     <h4 class="text-center">Collected <strong>@Model.CollectedAmount.ToString("0.00") TK</strong>  of <strong>@Model.RequiredAmount.ToString("0.00") TK</strong>  </h4>
-                    <br />
-                    <br />
-
-
-                    @if (Model.RequiredAmount > Model.CollectedAmount)
-                    {
-                        <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
-                    }
-                    <div style="padding-top:15%">
+                    <div style="padding-top:1%">
+                        @if (Model.RequiredAmount > Model.CollectedAmount)
+                        {
+                            <h4 class="text-center"><strong>@((Model.RequiredAmount - Model.CollectedAmount).ToString("0.00"))</strong>  TK More Needed </h4>
+                        }
+                    </div>
+                    <div>
                         <h4 class="pull-left"><strong>@ViewBag.NumberOfPeopleDonated</strong> people donated</h4>
                         <h4 class="pull-right"><strong>@(Convert.ToInt32((Model.EndDate - DateTime.Now).TotalDays)) days</strong>  remaining </h4>
                     </div>
-                    <div style="padding-top:35%">
+
+
+
+                    @*--------------------------Campain Rating start------------------------*@
+
+                    <div style="padding-top:15%">
+                        <label>Campain Rating</label>
+                        <div class="text-center">
+                            <h2>
+                                <span id="RatingAvarage"></span>
+                                <i class="glyphicon glyphicon-star"></i>
+                            </h2>
+
+                            <span><i class="glyphicon glyphicon-user"></i></span>
+                            <span id="RatingPeopleCount"></span>
+                            <span>Rated</span>
+                        </div>
+                    </div>
+                    <div style="text-align:center; padding-top:3%">
+
+                        @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
+                        {
+                            <label>Rate This Campain:</label>
+
+                            <button class="icon-button rating" id="1"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="2"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="3"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="4"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <button class="icon-button rating" id="5"><i class="glyphicon glyphicon-star-empty"></i></button>
+                            <br />
+
+                        }
+                    </div>
+
+                    <div style="padding-top:3%">
                         <label>Collection Completed</label>
                         <div class="progress">
                             @{
                                 if (Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100)) <= 100)
                                 {
                                     <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:White">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:@((Model.CollectedAmount / Model.RequiredAmount) * 100)%; color:Black;font-weight:bold ">
                                         @Convert.ToInt32(((Model.CollectedAmount / Model.RequiredAmount) * 100))%
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="progress-bar-success text-center" id="progress" role="progressbar" aria-valuenow="70"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:100%; color:White">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:100%; color:black; font-weight:bold">
                                         @Convert.ToInt32(100)%
                                     </div>
                                 }
@@ -72,14 +120,15 @@
                         </div>
                         @if (Model.UserInformationId != Convert.ToInt32(Session["UserInformationId"]) || Session["UserInformationId"] == null)
                         {
-                            <a class="btn btn-success pull-right" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
+                            <a class="btn btn-primary pull-right" href="/DonateOnPost/Index/@Model.PostId">Donate Now</a>
                         }
                     </div>
                 </div>
             </div>
-            <div class="demo-content" style="padding-top:15%">
+            <div class="demo-content" style="padding-top:14%">
                 <h4>Share Now</h4>
                 <hr />
+
                 <div id="shareBtn" style="float:left">
                     <img src="~/icon/facebook-logo-png-2335.png" class="img-fluid " height="80" width="90" />
                 </div>
@@ -139,7 +188,7 @@
             <div class="demo-content">
                 <h4>Leave a comment</h4>
                 <hr />
-                <textarea class="form-control" rows="4" cols="50" id="msg" placeholder="Not More Than 50 words"></textarea>
+                <textarea class="form-control" rows="4" cols="50" id="msg" placeholder="Not More Than 50 words" style="resize:none"></textarea>
                 <br />
                 <button class="btn btn-primary pull-right" id="comment">Comment</button>
                 <input type="hidden" value="@ViewBag.UserInformationId" id="user_id" />
@@ -156,7 +205,6 @@
         </div>
     </div>
 </div>
-
 
 
 <script type="text/javascript">
@@ -236,6 +284,65 @@
             }
         });
     });
+
+    //--------------------------------------------------------
+    function LoadRatings() {
+        $.ajax({
+            url: '@Url.Action("Rating", "PostDetailsView")',
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            data: { PostID: $("#post_id").val(), UserInfoID: 0 , Rating: 0 },
+            success: function (response) {
+                var data = response.list;
+                $("#RatingAvarage").html(data.RatingAvarage);
+                $("#RatingPeopleCount").html(data.RatingPeopleCount);
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        LoadRatings();
+        $(".rating").click(function () {
+            var rating = $(this).attr('id'); // $(this) refers to button that was clicked
+            var login = true;
+
+            $.ajax({
+                url: '@Url.Action("CheckLogin", "Login")',
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                data: {},
+                success: function (response) {
+                    if (response.message != "") {
+                        login = false;
+                        alert('Please Login To Rate');
+                    }
+                }
+            });
+
+            if (login == true) {
+
+                $.ajax({
+                    url: '@Url.Action("Rating", "PostDetailsView")',
+                    dataType: "json",
+                    type: "GET",
+                    contentType: 'application/json; charset=utf-8',
+                    async: true,
+                    data: { PostID: $("#post_id").val(), UserInfoID: $("#user_id").val(), Rating: rating},
+                    success: function (response) {
+                        var data = response.list;
+                        $("#RatingAvarage").html(data.RatingAvarage);
+                        $("#RatingPeopleCount").html(data.RatingPeopleCount);
+                    }
+                });
+            }
+        });
+    });
+
 </script>
 
 

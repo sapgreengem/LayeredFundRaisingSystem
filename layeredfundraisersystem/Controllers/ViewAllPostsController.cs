@@ -5,21 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using FundRaiserSystemService;
 using FundRaiserSystemEntity;
-using FundRaiserSystemData;
 using layeredFundRaiserSystem.Models;
 
 namespace layeredFundRaiserSystem.Controllers
 {
     public class ViewAllPostsController : Controller
     {
-        // GET: ViewAllPosts
         public ActionResult Index()
         {
             if (Session["Login"] == null)
             {
                 Session["StoreURL"] = "/ViewAllPosts/Index"; 
             }
-
             if (Session["AdminLogin"] != null)
             {
                 Response.Redirect("/AdminHome");
@@ -44,6 +41,7 @@ namespace layeredFundRaiserSystem.Controllers
         {
             List<PostingCategory> categories = this.getCategory();
             List<PostingCategory> categories1 = new List<PostingCategory>();
+            ViewBag.Categories = this.getCategory();
 
             #region SearchByCategory 
 
@@ -91,14 +89,14 @@ namespace layeredFundRaiserSystem.Controllers
             else if (search["searchName"] != null && cat["Category"] == null)
             {
                 ViewBag.Categories = this.getCategory();
-                ViewBag.Posts = this.GetPostsByTitle(search["searchName"].ToString()).ToList();
+                var res = this.GetPostsByTitle(search["searchName"].ToString()).ToList();
+
+                if (res == null)
+                    ViewBag.PostsError = "No Matching Result Found";
+                else
+                    ViewBag.Posts = res;
             }
             #endregion SearchByText
-            //else
-            //{
-            //    ViewBag.Categories = this.getCategory();
-            //    ViewBag.Posts = this.GetPostsByTitle(search["searchName"]).ToList();
-            //}
 
             if (Session["Login"] != null)
             {
@@ -114,7 +112,7 @@ namespace layeredFundRaiserSystem.Controllers
             IEnumerable<FundRequestPost> post = service.GetAll().Where(b => b.CategoryId == Category).Where(a => a.PostStatus == "Active");
             return post;
         }
-        public IEnumerable<FundRequestPost> GetPostsByTitle(string title)
+        public IEnumerable<FundRequestPost> GetPostsByTitle(string title/*, int CatID*/)
         {
             IFundRequestPostService service = ServiceFactory.GetFundRequestPostService();
             IEnumerable<FundRequestPost> post = service.GetAll().Where(b => b.PostTitle.Contains(title)).Where(a => a.PostStatus == "Active");
@@ -125,16 +123,6 @@ namespace layeredFundRaiserSystem.Controllers
             IPostingCategoryService catService = ServiceFactory.GetPostingCategoryService();
             List<PostingCategory> loadCategories = catService.GetAll().ToList();
             return loadCategories;
-        }
-
-        [HttpGet]
-        public JsonResult GetPostBySearchName(string id)
-        {
-
-            //IFundRequestPostService service = service.GetAll()
-            //IEnumerable<FundRequestPost> FundRequestPost = FundRequestPost;
-            var msg = "";
-            return Json(new { message = msg }, JsonRequestBehavior.AllowGet);
         }
     }
 }

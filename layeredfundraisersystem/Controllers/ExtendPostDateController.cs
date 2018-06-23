@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FundRaiserSystemData;
 using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using layeredFundRaiserSystem.Models;
@@ -45,14 +44,12 @@ namespace layeredFundRaiserSystem.Controllers
 
                         postService.Update(post);
                         ViewBag.ErrorMessage = "Request Sent";
-
                     }
                 }
                 else
                 {
                     ViewBag.ErrorMessage = "You Can Only Request to extend days from your own post";
-                }
-                
+                }                
             }
             else
             {
@@ -75,7 +72,6 @@ namespace layeredFundRaiserSystem.Controllers
             {
                 ViewBag.AllRequests = service.GetAll().Where(a => a.PostStatus == "ExtendRequest").Where(a => a.UserInformationId == Convert.ToInt32(Session["UserInformationId"]));
             }
-
             return View();
         }
     }

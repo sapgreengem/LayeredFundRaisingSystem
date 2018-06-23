@@ -1,5 +1,4 @@
-﻿using FundRaiserSystemData;
-using FundRaiserSystemEntity;
+﻿using FundRaiserSystemEntity;
 using FundRaiserSystemService;
 using System;
 using System.Collections.Generic;
@@ -43,17 +42,17 @@ namespace layeredFundRaiserSystem.Controllers
                 UserLogin user = userService.Get(Convert.ToInt32(Session["Login"]));
                 IBankInformationService bankService = ServiceFactory.GetBankInformationService();
                 ViewBag.BankList = bankService.GetAll();
-
-                if (file != null && file.ContentLength > 0 
-                    && !String.IsNullOrWhiteSpace(collection["firstName"].ToString()) 
-                    && !String.IsNullOrWhiteSpace(collection["lastName"].ToString())
-                    && !String.IsNullOrWhiteSpace(collection["presentAddress"].ToString())
-                    && !String.IsNullOrWhiteSpace(collection["permanentAddress"].ToString())
-                    && !String.IsNullOrWhiteSpace(collection["nationalID"].ToString())
-                    && !String.IsNullOrWhiteSpace(collection["contactNo"].ToString())
-                    && collection["country"].ToString() != "SelectOne"
-                    && !String.IsNullOrWhiteSpace(collection["userAccountNo"].ToString())
-                    && Convert.ToInt32(collection["BankList"]) > 0)
+                
+                if (file != null && file.ContentLength > 0
+                && !String.IsNullOrWhiteSpace(collection["firstName"].ToString())
+                && !String.IsNullOrWhiteSpace(collection["lastName"].ToString())
+                && !String.IsNullOrWhiteSpace(collection["presentAddress"].ToString())
+                && !String.IsNullOrWhiteSpace(collection["permanentAddress"].ToString())
+                && !String.IsNullOrWhiteSpace(collection["nationalID"].ToString())
+                && !String.IsNullOrWhiteSpace(collection["contactNo"].ToString())
+                && collection["country"].ToString() != "SelectOne"
+                && !String.IsNullOrWhiteSpace(collection["userAccountNo"].ToString())
+                && Convert.ToInt32(collection["BankList"]) > 0)
                 {
                     IUserInformationService service = ServiceFactory.GetUserInformationService();
                     UserInformation uInfo = new UserInformation();
@@ -66,15 +65,46 @@ namespace layeredFundRaiserSystem.Controllers
                     uInfo.ContactNo = collection["contactNo"].ToString();
                     uInfo.Country = collection["country"].ToString();
                     uInfo.UserId = Convert.ToInt32(Session["Login"]);
-                    // extract only the filename
+
                     var fileName = Path.GetFileName(file.FileName);
                     var NewFileName = DateTime.Now.ToFileTime() + " " + fileName;
+                    var fileExt = Path.GetExtension(fileName).ToString();   
+
+                    if (file.ContentLength > 5242880)
+                    {
+                        ViewBag.ErrorMessage = "File size must be less than 5MB";
+                        ViewBag.BankList = bankService.GetAll();
+                        ViewBag.CountryList = this.LoadCountry();
+                        ViewBag.FirstName = uInfo.FirstName;
+                        ViewBag.LastName = uInfo.LastName;
+                        ViewBag.PresentAddress = uInfo.PresentAddress;
+                        ViewBag.PermanentAddress = uInfo.PermanentAddress;
+                        ViewBag.ContactNo = uInfo.ContactNo;
+                        ViewBag.NID = uInfo.NationalId;
+                        return View(user);
+                    }
+                    if (fileExt != ".jpeg" && fileExt != ".JPEG" &&
+                        fileExt != ".jpg" && fileExt != ".JPG" &&
+                        fileExt != ".png" && fileExt != ".PNG")
+                    {
+                        ViewBag.ErrorMessage = "Invalid Image File Type";
+                        ViewBag.BankList = bankService.GetAll();
+                        ViewBag.CountryList = this.LoadCountry();
+                        ViewBag.FirstName = uInfo.FirstName;
+                        ViewBag.LastName = uInfo.LastName;
+                        ViewBag.PresentAddress = uInfo.PresentAddress;
+                        ViewBag.PermanentAddress = uInfo.PermanentAddress;
+                        ViewBag.ContactNo = uInfo.ContactNo;
+                        ViewBag.NID = uInfo.NationalId;
+                        return View(user);
+                    }
+
                     uInfo.ProfilePicture = NewFileName;
                     var path = Path.Combine(Server.MapPath("~/ProfilePictures"), NewFileName);
                     file.SaveAs(path);
                     service.Insert(uInfo);
 
-                    Session["UserInformationId"] = this.getUserInfoId(); //Store User Info Id in session using function
+                    Session["UserInformationId"] = this.getUserInfoId();
 
                     IUserBankAccountService UserAccService = ServiceFactory.GetUserBankAccountService();
                     UserBankAccount uAcc = new UserBankAccount();
@@ -89,10 +119,16 @@ namespace layeredFundRaiserSystem.Controllers
                 else
                 {
                     ViewBag.ErrorMessage = "Fill All Info";
-                }
-                ViewBag.BankList = bankService.GetAll();
-                ViewBag.CountryList = this.LoadCountry();
-                return View(user);
+                    ViewBag.BankList = bankService.GetAll();
+                    ViewBag.CountryList = this.LoadCountry();
+                    ViewBag.FirstName = collection["firstName"].ToString();
+                    ViewBag.LastName = collection["lastName"].ToString();
+                    ViewBag.PresentAddress = collection["presentAddress"].ToString();
+                    ViewBag.PermanentAddress = collection["permanentAddress"].ToString();
+                    ViewBag.ContactNo = collection["contactNo"].ToString();
+                    ViewBag.NID = collection["nationalID"].ToString();
+                    return View(user);
+                }  
             }
             else
             {

@@ -3,65 +3,69 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<h2 class="text-success">@ViewBag.PostConfirmation</h2>
+<center><h2 class="text-success">@ViewBag.PostConfirmation</h2></center>
 <div class="container">
     <div class="row">
         <div class="col col-md-8 col-md-offset-2">
-            <div class="panel panel-body">
+            <div class="text-center text-danger" style="border:1px dotted; font-size:large">
+                ***The Information you are providing is not changable.
                 <br />
+                Please Provide Your Information Carefully.
+            </div>
+            <h3 class="text-danger">@ViewBag.ErrorMessage</h3>
+            <div class="panel panel-body">
                 @using (Html.BeginForm("Index", "AddFundRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="panel panel-info">
-                        <div class="panel-heading"><strong>Provide Informations to creaate your fund request post</strong></div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label>Title of the post</label>
-                                <input type="text" class="form-control" name="PostTitle" id="title" />
-                                <span id="error_title" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Details of the post</label>
-                                <textarea style="min-width:180px;" class="form-control" name="PostDetails" id="details"></textarea>
-                                <span id="error_details" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Required Amount (in BDT)</label>
-                                <input type="number" class="form-control" name="RequiredAmount" id="rm" min="1" step=".01" onkeypress="return isNumberKey(event)" />
-                                <span id="error_rm" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Expected duration (in days)</label>
-                                <input type="number" class="form-control" name="EndDateInDays" id="ed" min="1" onkeypress="return isNumberKey(event)" />
-                                <span id="error_ed" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Category of your post</label>
-                                <select name="Category" class="form-control" id="category">
-                                    <option value="0">Select One</option>
-
-                                    @foreach (var ListItem in ViewBag.Categories)
-                                    {
-                                        <option value="@ListItem.Value">@ListItem.Text</option>
-                                    }
-                                </select>
-                                <span id="error_category" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Picture of the post</label>
-                                <input type="file" class="form-control" name="file" id="img" />
-                                <span id="error_img" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Proof against your need</label>
-                                <input type="file" class="form-control" name="proof" id="proof" />
-                                <span id="error_proof" class="text-danger"></span>
-                            </div>
-                            <h5 class="text-danger">@ViewBag.ErrorMessage</h5>
-                            <button type="submit" class="btn btn-primary pull-right">Create</button>
-                        </div>
+        {
+            @Html.AntiForgeryToken()
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>Provide Informations to creaate your fund request post</strong></div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Title of the post</label>
+                        <input type="text" class="form-control" name="PostTitle" value="@ViewBag.PostTitle" id="title" />
+                        <span id="error_title" class="text-danger"></span>
                     </div>
-                }
+                    <div class="form-group">
+                        <label>Details of the post</label>
+                        <textarea style="min-width:180px;" class="form-control" value="@ViewBag.Details" name="PostDetails" id="details"></textarea>
+                        <span id="error_details" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Required Amount (in BDT)</label>
+                        <input type="number" class="form-control" name="RequiredAmount" id="rm" min="1" step=".01" onkeypress="return isNumberKey(event)" />
+                        <span id="error_rm" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Campain duration (in days)</label>
+                        <input type="number" class="form-control" name="EndDateInDays" id="ed" min="1" onkeypress="return isNumberKey(event)" />
+                        <span id="error_ed" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Category of your post</label>
+                        <select name="Category" class="form-control" id="category">
+                            <option value="0">Select One</option>
+
+                            @foreach (var ListItem in ViewBag.Categories)
+                    {
+                        <option value="@ListItem.Value">@ListItem.Text</option>
+            }
+                        </select>
+                        <span id="error_category" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Picture of the post</label>
+                        <input type="file" class="form-control" name="file" id="img" />
+                        <span id="error_img" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Proof against your post</label>
+                        <input type="file" class="form-control" name="proof" id="proof" />
+                        <span id="error_proof" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Create</button>
+                </div>
+            </div>
+}
             </div>
         </div>
     </div>
@@ -133,7 +137,7 @@ window.location = '/Home/Index';
                 $("#error_category").html("");
 
             if ($("#img").val() == "") {
-                $("#error_img").html("Choose a Category");
+                $("#error_img").html("Choose a Image");
                 e.preventDefault();
                 return false;
             }
@@ -141,7 +145,7 @@ window.location = '/Home/Index';
                 $("#error_img").html("");
 
             if ($("#proof").val() == 0) {
-                $("#error_proof").html("Choose a Category");
+                $("#error_proof").html("Choose a Image");
                 e.preventDefault();
                 return false;
             }
