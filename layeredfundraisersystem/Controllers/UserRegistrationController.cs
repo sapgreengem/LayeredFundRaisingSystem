@@ -99,7 +99,7 @@ namespace layeredFundRaiserSystem.Controllers
                 }            
             }
             catch (Exception e)
-            {         
+            {
             }
             return RedirectToAction("Index", "Error", new { id = "Email Verification Link Has Broken. Try Again For a New One" });
         }

@@ -302,6 +302,7 @@
     <Folder Include="PostImages\" />
     <Folder Include="PostProofImages\" />
     <Folder Include="ProfilePictures\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\BaseAdmin\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Info\" />
