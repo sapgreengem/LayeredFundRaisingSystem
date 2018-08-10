@@ -162,6 +162,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="css\dataTables.bootstrap.css" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
@@ -302,7 +303,6 @@
     <Folder Include="PostImages\" />
     <Folder Include="PostProofImages\" />
     <Folder Include="ProfilePictures\" />
-    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\BaseAdmin\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Info\" />
